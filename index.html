@@ -972,12 +972,112 @@ button span.dot {
         transform: translateX(0);
     }
 }
+
+.about-btn {
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.about-btn:hover {
+    color: var(--text-main);
+    border-color: var(--metu-red);
+    background: var(--accent-soft);
+}
+.about-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 8000;
+    background: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+.about-overlay.is-open {
+    display: flex;
+}
+.about-modal {
+    max-width: 480px;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-subtle);
+    padding: 24px;
+    position: relative;
+}
+.about-modal h3 {
+    margin: 0 0 14px 0;
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+.about-modal .about-body {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--text-main);
+}
+.about-modal .about-body p {
+    margin: 0 0 12px 0;
+}
+.about-modal .about-body p:last-of-type {
+    margin-bottom: 18px;
+}
+.about-email-wrap {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-soft);
+    border: 1px solid rgba(196, 30, 58, 0.35);
+}
+.about-email-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--metu-red);
+    margin-bottom: 4px;
+}
+.about-email-wrap a {
+    color: var(--metu-red);
+    font-weight: 600;
+    text-decoration: none;
+}
+.about-email-wrap a:hover {
+    text-decoration: underline;
+}
+.about-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: color var(--transition), background var(--transition);
+}
+.about-close:hover {
+    color: var(--text-main);
+    background: var(--border-subtle);
+}
 </style>
 </head>
 <body>
 <script>
 document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
-document.documentElement.lang = (localStorage.getItem('lang') || 'tr') === 'tr' ? 'tr' : 'en';
+document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' ? 'tr' : 'en';
 </script>
 
 <div class="app-shell">
@@ -990,6 +1090,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'tr') === 'tr' 
       </div>
     </div>
     <div class="header-actions">
+      <button type="button" class="about-btn" id="aboutBtn" aria-label="Hakkında">
+        <span data-i18n="aboutBtn">Hakkında</span>
+      </button>
       <select id="langSelect" onchange="setLanguage(this.value)">
         <option value="tr">Türkçe</option>
         <option value="en">English</option>
@@ -999,6 +1102,23 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'tr') === 'tr' 
       </button>
     </div>
   </header>
+
+  <div class="about-overlay" id="aboutOverlay" role="dialog" aria-labelledby="aboutTitle" aria-modal="true">
+    <div class="about-modal">
+      <button type="button" class="about-close" id="aboutClose" aria-label="Kapat">&times;</button>
+      <h3 id="aboutTitle" data-i18n="aboutTitle">Hakkında</h3>
+      <div class="about-body" id="aboutBody">
+        <p id="aboutParagraph1"></p>
+        <p id="aboutParagraph2"></p>
+        <p id="aboutParagraph3"></p>
+        <p id="aboutParagraph4"></p>
+        <div class="about-email-wrap">
+          <div class="about-email-label" data-i18n="aboutEmailLabel">İletişim</div>
+          <a href="mailto:fatih.usta@metu.edu.tr">fatih.usta@metu.edu.tr</a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="dept-bar">
     <div class="dept-left">
@@ -1183,7 +1303,15 @@ const translations = {
     errPrereqNotPassedEnd: "); ön koşul sağlanmıyor.",
     noErrors: "Hata yok.",
     legendYellow: "Sarı: Katalogda yazdığı dönemle uyumsuz görünüyor (örn. sadece güzde açılıyor denmiş ama bahara konmuş). Katalog bazen yanlış/eksik olabilir; ODTÜ farklı dönemde de açabiliyor.",
-    legendRed: "Kırmızı: Ön koşul ihlali (ön koşul ders yerleştirilmemiş, yanlış sırada veya geçilmemiş)."
+    legendRed: "Kırmızı: Ön koşul ihlali (ön koşul ders yerleştirilmemiş, yanlış sırada veya geçilmemiş).",
+    aboutBtn: "Hakkında",
+    aboutTitle: "Hakkında",
+    aboutEmailLabel: "İletişim",
+    aboutP1: "Merhaba Hocamlar, ben Efe Fatih Usta, bilgisayar mühendisliği öğrencisiyim.",
+    aboutP2: "Bu siteyi, ben de dahil olmak üzere çevremde çoğu kişinin yaşadığı ortalama hesaplama sorunu ve okul uzar mı uzamaz mı problemleri yüzünden yaptım.",
+    aboutP3: "Site bölümünüze göre ders programınızı ekliyor; istediğiniz gibi dersleri ayarlayıp çakışmalara ve dönemlere göre uyarılarla programınızı düzenleyebiliyorsunuz. Notlarınızı girdiğiniz zaman ise direkt ortalamanızı görebiliyorsunuz.",
+    aboutP4: "Siteyi ileride daha da geliştirip SIS'e entegre, hatta alternatif olabilecek hale getirmek istiyorum. Eğer bir sorun görürseniz ya da tavsiye vermek isterseniz aşağıdaki mailden ulaşabilirsiniz.",
+    aboutCloseLabel: "Kapat"
   },
   en: {
     title: "METU Course Planner",
@@ -1253,11 +1381,19 @@ const translations = {
     errPrereqNotPassedEnd: "); prerequisite not satisfied.",
     noErrors: "No errors.",
     legendYellow: "Yellow: Appears to conflict with catalog (e.g. catalog says Fall-only but placed in Spring). Catalog may be wrong or incomplete; METU may offer it in another semester.",
-    legendRed: "Red: Prerequisite violation (prereq not placed, wrong order, or not passed)."
+    legendRed: "Red: Prerequisite violation (prereq not placed, wrong order, or not passed).",
+    aboutBtn: "About",
+    aboutTitle: "About",
+    aboutEmailLabel: "Contact",
+    aboutP1: "Hello, I'm Efe Fatih Usta, a computer engineering student at METU.",
+    aboutP2: "I built this site because many people around me, including myself, struggle with GPA calculations and wondering whether their degree will take longer than expected.",
+    aboutP3: "The site loads your curriculum by department; you can arrange courses as you like and get warnings for conflicts and semesters. When you enter your grades, you see your average right away.",
+    aboutP4: "I plan to develop it further and integrate it with SIS, or even offer it as an alternative. If you see any issue or want to suggest something, you can reach me at the email below.",
+    aboutCloseLabel: "Close"
   }
 };
 
-let currentLang = localStorage.getItem("lang") || "tr";
+let currentLang = localStorage.getItem("lang") || "en";
 
 function showToast(message, type) {
     type = type || "success";
@@ -1320,6 +1456,12 @@ function applyLanguage() {
     const theme = document.documentElement.getAttribute("data-theme") || "dark";
     themeLabel.textContent = theme === "dark" ? t("themeLight") : t("themeDark");
   }
+  ["aboutParagraph1", "aboutParagraph2", "aboutParagraph3", "aboutParagraph4"].forEach(function(id, i) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = t("aboutP" + (i + 1));
+  });
+  var aboutClose = document.getElementById("aboutClose");
+  if (aboutClose) aboutClose.setAttribute("aria-label", t("aboutCloseLabel"));
   recalculateGpas();
   updateSemesterLabels();
 }
@@ -2497,6 +2639,18 @@ function toggleTheme() {
     if (label) label.textContent = next === 'dark' ? t('themeLight') : t('themeDark');
 }
 
+function openAbout() {
+  var overlay = document.getElementById("aboutOverlay");
+  if (overlay) {
+    overlay.classList.add("is-open");
+    overlay.querySelector(".about-close").focus();
+  }
+}
+function closeAbout() {
+  var overlay = document.getElementById("aboutOverlay");
+  if (overlay) overlay.classList.remove("is-open");
+}
+
 (function init() {
     document.getElementById('langSelect').value = currentLang;
     applyLanguage();
@@ -2504,6 +2658,19 @@ function toggleTheme() {
     const themeLabel = document.getElementById('themeLabel');
     if (themeLabel) themeLabel.textContent = theme === 'dark' ? t('themeLight') : t('themeDark');
     setupCourseSearch();
+    var aboutBtn = document.getElementById("aboutBtn");
+    if (aboutBtn) aboutBtn.addEventListener("click", openAbout);
+    var aboutClose = document.getElementById("aboutClose");
+    if (aboutClose) aboutClose.addEventListener("click", closeAbout);
+    var aboutOverlay = document.getElementById("aboutOverlay");
+    if (aboutOverlay) {
+      aboutOverlay.addEventListener("click", function(e) {
+        if (e.target === aboutOverlay) closeAbout();
+      });
+      document.addEventListener("keydown", function(e) {
+        if (e.key === "Escape" && aboutOverlay.classList.contains("is-open")) closeAbout();
+      });
+    }
 })();
 
 </script>
