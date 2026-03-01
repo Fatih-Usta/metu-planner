@@ -539,6 +539,38 @@ button span.dot {
     margin-left: -20px;
 }
 
+.legend-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+    margin-bottom: 14px;
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+.legend-dot {
+    flex-shrink: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.legend-dot--yellow {
+    background: #d97706;
+    box-shadow: 0 0 0 1px rgba(217, 119, 6, 0.4);
+}
+.legend-dot--red {
+    background: #dc2626;
+    box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.4);
+}
+
 .course-credits-wrap {
     display: flex;
     align-items: center;
@@ -1066,6 +1098,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'tr') === 'tr' 
         </button>
       </div>
 
+      <div class="legend-wrap" aria-hidden="true">
+        <span class="legend-item legend-item--yellow"><span class="legend-dot legend-dot--yellow"></span><span data-i18n="legendYellow"></span></span>
+        <span class="legend-item legend-item--red"><span class="legend-dot legend-dot--red"></span><span data-i18n="legendRed"></span></span>
+      </div>
+
       <div class="year-grid" id="semesters"></div>
 
       <div class="helper-text" id="cgpaDisplay"></div>
@@ -1144,7 +1181,9 @@ const translations = {
     errPrereqNotPlaced: " yerleştirilmemiş.",
     errPrereqNotPassed: " geçilmemiş (",
     errPrereqNotPassedEnd: "); ön koşul sağlanmıyor.",
-    noErrors: "Hata yok."
+    noErrors: "Hata yok.",
+    legendYellow: "Sarı: Katalogda yazdığı dönemle uyumsuz görünüyor (örn. sadece güzde açılıyor denmiş ama bahara konmuş). Katalog bazen yanlış/eksik olabilir; ODTÜ farklı dönemde de açabiliyor.",
+    legendRed: "Kırmızı: Ön koşul ihlali (ön koşul ders yerleştirilmemiş, yanlış sırada veya geçilmemiş)."
   },
   en: {
     title: "METU Course Planner",
@@ -1212,7 +1251,9 @@ const translations = {
     errPrereqNotPlaced: " is not placed.",
     errPrereqNotPassed: " not passed (grade ",
     errPrereqNotPassedEnd: "); prerequisite not satisfied.",
-    noErrors: "No errors."
+    noErrors: "No errors.",
+    legendYellow: "Yellow: Appears to conflict with catalog (e.g. catalog says Fall-only but placed in Spring). Catalog may be wrong or incomplete; METU may offer it in another semester.",
+    legendRed: "Red: Prerequisite violation (prereq not placed, wrong order, or not passed)."
   }
 };
 
@@ -1384,12 +1425,19 @@ function countCreditCoursesInContainer(container) {
 
 function prereqOneOfToCodes(oneOf, map7toCode) {
     if (!oneOf || !oneOf.length) return [];
-    const firstSet = oneOf[0];
-    return firstSet.map(function(id) {
-        var key = String(id);
-        var code = map7toCode[key] || map7toCode[id];
-        return code || key;
-    }).filter(Boolean);
+    var codes = [];
+    var seen = {};
+    oneOf.forEach(function(group) {
+        (group || []).forEach(function(id) {
+            var key = String(id);
+            var code = map7toCode[key] || map7toCode[id] || key;
+            if (code && !seen[code]) {
+                seen[code] = true;
+                codes.push(code);
+            }
+        });
+    });
+    return codes;
 }
 
 function loadProgramsIntoSelect() {
@@ -1459,14 +1507,17 @@ function addCourseFromDataset(courseFromJson) {
     if (!code) return;
     var map7toCode = buildMap7ToCodeFromDataset();
     var prereqs = [];
+    var prereqsOneOf = false;
     if (courseFromJson.prerequisites && courseFromJson.prerequisites.one_of && courseFromJson.prerequisites.one_of.length) {
         prereqs = prereqOneOfToCodes(courseFromJson.prerequisites.one_of, map7toCode);
+        prereqsOneOf = true;
     }
     var semesterType = offeredToSemesterType(courseFromJson.offered_semester);
     var cred = courseFromJson.credits != null ? Number(courseFromJson.credits) : 3;
     if (ZERO_CREDIT_COURSE_CODES[code]) cred = 0;
     courses[code] = {
         prereqs: prereqs,
+        prereqsOneOf: prereqsOneOf,
         semesterType: semesterType,
         grade: "",
         credits: cred
@@ -1647,16 +1698,19 @@ function setDepartment() {
                 var prereqs = [];
                 var credits = ZERO_CREDIT_COURSE_CODES[code] ? 0 : ((full && full.credits != null) ? Number(full.credits) : 3);
                 var semesterType = "both";
+                var prereqsOneOf = false;
                 if (full) {
                     semesterType = offeredToSemesterType(full.offered_semester);
                     if (full.prerequisites && full.prerequisites.one_of && full.prerequisites.one_of.length) {
                         prereqs = prereqOneOfToCodes(full.prerequisites.one_of, map7toCode);
+                        prereqsOneOf = true;
                     }
                 }
                 var countAsCredit = credits > 0 && !ZERO_CREDIT_COURSE_CODES[code];
                 if (countAsCredit) creditCourseCount += 1;
                 courses[code] = {
                     prereqs: prereqs,
+                    prereqsOneOf: prereqsOneOf,
                     semesterType: semesterType,
                     grade: "",
                     credits: credits
@@ -2250,15 +2304,25 @@ function updatePrereqViolations() {
             if (!code) continue;
             var info = courses[code];
             if (!info || !info.prereqs || !info.prereqs.length) continue;
-            for (var p = 0; p < info.prereqs.length; p++) {
-                var prereq = info.prereqs[p];
-                var prereqSem = findCourseSemester(prereq);
-                var notPlaced = !prereqSem;
-                var wrongOrder = prereqSem >= semNum;
-                var notPassed = prereqSem && prereqSem < semNum && hasFailingGrade(prereq);
-                if (notPlaced || wrongOrder || notPassed) {
-                    violatedPrereqCodes[prereq] = true;
+            if (info.prereqsOneOf) {
+                var oneSatisfied = info.prereqs.some(function(prereq) {
+                    var prereqSem = findCourseSemester(prereq);
+                    return prereqSem && prereqSem < semNum && !hasFailingGrade(prereq);
+                });
+                if (!oneSatisfied) {
                     violatedCourseCodes[code] = true;
+                }
+            } else {
+                for (var p = 0; p < info.prereqs.length; p++) {
+                    var prereq = info.prereqs[p];
+                    var prereqSem = findCourseSemester(prereq);
+                    var notPlaced = !prereqSem;
+                    var wrongOrder = prereqSem >= semNum;
+                    var notPassed = prereqSem && prereqSem < semNum && hasFailingGrade(prereq);
+                    if (notPlaced || wrongOrder || notPassed) {
+                        violatedPrereqCodes[prereq] = true;
+                        violatedCourseCodes[code] = true;
+                    }
                 }
             }
         }
@@ -2381,16 +2445,26 @@ function updateProgramErrors() {
                 }
             }
             if (info && info.prereqs && info.prereqs.length) {
-                for (var p = 0; p < info.prereqs.length; p++) {
-                    var prereq = info.prereqs[p];
-                    var prereqSem = findCourseSemester(prereq);
-                    if (!prereqSem) {
-                        errors.push(prereq + t("errPrereqNotPlaced") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ")."));
-                    } else if (prereqSem >= semNum) {
-                        errors.push(prereq + t("errPrereqFor") + code + ";" + (currentLang === "tr" ? " " + prereq : " " + prereq) + t("errPrereqMustBeEarlier"));
-                    } else if (hasFailingGrade(prereq)) {
-                        var gradeDisp = getGradeDisplayForCourse(prereq) || "FF";
-                        errors.push(prereq + t("errPrereqNotPassed") + gradeDisp + t("errPrereqNotPassedEnd") + (currentLang === "tr" ? " " + code + " için." : " for " + code + "."));
+                if (info.prereqsOneOf) {
+                    var oneSatisfied = info.prereqs.some(function(prereq) {
+                        var prereqSem = findCourseSemester(prereq);
+                        return prereqSem && prereqSem < semNum && !hasFailingGrade(prereq);
+                    });
+                    if (!oneSatisfied) {
+                        errors.push((currentLang === "tr" ? "Şunlardan biri yerleştirilmiş ve geçilmiş olmalı: " : "One of ") + info.prereqs.join(", ") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ")."));
+                    }
+                } else {
+                    for (var p = 0; p < info.prereqs.length; p++) {
+                        var prereq = info.prereqs[p];
+                        var prereqSem = findCourseSemester(prereq);
+                        if (!prereqSem) {
+                            errors.push(prereq + t("errPrereqNotPlaced") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ")."));
+                        } else if (prereqSem >= semNum) {
+                            errors.push(prereq + t("errPrereqFor") + code + ";" + (currentLang === "tr" ? " " + prereq : " " + prereq) + t("errPrereqMustBeEarlier"));
+                        } else if (hasFailingGrade(prereq)) {
+                            var gradeDisp = getGradeDisplayForCourse(prereq) || "FF";
+                            errors.push(prereq + t("errPrereqNotPassed") + gradeDisp + t("errPrereqNotPassedEnd") + (currentLang === "tr" ? " " + code + " için." : " for " + code + "."));
+                        }
                     }
                 }
             }
