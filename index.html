@@ -1804,6 +1804,14 @@ function setDepartment() {
                         return c && Number(c.credits) > 0;
                     });
                     if (hasCreditOption) creditCourseCount += 1;
+                    var oneOfCredits = 3;
+                    if (opts.length > 0) {
+                        var allZero = opts.every(function(o) {
+                            var c = by7[o.course_code_7digit] || byCode[o.code];
+                            return c && Number(c.credits) === 0;
+                        });
+                        if (allZero) oneOfCredits = 0;
+                    }
                     var elecCode = "ELEC_S" + semNum + "_" + idx;
                     var optNames = (item.options || []).map(function(o) { return o.code; }).join(", ");
                     var elecName = (currentLang === "tr" ? "Şunlardan 1’i: " : "Any 1 of: ") + (optNames || (item.name || ""));
@@ -1811,7 +1819,7 @@ function setDepartment() {
                         prereqs: [],
                         semesterType: "both",
                         grade: "",
-                        credits: 3
+                        credits: oneOfCredits
                     };
                     curriculumPlacement[elecCode] = semNum;
                     var el = createCourseElement(elecCode, null, elecName, true);
