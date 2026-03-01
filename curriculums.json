@@ -1,6 +1,6 @@
 {
   "source": "catalog.metu.edu.tr",
-  "scraped_at": "2026-03-01 02:32:49",
+  "scraped_at": "2026-03-01 13:26:32",
   "curriculums": {
     "120": {
       "program_code": "120",
@@ -1505,6 +1505,24 @@
               "name": "TECHNICAL ELECTIVE"
             }
           ]
+        },
+        {
+          "semester_number": 8,
+          "name": "Semester 8",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "TECHNICAL ELECTIVE"
+            }
+          ]
         }
       ]
     },
@@ -2003,6 +2021,54 @@
                   "course_code_7digit": "6420304"
                 }
               ]
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            }
+          ]
+        },
+        {
+          "semester_number": 7,
+          "name": "Semester 7",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            }
+          ]
+        },
+        {
+          "semester_number": 8,
+          "name": "Semester 8",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
             },
             {
               "type": "elective",
@@ -2863,6 +2929,32 @@
               "name": "TECHNICAL ELECTIVE"
             }
           ]
+        },
+        {
+          "semester_number": 8,
+          "name": "Semester 8",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "TECHNICAL ELECTIVE"
+            }
+          ]
         }
       ]
     },
@@ -3073,9 +3165,57 @@
           "name": "Semester 6",
           "courses": [
             {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            }
+          ]
+        },
+        {
+          "semester_number": 7,
+          "name": "Semester 7",
+          "courses": [
+            {
               "code": "PSY4090",
               "course_code_7digit": "2334090"
             },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            }
+          ]
+        },
+        {
+          "semester_number": 8,
+          "name": "Semester 8",
+          "courses": [
             {
               "type": "elective",
               "name": "DEPARTMENTAL ELECTIVE"
@@ -4407,6 +4547,58 @@
               "name": "DEPARTMENTAL ELECTIVE"
             }
           ]
+        },
+        {
+          "semester_number": 7,
+          "name": "Semester 7",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            }
+          ]
+        },
+        {
+          "semester_number": 8,
+          "name": "Semester 8",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            }
+          ]
         }
       ]
     },
@@ -4631,6 +4823,58 @@
             {
               "code": "ADM3208",
               "course_code_7digit": "3103208"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            }
+          ]
+        },
+        {
+          "semester_number": 7,
+          "name": "Semester 7",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "FREE ELECTIVE"
+            }
+          ]
+        },
+        {
+          "semester_number": 8,
+          "name": "Semester 8",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "DEPARTMENTAL ELECTIVE"
             },
             {
               "type": "elective",
@@ -8157,6 +8401,32 @@
               "name": "NONTECHNICAL ELECTIVE"
             }
           ]
+        },
+        {
+          "semester_number": 8,
+          "name": "Semester 8",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "TECHNICAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "TECHNICAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "TECHNICAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "NONTECHNICAL ELECTIVE"
+            }
+          ]
         }
       ]
     },
@@ -8757,6 +9027,32 @@
             {
               "type": "elective",
               "name": "FREE ELECTIVE"
+            }
+          ]
+        },
+        {
+          "semester_number": 8,
+          "name": "Semester 8",
+          "courses": [
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "RESTRICTED ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "TECHNICAL ELECTIVE"
+            },
+            {
+              "type": "elective",
+              "name": "TECHNICAL ELECTIVE"
             }
           ]
         }
