@@ -2407,7 +2407,7 @@ function createCourseElement(name, code7, displayLabel, isElective) {
 
     setGradeSelectOptionsByCredits(gradeSelect, name);
 
-    gradeSelect.addEventListener("change", () => {
+    function onGradeChange() {
         const courseEl = gradeSelect.closest(".course");
         const code = courseEl ? (courseEl.dataset.courseCode || name) : name;
         const semesterEl = courseEl ? courseEl.closest(".semester") : null;
@@ -2420,7 +2420,10 @@ function createCourseElement(name, code7, displayLabel, isElective) {
         }
         recalculateGpas();
         updateWrongSemesterWarnings();
-    });
+        persistPlannerState();
+    }
+    gradeSelect.addEventListener("change", onGradeChange);
+    gradeSelect.addEventListener("input", onGradeChange);
 
     const actions = document.createElement("div");
     actions.className = "course-actions";
@@ -2457,6 +2460,7 @@ function createCourseElement(name, code7, displayLabel, isElective) {
             } else if (courses[code]) courses[code].grade = gs.value;
         }
         recalculateGpas();
+        persistPlannerState();
     });
     creditsWrap.appendChild(creditsLabel);
     creditsWrap.appendChild(creditsInput);
@@ -2485,6 +2489,7 @@ function createCourseElement(name, code7, displayLabel, isElective) {
         if (pool) pool.appendChild(clone);
         recalculateGpas();
         updateWrongSemesterWarnings();
+        persistPlannerState();
     });
 
     const deleteBtn = document.createElement("button");
@@ -2510,6 +2515,7 @@ function createCourseElement(name, code7, displayLabel, isElective) {
         }
         recalculateGpas();
         updateWrongSemesterWarnings();
+        persistPlannerState();
     });
 
     actions.appendChild(gradeSelect);
@@ -2969,6 +2975,7 @@ function closeAbout() {
 }
 
 (function init() {
+    window.addEventListener("beforeunload", function() { persistPlannerState(); });
     document.getElementById('langSelect').value = currentLang;
     applyLanguage();
     const theme = document.documentElement.getAttribute('data-theme') || 'dark';

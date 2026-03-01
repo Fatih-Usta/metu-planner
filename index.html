@@ -177,6 +177,103 @@ body {
     color: var(--metu-red);
 }
 
+.portal-courses-section {
+    margin-bottom: 28px;
+}
+
+.portal-courses-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.portal-courses-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.portal-courses-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.portal-btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-main);
+    cursor: pointer;
+    text-decoration: none;
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.portal-btn:hover {
+    border-color: var(--metu-red);
+    background: var(--accent-soft);
+    color: var(--metu-red);
+}
+.portal-btn--primary {
+    background: var(--metu-red);
+    border-color: var(--metu-red);
+    color: #fff;
+}
+.portal-btn--primary:hover {
+    background: var(--metu-red-hover);
+    border-color: var(--metu-red-hover);
+    color: #fff;
+}
+
+.portal-select {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-main);
+}
+
+.portal-course-list {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+}
+
+.portal-course-list--empty {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.portal-course-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.9rem;
+}
+.portal-course-item:last-child {
+    border-bottom: none;
+}
+
+.portal-course-code {
+    font-weight: 500;
+}
+
+.portal-course-grade {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
 @media (max-width: 600px) {
     body { padding: 20px 16px; }
     .portal-header { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -203,6 +300,20 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
     </button>
   </header>
 
+  <section class="portal-courses-section" id="portalCoursesSection" style="display: none;">
+    <div class="portal-courses-header">
+      <h2 class="portal-courses-title">This semester's courses</h2>
+      <div class="portal-courses-actions">
+        <select class="portal-select" id="portalSemesterSelect" aria-label="Select semester"></select>
+        <button type="button" class="portal-btn" id="portalSaveBtn">Save plan</button>
+        <a href="planner.html" class="portal-btn portal-btn--primary">Open planner</a>
+      </div>
+    </div>
+    <div class="portal-course-list" id="portalCourseList">
+      <span class="portal-course-list--empty">No courses</span>
+    </div>
+  </section>
+
   <main class="portal-grid">
     <a href="planner.html" class="portal-card" id="plannerCard">
       <h3>Course Planner</h3>
@@ -228,23 +339,101 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
 (function() {
   var METU_PORTAL_PLANNER_STATE = 'metu_portal_planner_state';
 
+  function getPlanState() {
+    try {
+      var raw = localStorage.getItem(METU_PORTAL_PLANNER_STATE);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
   function setContinueHint() {
     var el = document.getElementById('plannerContinue');
     if (!el) return;
-    try {
-      var raw = localStorage.getItem(METU_PORTAL_PLANNER_STATE);
-      if (!raw) { el.style.display = 'none'; return; }
-      var state = JSON.parse(raw);
-      if (!state || !state.programCode) { el.style.display = 'none'; return; }
-      el.textContent = 'Continue your plan →';
-      el.style.display = 'block';
-    } catch (e) {
-      el.style.display = 'none';
+    var state = getPlanState();
+    if (!state || !state.programCode) { el.style.display = 'none'; return; }
+    el.textContent = 'Continue your plan →';
+    el.style.display = 'block';
+  }
+
+  function renderCoursesSection() {
+    var state = getPlanState();
+    var section = document.getElementById('portalCoursesSection');
+    var listEl = document.getElementById('portalCourseList');
+    var selectEl = document.getElementById('portalSemesterSelect');
+    if (!section || !listEl || !selectEl) return;
+    if (!state || !state.programCode || !state.semesters || !state.semesters.length) {
+      section.style.display = 'none';
+      return;
     }
+    section.style.display = 'block';
+    selectEl.innerHTML = '';
+    state.semesters.forEach(function(s) {
+      var opt = document.createElement('option');
+      opt.value = s.semNumber;
+      var label = s.semNumber % 1 === 0.5 ? 'Summer ' + ((s.semNumber - 0.5) / 2) : 'Semester ' + s.semNumber;
+      opt.textContent = label;
+      selectEl.appendChild(opt);
+    });
+    selectEl.value = state.semesters[0].semNumber;
+    updateCourseList();
+    selectEl.onchange = updateCourseList;
+  }
+
+  function updateCourseList() {
+    var state = getPlanState();
+    var listEl = document.getElementById('portalCourseList');
+    var selectEl = document.getElementById('portalSemesterSelect');
+    if (!state || !listEl || !selectEl) return;
+    var semNum = parseFloat(selectEl.value);
+    var sem = state.semesters.find(function(s) { return parseFloat(s.semNumber) === semNum; });
+    listEl.innerHTML = '';
+    listEl.classList.remove('portal-course-list--empty');
+    if (!sem || !sem.courses || !sem.courses.length) {
+      listEl.classList.add('portal-course-list--empty');
+      listEl.textContent = 'No courses in this semester';
+      return;
+    }
+    sem.courses.forEach(function(c) {
+      var item = document.createElement('div');
+      item.className = 'portal-course-item';
+      var code = document.createElement('span');
+      code.className = 'portal-course-code';
+      code.textContent = c.displayLabel || c.code;
+      var grade = document.createElement('span');
+      grade.className = 'portal-course-grade';
+      grade.textContent = c.grade || '—';
+      item.appendChild(code);
+      item.appendChild(grade);
+      listEl.appendChild(item);
+    });
+  }
+
+  function savePlanFromPortal() {
+    var state = getPlanState();
+    if (!state || !state.programCode) {
+      alert('No plan to save. Open the planner and create a plan first.');
+      return;
+    }
+    var blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'metu-plan-' + state.programCode + '.json';
+    a.click();
+    URL.revokeObjectURL(a.href);
   }
 
   setContinueHint();
-  window.addEventListener('storage', setContinueHint);
+  renderCoursesSection();
+  window.addEventListener('storage', function() { setContinueHint(); renderCoursesSection(); });
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') { setContinueHint(); renderCoursesSection(); }
+  });
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted) { setContinueHint(); renderCoursesSection(); }
+  });
+
+  var saveBtn = document.getElementById('portalSaveBtn');
+  if (saveBtn) saveBtn.onclick = savePlanFromPortal;
 
   function toggleTheme() {
     var root = document.documentElement;
