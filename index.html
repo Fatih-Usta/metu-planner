@@ -303,6 +303,31 @@ button span.dot {
     margin-top: 10px;
 }
 
+.semester-summer {
+    border-style: dashed;
+    border-color: rgba(196, 30, 58, 0.35);
+    background: rgba(196, 30, 58, 0.04);
+}
+.semester-summer .semester-title {
+    color: var(--metu-red);
+}
+
+.remove-summer-btn {
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.remove-summer-btn:hover {
+    color: var(--metu-red);
+    border-color: var(--metu-red);
+}
+
 .semester-title {
     font-size: 0.8rem;
     font-weight: 600;
@@ -736,10 +761,56 @@ button span.dot {
     color: var(--text-main);
 }
 
+.year-label-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.remove-year-btn {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.remove-year-btn:hover {
+    color: var(--text-main);
+    border-color: var(--metu-red);
+}
+
 .year-semesters {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
+}
+
+.year-summer-slot {
+    grid-column: 1 / -1;
+    min-height: 0;
+}
+
+.add-summer-year-btn {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    background: transparent;
+    border: 1px dashed var(--border-subtle);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.add-summer-year-btn:hover {
+    color: var(--text-main);
+    border-color: var(--accent);
+    background: var(--bg-elevated);
 }
 
 .dept-bar {
@@ -1270,9 +1341,14 @@ const translations = {
     semesters: "Dönemler",
     semestersCaption: "Dersleri sürükleyip bırak; ön koşul ve tek/çift kuralları otomatik kontrol edilir.",
     addYear: "1 yıl daha",
+    addSummer: "Yaz dönemi ekle",
+    removeSummer: "Yazı kaldır",
+    removeYear: "Yılı kaldır",
     year: "Yıl",
     semester: "Dönem",
+    summer: "Yaz",
     maxCredits: "maks kredili ders",
+    maxCourses: "Maks. ders",
     gradeLabel: "Harf notu",
     gradeNone: "—",
     creditsLabel: "Kredi",
@@ -1348,9 +1424,14 @@ const translations = {
     semesters: "Semesters",
     semestersCaption: "Drag and drop courses; prerequisite and odd/even rules are checked automatically.",
     addYear: "Add 1 year",
+    addSummer: "Add summer",
+    removeSummer: "Remove summer",
+    removeYear: "Remove year",
     year: "Year",
     semester: "Semester",
+    summer: "Summer",
     maxCredits: "max credit courses",
+    maxCourses: "Max courses",
     gradeLabel: "Grade",
     gradeNone: "—",
     creditsLabel: "Credits",
@@ -1438,6 +1519,15 @@ function applyLanguage() {
     const key = opt.getAttribute("data-i18n-opt");
     if (key && t(key)) opt.textContent = t(key);
   });
+  document.querySelectorAll(".add-summer-year-btn").forEach(btn => {
+    btn.innerHTML = "+ " + t("addSummer");
+  });
+  document.querySelectorAll(".remove-summer-btn").forEach(btn => {
+    btn.textContent = t("removeSummer");
+  });
+  document.querySelectorAll(".remove-year-btn").forEach(btn => {
+    btn.textContent = t("removeYear");
+  });
   document.querySelectorAll(".course-grade").forEach(sel => {
     if (sel.options[0]) sel.options[0].textContent = t("gradeNone");
   });
@@ -1471,12 +1561,19 @@ function updateSemesterLabels() {
     const year = i + 1;
     el.innerHTML = year + ". <strong>" + t("year") + "</strong>";
   });
-  document.querySelectorAll(".semester-title").forEach((el, i) => {
-    const n = i + 1;
-    el.textContent = n + ". " + t("semester");
-  });
-  document.querySelectorAll(".semester-max span").forEach(el => {
-    el.textContent = t("maxCredits");
+  document.querySelectorAll(".semester").forEach(function(semEl) {
+    var titleEl = semEl.querySelector(".semester-title");
+    var maxSpan = semEl.querySelector(".semester-max span");
+    if (titleEl) {
+      if (semEl.classList.contains("semester-summer")) {
+        var summers = document.querySelectorAll(".semester-summer");
+        var idx = Array.prototype.indexOf.call(summers, semEl);
+        titleEl.textContent = t("summer") + " " + (idx + 1);
+      } else {
+        titleEl.textContent = semEl.dataset.semester + ". " + t("semester");
+      }
+    }
+    if (maxSpan) maxSpan.textContent = semEl.classList.contains("semester-summer") ? t("maxCourses") : t("maxCredits");
   });
 }
 
@@ -1491,13 +1588,28 @@ let courseInstanceCounter = 0;
 
 function addYearRow() {
     const year = ++currentYearCount;
+    const yearIndex = year - 1;
 
     const yearRow = document.createElement("div");
     yearRow.className = "year-row";
+    yearRow.dataset.yearIndex = String(yearIndex);
 
+    const yearHeader = document.createElement("div");
+    yearHeader.className = "year-label-wrap";
     const yearLabel = document.createElement("div");
     yearLabel.className = "year-label";
     yearLabel.innerHTML = year + ". <strong>" + t("year") + "</strong>";
+    yearHeader.appendChild(yearLabel);
+    if (year > 4) {
+        const removeYearBtn = document.createElement("button");
+        removeYearBtn.type = "button";
+        removeYearBtn.className = "remove-year-btn";
+        removeYearBtn.dataset.yearIndex = String(yearIndex);
+        removeYearBtn.textContent = t("removeYear");
+        removeYearBtn.onclick = function() { removeYear(parseInt(this.dataset.yearIndex, 10)); };
+        yearHeader.appendChild(removeYearBtn);
+    }
+    yearRow.appendChild(yearHeader);
 
     const yearSemesters = document.createElement("div");
     yearSemesters.className = "year-semesters";
@@ -1523,9 +1635,122 @@ function addYearRow() {
         yearSemesters.appendChild(div);
     }
 
-    yearRow.appendChild(yearLabel);
+    var summerSlot = document.createElement("div");
+    summerSlot.className = "year-summer-slot";
+    var addSummerBtn = document.createElement("button");
+    addSummerBtn.type = "button";
+    addSummerBtn.className = "add-summer-year-btn";
+    addSummerBtn.dataset.yearIndex = yearIndex;
+    addSummerBtn.innerHTML = "+ " + t("addSummer");
+    addSummerBtn.onclick = function() { addSummerForYear(parseInt(this.dataset.yearIndex, 10)); };
+    summerSlot.appendChild(addSummerBtn);
+    yearSemesters.appendChild(summerSlot);
+
     yearRow.appendChild(yearSemesters);
     semestersContainer.appendChild(yearRow);
+}
+
+function removeYear(yearIndex) {
+    var container = document.getElementById("semesters");
+    if (!container) return;
+    var yearRows = container.querySelectorAll(".year-row");
+    if (yearIndex < 0 || yearIndex >= yearRows.length) return;
+    if (yearIndex < 4) return;
+    var yearRow = yearRows[yearIndex];
+    var pool = document.getElementById("coursePool");
+    if (pool) {
+        yearRow.querySelectorAll(".course").forEach(function(el) {
+            var code = el.dataset.courseCode;
+            if (code && curriculumPlacement[code]) delete curriculumPlacement[code];
+            var semEl = el.closest(".semester");
+            var semNum = semEl ? parseFloat(semEl.dataset.semester) : null;
+            if (code && semNum != null && courseGradesBySemester[code]) delete courseGradesBySemester[code][String(semNum)];
+            pool.appendChild(el);
+        });
+    }
+    yearRow.remove();
+    currentYearCount = container.querySelectorAll(".year-row").length;
+    currentSemesterCount = container.querySelectorAll(".semester:not(.semester-summer)").length;
+    recalculateGpas();
+    updateWrongSemesterWarnings();
+    updatePrereqViolations();
+}
+
+function addSummerForYear(yearIndex) {
+    var container = document.getElementById("semesters");
+    if (!container) return;
+    var yearRows = container.querySelectorAll(".year-row");
+    if (yearIndex < 0 || yearIndex >= yearRows.length) return;
+    var yearRow = yearRows[yearIndex];
+    var summerSlot = yearRow.querySelector(".year-summer-slot");
+    if (!summerSlot || summerSlot.querySelector(".semester-summer")) return;
+    var summerSemNum = 2.5 + yearIndex * 2;
+    var summersSoFar = container.querySelectorAll(".semester-summer").length;
+    var summerDisplayIndex = summersSoFar + 1;
+    var summerDiv = document.createElement("div");
+    summerDiv.className = "semester semester-summer";
+    summerDiv.id = "semester" + summerSemNum;
+    summerDiv.dataset.semester = String(summerSemNum);
+    summerDiv.dataset.yearIndex = String(yearIndex);
+    summerDiv.innerHTML =
+        "<div class='semester-header'>" +
+            "<div class='semester-title'>" + t("summer") + " " + summerDisplayIndex + "</div>" +
+            "<label class='semester-max'>" +
+                "<span>" + t("maxCourses") + "</span>" +
+                "<input type='number' class='semester-max-input' value='2' min='0' max='2'>" +
+            "</label>" +
+        "</div>" +
+        "<div class='semester-courses'></div>" +
+        "<div class='semester-gpa'>GPA: --</div>";
+    summerDiv.ondrop = drop;
+    summerDiv.ondragover = allowDrop;
+    var header = summerDiv.querySelector(".semester-header");
+    if (header) {
+        var removeSummerBtn = document.createElement("button");
+        removeSummerBtn.type = "button";
+        removeSummerBtn.className = "remove-summer-btn";
+        removeSummerBtn.textContent = t("removeSummer");
+        removeSummerBtn.onclick = function() { removeSummerForYear(parseInt(summerDiv.dataset.yearIndex, 10)); };
+        header.appendChild(removeSummerBtn);
+    }
+    summerSlot.innerHTML = "";
+    summerSlot.appendChild(summerDiv);
+    updateSemesterLabels();
+}
+
+function removeSummerForYear(yearIndex) {
+    var container = document.getElementById("semesters");
+    if (!container) return;
+    var yearRows = container.querySelectorAll(".year-row");
+    if (yearIndex < 0 || yearIndex >= yearRows.length) return;
+    var yearRow = yearRows[yearIndex];
+    var summerSlot = yearRow.querySelector(".year-summer-slot");
+    if (!summerSlot) return;
+    var summerDiv = summerSlot.querySelector(".semester-summer");
+    if (!summerDiv) return;
+    var pool = document.getElementById("coursePool");
+    var box = summerDiv.querySelector(".semester-courses");
+    if (pool && box) {
+        box.querySelectorAll(".course").forEach(function(el) {
+            var code = el.dataset.courseCode;
+            if (code && curriculumPlacement[code]) delete curriculumPlacement[code];
+            var semNum = parseFloat(summerDiv.dataset.semester);
+            if (code && courseGradesBySemester[code]) delete courseGradesBySemester[code][String(semNum)];
+            pool.appendChild(el);
+        });
+    }
+    summerSlot.innerHTML = "";
+    var addSummerBtn = document.createElement("button");
+    addSummerBtn.type = "button";
+    addSummerBtn.className = "add-summer-year-btn";
+    addSummerBtn.dataset.yearIndex = yearIndex;
+    addSummerBtn.innerHTML = "+ " + t("addSummer");
+    addSummerBtn.onclick = function() { addSummerForYear(parseInt(this.dataset.yearIndex, 10)); };
+    summerSlot.appendChild(addSummerBtn);
+    updateSemesterLabels();
+    recalculateGpas();
+    updateWrongSemesterWarnings();
+    updatePrereqViolations();
 }
 
 for (let i = 0; i < 4; i++) {
@@ -1893,10 +2118,10 @@ function getPlanState() {
     var semesterEls = document.querySelectorAll(".semester");
     for (var i = 0; i < semesterEls.length; i++) {
         var sem = semesterEls[i];
-        var semNum = parseInt(sem.dataset.semester, 10);
+        var semNum = parseFloat(sem.dataset.semester);
         var box = sem.querySelector(".semester-courses");
         var maxInput = sem.querySelector(".semester-max-input");
-        var maxCredits = maxInput ? parseInt(maxInput.value, 10) : 5;
+        var maxCredits = maxInput ? parseInt(maxInput.value, 10) : (sem.classList.contains("semester-summer") ? 2 : 5);
         var courseEls = box ? box.querySelectorAll(".course") : [];
         var courseList = [];
         courseEls.forEach(function(el) {
@@ -1967,10 +2192,10 @@ function savePlan() {
 }
 
 function ensureSemesterCount(requiredCount) {
-    var existing = document.querySelectorAll(".semester").length;
+    var existing = document.querySelectorAll(".semester:not(.semester-summer)").length;
     while (existing < requiredCount) {
         addYearRow();
-        existing = document.querySelectorAll(".semester").length;
+        existing = document.querySelectorAll(".semester:not(.semester-summer)").length;
     }
 }
 
@@ -1993,8 +2218,16 @@ function loadPlan(state) {
     var savedGrades = state.courseGradesBySemester || {};
 
     var maxSemNum = 0;
-    semesters.forEach(function(s) { if (s.semNumber > maxSemNum) maxSemNum = s.semNumber; });
+    var summerYearIndices = [];
+    semesters.forEach(function(s) {
+        if (s.semNumber > maxSemNum) maxSemNum = s.semNumber;
+        if (s.semNumber % 1 === 0.5) {
+            var yearIndex = (s.semNumber - 0.5) / 2 - 1;
+            if (yearIndex >= 0 && summerYearIndices.indexOf(yearIndex) === -1) summerYearIndices.push(yearIndex);
+        }
+    });
     ensureSemesterCount(maxSemNum);
+    summerYearIndices.forEach(function(yi) { addSummerForYear(yi); });
 
     var semestersContainer = document.getElementById("semesters");
     var semesterEls = semestersContainer ? semestersContainer.querySelectorAll(".semester") : [];
@@ -2446,7 +2679,7 @@ function updatePrereqViolations() {
     var semesterEls = document.querySelectorAll(".semester");
     for (var s = 0; s < semesterEls.length; s++) {
         var sem = semesterEls[s];
-        var semNum = parseInt(sem.dataset.semester, 10);
+        var semNum = parseFloat(sem.dataset.semester);
         var courseEls = sem.querySelectorAll(".course");
         for (var i = 0; i < courseEls.length; i++) {
             var el = courseEls[i];
@@ -2499,26 +2732,32 @@ function drop(ev) {
 
     if (target.classList.contains("semester") && course) {
 
-        const semesterNumber = parseInt(target.dataset.semester);
-
-        // Max kontrolü (dönem bazlı)
-        let maxPerSemester = Infinity;
-        const maxInput = target.querySelector(".semester-max-input");
-        if (maxInput) {
-            const parsed = parseInt(maxInput.value, 10);
-            if (!Number.isNaN(parsed) && parsed > 0) {
-                maxPerSemester = parsed;
-            }
-        }
-
         const coursesContainer = target.querySelector(".semester-courses") || target;
-        var creditCount = countCreditCoursesInContainer(coursesContainer);
-        var isDraggedCredit = course && !ZERO_CREDIT_COURSE_CODES[courseCode] && Number(course.credits) > 0;
         var isAddingToThisSemester = sourceParent !== coursesContainer;
-        var wouldBeCreditCount = creditCount + (isAddingToThisSemester && isDraggedCredit ? 1 : 0);
-        if (wouldBeCreditCount > maxPerSemester) {
-            showToast(t("alertMaxReached"), "error");
-            return;
+
+        if (target.classList.contains("semester-summer")) {
+            var totalInSummer = (coursesContainer.querySelectorAll(".course").length) + (isAddingToThisSemester ? 1 : 0);
+            if (totalInSummer > 2) {
+                showToast(currentLang === "tr" ? "Yaz dönemine en fazla 2 ders eklenebilir." : "Summer can have at most 2 courses.", "error");
+                return;
+            }
+        } else {
+            const semesterNumber = parseInt(target.dataset.semester, 10);
+            let maxPerSemester = Infinity;
+            const maxInput = target.querySelector(".semester-max-input");
+            if (maxInput) {
+                const parsed = parseInt(maxInput.value, 10);
+                if (!Number.isNaN(parsed) && parsed > 0) {
+                    maxPerSemester = parsed;
+                }
+            }
+            var creditCount = countCreditCoursesInContainer(coursesContainer);
+            var isDraggedCredit = course && !ZERO_CREDIT_COURSE_CODES[courseCode] && Number(course.credits) > 0;
+            var wouldBeCreditCount = creditCount + (isAddingToThisSemester && isDraggedCredit ? 1 : 0);
+            if (wouldBeCreditCount > maxPerSemester) {
+                showToast(t("alertMaxReached"), "error");
+                return;
+            }
         }
     }
 
@@ -2538,7 +2777,12 @@ function updateWrongSemesterWarnings() {
     document.querySelectorAll(".semester .course").forEach(function(el) {
         var code = el.dataset.courseCode;
         var semEl = el.closest(".semester");
-        var currentSem = semEl ? parseInt(semEl.dataset.semester, 10) : 0;
+        var currentSem = semEl ? parseFloat(semEl.dataset.semester) : 0;
+        if (currentSem % 1 !== 0) {
+            el.classList.remove("course-wrong-semester");
+            el.title = "";
+            return;
+        }
         var info = code ? courses[code] : null;
         var expectedSem = code ? expected[code] : null;
         var wrongCurriculum = expectedSem != null && currentSem !== expectedSem && (currentSem % 2) !== (expectedSem % 2);
@@ -2580,13 +2824,14 @@ function updateProgramErrors() {
     var semesterEls = document.querySelectorAll(".semester");
     for (var s = 0; s < semesterEls.length; s++) {
         var sem = semesterEls[s];
-        var semNum = parseInt(sem.dataset.semester, 10);
+        var semNum = parseFloat(sem.dataset.semester);
         var courseEls = sem.querySelectorAll(".course");
         for (var i = 0; i < courseEls.length; i++) {
             var el = courseEls[i];
             var code = el.dataset.courseCode;
             if (!code) continue;
             var info = courses[code];
+            if (semNum % 1 !== 0) continue;
             if (info && info.semesterType) {
                 var wrongOffered = (info.semesterType === "odd" && semNum % 2 === 0) || (info.semesterType === "even" && semNum % 2 === 1);
                 if (wrongOffered) {
