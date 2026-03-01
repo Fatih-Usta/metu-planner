@@ -1,0 +1,2438 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title id="pageTitle">Ders Planlayıcı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --metu-red: #c41e3a;
+    --metu-red-hover: #a01830;
+    --metu-red-soft: rgba(196, 30, 58, 0.12);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    --transition: 0.2s ease;
+}
+
+[data-theme="light"] {
+    --bg: #f8f9fa;
+    --bg-elevated: #ffffff;
+    --bg-input: #ffffff;
+    --border-subtle: #e8eaed;
+    --text-main: #1a1d21;
+    --text-muted: #5f6368;
+    --accent-soft: rgba(196, 30, 58, 0.08);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg: #0f1114;
+    --bg-elevated: #1a1d21;
+    --bg-input: #15181c;
+    --border-subtle: #2d3238;
+    --text-main: #e8eaed;
+    --text-muted: #9aa0a6;
+    --accent-soft: rgba(196, 30, 58, 0.18);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 28px 24px;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-shell {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.branding-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--metu-red) 0%, var(--metu-red-hover) 100%);
+    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.35);
+}
+
+.title-block h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.title-block span {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.theme-toggle {
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.theme-toggle:hover {
+    color: var(--text-main);
+    border-color: var(--metu-red);
+    background: var(--accent-soft);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#langSelect {
+    padding: 8px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-main);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color var(--transition);
+}
+#langSelect:focus {
+    outline: none;
+    border-color: var(--metu-red);
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.95fr);
+    gap: 28px;
+}
+
+.panel {
+    background: var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+    transition: box-shadow var(--transition);
+}
+.panel:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.panel-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.panel-caption {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    align-items: end;
+}
+
+.panel-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.field label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.01em;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    padding: 10px 12px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: var(--metu-red);
+    box-shadow: 0 0 0 3px var(--metu-red-soft);
+}
+
+#semesterType {
+    max-width: 160px;
+}
+
+button {
+    padding: 10px 18px;
+    border-radius: var(--radius-full);
+    border: none;
+    background: var(--metu-red);
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.88rem;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
+    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.3);
+}
+
+button:hover {
+    background: var(--metu-red-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+button span.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.9);
+}
+
+.secondary-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    background: var(--accent-soft);
+    border: 1px dashed var(--metu-red);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.secondary-chip strong {
+    color: var(--text-main);
+}
+
+.pool,
+.semester {
+    border-radius: var(--radius-md);
+    padding: 16px 14px;
+    min-height: 180px;
+    background: var(--bg-input);
+    border: 2px dashed var(--border-subtle);
+    transition: border-color var(--transition), background var(--transition);
+}
+.pool:focus-within,
+.semester:focus-within {
+    border-color: var(--metu-red);
+    background: var(--accent-soft);
+}
+
+.semester {
+    display: flex;
+    flex-direction: column;
+}
+
+.pool {
+    margin-top: 10px;
+}
+
+.semester-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+.semester-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.semester-max {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.semester-max-input {
+    width: 52px;
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.8rem;
+    font-family: inherit;
+    text-align: center;
+}
+
+.semester-max-input::-webkit-inner-spin-button,
+.semester-max-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.semester-max-input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+#courseCredits::-webkit-inner-spin-button,
+#courseCredits::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+#courseCredits[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.semester-courses {
+    display: flex;
+    flex-direction: column;
+}
+
+.semester-gpa {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-subtle);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.course {
+    background: var(--accent-soft);
+    border: 1px solid rgba(196, 30, 58, 0.25);
+    padding: 8px 12px;
+    margin: 5px 0;
+    border-radius: var(--radius-sm);
+    cursor: grab;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--text-main);
+    user-select: none;
+    min-height: 42px;
+    text-align: left;
+    flex-wrap: nowrap;
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.course:hover {
+    border-color: rgba(196, 30, 58, 0.45);
+    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.15);
+}
+
+.course::before {
+    content: "";
+    width: 4px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    background: var(--metu-red);
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.course small {
+    color: var(--text-muted);
+    font-size: 0.7rem;
+}
+
+.course-main {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    flex: 1;
+    text-align: left;
+}
+
+.course-code {
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-align: left;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 180px;
+}
+
+.course-wrong-semester {
+    border-color: #d97706;
+    box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.25);
+}
+.course-wrong-semester::after {
+    content: "⚠";
+    margin-left: 6px;
+    color: #d97706;
+    font-size: 0.9em;
+}
+
+.course-grade {
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-main);
+    font-size: 0.78rem;
+    font-family: inherit;
+    outline: none;
+    text-align: left;
+    width: 4.5rem;
+    min-width: 4.5rem;
+    max-width: 4.5rem;
+    box-sizing: border-box;
+    transition: border-color var(--transition);
+}
+.course-grade:focus {
+    border-color: var(--metu-red);
+}
+
+.course-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    text-align: left;
+}
+.course-btn {
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition), background var(--transition);
+}
+.course-btn:hover {
+    color: var(--text-main);
+    background: var(--border-subtle);
+}
+.course-btn.delete-btn:hover {
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.15);
+}
+.course-btn.copy-btn:hover {
+    color: var(--metu-red);
+    background: var(--accent-soft);
+}
+.course.elective-placeholder {
+    border-style: dashed;
+}
+.course-prereq-violation {
+    border-color: #dc2626 !important;
+    background: rgba(220, 38, 38, 0.12);
+}
+.course-prereq-violation .course-code {
+    color: #dc2626;
+}
+
+.program-errors-wrap {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: var(--bg-input);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+}
+.program-errors-title {
+    font-size: 0.85rem;
+    margin: 0 0 8px 0;
+    color: var(--text-muted);
+}
+.program-errors-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.8rem;
+    color: var(--text-main);
+}
+.program-errors-list li {
+    margin-bottom: 4px;
+}
+.program-errors-list .no-errors-msg {
+    color: var(--text-muted);
+    font-style: italic;
+    list-style: none;
+    margin-left: -20px;
+}
+
+.course-credits-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-align: left;
+}
+.course-credits-wrap label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    text-align: left;
+}
+.course-credits-input {
+    width: 2.8em;
+    padding: 2px 4px;
+    font-size: 0.8rem;
+    text-align: left;
+}
+.course-credits-input::-webkit-inner-spin-button,
+.course-credits-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.course-credits-input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.course-search-wrap {
+    position: relative;
+}
+.course-search-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 4px;
+    max-height: 260px;
+    overflow-y: auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    display: none;
+}
+.course-search-dropdown.is-open {
+    display: block;
+}
+.course-search-dropdown::-webkit-scrollbar {
+    width: 8px;
+}
+.course-search-dropdown::-webkit-scrollbar-track {
+    background: var(--bg-input);
+    border-radius: var(--radius-full);
+}
+.course-search-dropdown::-webkit-scrollbar-thumb {
+    background: var(--border-subtle);
+    border-radius: var(--radius-full);
+}
+.course-search-dropdown::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+}
+.course-search-item {
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    text-align: left;
+    border: none;
+    background: none;
+    width: 100%;
+    color: var(--text-main);
+    font-family: inherit;
+    transition: background var(--transition);
+}
+.course-search-item:hover,
+.course-search-item:focus {
+    background: var(--accent-soft);
+}
+.course-search-item code {
+    font-weight: 600;
+    margin-right: 6px;
+}
+.course-search-item span {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+.field-hint {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.add-course-section {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+.add-course-section:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+.add-course-section-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 6px 0;
+    color: var(--text-main);
+}
+.add-course-section-caption {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin: 0 0 14px 0;
+    line-height: 1.45;
+}
+.manual-add-btn {
+    margin-top: 14px;
+}
+
+.helper-text {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+}
+
+#cgpaDisplay {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--accent-soft);
+    border: 1px solid rgba(196, 30, 58, 0.2);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.year-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.year-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.year-label {
+    padding: 6px 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.year-label strong {
+    color: var(--text-main);
+}
+
+.year-semesters {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.dept-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding: 14px 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow);
+}
+
+.dept-left {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 0.8rem;
+}
+
+.dept-left strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.dept-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+#departmentSelect {
+    min-width: 180px;
+    padding: 9px 14px;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    html {
+        overflow-x: hidden;
+    }
+    body {
+        padding: 12px 14px;
+        overflow-x: hidden;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+    }
+
+    .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .title-block h1 {
+        font-size: 1.25rem;
+    }
+
+    .title-block span {
+        font-size: 0.8rem;
+    }
+
+    .dept-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+        padding: 14px;
+        margin-bottom: 16px;
+    }
+
+    .dept-left {
+        width: 100%;
+    }
+
+    .dept-right {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .dept-right select,
+    .dept-right button {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    #departmentSelect {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .layout {
+        gap: 16px;
+    }
+
+    .panel {
+        padding: 14px;
+    }
+
+    .panel-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .panel-header button {
+        width: 100%;
+        min-height: 44px;
+    }
+
+    .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .year-semesters {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .course {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        min-height: 44px;
+        padding: 10px 12px;
+    }
+
+    .course::after {
+        content: "";
+        flex: 0 0 100%;
+        width: 100%;
+        height: 0;
+        order: 1;
+    }
+
+    .course-main {
+        flex: 1 1 auto;
+        min-width: 0;
+        order: 0;
+    }
+
+    .course-code {
+        max-width: none;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .course-grade {
+        order: 2;
+    }
+
+    .course-actions {
+        order: 2;
+        gap: 6px;
+    }
+
+    .course-btn {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        min-height: 32px;
+    }
+
+    .pool,
+    .semester {
+        min-height: 120px;
+        padding: 12px;
+    }
+
+    .toast-container {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 380px) {
+    .course-code {
+        max-width: 100%;
+    }
+}
+
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 360px;
+    pointer-events: none;
+}
+.toast {
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-lg);
+    pointer-events: auto;
+    animation: toast-in 0.3s ease;
+}
+.toast--success {
+    border-left: 4px solid #16a34a;
+}
+.toast--error {
+    border-left: 4px solid #dc2626;
+}
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+</style>
+</head>
+<body>
+<script>
+document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+document.documentElement.lang = (localStorage.getItem('lang') || 'tr') === 'tr' ? 'tr' : 'en';
+</script>
+
+<div class="app-shell">
+  <header class="header">
+    <div class="branding">
+      <div class="branding-mark"></div>
+      <div class="title-block">
+        <h1 data-i18n="title">METU Ders Planlayıcı</h1>
+        <span data-i18n="subtitle">Kişisel dönem planını, ön koşulları bozmadan oluştur.</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <select id="langSelect" onchange="setLanguage(this.value)">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+      </select>
+      <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        <span id="themeLabel">Açık tema</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="dept-bar">
+    <div class="dept-left">
+      <strong data-i18n="deptSelect">Bölümünü seç</strong>
+      <span data-i18n="deptComingSoon">Bölümü seçip uygulayınca müfredat dönemlere otomatik yüklenir.</span>
+    </div>
+    <div class="dept-right">
+      <select id="departmentSelect">
+        <option value="" data-i18n-opt="deptPlaceholder">Bölüm seç...</option>
+      </select>
+      <button type="button" onclick="setDepartment()">
+        <span class="dot"></span>
+        <span data-i18n="deptApply">Bölümü uygula</span>
+      </button>
+      <button type="button" onclick="savePlan()" id="savePlanBtn">
+        <span data-i18n="savePlan">Kaydet</span>
+      </button>
+      <button type="button" onclick="document.getElementById('loadPlanFile').click()" id="loadPlanBtn">
+        <span data-i18n="loadPlan">Yükle</span>
+      </button>
+      <input type="file" id="loadPlanFile" accept=".json" style="display:none" onchange="onLoadPlanFileChosen(event)">
+    </div>
+  </div>
+
+  <main class="layout">
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title" data-i18n="addCourse">Ders Ekle</div>
+          <div class="panel-caption" data-i18n="addCourseCaption">Veritabanından ara veya manuel gir.</div>
+        </div>
+      </div>
+
+      <div class="add-course-section">
+        <h4 class="add-course-section-title" data-i18n="addFromDataset">Veritabanından ekle</h4>
+        <p class="add-course-section-caption" data-i18n="courseSearchHint">Veritabanından aramak için yazın (örn. 119, math). Tıklayarak havuza ekleyin.</p>
+        <div class="field course-search-field">
+          <label for="courseSearchInput" data-i18n="searchCourse">Ders ara</label>
+          <div class="course-search-wrap">
+            <input id="courseSearchInput" type="text" placeholder="119, math, CENG…" autocomplete="off">
+            <div class="course-search-dropdown" id="courseSearchDropdown" role="listbox" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="add-course-section">
+        <h4 class="add-course-section-title" data-i18n="addManual">Manuel ekle</h4>
+        <p class="add-course-section-caption" data-i18n="addCourseCaptionManual">Kod, kredi, ön koşul ve dönem tipini girip ekleyin.</p>
+        <div class="form-grid">
+          <div class="field">
+            <label for="courseName" data-i18n="courseCode">Ders kodu</label>
+            <input id="courseName" type="text" data-i18n-placeholder="courseCodePlaceholder">
+          </div>
+          <div class="field">
+            <label for="courseCredits" data-i18n="creditsLabel">Kredi</label>
+            <input id="courseCredits" type="number" min="0" max="20" value="3" step="1" title="">
+          </div>
+          <div class="field">
+            <label for="prereq" data-i18n="prereqs">Ön koşullar (virgülle)</label>
+            <input id="prereq" type="text" data-i18n-placeholder="prereqsPlaceholder">
+          </div>
+          <div class="field">
+            <label for="semesterType" data-i18n="semesterType">Açıldığı dönem</label>
+            <select id="semesterType">
+              <option value="odd" data-i18n-opt="semOdd">Tek</option>
+              <option value="even" data-i18n-opt="semEven">Çift</option>
+              <option value="both" data-i18n-opt="semBoth">Hem tek hem çift</option>
+            </select>
+          </div>
+        </div>
+        <button type="button" class="manual-add-btn" onclick="addCourse()">
+          <span class="dot"></span>
+          <span data-i18n="addCourseBtn">Dersi ekle</span>
+        </button>
+      </div>
+
+      <div class="helper-text" data-i18n="helperAdd"></div>
+
+      <h3 style="margin-top:16px; font-size:0.9rem;" data-i18n="coursePool">Ders Havuzu</h3>
+      <div class="pool" id="coursePool"
+           ondrop="drop(event)" ondragover="allowDrop(event)">
+      </div>
+      <div class="program-errors-wrap" id="programErrorsWrap">
+        <h4 class="program-errors-title" id="programErrorsTitle" data-i18n="errorsTitle">Program hataları</h4>
+        <ul class="program-errors-list" id="programErrorsList" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title" data-i18n="semesters">Dönemler</div>
+          <div class="panel-caption" data-i18n="semestersCaption">Dersleri sürükleyip bırak; ön koşul ve tek/çift kuralları otomatik kontrol edilir.</div>
+        </div>
+        <button type="button" onclick="addYearRow()">
+          + <span data-i18n="addYear">1 yıl daha</span>
+        </button>
+      </div>
+
+      <div class="year-grid" id="semesters"></div>
+
+      <div class="helper-text" id="cgpaDisplay"></div>
+    </section>
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<script>
+
+const translations = {
+  tr: {
+    title: "METU Ders Planlayıcı",
+    subtitle: "Kişisel dönem planını, ön koşulları bozmadan oluştur.",
+    themeLight: "Açık tema",
+    themeDark: "Koyu tema",
+    deptSelect: "Bölümünü seç",
+    deptComingSoon: "Bölümü seçip uygulayınca müfredat dönemlere otomatik yüklenir.",
+    deptPlaceholder: "Bölüm seç...",
+    deptCeng: "Bilgisayar Mühendisliği",
+    deptEe: "Elektrik-Elektronik Mühendisliği",
+    deptMe: "Makina Mühendisliği",
+    deptApply: "Bölümü uygula",
+    addCourse: "Ders Ekle",
+    addCourseCaption: "Veritabanından ara veya manuel gir.",
+    addFromDataset: "Veritabanından ekle",
+    addManual: "Manuel ekle",
+    addCourseCaptionManual: "Kod, kredi, ön koşul ve dönem tipini girip ekleyin.",
+    searchCourse: "Ders ara",
+    tip: "İpucu",
+    tipExample: "Örn: CENG101, CENG102",
+    addCourseBtn: "Dersi ekle",
+    courseCode: "Ders kodu",
+    courseCodePlaceholder: "Örn: CENG101",
+    courseSearchHint: "Veritabanından aramak için yazın (örn. 119, math). Tıklayarak havuza ekleyin.",
+    prereqs: "Ön koşullar (virgülle)",
+    prereqsPlaceholder: "Örn: MATH119, CENG101",
+    semesterType: "Açıldığı dönem",
+    semOdd: "Tek",
+    semEven: "Çift",
+    semBoth: "Hem tek hem çift",
+    helperAdd: "Önce tüm dersleri havuza ekle, sonra sürükleyip dönemlere yerleştir. Her dönem için sağ üstten maks kredili ders sayısını ayarlayabilirsin.",
+    coursePool: "Ders Havuzu",
+    semesters: "Dönemler",
+    semestersCaption: "Dersleri sürükleyip bırak; ön koşul ve tek/çift kuralları otomatik kontrol edilir.",
+    addYear: "1 yıl daha",
+    year: "Yıl",
+    semester: "Dönem",
+    maxCredits: "maks kredili ders",
+    gradeLabel: "Harf notu",
+    gradeNone: "—",
+    creditsLabel: "Kredi",
+    gradeS: "S (Başarılı)",
+    gradeF: "F (Başarısız)",
+    gpaCredits: "Krediler",
+    cgpa: "Genel not ortalaması (CGPA)",
+    totalCredits: "Toplam kredi",
+    alertSelectDept: "Lütfen önce bölümünü seç.",
+    alertDeptSelected: "Bölüm seçildi",
+    alertDeptComingSoon: "(Otomatik planlama daha sonra eklenecek.)",
+    alertMaxReached: "Bu dönem için belirlediğin 'maks kredili ders' sınırına ulaşıldı.",
+    alertOddOnly: "Bu ders sadece tek dönemde açılıyor.",
+    alertEvenOnly: "Bu ders sadece çift dönemde açılıyor.",
+    alertPrereqNotPlaced: " henüz yerleştirilmemiş.",
+    alertPrereqMustBeEarlier: " önceki bir dönemde olmalı.",
+    btnCopy: "Kopyala",
+    btnDelete: "Kaldır",
+    savePlan: "Kaydet",
+    loadPlan: "Yükle",
+    errorsTitle: "Program hataları",
+    errWrongSemester: " yanlış dönemde (sadece ",
+    errWrongSemesterEnd: " dönemde açılıyor).",
+    errPrereqFor: " ön koşulu ",
+    errPrereqMustBeEarlier: " daha önceki bir dönemde olmalı.",
+    errPrereqNotPlaced: " yerleştirilmemiş.",
+    errPrereqNotPassed: " geçilmemiş (",
+    errPrereqNotPassedEnd: "); ön koşul sağlanmıyor.",
+    noErrors: "Hata yok."
+  },
+  en: {
+    title: "METU Course Planner",
+    subtitle: "Create your semester plan without breaking prerequisites.",
+    themeLight: "Light theme",
+    themeDark: "Dark theme",
+    deptSelect: "Select your department",
+    deptComingSoon: "Select a department and apply to load its curriculum into semesters.",
+    deptPlaceholder: "Select department...",
+    deptCeng: "Computer Engineering",
+    deptEe: "Electrical-Electronics Engineering",
+    deptMe: "Mechanical Engineering",
+    deptApply: "Apply department",
+    addCourse: "Add Course",
+    addCourseCaption: "Search from dataset or add manually.",
+    addFromDataset: "Add from dataset",
+    addManual: "Manual add",
+    addCourseCaptionManual: "Enter code, credits, prerequisites and semester type, then add.",
+    searchCourse: "Search course",
+    tip: "Tip",
+    tipExample: "E.g. CENG101, CENG102",
+    addCourseBtn: "Add course",
+    courseCode: "Course code",
+    courseCodePlaceholder: "E.g. CENG101",
+    courseSearchHint: "Type to search from dataset (e.g. 119, math). Click to add to pool.",
+    prereqs: "Prerequisites (comma-separated)",
+    prereqsPlaceholder: "E.g. MATH119, CENG101",
+    semesterType: "Offered in",
+    semOdd: "Odd",
+    semEven: "Even",
+    semBoth: "Both odd and even",
+    helperAdd: "First add all courses to the pool, then drag and drop them into semesters. You can adjust the max credit courses per semester from the top right.",
+    coursePool: "Course Pool",
+    semesters: "Semesters",
+    semestersCaption: "Drag and drop courses; prerequisite and odd/even rules are checked automatically.",
+    addYear: "Add 1 year",
+    year: "Year",
+    semester: "Semester",
+    maxCredits: "max credit courses",
+    gradeLabel: "Grade",
+    gradeNone: "—",
+    creditsLabel: "Credits",
+    gradeS: "S (Satisfactory)",
+    gradeF: "F (Fail)",
+    gpaCredits: "Credits",
+    cgpa: "Cumulative GPA (CGPA)",
+    totalCredits: "Total credits",
+    alertSelectDept: "Please select a department first.",
+    alertDeptSelected: "Department selected",
+    alertDeptComingSoon: "(Auto planning will be added later.)",
+    alertMaxReached: "Maximum credit courses limit reached for this semester.",
+    alertOddOnly: "This course is only offered in odd semesters.",
+    alertEvenOnly: "This course is only offered in even semesters.",
+    alertPrereqNotPlaced: " has not been placed yet.",
+    alertPrereqMustBeEarlier: " must be in an earlier semester.",
+    btnCopy: "Copy",
+    btnDelete: "Remove",
+    savePlan: "Save",
+    loadPlan: "Load",
+    errorsTitle: "Program errors",
+    errWrongSemester: " in wrong semester (only offered in ",
+    errWrongSemesterEnd: " semesters).",
+    errPrereqFor: " is prerequisite for ",
+    errPrereqMustBeEarlier: " must be in an earlier semester.",
+    errPrereqNotPlaced: " is not placed.",
+    errPrereqNotPassed: " not passed (grade ",
+    errPrereqNotPassedEnd: "); prerequisite not satisfied.",
+    noErrors: "No errors."
+  }
+};
+
+let currentLang = localStorage.getItem("lang") || "tr";
+
+function showToast(message, type) {
+    type = type || "success";
+    var container = document.getElementById("toastContainer");
+    if (!container) return;
+    var toast = document.createElement("div");
+    toast.className = "toast toast--" + type;
+    toast.setAttribute("role", "alert");
+    toast.textContent = message;
+    container.appendChild(toast);
+    setTimeout(function() {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateX(20px)";
+        toast.style.transition = "opacity 0.25s ease, transform 0.25s ease";
+        setTimeout(function() { toast.remove(); }, 280);
+    }, 4200);
+}
+
+function t(key) {
+  return (translations[currentLang] || translations.tr)[key] ?? key;
+}
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("lang", lang);
+  document.documentElement.lang = lang === "tr" ? "tr" : "en";
+  const sel = document.getElementById("langSelect");
+  if (sel) sel.value = lang;
+  applyLanguage();
+}
+
+function applyLanguage() {
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    if (key && t(key)) el.textContent = t(key);
+  });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    if (key && t(key)) el.placeholder = t(key);
+  });
+  document.querySelectorAll("[data-i18n-opt]").forEach(opt => {
+    const key = opt.getAttribute("data-i18n-opt");
+    if (key && t(key)) opt.textContent = t(key);
+  });
+  document.querySelectorAll(".course-grade").forEach(sel => {
+    if (sel.options[0]) sel.options[0].textContent = t("gradeNone");
+  });
+  document.querySelectorAll(".course-btn.copy-btn").forEach(btn => {
+    btn.setAttribute("aria-label", t("btnCopy"));
+    btn.title = currentLang === "tr" ? "Kopyala (tekrar almak için havuza ekle)" : "Copy (add to pool for retake)";
+  });
+  document.querySelectorAll(".course-btn.delete-btn").forEach(btn => {
+    btn.setAttribute("aria-label", t("btnDelete"));
+    btn.title = currentLang === "tr" ? "Dersi kaldır" : "Remove course";
+  });
+  const pageTitle = document.getElementById("pageTitle");
+  if (pageTitle) pageTitle.textContent = t("title");
+  const themeLabel = document.getElementById("themeLabel");
+  if (themeLabel) {
+    const theme = document.documentElement.getAttribute("data-theme") || "dark";
+    themeLabel.textContent = theme === "dark" ? t("themeLight") : t("themeDark");
+  }
+  recalculateGpas();
+  updateSemesterLabels();
+}
+
+function updateSemesterLabels() {
+  document.querySelectorAll(".year-label").forEach((el, i) => {
+    const year = i + 1;
+    el.innerHTML = year + ". <strong>" + t("year") + "</strong>";
+  });
+  document.querySelectorAll(".semester-title").forEach((el, i) => {
+    const n = i + 1;
+    el.textContent = n + ". " + t("semester");
+  });
+  document.querySelectorAll(".semester-max span").forEach(el => {
+    el.textContent = t("maxCredits");
+  });
+}
+
+let courses = {};
+// Grade per (courseCode, semesterNumber) so each placement can have its own grade
+let courseGradesBySemester = {};
+
+const semestersContainer = document.getElementById("semesters");
+let currentYearCount = 0;
+let currentSemesterCount = 0;
+let courseInstanceCounter = 0;
+
+function addYearRow() {
+    const year = ++currentYearCount;
+
+    const yearRow = document.createElement("div");
+    yearRow.className = "year-row";
+
+    const yearLabel = document.createElement("div");
+    yearLabel.className = "year-label";
+    yearLabel.innerHTML = year + ". <strong>" + t("year") + "</strong>";
+
+    const yearSemesters = document.createElement("div");
+    yearSemesters.className = "year-semesters";
+
+    for (let s = 1; s <= 2; s++) {
+        const semesterNumber = ++currentSemesterCount;
+        const div = document.createElement("div");
+        div.className = "semester";
+        div.id = "semester" + semesterNumber;
+        div.dataset.semester = semesterNumber;
+        div.innerHTML =
+            "<div class='semester-header'>" +
+                "<div class='semester-title'>" + semesterNumber + ". " + t("semester") + "</div>" +
+                "<label class='semester-max'>" +
+                    "<span>" + t("maxCredits") + "</span>" +
+                    "<input type='number' class='semester-max-input' value='5' min='1'>" +
+                "</label>" +
+            "</div>" +
+            "<div class='semester-courses'></div>" +
+            "<div class='semester-gpa'>GPA: --</div>";
+        div.ondrop = drop;
+        div.ondragover = allowDrop;
+        yearSemesters.appendChild(div);
+    }
+
+    yearRow.appendChild(yearLabel);
+    yearRow.appendChild(yearSemesters);
+    semestersContainer.appendChild(yearRow);
+}
+
+for (let i = 0; i < 4; i++) {
+    addYearRow();
+}
+
+loadProgramsIntoSelect();
+
+let programsData = null;
+let curriculumsData = null;
+let coursesDataBy7 = null;  // course_code_7digit -> course object
+let coursesDataByCode = null;  // code -> course object
+let allCoursesDataset = null;  // full list from courses.json for search
+// When curriculum is loaded: courseCode -> expected semester number (for "wrong semester" warning)
+let curriculumPlacement = {};
+
+function offeredToSemesterType(offered) {
+    if (!offered) return "both";
+    const o = offered.toLowerCase();
+    if (o.indexOf("fall") !== -1 && o.indexOf("spring") !== -1) return "both";
+    if (o.indexOf("fall") !== -1) return "odd";
+    if (o.indexOf("spring") !== -1) return "even";
+    return "both";
+}
+
+var ZERO_CREDIT_COURSE_CODES = { "OHS101": true, "OHS301": true, "IS100": true };
+
+function countCreditCoursesInContainer(container) {
+    if (!container) return 0;
+    var count = 0;
+    container.querySelectorAll(".course").forEach(function(el) {
+        var code = el.dataset.courseCode;
+        if (!code || ZERO_CREDIT_COURSE_CODES[code]) return;
+        var info = courses[code];
+        if (info && Number(info.credits) > 0) count += 1;
+    });
+    return count;
+}
+
+function prereqOneOfToCodes(oneOf, map7toCode) {
+    if (!oneOf || !oneOf.length) return [];
+    const firstSet = oneOf[0];
+    return firstSet.map(function(id) {
+        var key = String(id);
+        var code = map7toCode[key] || map7toCode[id];
+        return code || key;
+    }).filter(Boolean);
+}
+
+function loadProgramsIntoSelect() {
+    fetch("programs.json")
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            programsData = data;
+            var sel = document.getElementById("departmentSelect");
+            if (!sel) return;
+            sel.innerHTML = "";
+            var opt0 = document.createElement("option");
+            opt0.value = "";
+            opt0.textContent = t("deptPlaceholder");
+            opt0.setAttribute("data-i18n-opt", "deptPlaceholder");
+            sel.appendChild(opt0);
+            var faculties = data.faculties || {};
+            var skipFaculty = "School of Foreign Languages";
+            Object.keys(faculties).forEach(function(facName) {
+                if (facName === skipFaculty) return;
+                var fac = faculties[facName];
+                var progs = fac.programs || [];
+                if (!progs.length) return;
+                var group = document.createElement("optgroup");
+                group.label = facName;
+                progs.forEach(function(p) {
+                    var opt = document.createElement("option");
+                    opt.value = p.code;
+                    opt.textContent = p.name || p.code;
+                    group.appendChild(opt);
+                });
+                sel.appendChild(group);
+            });
+        })
+        .catch(function() {
+            var sel = document.getElementById("departmentSelect");
+            if (sel && !sel.querySelector('option[value=""]')) {
+                var opt = document.createElement("option");
+                opt.value = "";
+                opt.textContent = t("deptPlaceholder");
+                sel.appendChild(opt);
+            }
+        });
+}
+
+function loadCoursesDataset() {
+    if (allCoursesDataset) return Promise.resolve();
+    return fetch("courses.json?v=" + Date.now())
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+            allCoursesDataset = data.courses || [];
+        })
+        .catch(function() { allCoursesDataset = []; });
+}
+
+function buildMap7ToCodeFromDataset() {
+    var map = {};
+    if (!allCoursesDataset) return map;
+    allCoursesDataset.forEach(function(c) {
+        var k = c.course_code_7digit != null ? String(c.course_code_7digit) : "";
+        if (k && c.code) map[k] = c.code;
+    });
+    return map;
+}
+
+function addCourseFromDataset(courseFromJson) {
+    var code = courseFromJson.code;
+    if (!code) return;
+    var map7toCode = buildMap7ToCodeFromDataset();
+    var prereqs = [];
+    if (courseFromJson.prerequisites && courseFromJson.prerequisites.one_of && courseFromJson.prerequisites.one_of.length) {
+        prereqs = prereqOneOfToCodes(courseFromJson.prerequisites.one_of, map7toCode);
+    }
+    var semesterType = offeredToSemesterType(courseFromJson.offered_semester);
+    var cred = courseFromJson.credits != null ? Number(courseFromJson.credits) : 3;
+    if (ZERO_CREDIT_COURSE_CODES[code]) cred = 0;
+    courses[code] = {
+        prereqs: prereqs,
+        semesterType: semesterType,
+        grade: "",
+        credits: cred
+    };
+    var code7 = courseFromJson.course_code_7digit != null ? String(courseFromJson.course_code_7digit) : null;
+    var el = createCourseElement(code, code7, null, false);
+    var pool = document.getElementById("coursePool");
+    if (pool) pool.appendChild(el);
+    recalculateGpas();
+    updateWrongSemesterWarnings();
+}
+
+function showCourseSearchDropdown(query) {
+    var dropdown = document.getElementById("courseSearchDropdown");
+    if (!dropdown) return;
+    query = (query || "").trim().toLowerCase();
+    dropdown.classList.remove("is-open");
+    dropdown.innerHTML = "";
+    dropdown.setAttribute("aria-hidden", "true");
+    if (!query || !allCoursesDataset || !allCoursesDataset.length) return;
+    var list = allCoursesDataset.filter(function(c) {
+        var code = (c.code || "").toLowerCase();
+        var name = (c.name || "").toLowerCase();
+        return code.indexOf(query) !== -1 || name.indexOf(query) !== -1;
+    });
+    list = list.slice(0, 25);
+    if (!list.length) return;
+    list.forEach(function(c) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "course-search-item";
+        btn.setAttribute("role", "option");
+        btn.innerHTML = "<code>" + (c.code || "") + "</code><span>" + (c.name || "") + "</span>";
+        btn.dataset.code = c.code;
+        (function(course) {
+            btn.addEventListener("click", function() {
+                addCourseFromDataset(course);
+                var searchInput = document.getElementById("courseSearchInput");
+                if (searchInput) searchInput.value = "";
+                dropdown.classList.remove("is-open");
+                dropdown.innerHTML = "";
+                dropdown.setAttribute("aria-hidden", "true");
+            });
+        })(c);
+        dropdown.appendChild(btn);
+    });
+    dropdown.classList.add("is-open");
+    dropdown.setAttribute("aria-hidden", "false");
+}
+
+function setupCourseSearch() {
+    var input = document.getElementById("courseSearchInput");
+    var dropdown = document.getElementById("courseSearchDropdown");
+    if (!input || !dropdown) return;
+    function onSearch() {
+        loadCoursesDataset().then(function() {
+            showCourseSearchDropdown(input.value);
+        });
+    }
+    input.addEventListener("input", onSearch);
+    input.addEventListener("focus", function() {
+        if (input.value.trim()) onSearch();
+    });
+    document.addEventListener("click", function(ev) {
+        if (dropdown && dropdown.classList.contains("is-open") && !input.contains(ev.target) && !dropdown.contains(ev.target)) {
+            dropdown.classList.remove("is-open");
+            dropdown.setAttribute("aria-hidden", "true");
+        }
+    });
+}
+
+function setDepartment() {
+    var select = document.getElementById("departmentSelect");
+    var programCode = select ? select.value : "";
+    if (!programCode) {
+        showToast(t("alertSelectDept"), "error");
+        return;
+    }
+    var programName = select.options[select.selectedIndex].text;
+    var semestersContainer = document.getElementById("semesters");
+    var semesterEls = semestersContainer ? semestersContainer.querySelectorAll(".semester") : [];
+    if (semesterEls.length === 0) {
+        showToast(currentLang === "tr" ? "Dönem bulunamadı." : "No semesters found.", "error");
+        return;
+    }
+    Promise.all([
+        fetch("curriculums.json?v=" + Date.now()).then(function(r) { return r.json(); }),
+        fetch("courses.json?v=" + Date.now()).then(function(r) { return r.json(); })
+    ]).then(function(results) {
+        var curriculums = results[0].curriculums || {};
+        var coursesList = results[1].courses || [];
+        curriculumsData = results[0];
+        var by7 = {};
+        var byCode = {};
+        coursesList.forEach(function(c) {
+            var k7 = c.course_code_7digit != null ? String(c.course_code_7digit) : "";
+            if (k7) by7[k7] = c;
+            if (c.code) byCode[c.code] = c;
+        });
+        coursesDataBy7 = by7;
+        coursesDataByCode = byCode;
+        allCoursesDataset = coursesList;
+        var curriculum = curriculums[programCode];
+        if (!curriculum || !curriculum.semesters || !curriculum.semesters.length) {
+            showToast(programName + ": " + (currentLang === "tr" ? "Müfredat bulunamadı." : "Curriculum not found."), "error");
+            return;
+        }
+        var map7toCode = {};
+        coursesList.forEach(function(c) {
+            var k = c.course_code_7digit != null ? String(c.course_code_7digit) : "";
+            if (k && c.code) map7toCode[k] = c.code;
+        });
+        var toRemove = [];
+        semesterEls.forEach(function(semEl) {
+            var box = semEl.querySelector(".semester-courses");
+            if (box) {
+                box.querySelectorAll(".course").forEach(function(el) {
+                    toRemove.push(el);
+                });
+            }
+        });
+        toRemove.forEach(function(el) {
+            var code = el.dataset.courseCode || el.id;
+            if (courses[code]) delete courses[code];
+            if (courseGradesBySemester[code]) delete courseGradesBySemester[code];
+            el.remove();
+        });
+        curriculumPlacement = {};
+        curriculum.semesters.forEach(function(sem) {
+            var semNum = sem.semester_number;
+            var semEl = document.getElementById("semester" + semNum);
+            if (!semEl) return;
+            var box = semEl.querySelector(".semester-courses");
+            if (!box) return;
+            var list = sem.courses || [];
+            var creditCourseCount = 0;
+            list.forEach(function(item, idx) {
+                if (item.type === "one_of") {
+                    var opts = item.options || [];
+                    var hasCreditOption = opts.some(function(o) {
+                        var c = by7[o.course_code_7digit] || byCode[o.code];
+                        return c && Number(c.credits) > 0;
+                    });
+                    if (hasCreditOption) creditCourseCount += 1;
+                    var elecCode = "ELEC_S" + semNum + "_" + idx;
+                    var optNames = (item.options || []).map(function(o) { return o.code; }).join(", ");
+                    var elecName = (currentLang === "tr" ? "Şunlardan 1’i: " : "Any 1 of: ") + (optNames || (item.name || ""));
+                    courses[elecCode] = {
+                        prereqs: [],
+                        semesterType: "both",
+                        grade: "",
+                        credits: 3
+                    };
+                    curriculumPlacement[elecCode] = semNum;
+                    var el = createCourseElement(elecCode, null, elecName, true);
+                    box.appendChild(el);
+                    return;
+                }
+                if (item.type === "elective") {
+                    creditCourseCount += 1;
+                    var elecCode = "ELEC_S" + semNum + "_" + idx;
+                    var elecName = item.name || (currentLang === "tr" ? "Seçmeli" : "Elective");
+                    courses[elecCode] = {
+                        prereqs: [],
+                        semesterType: "both",
+                        grade: "",
+                        credits: 3
+                    };
+                    curriculumPlacement[elecCode] = semNum;
+                    var el = createCourseElement(elecCode, null, elecName, true);
+                    box.appendChild(el);
+                    return;
+                }
+                var code = item.code;
+                var code7 = item.course_code_7digit != null ? String(item.course_code_7digit) : "";
+                if (!code || !code7) return;
+                var full = by7[code7] || by7[code7.trim()] || byCode[code];
+                var prereqs = [];
+                var credits = ZERO_CREDIT_COURSE_CODES[code] ? 0 : ((full && full.credits != null) ? Number(full.credits) : 3);
+                var semesterType = "both";
+                if (full) {
+                    semesterType = offeredToSemesterType(full.offered_semester);
+                    if (full.prerequisites && full.prerequisites.one_of && full.prerequisites.one_of.length) {
+                        prereqs = prereqOneOfToCodes(full.prerequisites.one_of, map7toCode);
+                    }
+                }
+                var countAsCredit = credits > 0 && !ZERO_CREDIT_COURSE_CODES[code];
+                if (countAsCredit) creditCourseCount += 1;
+                courses[code] = {
+                    prereqs: prereqs,
+                    semesterType: semesterType,
+                    grade: "",
+                    credits: credits
+                };
+                curriculumPlacement[code] = semNum;
+                var el = createCourseElement(code, code7, null, false);
+                if (prereqs.length) {
+                    el.title = (currentLang === "tr" ? "Ön koşul: " : "Prerequisite: ") + prereqs.join(", ");
+                }
+                box.appendChild(el);
+            });
+            var maxInput = semEl.querySelector(".semester-max-input");
+            if (maxInput) {
+                maxInput.value = Math.max(1, creditCourseCount + 2);
+            }
+        });
+        recalculateGpas();
+        updateWrongSemesterWarnings();
+        showToast(currentLang === "tr" ? "Bölüm planı yüklendi: " + programName : "Department plan loaded: " + programName);
+    }).catch(function(err) {
+        console.error(err);
+        showToast(currentLang === "tr" ? "Müfredat veya ders verisi yüklenemedi. JSON dosyalarının (curriculums.json, courses.json) sayfa ile aynı dizinde olduğundan emin olun." : "Could not load curriculum or courses. Ensure curriculums.json and courses.json are in the same folder as this page.", "error");
+    });
+}
+
+function getPlanState() {
+    var select = document.getElementById("departmentSelect");
+    var programCode = select ? select.value : "";
+    var semesters = [];
+    var semesterEls = document.querySelectorAll(".semester");
+    for (var i = 0; i < semesterEls.length; i++) {
+        var sem = semesterEls[i];
+        var semNum = parseInt(sem.dataset.semester, 10);
+        var box = sem.querySelector(".semester-courses");
+        var maxInput = sem.querySelector(".semester-max-input");
+        var maxCredits = maxInput ? parseInt(maxInput.value, 10) : 5;
+        var courseEls = box ? box.querySelectorAll(".course") : [];
+        var courseList = [];
+        courseEls.forEach(function(el) {
+            var code = el.dataset.courseCode;
+            var code7 = el.dataset.courseCode7 || null;
+            var displayLabel = null;
+            if (el.classList.contains("elective-placeholder")) {
+                var codeSpan = el.querySelector(".course-code");
+                displayLabel = codeSpan ? codeSpan.textContent : null;
+            }
+            var gradeEl = el.querySelector(".course-grade");
+            var grade = gradeEl ? gradeEl.value : "";
+            courseList.push({
+                code: code,
+                code7: code7 || undefined,
+                displayLabel: displayLabel || undefined,
+                isElective: el.classList.contains("elective-placeholder"),
+                grade: grade || undefined
+            });
+        });
+        semesters.push({ semNumber: semNum, maxCredits: maxCredits, courses: courseList });
+    }
+    var pool = document.getElementById("coursePool");
+    var poolEls = pool ? pool.querySelectorAll(".course") : [];
+    var poolList = [];
+    poolEls.forEach(function(el) {
+        var code = el.dataset.courseCode;
+        var code7 = el.dataset.courseCode7 || null;
+        var displayLabel = null;
+        if (el.classList.contains("elective-placeholder")) {
+            var codeSpan = el.querySelector(".course-code");
+            displayLabel = codeSpan ? codeSpan.textContent : null;
+        }
+        var gradeEl = el.querySelector(".course-grade");
+        var grade = gradeEl ? gradeEl.value : "";
+        poolList.push({
+            code: code,
+            code7: code7 || undefined,
+            displayLabel: displayLabel || undefined,
+            isElective: el.classList.contains("elective-placeholder"),
+            grade: grade || undefined
+        });
+    });
+    return {
+        version: 1,
+        programCode: programCode,
+        semesters: semesters,
+        pool: poolList,
+        courses: JSON.parse(JSON.stringify(courses)),
+        courseGradesBySemester: JSON.parse(JSON.stringify(courseGradesBySemester))
+    };
+}
+
+function savePlan() {
+    var programCode = document.getElementById("departmentSelect").value;
+    if (!programCode) {
+        showToast(currentLang === "tr" ? "Kaydetmek için önce bir bölüm seçip uygulayın." : "Select and apply a department first to save.", "error");
+        return;
+    }
+    var state = getPlanState();
+    var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "metu-plan-" + (programCode || "plan") + ".json";
+    a.click();
+    URL.revokeObjectURL(a.href);
+    showToast(currentLang === "tr" ? "Plan kaydedildi." : "Plan saved.");
+}
+
+function ensureSemesterCount(requiredCount) {
+    var existing = document.querySelectorAll(".semester").length;
+    while (existing < requiredCount) {
+        addYearRow();
+        existing = document.querySelectorAll(".semester").length;
+    }
+}
+
+function loadPlan(state) {
+    if (!state || state.version !== 1) {
+        showToast(currentLang === "tr" ? "Geçersiz veya eski plan dosyası." : "Invalid or outdated plan file.", "error");
+        return;
+    }
+    var programCode = state.programCode;
+    if (!programCode) {
+        showToast(currentLang === "tr" ? "Kayıtta bölüm bilgisi yok." : "No department in saved plan.", "error");
+        return;
+    }
+    var select = document.getElementById("departmentSelect");
+    if (select) select.value = programCode;
+
+    var semesters = state.semesters || [];
+    var poolList = state.pool || [];
+    var savedCourses = state.courses || {};
+    var savedGrades = state.courseGradesBySemester || {};
+
+    var maxSemNum = 0;
+    semesters.forEach(function(s) { if (s.semNumber > maxSemNum) maxSemNum = s.semNumber; });
+    ensureSemesterCount(maxSemNum);
+
+    var semestersContainer = document.getElementById("semesters");
+    var semesterEls = semestersContainer ? semestersContainer.querySelectorAll(".semester") : [];
+
+    var toRemove = [];
+    semesterEls.forEach(function(semEl) {
+        var box = semEl.querySelector(".semester-courses");
+        if (box) box.querySelectorAll(".course").forEach(function(el) { toRemove.push(el); });
+    });
+    var pool = document.getElementById("coursePool");
+    if (pool) pool.querySelectorAll(".course").forEach(function(el) { toRemove.push(el); });
+    toRemove.forEach(function(el) {
+        var code = el.dataset.courseCode || el.id;
+        if (courses[code]) delete courses[code];
+        if (courseGradesBySemester[code]) delete courseGradesBySemester[code];
+        el.remove();
+    });
+    curriculumPlacement = {};
+
+    Object.keys(savedCourses).forEach(function(code) {
+        courses[code] = savedCourses[code];
+    });
+    Object.keys(savedGrades).forEach(function(code) {
+        courseGradesBySemester[code] = savedGrades[code];
+    });
+
+    semesters.forEach(function(semState) {
+        var semEl = document.getElementById("semester" + semState.semNumber);
+        if (!semEl) return;
+        var box = semEl.querySelector(".semester-courses");
+        var maxInput = semEl.querySelector(".semester-max-input");
+        if (maxInput) maxInput.value = Math.max(1, semState.maxCredits || 5);
+        (semState.courses || []).forEach(function(c) {
+            var el = createCourseElement(c.code, c.code7 || null, c.displayLabel || null, !!c.isElective);
+            if (c.grade && el) {
+                var gs = el.querySelector(".course-grade");
+                if (gs) gs.value = c.grade;
+                if (!courseGradesBySemester[c.code]) courseGradesBySemester[c.code] = {};
+                courseGradesBySemester[c.code][String(semState.semNumber)] = c.grade;
+            }
+            if (box) box.appendChild(el);
+            curriculumPlacement[c.code] = semState.semNumber;
+        });
+    });
+
+    poolList.forEach(function(c) {
+        var el = createCourseElement(c.code, c.code7 || null, c.displayLabel || null, !!c.isElective);
+        if (c.grade && el && courses[c.code]) courses[c.code].grade = c.grade;
+        if (pool) pool.appendChild(el);
+    });
+
+    recalculateGpas();
+    updateWrongSemesterWarnings();
+    showToast(currentLang === "tr" ? "Plan yüklendi." : "Plan loaded.");
+}
+
+function onLoadPlanFileChosen(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+        try {
+            var state = JSON.parse(ev.target.result);
+            loadPlan(state);
+        } catch (err) {
+            showToast(currentLang === "tr" ? "Dosya okunamadı veya geçersiz JSON." : "Could not read file or invalid JSON.", "error");
+        }
+        e.target.value = "";
+    };
+    reader.readAsText(file, "UTF-8");
+}
+
+function createCourseElement(name, code7, displayLabel, isElective) {
+    const uniqueId = name + "-" + (++courseInstanceCounter);
+    const div = document.createElement("div");
+    div.className = "course";
+    if (isElective) div.classList.add("elective-placeholder");
+    div.id = uniqueId;
+    div.dataset.courseCode = name;
+    if (code7) div.dataset.courseCode7 = code7;
+    div.draggable = true;
+    div.ondragstart = drag;
+    div.ondragend = dragEnd;
+
+    const main = document.createElement("div");
+    main.className = "course-main";
+
+    const codeSpan = document.createElement("span");
+    codeSpan.className = "course-code";
+    codeSpan.textContent = (displayLabel !== undefined && displayLabel !== null && displayLabel !== "") ? displayLabel : name;
+
+    main.appendChild(codeSpan);
+
+    const gradeSelect = document.createElement("select");
+    gradeSelect.className = "course-grade";
+
+    function setGradeSelectOptionsByCredits(selectEl, courseCode) {
+        var cred = (courses[courseCode] !== undefined && courses[courseCode].credits !== undefined) ? Number(courses[courseCode].credits) : 3;
+        var useSF = cred === 0;
+        var grades = useSF ? ["", "S", "F"] : ["", "AA", "BA", "BB", "CB", "CC", "DC", "DD", "FD", "FF"];
+        var labels = useSF ? [t("gradeNone"), t("gradeS"), t("gradeF")] : [t("gradeNone"), "AA", "BA", "BB", "CB", "CC", "DC", "DD", "FD", "FF"];
+        var currentVal = selectEl.value;
+        selectEl.innerHTML = "";
+        grades.forEach(function(value, idx) {
+            var opt = document.createElement("option");
+            opt.value = value;
+            opt.textContent = labels[idx];
+            if (value === currentVal || (currentVal === "" && idx === 0)) {
+                opt.selected = true;
+            }
+            selectEl.appendChild(opt);
+        });
+        if (grades.indexOf(currentVal) === -1) selectEl.selectedIndex = 0;
+    }
+
+    setGradeSelectOptionsByCredits(gradeSelect, name);
+
+    gradeSelect.addEventListener("change", () => {
+        const courseEl = gradeSelect.closest(".course");
+        const code = courseEl ? (courseEl.dataset.courseCode || name) : name;
+        const semesterEl = courseEl ? courseEl.closest(".semester") : null;
+        const semNumber = semesterEl ? semesterEl.dataset.semester : null;
+        if (semNumber) {
+            if (!courseGradesBySemester[code]) courseGradesBySemester[code] = {};
+            courseGradesBySemester[code][semNumber] = gradeSelect.value;
+        } else if (courses[name]) {
+            courses[name].grade = gradeSelect.value;
+        }
+        recalculateGpas();
+        updateWrongSemesterWarnings();
+    });
+
+    const actions = document.createElement("div");
+    actions.className = "course-actions";
+
+    var creditsWrap = document.createElement("div");
+    creditsWrap.className = "course-credits-wrap";
+    var creditsLabel = document.createElement("label");
+    creditsLabel.textContent = t("creditsLabel") + ":";
+    var creditsInput = document.createElement("input");
+    creditsInput.type = "number";
+    creditsInput.min = "0";
+    creditsInput.max = "20";
+    creditsInput.step = "1";
+    creditsInput.className = "course-credits-input";
+    creditsInput.setAttribute("aria-label", t("creditsLabel"));
+    var currentCredits = (courses[name] && (courses[name].credits !== undefined && courses[name].credits !== null)) ? Number(courses[name].credits) : 3;
+    if (courses[name]) courses[name].credits = currentCredits;
+    creditsInput.value = currentCredits;
+    creditsInput.addEventListener("change", function() {
+        var code = creditsInput.closest(".course").dataset.courseCode;
+        if (!courses[code]) return;
+        var val = parseInt(creditsInput.value, 10);
+        if (isNaN(val) || val < 0) val = 0;
+        if (val > 20) val = 20;
+        creditsInput.value = val;
+        courses[code].credits = val;
+        var gs = creditsInput.closest(".course").querySelector(".course-grade");
+        if (gs) {
+            setGradeSelectOptionsByCredits(gs, code);
+            var semEl = creditsInput.closest(".semester");
+            if (semEl) {
+                var semNum = semEl.dataset.semester;
+                if (courseGradesBySemester[code]) courseGradesBySemester[code][semNum] = gs.value;
+            } else if (courses[code]) courses[code].grade = gs.value;
+        }
+        recalculateGpas();
+    });
+    creditsWrap.appendChild(creditsLabel);
+    creditsWrap.appendChild(creditsInput);
+    actions.appendChild(creditsWrap);
+
+    const copyBtn = document.createElement("button");
+    copyBtn.type = "button";
+    copyBtn.className = "course-btn copy-btn";
+    copyBtn.title = currentLang === "tr" ? "Kopyala (tekrar almak için havuza ekle)" : "Copy (add to pool for retake)";
+    copyBtn.textContent = "⎘";
+    copyBtn.setAttribute("aria-label", t("btnCopy"));
+    copyBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        var el = copyBtn.closest(".course");
+        var code = el.dataset.courseCode;
+        var code7 = el.dataset.courseCode7 || null;
+        if (!code || !courses[code]) return;
+        var isElective = el.classList.contains("elective-placeholder");
+        var displayLabel = null;
+        if (isElective) {
+            var codeSpan = el.querySelector(".course-code");
+            displayLabel = codeSpan ? codeSpan.textContent : null;
+        }
+        var clone = createCourseElement(code, code7, displayLabel, isElective);
+        var pool = document.getElementById("coursePool");
+        if (pool) pool.appendChild(clone);
+        recalculateGpas();
+        updateWrongSemesterWarnings();
+    });
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.type = "button";
+    deleteBtn.className = "course-btn delete-btn";
+    deleteBtn.title = currentLang === "tr" ? "Dersi kaldır" : "Remove course";
+    deleteBtn.textContent = "×";
+    deleteBtn.setAttribute("aria-label", t("btnDelete"));
+    deleteBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        var el = deleteBtn.closest(".course");
+        var code = el.dataset.courseCode;
+        var semEl = el.closest(".semester");
+        var semNumber = semEl ? semEl.dataset.semester : null;
+        if (semNumber && courseGradesBySemester[code]) {
+            delete courseGradesBySemester[code][semNumber];
+            if (Object.keys(courseGradesBySemester[code]).length === 0) delete courseGradesBySemester[code];
+        }
+        el.remove();
+        var anyLeft = document.querySelectorAll(".course[data-course-code=\"" + CSS.escape(code) + "\"]").length;
+        if (anyLeft === 0) {
+            delete courses[code];
+        }
+        recalculateGpas();
+        updateWrongSemesterWarnings();
+    });
+
+    actions.appendChild(gradeSelect);
+    actions.appendChild(copyBtn);
+    actions.appendChild(deleteBtn);
+    div.appendChild(main);
+    div.appendChild(actions);
+
+    return div;
+}
+
+function gradeToPoints(grade) {
+    switch (grade) {
+        case "AA": return 4.0;
+        case "BA": return 3.5;
+        case "BB": return 3.0;
+        case "CB": return 2.5;
+        case "CC": return 2.0;
+        case "DC": return 1.5;
+        case "DD": return 1.0;
+        case "FD": return 0.5;
+        case "FF": return 0.0;
+        case "S":
+        case "F":
+            return null;
+        default: return null;
+    }
+}
+
+function recalculateGpas() {
+    const semesterEls = Array.from(document.querySelectorAll(".semester"));
+
+    // For CGPA: per course code, keep the grade from the placement that has a chosen grade; if multiple, use latest semester (retake)
+    const cgpaEntryByCode = {}; // code -> { grade, credits }
+    const latestSemesterForCourse = {}; // code -> highest semester number where it appears (for retake preference)
+
+    let totalPoints = 0;
+    let totalCredits = 0;
+
+    // Calculate per-semester GPA and collect CGPA-relevant grades
+    for (const sem of semesterEls) {
+        const semNumber = Number(sem.dataset.semester);
+        const coursesContainer = sem.querySelector(".semester-courses") || sem;
+        const courseEls = coursesContainer.querySelectorAll(".course");
+
+        let semPoints = 0;
+        let semCredits = 0;
+
+        courseEls.forEach(courseEl => {
+            const code = courseEl.dataset.courseCode || courseEl.id;
+            const info = courses[code];
+            if (!info) return;
+
+            // Grade for this (code, semester): stored per placement, else this row's dropdown, else global
+            const gradeSelectEl = courseEl.querySelector(".course-grade");
+            const grade = (courseGradesBySemester[code] && courseGradesBySemester[code][semNumber])
+                || (gradeSelectEl ? gradeSelectEl.value : null)
+                || info.grade;
+            const points = gradeToPoints(grade);
+            const credits = info.credits || 3;
+
+            // Dönem GPA: count all courses in this semester (including retakes)
+            if (points !== null) {
+                semCredits += credits;
+                semPoints += points * credits;
+            }
+
+            // CGPA: count each course code once; use any placement that has a grade; if multiple, prefer latest semester (retake)
+            if (points !== null && grade && grade.length > 0) {
+                if (!cgpaEntryByCode[code] || semNumber >= (latestSemesterForCourse[code] || 0)) {
+                    latestSemesterForCourse[code] = semNumber;
+                    cgpaEntryByCode[code] = { grade: grade, credits: credits };
+                }
+            }
+        });
+
+        const gpaEl = sem.querySelector(".semester-gpa");
+        if (semCredits > 0) {
+            const gpa = semPoints / semCredits;
+            if (gpaEl) {
+                gpaEl.textContent = "GPA: " + gpa.toFixed(2) + " · " + t("gpaCredits") + ": " + semCredits;
+            }
+        } else if (gpaEl) {
+            gpaEl.textContent = "GPA: --";
+        }
+    }
+
+    // Sum CGPA from the chosen grade per course code (so MATH119 in sem1 with BB counts even if also in sem3 with no grade)
+    for (const code in cgpaEntryByCode) {
+        const entry = cgpaEntryByCode[code];
+        const points = gradeToPoints(entry.grade);
+        if (points !== null) {
+            totalCredits += entry.credits;
+            totalPoints += points * entry.credits;
+        }
+    }
+
+    const cgpaEl = document.getElementById("cgpaDisplay");
+    if (cgpaEl) {
+        if (totalCredits > 0) {
+            const cgpa = totalPoints / totalCredits;
+            cgpaEl.textContent = t("cgpa") + ": " + cgpa.toFixed(2) + " · " + t("totalCredits") + ": " + totalCredits;
+        } else {
+            cgpaEl.textContent = t("cgpa") + ": --";
+        }
+    }
+}
+
+function addCourse() {
+
+    const name = document.getElementById("courseName").value.trim();
+    const prereq = document.getElementById("prereq").value.trim();
+    const semesterType = document.getElementById("semesterType").value;
+    var creditsEl = document.getElementById("courseCredits");
+    var credits = creditsEl ? (parseInt(creditsEl.value, 10)) : 3;
+    if (isNaN(credits) || credits < 0) credits = 0;
+    if (credits > 20) credits = 20;
+
+    if (!name) return;
+
+    courses[name] = {
+        prereqs: prereq ? prereq.split(",").map(p => p.trim()) : [],
+        semesterType: semesterType,
+        grade: "",
+        credits: credits
+    };
+
+    const div = createCourseElement(name);
+
+    document.getElementById("coursePool").appendChild(div);
+
+    document.getElementById("courseName").value = "";
+    document.getElementById("prereq").value = "";
+    if (creditsEl) creditsEl.value = "3";
+    recalculateGpas();
+}
+
+function allowDrop(ev) {
+    ev.preventDefault();
+}
+
+var dragScroll = { active: false, lastY: 0, intervalId: null };
+var DRAG_SCROLL_THRESHOLD = 70;
+var DRAG_SCROLL_STEP = 6;
+
+function drag(ev) {
+    ev.dataTransfer.setData("text", ev.target.id);
+    dragScroll.active = true;
+    dragScroll.lastY = ev.clientY;
+    if (!dragScroll.intervalId) {
+        dragScroll.intervalId = setInterval(function() {
+            if (!dragScroll.active) return;
+            var y = dragScroll.lastY;
+            if (y < DRAG_SCROLL_THRESHOLD) {
+                window.scrollBy(0, -DRAG_SCROLL_STEP);
+            } else if (y > window.innerHeight - DRAG_SCROLL_THRESHOLD) {
+                window.scrollBy(0, DRAG_SCROLL_STEP);
+            }
+        }, 50);
+    }
+}
+
+function dragEnd() {
+    dragScroll.active = false;
+    if (dragScroll.intervalId) {
+        clearInterval(dragScroll.intervalId);
+        dragScroll.intervalId = null;
+    }
+}
+
+document.addEventListener("dragover", function(e) {
+    if (dragScroll.active) dragScroll.lastY = e.clientY;
+});
+
+var PASSING_GRADES = { "AA": true, "BA": true, "BB": true, "CB": true, "CC": true, "DC": true, "DD": true, "S": true };
+var FAILING_GRADES = { "FF": true, "FD": true, "F": true };
+
+function getGradesForCourse(code) {
+    var grades = [];
+    document.querySelectorAll(".semester .course[data-course-code=\"" + CSS.escape(code) + "\"]").forEach(function(el) {
+        var semEl = el.closest(".semester");
+        var semNum = semEl ? semEl.dataset.semester : null;
+        var gSel = el.querySelector(".course-grade");
+        var g = (gSel && gSel.value) ? gSel.value : (courseGradesBySemester[code] && semNum && courseGradesBySemester[code][semNum]);
+        if (g !== undefined && g !== null && g !== "") grades.push(String(g));
+    });
+    return grades;
+}
+
+function hasPassingGrade(code) {
+    var grades = getGradesForCourse(code);
+    return grades.some(function(g) { return PASSING_GRADES[g]; });
+}
+
+function hasFailingGrade(code) {
+    var grades = getGradesForCourse(code);
+    return grades.some(function(g) { return FAILING_GRADES[g]; });
+}
+
+function getGradeDisplayForCourse(code) {
+    var grades = getGradesForCourse(code);
+    return grades.length > 0 ? grades[grades.length - 1] : "";
+}
+
+function findCourseSemester(courseCodeOrId) {
+    let earliest = null;
+    const semesterEls = document.querySelectorAll(".semester");
+    for (const sem of semesterEls) {
+        const courseEls = sem.querySelectorAll(".course");
+        for (const el of courseEls) {
+            var match = (el.dataset.courseCode && el.dataset.courseCode === courseCodeOrId)
+                || (el.dataset.courseCode7 && el.dataset.courseCode7 === courseCodeOrId)
+                || el.id === courseCodeOrId;
+            if (match) {
+                const n = Number(sem.dataset.semester);
+                if (earliest === null || n < earliest) earliest = n;
+            }
+        }
+    }
+    return earliest;
+}
+
+function updatePrereqViolations() {
+    document.querySelectorAll(".course").forEach(function(el) {
+        el.classList.remove("course-prereq-violation");
+    });
+    var violatedPrereqCodes = {};
+    var violatedCourseCodes = {};
+    var semesterEls = document.querySelectorAll(".semester");
+    for (var s = 0; s < semesterEls.length; s++) {
+        var sem = semesterEls[s];
+        var semNum = parseInt(sem.dataset.semester, 10);
+        var courseEls = sem.querySelectorAll(".course");
+        for (var i = 0; i < courseEls.length; i++) {
+            var el = courseEls[i];
+            var code = el.dataset.courseCode;
+            if (!code) continue;
+            var info = courses[code];
+            if (!info || !info.prereqs || !info.prereqs.length) continue;
+            for (var p = 0; p < info.prereqs.length; p++) {
+                var prereq = info.prereqs[p];
+                var prereqSem = findCourseSemester(prereq);
+                var notPlaced = !prereqSem;
+                var wrongOrder = prereqSem >= semNum;
+                var notPassed = prereqSem && prereqSem < semNum && hasFailingGrade(prereq);
+                if (notPlaced || wrongOrder || notPassed) {
+                    violatedPrereqCodes[prereq] = true;
+                    violatedCourseCodes[code] = true;
+                }
+            }
+        }
+    }
+    var allViolated = {};
+    Object.keys(violatedPrereqCodes).forEach(function(c) { allViolated[c] = true; });
+    Object.keys(violatedCourseCodes).forEach(function(c) { allViolated[c] = true; });
+    Object.keys(allViolated).forEach(function(code) {
+        document.querySelectorAll(".course[data-course-code=\"" + CSS.escape(code) + "\"]").forEach(function(el) {
+            el.classList.add("course-prereq-violation");
+        });
+    });
+}
+
+function drop(ev) {
+    ev.preventDefault();
+
+    const data = ev.dataTransfer.getData("text");
+    const draggedEl = document.getElementById(data);
+    const courseCode = draggedEl ? (draggedEl.dataset.courseCode || data) : data;
+    const course = courses[courseCode];
+    const target = ev.currentTarget;
+    var sourceParent = draggedEl ? draggedEl.parentNode : null;
+
+    if (target.classList.contains("semester") && course) {
+
+        const semesterNumber = parseInt(target.dataset.semester);
+
+        // Max kontrolü (dönem bazlı)
+        let maxPerSemester = Infinity;
+        const maxInput = target.querySelector(".semester-max-input");
+        if (maxInput) {
+            const parsed = parseInt(maxInput.value, 10);
+            if (!Number.isNaN(parsed) && parsed > 0) {
+                maxPerSemester = parsed;
+            }
+        }
+
+        const coursesContainer = target.querySelector(".semester-courses") || target;
+        var creditCount = countCreditCoursesInContainer(coursesContainer);
+        var isDraggedCredit = course && !ZERO_CREDIT_COURSE_CODES[courseCode] && Number(course.credits) > 0;
+        var isAddingToThisSemester = sourceParent !== coursesContainer;
+        var wouldBeCreditCount = creditCount + (isAddingToThisSemester && isDraggedCredit ? 1 : 0);
+        if (wouldBeCreditCount > maxPerSemester) {
+            showToast(t("alertMaxReached"), "error");
+            return;
+        }
+    }
+
+    const destination = target.classList.contains("semester")
+        ? (target.querySelector(".semester-courses") || target)
+        : target;
+
+    destination.appendChild(draggedEl);
+    recalculateGpas();
+    updateWrongSemesterWarnings();
+    updatePrereqViolations();
+}
+
+function updateWrongSemesterWarnings() {
+    var expected = curriculumPlacement || {};
+    var parts = [];
+    document.querySelectorAll(".semester .course").forEach(function(el) {
+        var code = el.dataset.courseCode;
+        var semEl = el.closest(".semester");
+        var currentSem = semEl ? parseInt(semEl.dataset.semester, 10) : 0;
+        var info = code ? courses[code] : null;
+        var expectedSem = code ? expected[code] : null;
+        var wrongCurriculum = expectedSem != null && currentSem !== expectedSem && (currentSem % 2) !== (expectedSem % 2);
+        var wrongOffered = false;
+        if (info && info.semesterType) {
+            if (info.semesterType === "odd" && currentSem % 2 === 0) wrongOffered = true;
+            if (info.semesterType === "even" && currentSem % 2 === 1) wrongOffered = true;
+        }
+        // Yellow warning only when course is in wrong semester for when it's OFFERED (e.g. Fall course in Spring)
+        // Not for curriculum mismatch—so moving MATH260 to Fall clears the warning even if curriculum says Spring
+        var showWarning = wrongOffered;
+        if (showWarning) {
+            el.classList.add("course-wrong-semester");
+            parts = [];
+            if (currentLang === "tr") {
+                parts.push("Bu ders sadece " + (info && info.semesterType === "odd" ? "tek" : "çift") + " dönemde açılıyor.");
+            } else {
+                parts.push("This course is only offered in " + (info && info.semesterType === "odd" ? "odd" : "even") + " semesters.");
+            }
+            if (wrongCurriculum) {
+                if (currentLang === "tr") parts.push("Müfredatta " + expectedSem + ". dönemde.");
+                else parts.push("(Curriculum: semester " + expectedSem + ".)");
+            }
+            el.title = parts.join(" ");
+        } else {
+            el.classList.remove("course-wrong-semester");
+            el.title = "";
+        }
+    });
+    updatePrereqViolations();
+    updateProgramErrors();
+}
+
+function updateProgramErrors() {
+    var listEl = document.getElementById("programErrorsList");
+    var wrapEl = document.getElementById("programErrorsWrap");
+    if (!listEl || !wrapEl) return;
+    var errors = [];
+    var semesterEls = document.querySelectorAll(".semester");
+    for (var s = 0; s < semesterEls.length; s++) {
+        var sem = semesterEls[s];
+        var semNum = parseInt(sem.dataset.semester, 10);
+        var courseEls = sem.querySelectorAll(".course");
+        for (var i = 0; i < courseEls.length; i++) {
+            var el = courseEls[i];
+            var code = el.dataset.courseCode;
+            if (!code) continue;
+            var info = courses[code];
+            if (info && info.semesterType) {
+                var wrongOffered = (info.semesterType === "odd" && semNum % 2 === 0) || (info.semesterType === "even" && semNum % 2 === 1);
+                if (wrongOffered) {
+                    var semTypeStr = info.semesterType === "odd" ? (currentLang === "tr" ? "tek" : "odd") : (currentLang === "tr" ? "çift" : "even");
+                    errors.push(code + t("errWrongSemester") + semTypeStr + t("errWrongSemesterEnd"));
+                }
+            }
+            if (info && info.prereqs && info.prereqs.length) {
+                for (var p = 0; p < info.prereqs.length; p++) {
+                    var prereq = info.prereqs[p];
+                    var prereqSem = findCourseSemester(prereq);
+                    if (!prereqSem) {
+                        errors.push(prereq + t("errPrereqNotPlaced") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ")."));
+                    } else if (prereqSem >= semNum) {
+                        errors.push(prereq + t("errPrereqFor") + code + ";" + (currentLang === "tr" ? " " + prereq : " " + prereq) + t("errPrereqMustBeEarlier"));
+                    } else if (hasFailingGrade(prereq)) {
+                        var gradeDisp = getGradeDisplayForCourse(prereq) || "FF";
+                        errors.push(prereq + t("errPrereqNotPassed") + gradeDisp + t("errPrereqNotPassedEnd") + (currentLang === "tr" ? " " + code + " için." : " for " + code + "."));
+                    }
+                }
+            }
+        }
+    }
+    listEl.innerHTML = "";
+    if (errors.length === 0) {
+        var li = document.createElement("li");
+        li.className = "no-errors-msg";
+        li.textContent = t("noErrors");
+        listEl.appendChild(li);
+    } else {
+        errors.forEach(function(msg) {
+            var li = document.createElement("li");
+            li.textContent = msg;
+            listEl.appendChild(li);
+        });
+    }
+}
+
+recalculateGpas();
+
+function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    const label = document.getElementById('themeLabel');
+    if (label) label.textContent = next === 'dark' ? t('themeLight') : t('themeDark');
+}
+
+(function init() {
+    document.getElementById('langSelect').value = currentLang;
+    applyLanguage();
+    const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+    const themeLabel = document.getElementById('themeLabel');
+    if (themeLabel) themeLabel.textContent = theme === 'dark' ? t('themeLight') : t('themeDark');
+    setupCourseSearch();
+})();
+
+</script>
+
+</body>
+</html>

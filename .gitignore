@@ -1,0 +1,7 @@
+# Ignore everything in the repo root except the app and data files
+/*
+!/.gitignore
+!/index.html
+!/programs.json
+!/curriculums.json
+!/courses.json
