@@ -605,6 +605,52 @@ button span.dot {
     background: #dc2626;
     box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.4);
 }
+.program-errors-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.program-errors-list .error-dismiss-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+}
+.program-errors-list .error-dismiss-label {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color var(--transition);
+}
+.program-errors-list .error-dismiss-label:hover {
+    color: var(--text-main);
+}
+.program-errors-list .error-dismiss-label input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    border: 2px solid var(--border-subtle);
+    border-radius: 4px;
+    background: var(--bg-elevated);
+    cursor: pointer;
+    position: relative;
+    transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+.program-errors-list .error-dismiss-label input:hover {
+    border-color: var(--text-muted);
+}
+.program-errors-list .error-dismiss-label input:checked {
+    background: var(--metu-red);
+    border-color: var(--metu-red);
+}
 
 .course-credits-wrap {
     display: flex;
@@ -1409,6 +1455,7 @@ const translations = {
     noErrors: "Hata yok.",
     legendYellow: "Sarı: Katalogda yazdığı dönemle uyumsuz görünüyor (örn. sadece güzde açılıyor denmiş ama bahara konmuş). Katalog bazen yanlış/eksik olabilir; ODTÜ farklı dönemde de açabiliyor.",
     legendRed: "Kırmızı: Ön koşul ihlali (ön koşul ders yerleştirilmemiş, yanlış sırada veya geçilmemiş).",
+    errorHide: "Vurguyu gizle",
     gpaDisclaimer: "Bu uygulama 2.5 üzeri GNO ile maksimum ders yükü hakkı (+2) olduğunuzu varsayar; dönem başına maks kredili ders sayısını buna göre ayarlayabilirsiniz.",
     portalBack: "Portal",
     aboutBtn: "Hakkında",
@@ -1494,6 +1541,7 @@ const translations = {
     noErrors: "No errors.",
     legendYellow: "Yellow: Appears to conflict with catalog (e.g. catalog says Fall-only but placed in Spring). Catalog may be wrong or incomplete; METU may offer it in another semester.",
     legendRed: "Red: Prerequisite violation (prereq not placed, wrong order, or not passed).",
+    errorHide: "Hide highlight",
     gpaDisclaimer: "This planner assumes you have a GPA above 2.5 and qualify for the +2 course load; adjust max credit courses per semester accordingly.",
     portalBack: "Portal",
     aboutBtn: "About",
@@ -2743,8 +2791,8 @@ function updatePrereqViolations() {
     document.querySelectorAll(".course").forEach(function(el) {
         el.classList.remove("course-prereq-violation");
     });
-    var violatedPrereqCodes = {};
-    var violatedCourseCodes = {};
+    var dismissed = getDismissedErrors();
+    var courseToViolationKeys = {};
     var semesterEls = document.querySelectorAll(".semester");
     for (var s = 0; s < semesterEls.length; s++) {
         var sem = semesterEls[s];
@@ -2762,30 +2810,34 @@ function updatePrereqViolations() {
                     return prereqSem && prereqSem < semNum && !hasFailingGrade(prereq);
                 });
                 if (!oneSatisfied) {
-                    violatedCourseCodes[code] = true;
+                    var k = code + ":oneOf:" + (info.prereqs || []).join(",");
+                    if (!courseToViolationKeys[code]) courseToViolationKeys[code] = [];
+                    if (courseToViolationKeys[code].indexOf(k) === -1) courseToViolationKeys[code].push(k);
                 }
             } else {
                 for (var p = 0; p < info.prereqs.length; p++) {
                     var prereq = info.prereqs[p];
                     var prereqSem = findCourseSemester(prereq);
-                    var notPlaced = !prereqSem;
-                    var wrongOrder = prereqSem >= semNum;
-                    var notPassed = prereqSem && prereqSem < semNum && hasFailingGrade(prereq);
-                    if (notPlaced || wrongOrder || notPassed) {
-                        violatedPrereqCodes[prereq] = true;
-                        violatedCourseCodes[code] = true;
-                    }
+                    var k;
+                    if (!prereqSem) k = code + ":" + prereq + ":notPlaced";
+                    else if (prereqSem >= semNum) k = code + ":" + prereq + ":order";
+                    else if (hasFailingGrade(prereq)) k = code + ":" + prereq + ":failed";
+                    else continue;
+                    if (!courseToViolationKeys[code]) courseToViolationKeys[code] = [];
+                    if (courseToViolationKeys[code].indexOf(k) === -1) courseToViolationKeys[code].push(k);
+                    if (!courseToViolationKeys[prereq]) courseToViolationKeys[prereq] = [];
+                    if (courseToViolationKeys[prereq].indexOf(k) === -1) courseToViolationKeys[prereq].push(k);
                 }
             }
         }
     }
-    var allViolated = {};
-    Object.keys(violatedPrereqCodes).forEach(function(c) { allViolated[c] = true; });
-    Object.keys(violatedCourseCodes).forEach(function(c) { allViolated[c] = true; });
-    Object.keys(allViolated).forEach(function(code) {
-        document.querySelectorAll(".course[data-course-code=\"" + CSS.escape(code) + "\"]").forEach(function(el) {
-            el.classList.add("course-prereq-violation");
-        });
+    Object.keys(courseToViolationKeys).forEach(function(code) {
+        var hasNonDismissed = courseToViolationKeys[code].some(function(k) { return !dismissed[k]; });
+        if (hasNonDismissed) {
+            document.querySelectorAll(".course[data-course-code=\"" + CSS.escape(code) + "\"]").forEach(function(el) {
+                el.classList.add("course-prereq-violation");
+            });
+        }
     });
 }
 
@@ -2863,7 +2915,9 @@ function updateWrongSemesterWarnings() {
         }
         // Yellow warning only when course is in wrong semester for when it's OFFERED (e.g. Fall course in Spring)
         // Not for curriculum mismatch—so moving MATH260 to Fall clears the warning even if curriculum says Spring
-        var showWarning = wrongOffered;
+        var wrongSemKey = code + ":" + currentSem + ":wrongSem";
+        var dismissed = getDismissedErrors();
+        var showWarning = wrongOffered && !dismissed[wrongSemKey];
         if (showWarning) {
             el.classList.add("course-wrong-semester");
             parts = [];
@@ -2890,6 +2944,7 @@ function updateProgramErrors() {
     var listEl = document.getElementById("programErrorsList");
     var wrapEl = document.getElementById("programErrorsWrap");
     if (!listEl || !wrapEl) return;
+    var dismissed = getDismissedErrors();
     var errors = [];
     var semesterEls = document.querySelectorAll(".semester");
     for (var s = 0; s < semesterEls.length; s++) {
@@ -2905,8 +2960,9 @@ function updateProgramErrors() {
             if (info && info.semesterType) {
                 var wrongOffered = (info.semesterType === "odd" && semNum % 2 === 0) || (info.semesterType === "even" && semNum % 2 === 1);
                 if (wrongOffered) {
+                    var key = code + ":" + semNum + ":wrongSem";
                     var semTypeStr = info.semesterType === "odd" ? (currentLang === "tr" ? "tek" : "odd") : (currentLang === "tr" ? "çift" : "even");
-                    errors.push(code + t("errWrongSemester") + semTypeStr + t("errWrongSemesterEnd"));
+                    errors.push({ key: key, msg: code + t("errWrongSemester") + semTypeStr + t("errWrongSemesterEnd") });
                 }
             }
             if (info && info.prereqs && info.prereqs.length) {
@@ -2916,19 +2972,20 @@ function updateProgramErrors() {
                         return prereqSem && prereqSem < semNum && !hasFailingGrade(prereq);
                     });
                     if (!oneSatisfied) {
-                        errors.push((currentLang === "tr" ? "Şunlardan biri yerleştirilmiş ve geçilmiş olmalı: " : "One of ") + info.prereqs.join(", ") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ")."));
+                        var key = code + ":oneOf:" + (info.prereqs || []).join(",");
+                        errors.push({ key: key, msg: (currentLang === "tr" ? "Şunlardan biri yerleştirilmiş ve geçilmiş olmalı: " : "One of ") + info.prereqs.join(", ") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ").") });
                     }
                 } else {
                     for (var p = 0; p < info.prereqs.length; p++) {
                         var prereq = info.prereqs[p];
                         var prereqSem = findCourseSemester(prereq);
                         if (!prereqSem) {
-                            errors.push(prereq + t("errPrereqNotPlaced") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ")."));
+                            errors.push({ key: code + ":" + prereq + ":notPlaced", msg: prereq + t("errPrereqNotPlaced") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ").") });
                         } else if (prereqSem >= semNum) {
-                            errors.push(prereq + t("errPrereqFor") + code + ";" + (currentLang === "tr" ? " " + prereq : " " + prereq) + t("errPrereqMustBeEarlier"));
+                            errors.push({ key: code + ":" + prereq + ":order", msg: prereq + t("errPrereqFor") + code + ";" + (currentLang === "tr" ? " " + prereq : " " + prereq) + t("errPrereqMustBeEarlier") });
                         } else if (hasFailingGrade(prereq)) {
                             var gradeDisp = getGradeDisplayForCourse(prereq) || "FF";
-                            errors.push(prereq + t("errPrereqNotPassed") + gradeDisp + t("errPrereqNotPassedEnd") + (currentLang === "tr" ? " " + code + " için." : " for " + code + "."));
+                            errors.push({ key: code + ":" + prereq + ":failed", msg: prereq + t("errPrereqNotPassed") + gradeDisp + t("errPrereqNotPassedEnd") + (currentLang === "tr" ? " " + code + " için." : " for " + code + ".") });
                         }
                     }
                 }
@@ -2942,9 +2999,32 @@ function updateProgramErrors() {
         li.textContent = t("noErrors");
         listEl.appendChild(li);
     } else {
-        errors.forEach(function(msg) {
+        errors.forEach(function(item) {
             var li = document.createElement("li");
-            li.textContent = msg;
+            var wrap = document.createElement("div");
+            wrap.className = "error-dismiss-wrap";
+            var msgSpan = document.createElement("span");
+            msgSpan.textContent = item.msg;
+            var label = document.createElement("label");
+            label.className = "error-dismiss-label";
+            var chk = document.createElement("input");
+            chk.type = "checkbox";
+            chk.setAttribute("aria-label", t("errorHide"));
+            var chkSpan = document.createElement("span");
+            chkSpan.setAttribute("data-i18n", "errorHide");
+            chkSpan.textContent = t("errorHide");
+            label.appendChild(chk);
+            label.appendChild(chkSpan);
+            chk.checked = !!dismissed[item.key];
+            (function(k) {
+                chk.addEventListener("change", function() {
+                    setDismissedError(k, chk.checked);
+                    updateWrongSemesterWarnings();
+                });
+            })(item.key);
+            wrap.appendChild(msgSpan);
+            wrap.appendChild(label);
+            li.appendChild(wrap);
             listEl.appendChild(li);
         });
     }
@@ -2972,6 +3052,19 @@ function openAbout() {
 function closeAbout() {
   var overlay = document.getElementById("aboutOverlay");
   if (overlay) overlay.classList.remove("is-open");
+}
+
+var METU_DISMISSED_ERRORS_KEY = "metu_planner_dismissed_errors";
+function getDismissedErrors() {
+    try {
+        var raw = localStorage.getItem(METU_DISMISSED_ERRORS_KEY);
+        return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+}
+function setDismissedError(key, dismissed) {
+    var set = getDismissedErrors();
+    if (dismissed) set[key] = true; else delete set[key];
+    localStorage.setItem(METU_DISMISSED_ERRORS_KEY, JSON.stringify(set));
 }
 
 (function init() {
