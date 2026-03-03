@@ -61,7 +61,7 @@ body {
 }
 
 .app-shell {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -417,7 +417,7 @@ button span.dot {
     user-select: none;
     min-height: 42px;
     text-align: left;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 .course:hover {
@@ -453,7 +453,7 @@ button span.dot {
     font-weight: 500;
     letter-spacing: 0.02em;
     text-align: left;
-    flex-shrink: 0;
+    flex-shrink: 1;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -524,6 +524,33 @@ button span.dot {
 .course-btn.copy-btn:hover {
     color: var(--metu-red);
     background: var(--accent-soft);
+}
+.course-btn.what-if-btn {
+    font-size: 0.8rem;
+}
+.course-btn.note-btn {
+    font-size: 0.9rem;
+}
+.course-note-wrap {
+    margin-top: 4px;
+    flex: 1 1 100%;
+}
+.course-note {
+    width: 100%;
+    min-height: 40px;
+    padding: 6px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.78rem;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+}
+.course-note:focus {
+    outline: none;
+    border-color: var(--metu-red);
 }
 .course.elective-placeholder {
     border-style: dashed;
@@ -901,6 +928,40 @@ button span.dot {
     flex-wrap: wrap;
 }
 
+.plan-slot-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.plan-slot-select {
+    padding: 9px 14px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.plan-slot-save-btn,
+.plan-slot-load-btn {
+    padding: 6px 10px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+
+.plan-slot-save-btn:hover,
+.plan-slot-load-btn:hover {
+    color: var(--text-main);
+    border-color: var(--metu-red);
+    background: var(--accent-soft);
+}
+
 #departmentSelect {
     min-width: 180px;
     padding: 9px 14px;
@@ -961,7 +1022,8 @@ button span.dot {
     }
 
     .dept-right select,
-    .dept-right button {
+    .dept-right button,
+    .plan-slot-select {
         width: 100%;
         min-height: 44px;
     }
@@ -1277,6 +1339,19 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         <span class="dot"></span>
         <span data-i18n="deptApply">Bölümü uygula</span>
       </button>
+      <div class="plan-slot-wrap">
+        <select id="planSlotSelect" class="plan-slot-select">
+          <option value="main">Plan 1</option>
+          <option value="alt1">Plan 2</option>
+          <option value="alt2">Plan 3</option>
+        </select>
+        <button type="button" onclick="savePlanToSlot()" class="plan-slot-save-btn">
+          <span data-i18n="planSlotSave">Bu slota kaydet</span>
+        </button>
+        <button type="button" onclick="loadPlanFromSlot()" class="plan-slot-load-btn">
+          <span data-i18n="planSlotLoad">Slottan yükle</span>
+        </button>
+      </div>
       <button type="button" onclick="savePlan()" id="savePlanBtn">
         <span data-i18n="savePlan">Kaydet</span>
       </button>
@@ -1372,6 +1447,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       <div class="year-grid" id="semesters"></div>
 
       <div class="helper-text" id="cgpaDisplay"></div>
+      <div class="helper-text" id="gradStatusDisplay"></div>
     </section>
   </main>
 </div>
@@ -1432,6 +1508,14 @@ const translations = {
     gpaCredits: "Krediler",
     cgpa: "Genel not ortalaması (CGPA)",
     totalCredits: "Toplam kredi",
+    notePlaceholder: "Bu dersle ilgili kendi notların…",
+    planSlotSave: "Bu slota kaydet",
+    planSlotLoad: "Slottan yükle",
+    gradStatusTitle: "Mezuniyet durumu",
+    gradStatusNoDept: "Mezuniyet durumunu görmek için önce bölümünü seçip uygulamalısın.",
+    gradStatusNoCurriculum: "Mezuniyet kontrolü için müfredat verisi bulunamadı.",
+    gradStatusOk: "Tüm zorunlu dersler ve seçmeli sayıları planda karşılanmış görünüyor.",
+    gradStatusMissingPrefix: "Eksik zorunlu dersler: ",
     alertSelectDept: "Lütfen önce bölümünü seç.",
     alertDeptSelected: "Bölüm seçildi",
     alertDeptComingSoon: "(Otomatik planlama daha sonra eklenecek.)",
@@ -1518,6 +1602,14 @@ const translations = {
     gpaCredits: "Credits",
     cgpa: "Cumulative GPA (CGPA)",
     totalCredits: "Total credits",
+    notePlaceholder: "Your own notes about this course…",
+    planSlotSave: "Save to this slot",
+    planSlotLoad: "Load from slot",
+    gradStatusTitle: "Graduation status",
+    gradStatusNoDept: "Select and apply a department to see graduation status.",
+    gradStatusNoCurriculum: "Could not load curriculum data for graduation check.",
+    gradStatusOk: "All required courses and elective counts are satisfied in the plan.",
+    gradStatusMissingPrefix: "Missing required courses: ",
     alertSelectDept: "Please select a department first.",
     alertDeptSelected: "Department selected",
     alertDeptComingSoon: "(Auto planning will be added later.)",
@@ -1668,12 +1760,87 @@ let currentSemesterCount = 0;
 let courseInstanceCounter = 0;
 
 var METU_PORTAL_PLANNER_STATE = "metu_portal_planner_state";
+var METU_LAST_PROGRAM_CODE = "metu_last_program_code";
+var didRestorePlan = false;
+var deptDataPromise = null;
+var METU_PLAN_SLOT_KEY_PREFIX = "metu_plan_slot_";
+
+function ensureDeptDataLoaded() {
+    if (deptDataPromise) return deptDataPromise;
+    if (curriculumsData && coursesDataBy7 && coursesDataByCode) {
+        deptDataPromise = Promise.resolve();
+        return deptDataPromise;
+    }
+    deptDataPromise = Promise.all([
+        fetch("curriculums.json?v=" + Date.now()).then(function(r) { return r.json(); }),
+        fetch("courses.json?v=" + Date.now()).then(function(r) { return r.json(); })
+    ]).then(function(results) {
+        curriculumsData = results[0];
+        var coursesList = (results[1] && results[1].courses) ? results[1].courses : [];
+        var by7 = {};
+        var byCode = {};
+        coursesList.forEach(function(c) {
+            var k7 = c.course_code_7digit != null ? String(c.course_code_7digit) : "";
+            if (k7) by7[k7] = c;
+            if (c.code) byCode[c.code] = c;
+        });
+        coursesDataBy7 = by7;
+        coursesDataByCode = byCode;
+        allCoursesDataset = coursesList;
+    }).catch(function() {
+        // keep promise so we don't refetch in a loop; status will show "no curriculum"
+    });
+    return deptDataPromise;
+}
+
+function getActiveSlotId() {
+    var sel = document.getElementById("planSlotSelect");
+    if (sel && sel.value) return sel.value;
+    return "main";
+}
+
+function savePlanToSlot() {
+    var programCode = document.getElementById("departmentSelect").value;
+    if (!programCode) {
+        showToast(currentLang === "tr" ? "Önce bir bölüm seçip uygula." : "Select and apply a department first.", "error");
+        return;
+    }
+    var state = getPlanState();
+    var slotId = getActiveSlotId();
+    try {
+        localStorage.setItem(METU_PLAN_SLOT_KEY_PREFIX + slotId, JSON.stringify(state));
+        showToast(currentLang === "tr" ? ("Plan slota kaydedildi: " + slotId) : ("Plan saved to slot: " + slotId));
+    } catch (e) {
+        showToast(currentLang === "tr" ? "Plan slota kaydedilemedi." : "Could not save plan to slot.", "error");
+    }
+}
+
+function loadPlanFromSlot() {
+    var slotId = getActiveSlotId();
+    var raw = null;
+    try {
+        raw = localStorage.getItem(METU_PLAN_SLOT_KEY_PREFIX + slotId);
+    } catch (e) {
+        raw = null;
+    }
+    if (!raw) {
+        showToast(currentLang === "tr" ? "Bu slotta kayıtlı plan yok." : "No plan saved in this slot.", "error");
+        return;
+    }
+    try {
+        var state = JSON.parse(raw);
+        loadPlan(state);
+    } catch (e) {
+        showToast(currentLang === "tr" ? "Slot verisi okunamadı." : "Could not read slot data.", "error");
+    }
+}
 
 function persistPlannerState() {
     try {
         var select = document.getElementById("departmentSelect");
         var programCode = select ? select.value : "";
         if (!programCode) return;
+        localStorage.setItem(METU_LAST_PROGRAM_CODE, programCode);
         var state = getPlanState();
         if (state && state.programCode) localStorage.setItem(METU_PORTAL_PLANNER_STATE, JSON.stringify(state));
     } catch (e) {}
@@ -1684,7 +1851,12 @@ function restoreFromPortalState() {
         var raw = localStorage.getItem(METU_PORTAL_PLANNER_STATE);
         if (!raw) return;
         var state = JSON.parse(raw);
-        if (state && state.version === 1 && state.programCode) loadPlan(state);
+        if (state && state.version === 1 && state.programCode) {
+            didRestorePlan = true;
+            localStorage.setItem(METU_LAST_PROGRAM_CODE, state.programCode);
+            loadPlan(state);
+            ensureDeptDataLoaded().then(function() { updateGraduationStatus(); });
+        }
     } catch (e) {}
 }
 
@@ -1942,6 +2114,13 @@ function loadProgramsIntoSelect() {
                 });
                 sel.appendChild(group);
             });
+            sel.addEventListener("change", function() {
+                if (sel.value) localStorage.setItem(METU_LAST_PROGRAM_CODE, sel.value);
+            });
+            if (!didRestorePlan) {
+                var last = localStorage.getItem(METU_LAST_PROGRAM_CODE) || "";
+                if (last) sel.value = last;
+            }
             restoreFromPortalState();
         })
         .catch(function() {
@@ -2070,6 +2249,7 @@ function setDepartment() {
         showToast(t("alertSelectDept"), "error");
         return;
     }
+    try { localStorage.setItem(METU_LAST_PROGRAM_CODE, programCode); } catch (e) {}
     var programName = select.options[select.selectedIndex].text;
     var semestersContainer = document.getElementById("semesters");
     var semesterEls = semestersContainer ? semestersContainer.querySelectorAll(".semester") : [];
@@ -2113,6 +2293,12 @@ function setDepartment() {
                 });
             }
         });
+        var pool = document.getElementById("coursePool");
+        if (pool) {
+            pool.querySelectorAll(".course").forEach(function(el) {
+                toRemove.push(el);
+            });
+        }
         toRemove.forEach(function(el) {
             var code = el.dataset.courseCode || el.id;
             if (courses[code]) delete courses[code];
@@ -2145,13 +2331,27 @@ function setDepartment() {
                         if (allZero) oneOfCredits = 0;
                     }
                     var elecCode = "ELEC_S" + semNum + "_" + idx;
-                    var optNames = (item.options || []).map(function(o) { return o.code; }).join(", ");
-                    var elecName = (currentLang === "tr" ? "Şunlardan 1’i: " : "Any 1 of: ") + (optNames || (item.name || ""));
+                    var optionCodes = [];
+                    (item.options || []).forEach(function(o) {
+                        if (!o) return;
+                        var c = null;
+                        if (o.course_code_7digit != null) {
+                            var k7 = String(o.course_code_7digit).trim();
+                            var full = by7[k7];
+                            if (full && full.code) c = full.code;
+                        }
+                        if (!c && o.code) c = o.code;
+                        c = (c || "").trim();
+                        if (c && optionCodes.indexOf(c) === -1) optionCodes.push(c);
+                    });
+                    var optNames = optionCodes.join(", ");
+                    var elecName = optNames || (item.name || "");
                     courses[elecCode] = {
                         prereqs: [],
                         semesterType: "both",
                         grade: "",
-                        credits: oneOfCredits
+                        credits: oneOfCredits,
+                        oneOfOptions: optionCodes
                     };
                     curriculumPlacement[elecCode] = semNum;
                     var el = createCourseElement(elecCode, null, elecName, true);
@@ -2161,12 +2361,14 @@ function setDepartment() {
                 if (item.type === "elective") {
                     creditCourseCount += 1;
                     var elecCode = "ELEC_S" + semNum + "_" + idx;
+                    var bucketId = (item.name || "").trim() || "Elective";
                     var elecName = item.name || (currentLang === "tr" ? "Seçmeli" : "Elective");
                     courses[elecCode] = {
                         prereqs: [],
                         semesterType: "both",
                         grade: "",
-                        credits: 3
+                        credits: 3,
+                        electiveBucket: bucketId
                     };
                     curriculumPlacement[elecCode] = semNum;
                     var el = createCourseElement(elecCode, null, elecName, true);
@@ -2242,13 +2444,17 @@ function getPlanState() {
             }
             var gradeEl = el.querySelector(".course-grade");
             var grade = gradeEl ? gradeEl.value : "";
-            courseList.push({
+            var noteEl = el.querySelector(".course-note");
+            var note = noteEl ? noteEl.value.trim() : "";
+            var entry = {
                 code: code,
                 code7: code7 || undefined,
                 displayLabel: displayLabel || undefined,
                 isElective: el.classList.contains("elective-placeholder"),
                 grade: grade || undefined
-            });
+            };
+            if (note) entry.note = note;
+            courseList.push(entry);
         });
         semesters.push({ semNumber: semNum, maxCredits: maxCredits, courses: courseList });
     }
@@ -2265,13 +2471,17 @@ function getPlanState() {
         }
         var gradeEl = el.querySelector(".course-grade");
         var grade = gradeEl ? gradeEl.value : "";
-        poolList.push({
+        var noteEl = el.querySelector(".course-note");
+        var note = noteEl ? noteEl.value.trim() : "";
+        var entry = {
             code: code,
             code7: code7 || undefined,
             displayLabel: displayLabel || undefined,
             isElective: el.classList.contains("elective-placeholder"),
             grade: grade || undefined
-        });
+        };
+        if (note) entry.note = note;
+        poolList.push(entry);
     });
     return {
         version: 1,
@@ -2320,6 +2530,7 @@ function loadPlan(state) {
     }
     var select = document.getElementById("departmentSelect");
     if (select) select.value = programCode;
+    try { localStorage.setItem(METU_LAST_PROGRAM_CODE, programCode); } catch (e) {}
 
     var semesters = state.semesters || [];
     var poolList = state.pool || [];
@@ -2377,6 +2588,14 @@ function loadPlan(state) {
                 if (!courseGradesBySemester[c.code]) courseGradesBySemester[c.code] = {};
                 courseGradesBySemester[c.code][String(semState.semNumber)] = c.grade;
             }
+            if (c.note && el) {
+                var noteEl = el.querySelector(".course-note");
+                if (noteEl) {
+                    noteEl.value = c.note;
+                    var wrap = noteEl.closest(".course-note-wrap");
+                    if (wrap) wrap.style.display = "block";
+                }
+            }
             if (box) box.appendChild(el);
             curriculumPlacement[c.code] = semState.semNumber;
         });
@@ -2385,11 +2604,20 @@ function loadPlan(state) {
     poolList.forEach(function(c) {
         var el = createCourseElement(c.code, c.code7 || null, c.displayLabel || null, !!c.isElective);
         if (c.grade && el && courses[c.code]) courses[c.code].grade = c.grade;
+        if (c.note && el) {
+            var noteEl = el.querySelector(".course-note");
+            if (noteEl) {
+                noteEl.value = c.note;
+                var wrap = noteEl.closest(".course-note-wrap");
+                if (wrap) wrap.style.display = "block";
+            }
+        }
         if (pool) pool.appendChild(el);
     });
 
     recalculateGpas();
     updateWrongSemesterWarnings();
+    ensureDeptDataLoaded().then(function() { updateGraduationStatus(); });
     persistPlannerState();
     showToast(currentLang === "tr" ? "Plan yüklendi." : "Plan loaded.");
 }
@@ -2514,6 +2742,81 @@ function createCourseElement(name, code7, displayLabel, isElective) {
     creditsWrap.appendChild(creditsInput);
     actions.appendChild(creditsWrap);
 
+    const whatIfBtn = document.createElement("button");
+    whatIfBtn.type = "button";
+    whatIfBtn.className = "course-btn what-if-btn";
+    whatIfBtn.textContent = "?";
+    whatIfBtn.title = currentLang === "tr"
+        ? "Bu ders için notu iyileştirirsen CGPA etkisini göster."
+        : "Show CGPA impact if you improve this course.";
+    whatIfBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        const courseEl = whatIfBtn.closest(".course");
+        const code = courseEl ? courseEl.dataset.courseCode : null;
+        const semEl = courseEl ? courseEl.closest(".semester") : null;
+        if (!code || !semEl) return;
+        const semNumber = Number(semEl.dataset.semester);
+        const info = courses[code];
+        if (!info || !info.credits || info.credits === 0) {
+            showToast(currentLang === "tr"
+                ? "Bu ders 0 kredili; CGPA'yı etkilemez."
+                : "This course has 0 credits; it does not affect CGPA.", "error");
+            return;
+        }
+        const base = computeCgpaWithOverride(null);
+        const baseCgpa = base.cgpa;
+        if (baseCgpa === null) {
+            showToast(currentLang === "tr"
+                ? "Önce en az bir ders için not gir."
+                : "Enter at least one grade first.", "error");
+            return;
+        }
+        const gradeSelectEl = courseEl.querySelector(".course-grade");
+        const currentGrade = gradeSelectEl ? gradeSelectEl.value : "";
+        const currentPoints = gradeToPoints(currentGrade) || 0;
+        const candidateGrades = ["AA","BA","BB","CB","CC","DC","DD"];
+        const better = candidateGrades.filter(function(g) {
+            var pts = gradeToPoints(g);
+            return pts !== null && pts > currentPoints;
+        });
+        if (!better.length) {
+            showToast(currentLang === "tr"
+                ? "Bu ders için daha yüksek bir harf notu listelenemedi (zaten en yüksek veya geçersiz not)."
+                : "No higher letter grade to preview for this course (already highest or invalid).", "error");
+            return;
+        }
+        const previews = better.slice(0, 3).map(function(g) {
+            var res = computeCgpaWithOverride({ code: code, semNumber: semNumber, grade: g });
+            if (res.cgpa === null) return null;
+            var delta = res.cgpa - baseCgpa;
+            var deltaStr = (delta >= 0 ? "+" : "") + delta.toFixed(2);
+            return g + ": " + res.cgpa.toFixed(2) + " (" + deltaStr + ")";
+        }).filter(Boolean);
+        if (!previews.length) {
+            showToast(currentLang === "tr"
+                ? "Örnek CGPA hesaplanamadı."
+                : "Could not compute CGPA preview.", "error");
+            return;
+        }
+        var msg;
+        if (currentLang === "tr") {
+            msg = code + " için tekrar etkisi. Mevcut CGPA: " + baseCgpa.toFixed(2) +
+                  ". Eğer notun: " + previews.join(" · ");
+        } else {
+            msg = "Retake impact for " + code + ". Current CGPA: " + baseCgpa.toFixed(2) +
+                  ". If grade becomes: " + previews.join(" · ");
+        }
+        showToast(msg);
+    });
+    actions.appendChild(whatIfBtn);
+
+    const noteBtn = document.createElement("button");
+    noteBtn.type = "button";
+    noteBtn.className = "course-btn note-btn";
+    noteBtn.textContent = "✎";
+    noteBtn.title = currentLang === "tr" ? "Bu ders için not ekle/düzenle" : "Add/edit note for this course";
+    actions.appendChild(noteBtn);
+
     const copyBtn = document.createElement("button");
     copyBtn.type = "button";
     copyBtn.className = "course-btn copy-btn";
@@ -2571,6 +2874,26 @@ function createCourseElement(name, code7, displayLabel, isElective) {
     actions.appendChild(deleteBtn);
     div.appendChild(main);
     div.appendChild(actions);
+
+    const noteWrap = document.createElement("div");
+    noteWrap.className = "course-note-wrap";
+    const noteArea = document.createElement("textarea");
+    noteArea.className = "course-note";
+    noteArea.rows = 2;
+    noteArea.placeholder = t("notePlaceholder");
+    noteWrap.style.display = "none";
+    noteWrap.appendChild(noteArea);
+    div.appendChild(noteWrap);
+
+    noteBtn.addEventListener("click", function(e) {
+        e.stopPropagation();
+        if (noteWrap.style.display === "none") {
+            noteWrap.style.display = "block";
+            noteArea.focus();
+        } else {
+            noteWrap.style.display = "none";
+        }
+    });
 
     return div;
 }
@@ -2670,6 +2993,58 @@ function recalculateGpas() {
             cgpaEl.textContent = t("cgpa") + ": --";
         }
     }
+}
+
+function computeCgpaWithOverride(override) {
+    const semesterEls = Array.from(document.querySelectorAll(".semester"));
+    const cgpaEntryByCode = {};
+    const latestSemesterForCourse = {};
+    let totalPoints = 0;
+    let totalCredits = 0;
+
+    for (const sem of semesterEls) {
+        const semNumber = Number(sem.dataset.semester);
+        const coursesContainer = sem.querySelector(".semester-courses") || sem;
+        const courseEls = coursesContainer.querySelectorAll(".course");
+
+        courseEls.forEach(courseEl => {
+            const code = courseEl.dataset.courseCode || courseEl.id;
+            const info = courses[code];
+            if (!info) return;
+            const courseKey = code;
+
+            const gradeSelectEl = courseEl.querySelector(".course-grade");
+            let grade = (courseGradesBySemester[courseKey] && courseGradesBySemester[courseKey][semNumber])
+                || (gradeSelectEl ? gradeSelectEl.value : null)
+                || info.grade;
+
+            if (override && override.code === courseKey && String(override.semNumber) === String(semNumber)) {
+                grade = override.grade;
+            }
+
+            const points = gradeToPoints(grade);
+            const credits = info.credits || 3;
+
+            if (points !== null && grade && grade.length > 0) {
+                if (!cgpaEntryByCode[courseKey] || semNumber >= (latestSemesterForCourse[courseKey] || 0)) {
+                    latestSemesterForCourse[courseKey] = semNumber;
+                    cgpaEntryByCode[courseKey] = { grade: grade, credits: credits };
+                }
+            }
+        });
+    }
+
+    for (const code in cgpaEntryByCode) {
+        const entry = cgpaEntryByCode[code];
+        const points = gradeToPoints(entry.grade);
+        if (points !== null) {
+            totalCredits += entry.credits;
+            totalPoints += points * entry.credits;
+        }
+    }
+
+    if (totalCredits <= 0) return { cgpa: null, credits: 0 };
+    return { cgpa: totalPoints / totalCredits, credits: totalCredits };
 }
 
 function addCourse() {
@@ -2938,6 +3313,7 @@ function updateWrongSemesterWarnings() {
     });
     updatePrereqViolations();
     updateProgramErrors();
+    updateGraduationStatus();
 }
 
 function updateProgramErrors() {
@@ -3030,6 +3406,134 @@ function updateProgramErrors() {
     }
 }
 
+function updateGraduationStatus() {
+    var el = document.getElementById("gradStatusDisplay");
+    if (!el) return;
+    var select = document.getElementById("departmentSelect");
+    var programCode = select ? select.value : "";
+    if (!programCode) {
+        el.textContent = t("gradStatusTitle") + ": " + t("gradStatusNoDept");
+        return;
+    }
+    var curData = curriculumsData && curriculumsData.curriculums ? curriculumsData.curriculums[programCode] : null;
+    if (!curData || !curData.semesters || !curData.semesters.length) {
+        el.textContent = t("gradStatusTitle") + ": " + t("gradStatusNoCurriculum");
+        return;
+    }
+
+    // Helper to normalize curriculum entries to actual course codes
+    function normCode(rawCode, raw7) {
+        var code = null;
+        if (raw7 != null && coursesDataBy7) {
+            var k = String(raw7).trim();
+            var full = coursesDataBy7[k];
+            if (full && full.code) code = String(full.code).trim();
+        }
+        if (!code && rawCode) code = String(rawCode).trim();
+        return code;
+    }
+    function normalizeKey(s) {
+        return String(s || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+    }
+
+    var requiredCodes = {};
+    var oneOfGroups = [];
+    var electiveBucketsRequired = {};
+    curData.semesters.forEach(function(sem) {
+        (sem.courses || []).forEach(function(item) {
+            if (!item) return;
+            if (item.type === "one_of") {
+                var group = [];
+                (item.options || []).forEach(function(o) {
+                    var c = o ? normCode(o.code, o.course_code_7digit) : null;
+                    if (c && group.indexOf(c) === -1) group.push(c);
+                });
+                if (group.length) oneOfGroups.push(group);
+                return;
+            }
+            if (item.type === "elective") {
+                var bucketId = (item.name || "").trim() || "Elective";
+                electiveBucketsRequired[bucketId] = (electiveBucketsRequired[bucketId] || 0) + 1;
+                return;
+            }
+            var c = normCode(item.code, item.course_code_7digit);
+            if (c) requiredCodes[c] = true;
+        });
+    });
+
+    // Build a normalized set of placed course codes (semesters only, not pool)
+    var placedNorm = {};
+    document.querySelectorAll(".semester .course").forEach(function(courseEl) {
+        var c = courseEl.dataset.courseCode;
+        var k = normalizeKey(c);
+        if (k) placedNorm[k] = true;
+    });
+
+    var missingRequired = [];
+    Object.keys(requiredCodes).forEach(function(code) {
+        if (!placedNorm[normalizeKey(code)]) missingRequired.push(code);
+    });
+
+    var missingOneOf = [];
+    oneOfGroups.forEach(function(group) {
+        var satisfied = group.some(function(code) { return !!placedNorm[normalizeKey(code)]; });
+        if (!satisfied) {
+            // If the curriculum's one-of placeholder is still present in the plan,
+            // count it as planned for graduation (user hasn't picked the exact code yet).
+            var groupNorm = group.map(normalizeKey).filter(Boolean).sort().join("|");
+            var hasPlaceholder = false;
+            document.querySelectorAll(".semester .course.elective-placeholder").forEach(function(courseEl) {
+                var ccode = courseEl.dataset.courseCode;
+                var info = ccode ? courses[ccode] : null;
+                var opts = info && info.oneOfOptions ? info.oneOfOptions : null;
+                if (opts && opts.length) {
+                    var optsNorm = opts.map(normalizeKey).filter(Boolean).sort().join("|");
+                    if (optsNorm === groupNorm) hasPlaceholder = true;
+                }
+            });
+            if (!hasPlaceholder) missingOneOf.push(group);
+        }
+    });
+
+    var electiveBucketsPlanned = {};
+    if (Object.keys(electiveBucketsRequired).length) {
+        document.querySelectorAll(".semester .course").forEach(function(elCourse) {
+            var ccode = elCourse.dataset.courseCode;
+            var info = courses[ccode];
+            if (info && info.electiveBucket) {
+                var id = info.electiveBucket;
+                electiveBucketsPlanned[id] = (electiveBucketsPlanned[id] || 0) + 1;
+            }
+        });
+    }
+    var electiveShortages = [];
+    Object.keys(electiveBucketsRequired).forEach(function(id) {
+        var need = electiveBucketsRequired[id];
+        var have = electiveBucketsPlanned[id] || 0;
+        if (have < need) {
+            electiveShortages.push(id + " (" + have + "/" + need + ")");
+        }
+    });
+
+    var parts = [];
+    if (missingRequired.length) {
+        parts.push(t("gradStatusMissingPrefix") + missingRequired.join(", "));
+    }
+    if (missingOneOf.length) {
+        var groupsDesc = missingOneOf.map(function(group) { return "[" + group.join(" / ") + "]"; }).join("; ");
+        parts.push((currentLang === "tr" ? "Eksik 'şunlardan biri' grupları: " : "Missing one-of groups: ") + groupsDesc);
+    }
+    if (electiveShortages.length) {
+        parts.push((currentLang === "tr" ? "Eksik seçmeli türleri: " : "Elective requirements not met: ") + electiveShortages.join(", "));
+    }
+
+    if (!parts.length) {
+        el.textContent = t("gradStatusTitle") + ": " + t("gradStatusOk");
+    } else {
+        el.textContent = t("gradStatusTitle") + ": " + parts.join(" | ");
+    }
+}
+
 recalculateGpas();
 
 function toggleTheme() {
@@ -3088,6 +3592,7 @@ function setDismissedError(key, dismissed) {
         if (e.key === "Escape" && aboutOverlay.classList.contains("is-open")) closeAbout();
       });
     }
+    updateGraduationStatus();
 })();
 
 </script>
