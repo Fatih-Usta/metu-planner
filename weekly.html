@@ -1,0 +1,3108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly Schedule (Beta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --metu-red: #c41e3a;
+    --metu-red-hover: #a01830;
+    --metu-red-soft: rgba(196, 30, 58, 0.12);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+    --transition: 0.2s ease;
+}
+
+[data-theme="light"] {
+    --bg: #f8f9fa;
+    --bg-elevated: #ffffff;
+    --bg-input: #ffffff;
+    --border-subtle: #e8eaed;
+    --text-main: #1a1d21;
+    --text-muted: #5f6368;
+    --accent-soft: rgba(196, 30, 58, 0.08);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --bg: #0f1114;
+    --bg-elevated: #1a1d21;
+    --bg-input: #15181c;
+    --border-subtle: #2d3238;
+    --text-main: #e8eaed;
+    --text-muted: #9aa0a6;
+    --accent-soft: rgba(196, 30, 58, 0.18);
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 28px 24px;
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-main);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+.app-shell {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.branding-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--metu-red) 0%, var(--metu-red-hover) 100%);
+    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.35);
+}
+
+.title-block h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.title-block span {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#weeklyLangSelect {
+    padding: 8px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-main);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition), color var(--transition);
+}
+
+#weeklyLangSelect:focus {
+    outline: none;
+    border-color: var(--metu-red);
+}
+
+.theme-toggle {
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color var(--transition), border-color var(--transition), background var(--transition);
+}
+.theme-toggle:hover {
+    color: var(--text-main);
+    border-color: var(--metu-red);
+    background: var(--accent-soft);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 6px 10px;
+    border-radius: var(--radius-full);
+    transition: background var(--transition), color var(--transition);
+}
+
+.nav-links a:hover {
+    background: var(--accent-soft);
+    color: var(--text-main);
+}
+
+.nav-links a.active {
+    background: var(--metu-red-soft);
+    color: var(--metu-red);
+    font-weight: 600;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.95fr);
+    gap: 28px;
+}
+
+.panel {
+    background: var(--bg-elevated);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-md);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.panel-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.panel-caption {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.field label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.field input,
+.field select {
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.9rem;
+}
+
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: var(--metu-red);
+}
+
+.weekly-hint-text {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.weekly-rule-toggles {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    margin-top: 4px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+.weekly-rule-toggles label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.weekly-rule-toggles input[type="checkbox"],
+.weekly-course-rule-flags input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px; /* base square size */
+    margin: 0;
+    border: 2px solid var(--border-subtle);
+    border-radius: 2px; /* crisp square */
+    background: var(--bg-elevated);
+    cursor: pointer;
+    position: relative;
+    transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
+}
+
+/* Global rule checkboxes: force perfect visual square relative to label font */
+.weekly-rule-toggles input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    aspect-ratio: 1 / 1;
+    display: inline-block;
+}
+.weekly-rule-toggles input[type="checkbox"]:hover,
+.weekly-course-rule-flags input[type="checkbox"]:hover {
+    border-color: var(--text-muted);
+}
+.weekly-rule-toggles input[type="checkbox"]:checked,
+.weekly-course-rule-flags input[type="checkbox"]:checked {
+    background: var(--metu-red);
+    border-color: var(--metu-red);
+    box-shadow: 0 0 0 1px rgba(196, 30, 58, 0.4);
+}
+
+.weekly-suggest-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 4px;
+    max-height: 220px;
+    overflow-y: auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 20;
+    display: none;
+}
+.weekly-suggest-dropdown.is-open {
+    display: block;
+}
+.weekly-suggest-item {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: var(--text-main);
+    font-family: inherit;
+    box-sizing: border-box;
+}
+.weekly-suggest-item:hover {
+    background: var(--accent-soft);
+}
+.weekly-suggest-item code {
+    font-weight: 600;
+}
+.weekly-suggest-item span {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
+
+.weekly-course-rule-flags {
+    margin-top: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 12px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+.weekly-course-rule-flags label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.weekly-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 10px 0 6px;
+}
+
+.weekly-weekview-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.weekly-btn {
+    padding: 8px 12px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+
+.weekly-btn:hover {
+    border-color: var(--metu-red);
+    background: var(--accent-soft);
+    color: var(--metu-red);
+}
+
+.weekly-btn--primary {
+    background: var(--metu-red);
+    border-color: var(--metu-red);
+    color: #fff;
+}
+
+.weekly-btn--primary:hover {
+    background: var(--metu-red-hover);
+    border-color: var(--metu-red-hover);
+    color: #fff;
+}
+
+.weekly-messages {
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.weekly-messages--error {
+    color: #f97373;
+}
+
+.weekly-messages--info {
+    color: var(--text-muted);
+}
+
+.weekly-courses-list {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.weekly-course-card {
+    position: relative;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    box-shadow: var(--shadow);
+}
+
+.weekly-course-card::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    pointer-events: none;
+}
+
+.weekly-course-card[data-accent="1"]::before { background: rgba(56, 189, 248, 0.12); }   /* soft cyan */
+.weekly-course-card[data-accent="2"]::before { background: rgba(59, 130, 246, 0.12); }   /* soft blue */
+.weekly-course-card[data-accent="3"]::before { background: rgba(129, 140, 248, 0.12); }  /* soft indigo */
+.weekly-course-card[data-accent="4"]::before { background: rgba(244, 114, 182, 0.12); }  /* soft pink */
+.weekly-course-card[data-accent="5"]::before { background: rgba(251, 191, 36, 0.12); }   /* soft amber */
+.weekly-course-card[data-accent="6"]::before { background: rgba(52, 211, 153, 0.12); }   /* soft emerald */
+.weekly-course-card[data-accent="7"]::before { background: rgba(96, 165, 250, 0.10); }   /* lighter blue */
+.weekly-course-card[data-accent="8"]::before { background: rgba(148, 163, 184, 0.10); }  /* neutral gray */
+.weekly-course-card[data-accent="9"]::before { background: rgba(45, 212, 191, 0.12); }   /* teal */
+.weekly-course-card[data-accent="10"]::before { background: rgba(244, 163, 84, 0.12); }  /* warm orange */
+.weekly-course-card[data-accent="11"]::before { background: rgba(196, 181, 253, 0.12); } /* soft violet */
+.weekly-course-card[data-accent="12"]::before { background: rgba(248, 180, 180, 0.12); } /* soft red */
+.weekly-course-card[data-accent="13"]::before { background: rgba(163, 230, 53, 0.12); }  /* soft lime */
+
+.weekly-course-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.weekly-course-code {
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.weekly-course-pill {
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--metu-red-soft);
+    color: var(--metu-red);
+}
+
+.weekly-course-name {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.weekly-course-tag {
+    margin-top: 4px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.weekly-select {
+    width: 100%;
+    margin-top: 6px;
+    padding: 6px 8px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.85rem;
+}
+
+.weekly-select:focus {
+    outline: none;
+    border-color: var(--metu-red);
+}
+
+.weekly-sections {
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px dashed var(--border-subtle);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.weekly-section-block {
+    margin-top: 8px;
+    margin-left: 4px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(148, 163, 184, 0.10);
+}
+
+.weekly-section-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 2px;
+}
+
+.weekly-section-label {
+    font-weight: 600;
+}
+
+.weekly-section-meeting {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.16);
+    margin-right: 4px;
+}
+
+.weekly-section-room {
+    margin-left: 6px;
+    opacity: 0.9;
+}
+
+.weekly-section-rule {
+    margin-top: 2px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.weekly-section-toggle {
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.weekly-section-toggle:hover {
+    border-color: var(--metu-red);
+    color: var(--metu-red);
+}
+
+.week-shell {
+    overflow: auto;
+}
+
+.week-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 0.85rem;
+}
+
+.week-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--bg-elevated);
+}
+
+.week-table th,
+.week-table td {
+    border: 1px solid var(--border-subtle);
+    padding: 6px 8px;
+    text-align: center;
+}
+
+.week-time-header {
+    width: 70px;
+}
+
+.week-time-label {
+    text-align: right;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: var(--bg);
+}
+
+.week-table td {
+    min-height: 44px;
+    height: 44px;
+    background: var(--bg-elevated);
+}
+
+.week-table td.empty-slot {
+    background: rgba(148, 163, 184, 0.08);
+}
+
+.week-table td {
+    position: relative;
+    vertical-align: top;
+}
+
+.week-schedule-block {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 6px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-line;
+    color: var(--text-main);
+    box-sizing: border-box;
+}
+
+/* Row-colored cells: plain color blocks, no extra borders */
+.week-table td.week-schedule-cell {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-main);
+    border-left: none;
+    white-space: pre-line;
+    padding: 0;
+}
+
+/* Container for multiple blocks in one cell (for identical-time overlaps) */
+.week-schedule-cell-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 0;
+    height: 100%;
+}
+
+.week-schedule-block {
+    flex: 1 1 0;
+}
+
+/* Accent colors – match left-side course cards; color only the inner blocks */
+.week-schedule-block[data-accent="1"] { background: rgba(56, 189, 248, 0.12); }
+.week-schedule-block[data-accent="2"] { background: rgba(59, 130, 246, 0.12); }
+.week-schedule-block[data-accent="3"] { background: rgba(129, 140, 248, 0.12); }
+.week-schedule-block[data-accent="4"] { background: rgba(244, 114, 182, 0.12); }
+.week-schedule-block[data-accent="5"] { background: rgba(251, 191, 36, 0.12); }
+.week-schedule-block[data-accent="6"] { background: rgba(52, 211, 153, 0.12); }
+.week-schedule-block[data-accent="7"] { background: rgba(96, 165, 250, 0.10); }
+.week-schedule-block[data-accent="8"] { background: rgba(148, 163, 184, 0.10); }
+.week-schedule-block[data-accent="9"] { background: rgba(45, 212, 191, 0.12); }
+.week-schedule-block[data-accent="10"] { background: rgba(244, 163, 84, 0.12); }
+.week-schedule-block[data-accent="11"] { background: rgba(196, 181, 253, 0.12); }
+.week-schedule-block[data-accent="12"] { background: rgba(248, 180, 180, 0.12); }
+.week-schedule-block[data-accent="13"] { background: rgba(163, 230, 53, 0.12); }
+
+/* Busy blocks: pure dark neutral (no hue) */
+.week-schedule-block--busy {
+    background: rgba(0, 0, 0, 0.82);
+    color: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+.week-schedule-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.week-schedule-nav .week-schedule-counter {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.week-schedule-nav .week-schedule-go-input {
+    width: 3.5em;
+    text-align: center;
+    padding: 6px 8px;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    color: var(--text-main);
+}
+
+.week-schedule-nav .weekly-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.week-schedule-nav .weekly-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+@media (max-width: 960px) {
+    body {
+        padding: 18px 12px;
+    }
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+</style>
+</head>
+<body>
+<script>
+document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' ? 'tr' : 'en';
+</script>
+<div class="app-shell">
+    <header class="header">
+        <div class="branding">
+            <div class="branding-mark"></div>
+            <div class="title-block">
+                <h1 id="weeklyTitle">Weekly Schedule (Beta)</h1>
+                <span id="weeklySubtitle">Create a timetable based on OIBS data</span>
+            </div>
+        </div>
+        <div class="header-actions">
+            <nav class="nav-links">
+                <a id="weeklyNavPortal" href="index.html">Portal</a>
+                <a id="weeklyNavPlanner" href="planner.html">Planner</a>
+                <a id="weeklyNavWeekly" href="weekly.html" class="active">Weekly schedule</a>
+            </nav>
+            <select id="weeklyLangSelect">
+                <option value="tr">Türkçe</option>
+                <option value="en">English</option>
+            </select>
+            <button id="themeToggle" class="theme-toggle">
+                <span id="weeklyThemeLabel">Light theme</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="layout">
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="panel-title" id="weeklyStudentTitle">Student &amp; department</div>
+                    <div class="panel-caption" id="weeklyStudentCaption">We&apos;ll later use this to filter courses and personalize the schedule.</div>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="weeklyDeptSelect" id="weeklyDeptLabel">Department</label>
+                <select id="weeklyDeptSelect">
+                    <option value="">Select department</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="weeklySurname" id="weeklySurnameLabel">Surname</label>
+                <input id="weeklySurname" type="text" placeholder="Your surname">
+            </div>
+
+            <div class="field">
+                <label for="weeklySemesterSelect" id="weeklySemesterLabel">Semester</label>
+                <select id="weeklySemesterSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label id="weeklyRulesLabel">Rules to apply when picking sections</label>
+                <div class="weekly-rule-toggles">
+                    <label><input type="checkbox" id="weeklyGlobalCheckDept" checked> <span id="weeklyRuleDeptText">Check departments</span></label>
+                    <label><input type="checkbox" id="weeklyGlobalCheckSurname" checked> <span id="weeklyRuleSurnameText">Check surnames</span></label>
+                    <label><input type="checkbox" id="weeklyGlobalCheckCollision" checked> <span id="weeklyRuleCollisionText">Check time collisions</span></label>
+                </div>
+                <span class="weekly-hint-text" id="weeklyRulesHint">You can also override these per course below.</span>
+            </div>
+
+            <div class="weekly-actions">
+                <button type="button" id="weeklyAddMustBtn" class="weekly-btn weekly-btn--primary">Add must courses</button>
+                <button type="button" id="weeklyScheduleBtn" class="weekly-btn weekly-btn--primary">Schedule</button>
+                <button type="button" id="weeklyClearCoursesBtn" class="weekly-btn weekly-btn--primary">Clear list</button>
+            </div>
+
+            <div class="field">
+                <label for="weeklyAddCourseInput" id="weeklyAddCourseLabel">Add course by code</label>
+                <div style="display:flex; gap:8px;">
+                    <div style="position:relative; flex:1 1 auto;">
+                        <input id="weeklyAddCourseInput" type="text" placeholder="e.g. CENG223, MATH120" style="width:100%;" autocomplete="off">
+                        <div id="weeklyAddCourseSuggestions" class="weekly-suggest-dropdown" aria-hidden="true"></div>
+                    </div>
+                    <button type="button" id="weeklyAddCourseBtn" class="weekly-btn">Add</button>
+                </div>
+                <span class="weekly-hint-text" id="weeklyAddCourseHint">Adds a single course using this semester&apos;s OIBS offerings. Start typing to see suggestions.</span>
+            </div>
+
+            <div id="weeklyMessages" class="weekly-messages"></div>
+
+            <div class="weekly-courses-list" id="weeklyCoursesList"></div>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <div class="panel-title" id="weeklyWeekViewTitle">Week View</div>
+                </div>
+                <div class="weekly-weekview-actions">
+                    <button type="button" id="weeklySaveBtn" class="weekly-btn">Save</button>
+                    <button type="button" id="weeklyLoadBtn" class="weekly-btn">Load</button>
+                    <button type="button" id="weeklySaveToPortalBtn" class="weekly-btn">Save to portal</button>
+                </div>
+            </div>
+
+            <div class="week-shell">
+                <table class="week-table">
+                    <thead>
+                        <tr>
+                            <th class="week-time-header"></th>
+                            <th id="weeklyDayMon">Monday</th>
+                            <th id="weeklyDayTue">Tuesday</th>
+                            <th id="weeklyDayWed">Wednesday</th>
+                            <th id="weeklyDayThu">Thursday</th>
+                            <th id="weeklyDayFri">Friday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Slots: 08:40–09:30, 09:40–10:30, ... 16:40–17:30 -->
+                        <tr>
+                            <th class="week-time-label">08:40–09:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                        <tr>
+                            <th class="week-time-label">09:40–10:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                        <tr>
+                            <th class="week-time-label">10:40–11:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                        <tr>
+                            <th class="week-time-label">11:40–12:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                        <tr>
+                            <th class="week-time-label">12:40–13:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                        <tr>
+                            <th class="week-time-label">13:40–14:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                        <tr>
+                            <th class="week-time-label">14:40–15:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                        <tr>
+                            <th class="week-time-label">15:40–16:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                        <tr>
+                            <th class="week-time-label">16:40–17:30</th>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                            <td class="empty-slot"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="weeklyScheduleNav" class="week-schedule-nav" style="display: none;"></div>
+            <div id="weeklyScheduleSummary" class="weekly-messages" style="margin-top: 10px;"></div>
+        </section>
+    </main>
+</div>
+
+<script>
+(function () {
+    var root = document.documentElement;
+    var saved = window.localStorage.getItem("theme");
+    var initial = saved === "light" || saved === "dark" ? saved : (root.getAttribute("data-theme") || "dark");
+    root.setAttribute("data-theme", initial);
+
+    var btn = document.getElementById("themeToggle");
+    if (btn) {
+        btn.addEventListener("click", function () {
+            var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+            var next = current === "light" ? "dark" : "light";
+            root.setAttribute("data-theme", next);
+            window.localStorage.setItem("theme", next);
+            // Update theme label according to current language
+            var lang = localStorage.getItem("lang") === "tr" ? "tr" : "en";
+            applyWeeklyLanguage(lang);
+        });
+    }
+
+    // Shared department selector (same storage key as planner)
+    var METU_LAST_PROGRAM_CODE = "metu_last_program_code";
+    var deptSelect = document.getElementById("weeklyDeptSelect");
+    var semSelect = document.getElementById("weeklySemesterSelect");
+    var weeklySemester = semSelect ? Number(semSelect.value || "1") : 1;
+    var weeklyCurriculums = null;
+    var weeklyOfferings = null;
+    var weeklyOfferedBy7 = null;
+    var currentSchedulesList = [];
+    var currentScheduleIndex = 0;
+    var currentScheduleFailed = [];
+    var currentCourseOptions = null;
+    var currentScheduleCapHit = false;
+    var currentScheduleNoTimesCourses = []; // course codes in current view but no section times found
+    var currentPlannedCodes = []; // codes of courses currently in the list when schedules were built
+    var weeklySectionsBy7 = null;
+    var weeklyCoursesByCode = null;
+    var weeklyAccentByCode = {};
+    var weeklyAccentPool = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
+    var weeklyAccentIndex = 0;
+
+    // Simple i18n for Weekly page (TR / EN)
+    var weeklyTranslations = {
+        en: {
+            title: "Weekly Schedule (Beta)",
+            subtitle: "Create a timetable based on OIBS data",
+            navPortal: "Portal",
+            navPlanner: "Planner",
+            navWeekly: "Weekly schedule",
+            studentTitle: "Student & department",
+            studentCaption: "We'll later use this to filter courses and personalize the schedule.",
+            deptLabel: "Department",
+            surnameLabel: "Surname",
+            semesterLabel: "Semester",
+            rulesLabel: "Rules to apply when picking sections",
+            ruleDept: "Check departments",
+            ruleSurname: "Check surnames",
+            ruleCollision: "Check time collisions",
+            rulesHint: "You can also override these per course below.",
+            addMust: "Add must courses",
+            scheduleBtn: "Schedule",
+            clearList: "Clear list",
+            addCourseLabel: "Add course by code",
+            addCoursePlaceholder: "e.g. CENG223, MATH120",
+            addCourseHint: "Adds a single course using this semester's OIBS offerings. Start typing to see suggestions.",
+            weekViewTitle: "Week View",
+            dayMon: "Monday",
+            dayTue: "Tuesday",
+            dayWed: "Wednesday",
+            dayThu: "Thursday",
+            dayFri: "Friday",
+            themeLight: "Light theme",
+            themeDark: "Dark theme"
+        },
+        tr: {
+            title: "Haftalık Program (Beta)",
+            subtitle: "OİBS verilerine göre ders programı oluştur.",
+            navPortal: "Portal",
+            navPlanner: "Planlayıcı",
+            navWeekly: "Haftalık program",
+            studentTitle: "Öğrenci ve bölüm",
+            studentCaption: "Dersleri filtrelemek ve programı kişiselleştirmek için bunu kullanacağız.",
+            deptLabel: "Bölüm",
+            surnameLabel: "Soyad",
+            semesterLabel: "Dönem",
+            rulesLabel: "Bölüm seçerken uygulanacak kurallar",
+            ruleDept: "Bölüme göre kontrol et",
+            ruleSurname: "Soyada göre kontrol et",
+            ruleCollision: "Çakışmaları kontrol et",
+            rulesHint: "Bu kuralları her ders için aşağıdan ayrı ayrı değiştirebilirsin.",
+            addMust: "Zorunlu dersleri ekle",
+            scheduleBtn: "Programla",
+            clearList: "Listeyi temizle",
+            addCourseLabel: "Koda göre ders ekle",
+            addCoursePlaceholder: "örn. CENG223, MATH120",
+            addCourseHint: "Bu dönemin OİBS açılan derslerinden tek bir ders ekler. Yazdıkça öneriler çıkar.",
+            weekViewTitle: "Haftalık görünüm",
+            dayMon: "Pazartesi",
+            dayTue: "Salı",
+            dayWed: "Çarşamba",
+            dayThu: "Perşembe",
+            dayFri: "Cuma",
+            themeLight: "Açık tema",
+            themeDark: "Koyu tema"
+        }
+    };
+
+    function applyWeeklyLanguage(langCode) {
+        var dict = weeklyTranslations[langCode] || weeklyTranslations.en;
+        var el;
+        el = document.getElementById("weeklyTitle");
+        if (el) el.textContent = dict.title;
+        el = document.getElementById("weeklySubtitle");
+        if (el) el.textContent = dict.subtitle;
+        el = document.getElementById("weeklyNavPortal");
+        if (el) el.textContent = dict.navPortal;
+        el = document.getElementById("weeklyNavPlanner");
+        if (el) el.textContent = dict.navPlanner;
+        el = document.getElementById("weeklyNavWeekly");
+        if (el) el.textContent = dict.navWeekly;
+        el = document.getElementById("weeklyStudentTitle");
+        if (el) el.textContent = dict.studentTitle;
+        el = document.getElementById("weeklyStudentCaption");
+        if (el) el.textContent = dict.studentCaption;
+        el = document.getElementById("weeklyDeptLabel");
+        if (el) el.textContent = dict.deptLabel;
+        el = document.getElementById("weeklySurnameLabel");
+        if (el) el.textContent = dict.surnameLabel;
+        el = document.getElementById("weeklySemesterLabel");
+        if (el) el.textContent = dict.semesterLabel;
+        el = document.getElementById("weeklyRulesLabel");
+        if (el) el.textContent = dict.rulesLabel;
+        el = document.getElementById("weeklyRuleDeptText");
+        if (el) el.textContent = dict.ruleDept;
+        el = document.getElementById("weeklyRuleSurnameText");
+        if (el) el.textContent = dict.ruleSurname;
+        el = document.getElementById("weeklyRuleCollisionText");
+        if (el) el.textContent = dict.ruleCollision;
+        el = document.getElementById("weeklyRulesHint");
+        if (el) el.textContent = dict.rulesHint;
+        el = document.getElementById("weeklyAddMustBtn");
+        if (el) el.textContent = dict.addMust;
+        el = document.getElementById("weeklyScheduleBtn");
+        if (el) el.textContent = dict.scheduleBtn;
+        el = document.getElementById("weeklyClearCoursesBtn");
+        if (el) el.textContent = dict.clearList;
+        el = document.getElementById("weeklySaveBtn");
+        if (el) el.textContent = (langCode === "tr" ? "Kaydet" : "Save");
+        el = document.getElementById("weeklyLoadBtn");
+        if (el) el.textContent = (langCode === "tr" ? "Yükle" : "Load");
+        el = document.getElementById("weeklySaveToPortalBtn");
+        if (el) el.textContent = (langCode === "tr" ? "Portala kaydet" : "Save to portal");
+        el = document.getElementById("weeklyAddCourseLabel");
+        if (el) el.textContent = dict.addCourseLabel;
+        var input = document.getElementById("weeklyAddCourseInput");
+        if (input) input.placeholder = dict.addCoursePlaceholder;
+        el = document.getElementById("weeklyAddCourseHint");
+        if (el) el.textContent = dict.addCourseHint;
+        el = document.getElementById("weeklyWeekViewTitle");
+        if (el) el.textContent = dict.weekViewTitle;
+        // Day names
+        el = document.getElementById("weeklyDayMon");
+        if (el) el.textContent = dict.dayMon;
+        el = document.getElementById("weeklyDayTue");
+        if (el) el.textContent = dict.dayTue;
+        el = document.getElementById("weeklyDayWed");
+        if (el) el.textContent = dict.dayWed;
+        el = document.getElementById("weeklyDayThu");
+        if (el) el.textContent = dict.dayThu;
+        el = document.getElementById("weeklyDayFri");
+        if (el) el.textContent = dict.dayFri;
+        // Theme toggle label
+        var themeLabel = document.getElementById("weeklyThemeLabel");
+        if (themeLabel) {
+            var currentTheme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+            themeLabel.textContent = currentTheme === "dark" ? dict.themeLight : dict.themeDark;
+        }
+    }
+
+    // Sync language selector with planner (shared "lang" key)
+    (function initWeeklyLanguage() {
+        var stored = localStorage.getItem("lang") || "en";
+        var normalized = stored === "tr" ? "tr" : "en";
+        localStorage.setItem("lang", normalized);
+        document.documentElement.lang = normalized;
+        applyWeeklyLanguage(normalized);
+        var sel = document.getElementById("weeklyLangSelect");
+        if (sel) {
+            sel.value = normalized;
+            sel.addEventListener("change", function () {
+                var v = sel.value === "tr" ? "tr" : "en";
+                localStorage.setItem("lang", v);
+                document.documentElement.lang = v;
+                applyWeeklyLanguage(v);
+            });
+        }
+    })();
+
+    // User‑defined busy slots in the week grid: day key -> array of row indexes (0–8)
+    // These are treated as "already occupied" when searching for non‑colliding schedules.
+    var WEEK_COL_TO_DAY = ["mon", "tue", "wed", "thu", "fri"];
+    var weeklyBusySlots = {}; // e.g. { mon: [1,2], wed: [3] }
+    var weeklyCheckDeptGlobal = true;
+    var weeklyCheckSurnameGlobal = true;
+    var weeklyCheckCollisionGlobal = true;
+    var weeklyAccentPool = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
+    var weeklyAccentIndex = 0;
+
+    function weeklyNextAccent() {
+        if (weeklyAccentIndex >= weeklyAccentPool.length) {
+            weeklyAccentIndex = 0;
+            weeklyAccentPool.sort(function () { return Math.random() - 0.5; });
+        }
+        var val = weeklyAccentPool[weeklyAccentIndex];
+        weeklyAccentIndex += 1;
+        return val;
+    }
+
+    function getCourseRuleFlags(code) {
+        var flags = { checkDept: weeklyCheckDeptGlobal, checkSurname: weeklyCheckSurnameGlobal, checkCollision: weeklyCheckCollisionGlobal };
+        if (!code) return flags;
+        var listEl = document.getElementById("weeklyCoursesList");
+        if (!listEl) return flags;
+        var cards = listEl.querySelectorAll(".weekly-course-card");
+        for (var i = 0; i < cards.length; i++) {
+            var card = cards[i];
+            var codeEl = card.querySelector(".weekly-course-code");
+            if (!codeEl) continue;
+            if (codeEl.textContent.trim().toUpperCase() !== String(code).toUpperCase()) continue;
+            var deptToggle = card.querySelector(".weekly-course-toggle-dept");
+            var surnameToggle = card.querySelector(".weekly-course-toggle-surname");
+            var collToggle = card.querySelector(".weekly-course-toggle-collision");
+            if (deptToggle) flags.checkDept = !!deptToggle.checked;
+            if (surnameToggle) flags.checkSurname = !!surnameToggle.checked;
+            if (collToggle) flags.checkCollision = !!collToggle.checked;
+            break;
+        }
+        return flags;
+    }
+
+    function fixEncoding(str) {
+        if (!str || typeof str !== "string") return str;
+        try {
+            // Common fix for UTF-8 text that was decoded as Latin-1
+            return decodeURIComponent(escape(str));
+        } catch (e) {
+            return str;
+        }
+    }
+
+    // Normalize for surname range comparison so Turkish İ/ı don't break AA–IZ (e.g. "UZ" > "IZ")
+    function normalizeForSurnameRange(str) {
+        if (!str || typeof str !== "string") return "";
+        var s = str.toUpperCase().trim();
+        s = s.replace(/\u0130/g, "I").replace(/\u0131/g, "I");
+        return s;
+    }
+
+    // Infer student's department short code (CENG, EEE, etc.) from a course that belongs to their program
+    // (7-digit code starts with program code), so we get CENG for 571, not PHYS from PHYS106
+    function getStudentDeptShort(programCode) {
+        if (!weeklyCurriculums || !programCode) return "";
+        var curr = weeklyCurriculums[programCode];
+        if (!curr || !Array.isArray(curr.semesters)) return "";
+        var programPrefix = String(programCode);
+        for (var i = 0; i < curr.semesters.length; i++) {
+            var sem = curr.semesters[i];
+            var items = sem.courses || [];
+            for (var j = 0; j < items.length; j++) {
+                var item = items[j];
+                var code = (item.code || "").toUpperCase();
+                var code7 = item.course_code_7digit != null ? String(item.course_code_7digit) : "";
+                var m = /^([A-Z]{3,4})\d+/.exec(code);
+                if (m && code7.indexOf(programPrefix) === 0) return m[1];
+            }
+        }
+        for (var i = 0; i < curr.semesters.length; i++) {
+            var sem = curr.semesters[i];
+            var items = sem.courses || [];
+            for (var j = 0; j < items.length; j++) {
+                var code = (items[j].code || "").toUpperCase();
+                var m = /^([A-Z]{3,4})\d+/.exec(code);
+                if (m) return m[1];
+            }
+        }
+        return "";
+    }
+
+    function setMessage(msg, isError) {
+        var box = document.getElementById("weeklyMessages");
+        if (!box) return;
+        box.textContent = msg || "";
+        box.classList.toggle("weekly-messages--error", !!isError && msg);
+    }
+
+    function setScheduleSummary(html) {
+        var box = document.getElementById("weeklyScheduleSummary");
+        if (!box) return;
+        box.innerHTML = html || "";
+    }
+
+    function ensureDataLoaded() {
+        var tasks = [];
+        if (!weeklyCurriculums) {
+            tasks.push(
+                fetch("curriculums.json").then(function (r) { return r.json(); }).then(function (data) {
+                    weeklyCurriculums = data.curriculums || {};
+                })
+            );
+        }
+        if (!weeklyOfferings || !weeklyOfferedBy7) {
+            tasks.push(
+                fetch("oibs_offerings_20252.json")
+                    .then(function (r) {
+                        if (r.ok) return r;
+                        // Fallback to scripts/ path if root copy does not exist yet
+                        return fetch("scripts/oibs_offerings_all_20252.json");
+                    })
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) {
+                        weeklyOfferings = data;
+                        weeklyOfferedBy7 = {};
+                        (data.departments || []).forEach(function (d) {
+                            (d.courses || []).forEach(function (c) {
+                                var k = c.internal_code || c.code;
+                                if (k) weeklyOfferedBy7[String(k)] = true;
+                            });
+                        });
+                    })
+            );
+        }
+        if (!weeklySectionsBy7) {
+            tasks.push(
+                fetch("oibs_sections_20252.json")
+                    .then(function (r) {
+                        if (r.ok) return r;
+                        return fetch("scripts/oibs_sections_all_20252_full.json");
+                    })
+                    .then(function (r) {
+                        if (!r.ok) return null;
+                        return r.json();
+                    })
+                    .then(function (data) {
+                        weeklySectionsBy7 = {};
+                        if (data && data.departments) {
+                            data.departments.forEach(function (d) {
+                                (d.courses || []).forEach(function (c) {
+                                    var key = c.internal_code;
+                                    if (!key || !Array.isArray(c.sections)) return;
+                                    weeklySectionsBy7[String(key)] = c.sections;
+                                });
+                            });
+                        }
+                    })
+                    .catch(function () {
+                        weeklySectionsBy7 = {};
+                    })
+            );
+        }
+        if (!weeklyCoursesByCode) {
+            tasks.push(
+                fetch("courses.json")
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) {
+                        weeklyCoursesByCode = {};
+                        (data.courses || []).forEach(function (c) {
+                            if (c.code) weeklyCoursesByCode[c.code] = c;
+                        });
+                    })
+            );
+        }
+        if (!tasks.length) return Promise.resolve();
+        return Promise.all(tasks);
+    }
+
+    function buildPlannedCourses() {
+        var listEl = document.getElementById("weeklyCoursesList");
+        if (!listEl) return [];
+        var cards = listEl.querySelectorAll(".weekly-course-card");
+        var result = [];
+        cards.forEach(function (card) {
+            var codeEl = card.querySelector(".weekly-course-code");
+            var pillEl = card.querySelector(".weekly-course-pill");
+            if (!codeEl || !pillEl) return;
+            var code = codeEl.textContent.trim();
+            var pill = pillEl.textContent.trim();
+            if (!code || code === "One of:" || pill === "ELECTIVE") return;
+            var code7 = pill && /^\d+$/.test(pill) ? pill : "";
+            if (!code7 && weeklyCoursesByCode && weeklyCoursesByCode[code] && weeklyCoursesByCode[code].course_code_7digit) {
+                code7 = String(weeklyCoursesByCode[code].course_code_7digit);
+            }
+            if (!code7) return;
+            result.push({
+                code: code,
+                code7: code7,
+            });
+        });
+        return result;
+    }
+
+    function parseTimeToMinutes(str) {
+        if (!str) return null;
+        var parts = String(str).split(":");
+        if (parts.length !== 2) return null;
+        var h = parseInt(parts[0], 10);
+        var m = parseInt(parts[1], 10);
+        if (isNaN(h) || isNaN(m)) return null;
+        return h * 60 + m;
+    }
+
+    var WEEK_FIRST_SLOT_START = 520; // 08:40
+    var WEEK_SLOT_MINUTES = 60;
+
+    function timeToGridRow(startMinutes) {
+        if (startMinutes == null) return -1;
+        var row = Math.floor((startMinutes - WEEK_FIRST_SLOT_START) / WEEK_SLOT_MINUTES);
+        if (row < 0 || row > 8) return -1;
+        return row;
+    }
+
+    function timeToRowSpan(startMinutes, endMinutes) {
+        if (startMinutes == null || endMinutes == null) return 1;
+        var row = Math.floor((startMinutes - WEEK_FIRST_SLOT_START) / WEEK_SLOT_MINUTES);
+        var endSlot = Math.floor((endMinutes - WEEK_FIRST_SLOT_START) / WEEK_SLOT_MINUTES);
+        var span = endSlot - row + 1;
+        if (span < 1) span = 1;
+        if (row + span > 9) span = 9 - row;
+        return span;
+    }
+
+    function dayToCol(dayStr) {
+        var d = (fixEncoding(dayStr || "") || "").toLowerCase();
+        if (d.indexOf("mon") === 0) return 0;
+        if (d.indexOf("tue") === 0) return 1;
+        if (d.indexOf("wed") === 0) return 2;
+        if (d.indexOf("thu") === 0) return 3;
+        if (d.indexOf("fri") === 0) return 4;
+        return -1;
+    }
+
+    var WEEK_TIME_LABELS = ["08:40–09:30", "09:40–10:30", "10:40–11:30", "11:40–12:30", "12:40–13:30", "13:40–14:30", "14:40–15:30", "15:40–16:30", "16:40–17:30"];
+
+    function isWeeklyIgnoredForDatasets(code) {
+        if (!code) return false;
+        var upper = String(code).toUpperCase();
+        if (/^OHS\d+/i.test(upper)) return true;
+        if (/^IS100\b/i.test(upper)) return true;
+        return false;
+    }
+
+    function addIgnoredPlaceholderCourseCard(listEl, code) {
+        if (!listEl) return;
+        var card = document.createElement("div");
+        card.className = "weekly-course-card";
+        card.dataset.accent = weeklyNextAccent();
+        weeklyAccentByCode[code] = card.dataset.accent;
+
+        var header = document.createElement("div");
+        header.className = "weekly-course-header";
+        var codeEl = document.createElement("div");
+        codeEl.className = "weekly-course-code";
+        codeEl.textContent = code;
+        var pill = document.createElement("div");
+        pill.className = "weekly-course-pill";
+        pill.textContent = "—";
+        header.appendChild(codeEl);
+        header.appendChild(pill);
+        (function addRemoveButton(headerEl, cardEl) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = "×";
+            btn.style.border = "none";
+            btn.style.background = "transparent";
+            btn.style.color = "var(--text-muted)";
+            btn.style.cursor = "pointer";
+            btn.style.fontSize = "14px";
+            btn.style.marginLeft = "8px";
+            btn.addEventListener("click", function () { cardEl.remove(); });
+            headerEl.appendChild(btn);
+        })(header, card);
+
+        var nameEl = document.createElement("div");
+        nameEl.className = "weekly-course-name";
+        nameEl.textContent = "Required course";
+
+        var tag = document.createElement("div");
+        tag.className = "weekly-course-tag";
+        tag.textContent = "This course (OHS / IS100) is not checked against OIBS here.";
+
+        card.appendChild(header);
+        card.appendChild(nameEl);
+        card.appendChild(tag);
+
+        var flagsRow2 = document.createElement("div");
+        flagsRow2.className = "weekly-course-rule-flags";
+        var deptLabel2 = document.createElement("label");
+        var deptChk2 = document.createElement("input");
+        deptChk2.type = "checkbox";
+        deptChk2.className = "weekly-course-toggle-dept";
+        deptChk2.checked = weeklyCheckDeptGlobal;
+        deptLabel2.appendChild(deptChk2);
+        deptLabel2.appendChild(document.createTextNode(" Check department"));
+        var surLabel2 = document.createElement("label");
+        var surChk2 = document.createElement("input");
+        surChk2.type = "checkbox";
+        surChk2.className = "weekly-course-toggle-surname";
+        surChk2.checked = weeklyCheckSurnameGlobal;
+        surLabel2.appendChild(surChk2);
+        surLabel2.appendChild(document.createTextNode(" Check surname"));
+        var collLabel2 = document.createElement("label");
+        var collChk2 = document.createElement("input");
+        collChk2.type = "checkbox";
+        collChk2.className = "weekly-course-toggle-collision";
+        collChk2.checked = weeklyCheckCollisionGlobal;
+        collLabel2.appendChild(collChk2);
+        collLabel2.appendChild(document.createTextNode(" Check time collisions"));
+        flagsRow2.appendChild(deptLabel2);
+        flagsRow2.appendChild(surLabel2);
+        flagsRow2.appendChild(collLabel2);
+        card.appendChild(flagsRow2);
+
+        listEl.appendChild(card);
+        setMessage("Added " + code + " to the list.", false);
+    }
+
+    function addCourseCardByCode(rawCode) {
+        var listEl = document.getElementById("weeklyCoursesList");
+        if (!listEl) return;
+        var code = (rawCode || "").toUpperCase().trim();
+        if (!code) {
+            setMessage("Please enter a course code.", true);
+            return;
+        }
+        var ignoredForDatasets = isWeeklyIgnoredForDatasets(code);
+
+        // Allow IS100 / OHS* even if datasets aren't loaded yet.
+        if (ignoredForDatasets && (!weeklyCoursesByCode || !weeklyOfferedBy7)) {
+            addIgnoredPlaceholderCourseCard(listEl, code);
+            return;
+        }
+        if (!weeklyCoursesByCode || !weeklyOfferedBy7) {
+            // lazily load data if needed
+            ensureDataLoaded()
+                .then(function () { addCourseCardByCode(code); })
+                .catch(function () {
+                    setMessage("Could not load course data. Try again.", true);
+                });
+            return;
+        }
+        var existing = listEl.querySelector(".weekly-course-code");
+        var dup = false;
+        listEl.querySelectorAll(".weekly-course-code").forEach(function (el) {
+            if (el.textContent.trim().toUpperCase() === code) dup = true;
+        });
+        if (dup) {
+            setMessage("This course is already in the list.", true);
+            return;
+        }
+        var courseInfo = weeklyCoursesByCode[code] || null;
+        if (!courseInfo) {
+            if (ignoredForDatasets) {
+                // If it's an ignored course (IS100 / OHS*), add it as a placeholder card.
+                addIgnoredPlaceholderCourseCard(listEl, code);
+                return;
+            }
+            setMessage("Course " + code + " was not found in OIBS datasets.", true);
+            return;
+        }
+        var code7 = courseInfo && courseInfo.course_code_7digit ? String(courseInfo.course_code_7digit) : "";
+        if (!code7) {
+            setMessage("Course " + code + " exists but has no 7-digit code in data.", true);
+            return;
+        }
+        var isOffered = code7 && weeklyOfferedBy7 && weeklyOfferedBy7[code7];
+
+        var card = document.createElement("div");
+        card.className = "weekly-course-card";
+        card.dataset.accent = weeklyNextAccent();
+        weeklyAccentByCode[code] = card.dataset.accent;
+
+        var header = document.createElement("div");
+        header.className = "weekly-course-header";
+        var codeEl = document.createElement("div");
+        codeEl.className = "weekly-course-code";
+        codeEl.textContent = code;
+        var pill = document.createElement("div");
+        pill.className = "weekly-course-pill";
+        pill.textContent = code7 || "—";
+        header.appendChild(codeEl);
+        header.appendChild(pill);
+        // reuse same remove button + sections toggle helpers via a tiny shim
+        (function addRemoveButton(headerEl, cardEl) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = "×";
+            btn.style.border = "none";
+            btn.style.background = "transparent";
+            btn.style.color = "var(--text-muted)";
+            btn.style.cursor = "pointer";
+            btn.style.fontSize = "14px";
+            btn.style.marginLeft = "8px";
+            btn.addEventListener("click", function () {
+                cardEl.remove();
+            });
+            headerEl.appendChild(btn);
+        })(header, card);
+
+        var nameEl = document.createElement("div");
+        nameEl.className = "weekly-course-name";
+        nameEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || "Added manually";
+
+        var tag = document.createElement("div");
+        tag.className = "weekly-course-tag";
+        tag.textContent = isOffered ? "Offered this semester" : "Not in OIBS offerings for 20252";
+
+        card.appendChild(header);
+        card.appendChild(nameEl);
+        card.appendChild(tag);
+            var flagsRow2 = document.createElement("div");
+            flagsRow2.className = "weekly-course-rule-flags";
+            var deptLabel2 = document.createElement("label");
+            var deptChk2 = document.createElement("input");
+            deptChk2.type = "checkbox";
+            deptChk2.className = "weekly-course-toggle-dept";
+            deptChk2.checked = weeklyCheckDeptGlobal;
+            deptLabel2.appendChild(deptChk2);
+            deptLabel2.appendChild(document.createTextNode(" Check department"));
+            var surLabel2 = document.createElement("label");
+            var surChk2 = document.createElement("input");
+            surChk2.type = "checkbox";
+            surChk2.className = "weekly-course-toggle-surname";
+            surChk2.checked = weeklyCheckSurnameGlobal;
+            surLabel2.appendChild(surChk2);
+            surLabel2.appendChild(document.createTextNode(" Check surname"));
+            var collLabel2 = document.createElement("label");
+            var collChk2 = document.createElement("input");
+            collChk2.type = "checkbox";
+            collChk2.className = "weekly-course-toggle-collision";
+            collChk2.checked = weeklyCheckCollisionGlobal;
+            collLabel2.appendChild(collChk2);
+            collLabel2.appendChild(document.createTextNode(" Check time collisions"));
+            flagsRow2.appendChild(deptLabel2);
+            flagsRow2.appendChild(surLabel2);
+            flagsRow2.appendChild(collLabel2);
+            card.appendChild(flagsRow2);
+        // show sections if we have them
+        var code7ForToggle = code7;
+        (function attachSectionsToggle(headerEl, cardEl, code7Val) {
+            if (!code7Val || !weeklySectionsBy7) return;
+            var sections = weeklySectionsBy7[code7Val];
+            if (!sections || !sections.length) return;
+            var toggle = document.createElement("button");
+            toggle.type = "button";
+            toggle.className = "weekly-section-toggle";
+            toggle.textContent = "Sections";
+            var details = document.createElement("div");
+            details.className = "weekly-sections";
+            details.style.display = "none";
+            sections.forEach(function (s) {
+                var block = document.createElement("div");
+                block.className = "weekly-section-block";
+                var headerRow = document.createElement("div");
+                headerRow.className = "weekly-section-header";
+                var label = document.createElement("span");
+                label.className = "weekly-section-label";
+                label.textContent = "Section " + (s.section || "?") + " -";
+                headerRow.appendChild(label);
+                if (s.instr1) {
+                    var instr = document.createElement("span");
+                    var instrText = " " + fixEncoding(s.instr1);
+                    if (s.instr2) instrText += " / " + fixEncoding(s.instr2);
+                    instr.textContent = instrText;
+                    headerRow.appendChild(instr);
+                }
+                block.appendChild(headerRow);
+                if (Array.isArray(s.meetings)) {
+                    s.meetings.forEach(function (m) {
+                        var row = document.createElement("div");
+                        row.className = "weekly-section-row";
+                        var chip = document.createElement("span");
+                        chip.className = "weekly-section-meeting";
+                        var txt = (fixEncoding(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
+                        chip.textContent = txt.trim();
+                        row.appendChild(chip);
+                        var room = document.createElement("span");
+                        room.className = "weekly-section-room";
+                        var roomText = m.room ? fixEncoding(m.room) : "Not entered";
+                        room.textContent = roomText;
+                        row.appendChild(room);
+                        block.appendChild(row);
+                    });
+                }
+                details.appendChild(block);
+            });
+            toggle.addEventListener("click", function () {
+                var visible = details.style.display === "block";
+                details.style.display = visible ? "none" : "block";
+                toggle.textContent = visible ? "Sections" : "Hide sections";
+            });
+            headerEl.appendChild(toggle);
+            cardEl.appendChild(details);
+        })(header, card, code7ForToggle);
+
+        listEl.appendChild(card);
+        setMessage("Added " + code + " to the list.", false);
+    }
+    function clearWeekGrid() {
+        // Re-use the main renderer with an empty schedule so that
+        // busy slots and click handlers are always available, even
+        // before a schedule is generated.
+        renderScheduleInGrid([]);
+    }
+
+    function renderScheduleInGrid(schedule) {
+        var tbody = document.querySelector(".week-table tbody");
+        if (!tbody) return;
+
+        // cells[row][col] -> array of blocks in that 1‑hour slot
+        var cells = [];
+        for (var r = 0; r < 9; r++) {
+            cells[r] = [];
+            for (var c = 0; c < 5; c++) {
+                cells[r][c] = [];
+            }
+        }
+
+        if (schedule && schedule.length) {
+            schedule.forEach(function (item) {
+                var meetings = item.meetings || [];
+                var baseLabel = item.code + " Sec " + (item.sectionNum || "?");
+                var accent = (item.accent || (weeklyAccentByCode && weeklyAccentByCode[item.code])) || "1";
+                var flags = getCourseRuleFlags(item.code || "");
+                var checkCollision = !!flags.checkCollision;
+
+                meetings.forEach(function (m) {
+                    var day = (fixEncoding(m.day || "") || "").toLowerCase();
+                    var col = dayToCol(day);
+                    var start = parseTimeToMinutes(m.start);
+                    var end = parseTimeToMinutes(m.end);
+                    if (col < 0 || start == null || end == null) return;
+
+                    var startRow = timeToGridRow(start);
+                    var span = timeToRowSpan(start, end);
+                    if (startRow < 0 || span < 1) return;
+
+                    var room = (m.room || "").trim();
+                    var label = baseLabel;
+                    if (room) {
+                        label = baseLabel + "\n" + room;
+                    }
+
+                    // Determine which 1‑hour rows this meeting covers
+                    var rows = [];
+                    for (var i = 0; i < span && startRow + i < 9; i++) {
+                        rows.push(startRow + i);
+                    }
+
+                    // If collision checking is on, skip the whole meeting if any slot is occupied
+                    if (checkCollision) {
+                        for (var ri = 0; ri < rows.length; ri++) {
+                            if (cells[rows[ri]][col].length > 0) {
+                                return;
+                            }
+                        }
+                    }
+
+                    // Add a separate block into each row; this keeps 2‑hour classes
+                    // visually split instead of one tall cell and avoids rowspan bugs.
+                    rows.forEach(function (rowIndex) {
+                        cells[rowIndex][col].push({ label: label, accent: accent });
+                    });
+                });
+            });
+        }
+
+        // Also render user‑defined busy slots (as neutral "busy" blocks)
+        if (weeklyBusySlots) {
+            for (var d = 0; d < WEEK_COL_TO_DAY.length; d++) {
+                var dayKey = WEEK_COL_TO_DAY[d];
+                var busyRows = weeklyBusySlots[dayKey] || [];
+                busyRows.forEach(function (rowIndex) {
+                    if (rowIndex >= 0 && rowIndex < 9) {
+                        // Only add a busy block if no real course block exists here
+                        if (!cells[rowIndex][d].some(function (b) { return b.type !== "busy"; })) {
+                            cells[rowIndex][d].push({
+                                label: "BUSY",
+                                accent: null,
+                                type: "busy"
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        // Now draw a simple 9x5 grid with blocks inside each cell (no rowspans)
+        tbody.innerHTML = "";
+        for (var r = 0; r < 9; r++) {
+            var tr = document.createElement("tr");
+            var th = document.createElement("th");
+            th.className = "week-time-label";
+            th.textContent = WEEK_TIME_LABELS[r];
+            tr.appendChild(th);
+
+            for (var c = 0; c < 5; c++) {
+                var td = document.createElement("td");
+                td.dataset.row = String(r);
+                td.dataset.col = String(c);
+                var blocks = cells[r][c];
+
+                if (blocks.length > 0) {
+                    td.className = "week-schedule-cell";
+
+                    var inner = document.createElement("div");
+                    inner.className = "week-schedule-cell-inner";
+
+                    blocks.forEach(function (entry) {
+                        var block = document.createElement("div");
+                        block.className = "week-schedule-block";
+                        if (entry.type === "busy") {
+                            block.classList.add("week-schedule-block--busy");
+                            block.textContent = entry.label;
+                            block.title = "Busy time";
+                        } else {
+                            block.setAttribute("data-accent", entry.accent);
+                            block.textContent = entry.label;
+                            block.title = entry.label;
+                            block.tabIndex = 0;
+                            // Clicking a course block shows its full label in the summary area.
+                            block.addEventListener("click", (function (fullLabel) {
+                                return function (ev) {
+                                    ev.stopPropagation();
+                                    setScheduleSummary("<span class=\"weekly-messages--info\">Selected: " + escapeHtml(fullLabel) + "</span>");
+                                };
+                            })(entry.label));
+                        }
+                        inner.appendChild(block);
+                    });
+
+                    // Cell background stays neutral; only inner blocks are colored
+                    td.appendChild(inner);
+                } else {
+                    td.className = "empty-slot";
+                }
+
+                // Clicking an empty or background part of the cell toggles a busy slot.
+                td.addEventListener("click", (function (rowIdx, colIdx) {
+                    return function (ev) {
+                        // ignore clicks that started on a course block (handled above),
+                        // but allow clicks on BUSY blocks to toggle them off
+                        if (ev.target && ev.target.classList && ev.target.classList.contains("week-schedule-block") &&
+                            !ev.target.classList.contains("week-schedule-block--busy")) {
+                            return;
+                        }
+                        var dayKey = WEEK_COL_TO_DAY[colIdx];
+                        if (!dayKey) return;
+                        if (!weeklyBusySlots[dayKey]) weeklyBusySlots[dayKey] = [];
+                        var list = weeklyBusySlots[dayKey];
+                        var pos = list.indexOf(rowIdx);
+                        if (pos === -1) {
+                            list.push(rowIdx);
+                        } else {
+                            list.splice(pos, 1);
+                        }
+                        // Re-render current schedule with updated busy indicators
+                        if (currentSchedulesList && currentSchedulesList.length) {
+                            renderScheduleInGrid(currentSchedulesList[currentScheduleIndex] || currentSchedulesList[0]);
+                        } else {
+                            renderScheduleInGrid([]);
+                        }
+                    };
+                })(r, c));
+
+                tr.appendChild(td);
+            }
+
+            tbody.appendChild(tr);
+        }
+    }
+
+    function showScheduleNav(total, failed) {
+        var nav = document.getElementById("weeklyScheduleNav");
+        var summary = document.getElementById("weeklyScheduleSummary");
+        if (!nav || !summary) return;
+        if (total <= 0) {
+            nav.style.display = "none";
+            return;
+        }
+        nav.style.display = "flex";
+        var prev10Btn = document.createElement("button");
+        prev10Btn.type = "button";
+        prev10Btn.className = "weekly-btn";
+        prev10Btn.textContent = "\u2190\u2190";
+        prev10Btn.title = "Previous 10";
+        prev10Btn.setAttribute("aria-label", "Previous 10 schedules");
+        prev10Btn.disabled = currentScheduleIndex < 10;
+        var prevBtn = document.createElement("button");
+        prevBtn.type = "button";
+        prevBtn.className = "weekly-btn";
+        prevBtn.textContent = "\u2190";
+        prevBtn.title = "Previous";
+        prevBtn.setAttribute("aria-label", "Previous schedule");
+        prevBtn.disabled = currentScheduleIndex <= 0;
+        var scheduleLabel = document.createElement("span");
+        scheduleLabel.className = "week-schedule-counter";
+        scheduleLabel.textContent = "Schedule ";
+        var goInput = document.createElement("input");
+        goInput.type = "number";
+        goInput.className = "week-schedule-go-input";
+        goInput.min = 1;
+        goInput.max = total;
+        goInput.value = currentScheduleIndex + 1;
+        goInput.setAttribute("aria-label", "Schedule number");
+        var ofTotal = document.createElement("span");
+        ofTotal.className = "week-schedule-counter";
+        ofTotal.textContent = " of " + total;
+        var nextBtn = document.createElement("button");
+        nextBtn.type = "button";
+        nextBtn.className = "weekly-btn";
+        nextBtn.textContent = "\u2192";
+        nextBtn.title = "Next";
+        nextBtn.setAttribute("aria-label", "Next schedule");
+        nextBtn.disabled = currentScheduleIndex >= total - 1;
+        var next10Btn = document.createElement("button");
+        next10Btn.type = "button";
+        next10Btn.className = "weekly-btn";
+        next10Btn.textContent = "\u2192\u2192";
+        next10Btn.title = "Next 10";
+        next10Btn.setAttribute("aria-label", "Next 10 schedules");
+        next10Btn.disabled = currentScheduleIndex >= total - 10;
+        function goToIndex(oneBased) {
+            var idx = Math.max(0, Math.min(total - 1, (parseInt(oneBased, 10) || 1) - 1));
+            currentScheduleIndex = idx;
+            renderScheduleInGrid(currentSchedulesList[currentScheduleIndex]);
+            showScheduleNav(currentSchedulesList.length, currentScheduleFailed);
+        }
+        goInput.addEventListener("change", function () { goToIndex(parseInt(goInput.value, 10)); });
+        goInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") goToIndex(parseInt(goInput.value, 10));
+        });
+        prev10Btn.addEventListener("click", function () {
+            if (currentScheduleIndex < 10) return;
+            currentScheduleIndex = Math.max(0, currentScheduleIndex - 10);
+            renderScheduleInGrid(currentSchedulesList[currentScheduleIndex]);
+            showScheduleNav(currentSchedulesList.length, currentScheduleFailed);
+        });
+        prevBtn.addEventListener("click", function () {
+            if (currentScheduleIndex <= 0) return;
+            currentScheduleIndex--;
+            renderScheduleInGrid(currentSchedulesList[currentScheduleIndex]);
+            showScheduleNav(currentSchedulesList.length, currentScheduleFailed);
+        });
+        nextBtn.addEventListener("click", function () {
+            if (currentScheduleIndex >= currentSchedulesList.length - 1) return;
+            currentScheduleIndex++;
+            renderScheduleInGrid(currentSchedulesList[currentScheduleIndex]);
+            showScheduleNav(currentSchedulesList.length, currentScheduleFailed);
+        });
+        next10Btn.addEventListener("click", function () {
+            if (currentScheduleIndex >= total - 10) return;
+            currentScheduleIndex = Math.min(total - 1, currentScheduleIndex + 10);
+            renderScheduleInGrid(currentSchedulesList[currentScheduleIndex]);
+            showScheduleNav(currentSchedulesList.length, currentScheduleFailed);
+        });
+        nav.innerHTML = "";
+        nav.appendChild(prev10Btn);
+        nav.appendChild(prevBtn);
+        nav.appendChild(scheduleLabel);
+        nav.appendChild(goInput);
+        nav.appendChild(ofTotal);
+        nav.appendChild(nextBtn);
+        nav.appendChild(next10Btn);
+
+        // Messages to show under the Week View
+        var notes = [];
+
+        // 1) Courses that are in the planned list but do not appear in the current week view
+        var scheduleNow = currentSchedulesList[currentScheduleIndex] || [];
+        var scheduleCodesMap = {};
+        scheduleNow.forEach(function (item) {
+            if (item && item.code) scheduleCodesMap[item.code] = true;
+        });
+        currentScheduleNoTimesCourses = (currentPlannedCodes || []).filter(function (code) {
+            return !scheduleCodesMap[code];
+        });
+        if (currentScheduleNoTimesCourses && currentScheduleNoTimesCourses.length > 0) {
+            var parts = currentScheduleNoTimesCourses.map(function (code) {
+                var info = weeklyCoursesByCode && weeklyCoursesByCode[code];
+                var name = info && fixEncoding(info.name) ? (code + " – " + fixEncoding(info.name)) : code;
+                return name;
+            });
+            notes.push(
+                "<div class=\"weekly-messages--info\" style=\"margin-top:10px\">" +
+                "These course(s) are in your list, but we couldn't place them into this schedule because we couldn't find non-conflicting section times: <strong>" +
+                parts.join(", ") + "</strong>.</div>"
+            );
+        }
+
+        // 2) Courses that have a section chosen in this schedule but whose section data has no usable meeting times
+        var noTimeItems = [];
+        scheduleNow.forEach(function (item) {
+            if (!item || !item.code) return;
+            var meetings = item.meetings || [];
+            var hasCell = false;
+            for (var i = 0; i < meetings.length; i++) {
+                var m = meetings[i];
+                var day = (fixEncoding(m.day || "") || "").toLowerCase();
+                var col = dayToCol(day);
+                var start = parseTimeToMinutes(m.start);
+                var end = parseTimeToMinutes(m.end);
+                if (col < 0 || start == null || end == null) continue;
+                var row = timeToGridRow(start);
+                var rowSpan = timeToRowSpan(start, end);
+                if (row < 0 || rowSpan < 1) continue;
+                hasCell = true;
+                break;
+            }
+            if (!hasCell) {
+                noTimeItems.push(item);
+            }
+        });
+        var noTimeItemsFiltered = noTimeItems.filter(function (item) {
+            return item && item.code && (currentPlannedCodes || []).indexOf(item.code) !== -1;
+        });
+        if (noTimeItemsFiltered.length > 0) {
+            var parts2 = noTimeItemsFiltered.map(function (item) {
+                var code = item.code;
+                var secLabel = item.sectionNum ? (" Sec " + item.sectionNum) : "";
+                var info = weeklyCoursesByCode && weeklyCoursesByCode[code];
+                var nameOnly = info && fixEncoding(info.name);
+                var base = code + secLabel;
+                return nameOnly ? (base + " – " + nameOnly) : base;
+            });
+            notes.push(
+                "<div class=\"weekly-messages--info\" style=\"margin-top:6px\">" +
+                "These course(s) are in your list and have a section selected, but their section data doesn't contain time information, so we couldn't draw them on the Week View: <strong>" +
+                parts2.join(", ") + "</strong>. Because we don't know their exact hours, they might still conflict with other courses in your real timetable. You can still open their section page for details.</div>"
+            );
+        }
+
+        // 2) Elective slots and one-of groups that never go into the week view automatically
+        var listEl = document.getElementById("weeklyCoursesList");
+        if (listEl) {
+            var cards = listEl.querySelectorAll(".weekly-course-card");
+            var electiveNames = [];
+            var choiceNames = [];
+            cards.forEach(function (card) {
+                var codeEl = card.querySelector(".weekly-course-code");
+                var pillEl = card.querySelector(".weekly-course-pill");
+                var nameEl = card.querySelector(".weekly-course-name");
+                var codeText = codeEl && codeEl.textContent ? codeEl.textContent.trim() : "";
+                var pillText = pillEl && pillEl.textContent ? pillEl.textContent.trim() : "";
+                var nameText = nameEl && nameEl.textContent ? nameEl.textContent.trim() : "";
+                if (pillText === "ELECTIVE") {
+                    electiveNames.push(nameText || codeText || "Elective slot");
+                } else if (codeText === "One of:") {
+                    choiceNames.push(nameText || "one-of group");
+                }
+            });
+            if (electiveNames.length > 0) {
+                notes.push(
+                    "<div class=\"weekly-messages--info\" style=\"margin-top:6px\">" +
+                    "These elective slot(s) are in your list, but we don't add them automatically. You need to choose the exact course/section first: <strong>" +
+                    electiveNames.join(", ") + "</strong>.</div>"
+                );
+            }
+            if (choiceNames.length > 0) {
+                notes.push(
+                    "<div class=\"weekly-messages--info\" style=\"margin-top:6px\">" +
+                    "These \"one of\" choice groups are in your list; pick one course from each group so it can be scheduled: <strong>" +
+                    choiceNames.join(", ") + "</strong>.</div>"
+                );
+            }
+        }
+
+        summary.innerHTML = notes.join("");
+    }
+
+    function renderCourseCards(programCode) {
+        var listEl = document.getElementById("weeklyCoursesList");
+        if (!listEl) return;
+
+        if (!weeklyCurriculums || !weeklyOfferedBy7 || !weeklyCoursesByCode) return;
+
+        var curr = weeklyCurriculums[programCode];
+        if (!curr) {
+            setMessage("No curriculum found for this department.", true);
+            return;
+        }
+        var sem = (curr.semesters || []).find(function (s) { return Number(s.semester_number) === weeklySemester; });
+        if (!sem) {
+            setMessage("No semester data in curriculum.", true);
+            return;
+        }
+
+        var items = sem.courses || [];
+        var mustCourses = items.filter(function (c) { return (!c.type || c.type !== "elective") && c.type !== "one_of"; });
+        var electiveSlots = items.filter(function (c) { return c.type === "elective"; });
+        var oneOfGroups = items.filter(function (c) { return c.type === "one_of" && Array.isArray(c.options) && c.options.length; });
+
+        var missing = [];
+
+        function isIgnoredForOfferings(code) {
+            if (!code) return false;
+            var upper = String(code).toUpperCase();
+            // Ignore OHS101 / OHS301 style codes and IS100 (all section variants)
+            if (/^OHS\d+/i.test(upper)) return true;
+            if (/^IS100\b/i.test(upper)) return true;
+            return false;
+        }
+
+        function addRemoveButton(headerEl, cardEl) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = "×";
+            btn.style.border = "none";
+            btn.style.background = "transparent";
+            btn.style.color = "var(--text-muted)";
+            btn.style.cursor = "pointer";
+            btn.style.fontSize = "14px";
+            btn.style.marginLeft = "8px";
+            btn.addEventListener("click", function () {
+                cardEl.remove();
+            });
+            headerEl.appendChild(btn);
+        }
+
+        function attachSectionsToggle(headerEl, cardEl, code7) {
+            if (!code7 || !weeklySectionsBy7) return;
+            var sections = weeklySectionsBy7[code7];
+            if (!sections || !sections.length) return;
+
+            var toggle = document.createElement("button");
+            toggle.type = "button";
+            toggle.className = "weekly-section-toggle";
+            toggle.textContent = "Sections";
+
+            var details = document.createElement("div");
+            details.className = "weekly-sections";
+            details.style.display = "none";
+
+            sections.forEach(function (s) {
+                var block = document.createElement("div");
+                block.className = "weekly-section-block";
+
+                var header = document.createElement("div");
+                header.className = "weekly-section-header";
+
+                var label = document.createElement("span");
+                label.className = "weekly-section-label";
+                label.textContent = "Section " + (s.section || "?") + " -";
+                header.appendChild(label);
+
+                if (s.instr1) {
+                    var instr = document.createElement("span");
+                    var instrText = " " + fixEncoding(s.instr1);
+                    if (s.instr2) instrText += " / " + fixEncoding(s.instr2);
+                    instr.textContent = instrText;
+                    header.appendChild(instr);
+                }
+
+                block.appendChild(header);
+
+                var rules = Array.isArray(s.rules) ? s.rules : [];
+                if (rules.length) {
+                    var ruleLine = document.createElement("div");
+                    ruleLine.className = "weekly-section-rule";
+                    var parts = rules.map(function (r) {
+                        var dept = (r.given_dept || "ALL").trim();
+                        var sc = fixEncoding(r.start_char || "").trim();
+                        var ec = fixEncoding(r.end_char || "").trim();
+                        var range = (sc || ec) ? (sc + "–" + ec) : "any";
+                        return "Department: " + dept + "  Surname: " + range;
+                    });
+                    ruleLine.textContent = parts.join(" | ");
+                    block.appendChild(ruleLine);
+                }
+
+                if (Array.isArray(s.meetings)) {
+                    s.meetings.forEach(function (m) {
+                        var row = document.createElement("div");
+                        row.className = "weekly-section-row";
+
+                        var chip = document.createElement("span");
+                        chip.className = "weekly-section-meeting";
+                        var txt = (fixEncoding(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
+                        chip.textContent = txt.trim();
+                        row.appendChild(chip);
+
+                        var room = document.createElement("span");
+                        room.className = "weekly-section-room";
+                        var roomText = m.room ? fixEncoding(m.room) : "Not entered";
+                        room.textContent = roomText;
+                        row.appendChild(room);
+
+                        block.appendChild(row);
+                    });
+                }
+
+                details.appendChild(block);
+            });
+
+            toggle.addEventListener("click", function () {
+                var visible = details.style.display === "block";
+                details.style.display = visible ? "none" : "block";
+                toggle.textContent = visible ? "Sections" : "Hide sections";
+            });
+
+            headerEl.appendChild(toggle);
+            cardEl.appendChild(details);
+        }
+
+        mustCourses.forEach(function (mc) {
+            var code = mc.code;
+            if (!code) return;
+            // Skip if this course is already in the list (manually added or from previous call)
+            var exists = false;
+            listEl.querySelectorAll(".weekly-course-code").forEach(function (el) {
+                if (el.textContent.trim().toUpperCase() === String(code).toUpperCase()) exists = true;
+            });
+            if (exists) return;
+            var courseInfo = weeklyCoursesByCode[code] || null;
+            var code7 = courseInfo && courseInfo.course_code_7digit ? String(courseInfo.course_code_7digit) : "";
+            var isOffered = code7 && weeklyOfferedBy7[code7];
+            if (!isOffered && !isIgnoredForOfferings(code)) {
+                missing.push(code);
+            }
+            var card = document.createElement("div");
+            card.className = "weekly-course-card";
+            card.dataset.accent = weeklyNextAccent();
+            weeklyAccentByCode[code] = card.dataset.accent;
+
+            var header = document.createElement("div");
+            header.className = "weekly-course-header";
+            var codeEl = document.createElement("div");
+            codeEl.className = "weekly-course-code";
+            codeEl.textContent = code;
+            var pill = document.createElement("div");
+            pill.className = "weekly-course-pill";
+            pill.textContent = code7 || "—";
+            header.appendChild(codeEl);
+            header.appendChild(pill);
+            addRemoveButton(header, card);
+
+            var nameEl = document.createElement("div");
+            nameEl.className = "weekly-course-name";
+            nameEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || "Required course";
+
+            var tag = document.createElement("div");
+            tag.className = "weekly-course-tag";
+            if (isIgnoredForOfferings(code)) {
+                tag.textContent = "This course (OHS / IS100) is not checked against OIBS here.";
+            } else {
+                tag.textContent = isOffered ? "Offered this semester" : "Not in OIBS offerings for 20252";
+            }
+
+            card.appendChild(header);
+            card.appendChild(nameEl);
+            card.appendChild(tag);
+            var flagsRow = document.createElement("div");
+            flagsRow.className = "weekly-course-rule-flags";
+            var deptLabel = document.createElement("label");
+            var deptChk = document.createElement("input");
+            deptChk.type = "checkbox";
+            deptChk.className = "weekly-course-toggle-dept";
+            deptChk.checked = weeklyCheckDeptGlobal;
+            deptLabel.appendChild(deptChk);
+            deptLabel.appendChild(document.createTextNode(" Check department"));
+            var surLabel = document.createElement("label");
+            var surChk = document.createElement("input");
+            surChk.type = "checkbox";
+            surChk.className = "weekly-course-toggle-surname";
+            surChk.checked = weeklyCheckSurnameGlobal;
+            surLabel.appendChild(surChk);
+            surLabel.appendChild(document.createTextNode(" Check surname"));
+            var collLabel = document.createElement("label");
+            var collChk = document.createElement("input");
+            collChk.type = "checkbox";
+            collChk.className = "weekly-course-toggle-collision";
+            collChk.checked = weeklyCheckCollisionGlobal;
+            collLabel.appendChild(collChk);
+            collLabel.appendChild(document.createTextNode(" Check time collisions"));
+            flagsRow.appendChild(deptLabel);
+            flagsRow.appendChild(surLabel);
+            flagsRow.appendChild(collLabel);
+            card.appendChild(flagsRow);
+            attachSectionsToggle(header, card, code7);
+            listEl.appendChild(card);
+        });
+
+        electiveSlots.forEach(function (slot) {
+            var label = slot.name || "Elective";
+            // Skip if an elective slot with same label already exists
+            var exists = false;
+            listEl.querySelectorAll(".weekly-course-card").forEach(function (card) {
+                var codeEl = card.querySelector(".weekly-course-code");
+                if (codeEl && codeEl.textContent.trim() === label) exists = true;
+            });
+            if (exists) return;
+
+            var card = document.createElement("div");
+            card.className = "weekly-course-card";
+            card.dataset.accent = weeklyNextAccent();
+
+            var header = document.createElement("div");
+            header.className = "weekly-course-header";
+            var codeEl = document.createElement("div");
+            codeEl.className = "weekly-course-code";
+            codeEl.textContent = label;
+            var pill = document.createElement("div");
+            pill.className = "weekly-course-pill";
+            pill.textContent = "ELECTIVE";
+            header.appendChild(codeEl);
+            header.appendChild(pill);
+            addRemoveButton(header, card);
+
+            var nameEl = document.createElement("div");
+            nameEl.className = "weekly-course-name";
+            nameEl.textContent = "You will choose the exact course/section.";
+
+            var tag = document.createElement("div");
+            tag.className = "weekly-course-tag";
+            tag.textContent = "Elective slot from curriculum";
+
+            card.appendChild(header);
+            card.appendChild(nameEl);
+            card.appendChild(tag);
+            listEl.appendChild(card);
+        });
+
+        // One-of HIST/TURK etc. as questions
+        oneOfGroups.forEach(function (group, idx) {
+            var optCodes = (group.options || []).map(function (o) { return o.code; }).filter(Boolean);
+            var labelText = "You should choose one from: " + optCodes.join(", ");
+            // Skip if a one-of card with same label already exists
+            var exists = false;
+            listEl.querySelectorAll(".weekly-course-card").forEach(function (card) {
+                var codeEl = card.querySelector(".weekly-course-code");
+                var nameEl = card.querySelector(".weekly-course-name");
+                var codeText = codeEl && codeEl.textContent ? codeEl.textContent.trim() : "";
+                var nameText = nameEl && nameEl.textContent ? nameEl.textContent.trim() : "";
+                if (codeText === "One of:" && nameText === labelText) exists = true;
+            });
+            if (exists) return;
+
+            var card = document.createElement("div");
+            card.className = "weekly-course-card";
+            card.dataset.accent = weeklyNextAccent();
+
+            var header = document.createElement("div");
+            header.className = "weekly-course-header";
+            var codeEl = document.createElement("div");
+            codeEl.className = "weekly-course-code";
+            codeEl.textContent = "One of:";
+            var pill = document.createElement("div");
+            pill.className = "weekly-course-pill";
+            pill.textContent = "CHOICE";
+            header.appendChild(codeEl);
+            header.appendChild(pill);
+
+            var nameEl = document.createElement("div");
+            nameEl.className = "weekly-course-name";
+            nameEl.textContent = labelText;
+
+            var select = document.createElement("select");
+            select.style.marginTop = "6px";
+            select.style.width = "100%";
+            select.className = "weekly-select";
+            var opt0 = document.createElement("option");
+            opt0.value = "";
+            opt0.textContent = "Choose course";
+            select.appendChild(opt0);
+            group.options.forEach(function (opt) {
+                var o = document.createElement("option");
+                o.value = opt.code;
+                o.textContent = opt.code;
+                select.appendChild(o);
+            });
+
+            var chooseBtn = document.createElement("button");
+            chooseBtn.type = "button";
+            chooseBtn.textContent = "Add selected course";
+            chooseBtn.className = "weekly-btn";
+            chooseBtn.style.marginTop = "6px";
+
+            chooseBtn.addEventListener("click", function () {
+                var chosen = select.value;
+                if (!chosen) return;
+                var code = chosen;
+                var courseInfo = weeklyCoursesByCode && weeklyCoursesByCode[code] || null;
+                var code7 = courseInfo && courseInfo.course_code_7digit ? String(courseInfo.course_code_7digit) : "";
+                var isOffered = code7 && weeklyOfferedBy7 && weeklyOfferedBy7[code7];
+
+                // Avoid adding the same course twice
+                var exists = false;
+                listEl.querySelectorAll(".weekly-course-code").forEach(function (el) {
+                    if (el.textContent.trim().toUpperCase() === String(code).toUpperCase()) exists = true;
+                });
+                if (exists) return;
+
+                var addedCard = document.createElement("div");
+                addedCard.className = "weekly-course-card";
+                addedCard.dataset.accent = weeklyNextAccent();
+                weeklyAccentByCode[code] = addedCard.dataset.accent;
+
+                var h = document.createElement("div");
+                h.className = "weekly-course-header";
+                var cEl = document.createElement("div");
+                cEl.className = "weekly-course-code";
+                cEl.textContent = code;
+                var pEl = document.createElement("div");
+                pEl.className = "weekly-course-pill";
+                pEl.textContent = code7 || "—";
+                h.appendChild(cEl);
+                h.appendChild(pEl);
+                addRemoveButton(h, addedCard);
+
+                var nEl = document.createElement("div");
+                nEl.className = "weekly-course-name";
+                nEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || "Chosen from one-of group";
+
+                var tEl = document.createElement("div");
+                tEl.className = "weekly-course-tag";
+                tEl.textContent = isOffered ? "Offered this semester" : "Not in OIBS offerings for 20252";
+
+                addedCard.appendChild(h);
+                addedCard.appendChild(nEl);
+                addedCard.appendChild(tEl);
+                var flagsRow = document.createElement("div");
+                flagsRow.className = "weekly-course-rule-flags";
+                var deptLabel = document.createElement("label");
+                var deptChk = document.createElement("input");
+                deptChk.type = "checkbox";
+                deptChk.className = "weekly-course-toggle-dept";
+                deptChk.checked = weeklyCheckDeptGlobal;
+                deptLabel.appendChild(deptChk);
+                deptLabel.appendChild(document.createTextNode(" Check department"));
+                var surLabel = document.createElement("label");
+                var surChk = document.createElement("input");
+                surChk.type = "checkbox";
+                surChk.className = "weekly-course-toggle-surname";
+                surChk.checked = weeklyCheckSurnameGlobal;
+                surLabel.appendChild(surChk);
+                surLabel.appendChild(document.createTextNode(" Check surname"));
+                var collLabel = document.createElement("label");
+                var collChk = document.createElement("input");
+                collChk.type = "checkbox";
+                collChk.className = "weekly-course-toggle-collision";
+                collChk.checked = weeklyCheckCollisionGlobal;
+                collLabel.appendChild(collChk);
+                collLabel.appendChild(document.createTextNode(" Check time collisions"));
+                flagsRow.appendChild(deptLabel);
+                flagsRow.appendChild(surLabel);
+                flagsRow.appendChild(collLabel);
+                addedCard.appendChild(flagsRow);
+
+                attachSectionsToggle(h, addedCard, code7);
+                listEl.appendChild(addedCard);
+
+                // Remove this one-of chooser card after a selection is added
+                card.remove();
+            });
+
+            card.appendChild(header);
+            card.appendChild(nameEl);
+            card.appendChild(select);
+            card.appendChild(chooseBtn);
+            listEl.appendChild(card);
+        });
+
+        if (missing.length) {
+            setMessage(
+                "These required courses are not in the OIBS offerings for this semester: " + missing.join(", "),
+                true
+            );
+        } else if (mustCourses.length) {
+            setMessage("All required courses for this semester are present in OIBS offerings.", false);
+        } else {
+            setMessage("This semester has only elective slots in the curriculum.", false);
+        }
+    }
+
+    // Load departments into select and sync with planner's last program
+    if (deptSelect) {
+        fetch("programs.json")
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                var faculties = data.faculties || {};
+                var skipFaculty = "School of Foreign Languages";
+                deptSelect.innerHTML = "";
+                var opt0 = document.createElement("option");
+                opt0.value = "";
+                opt0.textContent = "Select department";
+                deptSelect.appendChild(opt0);
+
+                Object.keys(faculties).forEach(function (facName) {
+                    if (facName === skipFaculty) return;
+                    var fac = faculties[facName];
+                    var progs = fac.programs || [];
+                    if (!progs.length) return;
+                    var group = document.createElement("optgroup");
+                    group.label = facName;
+                    progs.forEach(function (p) {
+                        var opt = document.createElement("option");
+                        opt.value = p.code;
+                        opt.textContent = p.name || p.code;
+                        group.appendChild(opt);
+                    });
+                    deptSelect.appendChild(group);
+                });
+
+                var last = window.localStorage.getItem(METU_LAST_PROGRAM_CODE) || "";
+                if (last) {
+                    deptSelect.value = last;
+                }
+
+                deptSelect.addEventListener("change", function () {
+                    if (deptSelect.value) {
+                        window.localStorage.setItem(METU_LAST_PROGRAM_CODE, deptSelect.value);
+                    }
+                });
+            })
+            .catch(function () {
+                // Leave the simple placeholder if programs.json fails
+            });
+    }
+
+    // Semester buttons
+    if (semSelect) {
+        semSelect.addEventListener("change", function () {
+            weeklySemester = Number(semSelect.value || "1");
+        });
+    }
+
+    // Add must courses button
+    var addBtn = document.getElementById("weeklyAddMustBtn");
+    if (addBtn) {
+        addBtn.addEventListener("click", function () {
+            var programCode = deptSelect ? deptSelect.value : "";
+            if (!programCode) {
+                setMessage("Please select a department first.", true);
+                return;
+            }
+            setMessage("Loading curriculum and OIBS data...", false);
+            setScheduleSummary("");
+            ensureDataLoaded()
+                .then(function () {
+                    renderCourseCards(programCode);
+                    setMessage("Added must courses for program " + programCode + ". Existing courses were kept. Use 'Clear list' to start over if needed.", false);
+                })
+                .catch(function () {
+                    setMessage("Could not load data for this operation.", true);
+                });
+        });
+    }
+
+    // Global rule toggles
+    var globalDeptToggle = document.getElementById("weeklyGlobalCheckDept");
+    var globalSurnameToggle = document.getElementById("weeklyGlobalCheckSurname");
+    if (globalDeptToggle) {
+        weeklyCheckDeptGlobal = !!globalDeptToggle.checked;
+        globalDeptToggle.addEventListener("change", function () {
+            weeklyCheckDeptGlobal = !!this.checked;
+            // sync all course toggles
+            document.querySelectorAll(".weekly-course-toggle-dept").forEach(function (el) {
+                el.checked = weeklyCheckDeptGlobal;
+            });
+        });
+    }
+    if (globalSurnameToggle) {
+        weeklyCheckSurnameGlobal = !!globalSurnameToggle.checked;
+        globalSurnameToggle.addEventListener("change", function () {
+            weeklyCheckSurnameGlobal = !!this.checked;
+            // sync all course toggles
+            document.querySelectorAll(".weekly-course-toggle-surname").forEach(function (el) {
+                el.checked = weeklyCheckSurnameGlobal;
+            });
+        });
+    }
+    var globalCollToggle = document.getElementById("weeklyGlobalCheckCollision");
+    if (globalCollToggle) {
+        weeklyCheckCollisionGlobal = !!globalCollToggle.checked;
+        globalCollToggle.addEventListener("change", function () {
+            weeklyCheckCollisionGlobal = !!this.checked;
+            document.querySelectorAll(".weekly-course-toggle-collision").forEach(function (el) {
+                el.checked = weeklyCheckCollisionGlobal;
+            });
+        });
+    }
+
+    // Schedule button: build multiple valid schedules, show in grid, prev/next to switch
+        var scheduleBtn = document.getElementById("weeklyScheduleBtn");
+        if (scheduleBtn) {
+            scheduleBtn.addEventListener("click", function () {
+                var programCode = deptSelect ? deptSelect.value : "";
+                var surname = (document.getElementById("weeklySurname").value || "").trim();
+                if (!programCode) {
+                    setScheduleSummary("<span class=\"weekly-messages--error\">Please select a department first.</span>");
+                    clearWeekGrid();
+                    return;
+                }
+                if (!surname) {
+                    setScheduleSummary("<span class=\"weekly-messages--error\">Please enter your surname for rules.</span>");
+                    clearWeekGrid();
+                    return;
+                }
+            ensureDataLoaded()
+                .then(function () {
+                    var planned = buildPlannedCourses();
+                    currentPlannedCodes = planned.map(function (pc) { return pc.code; });
+                    if (!planned.length) {
+                        setScheduleSummary("<span class=\"weekly-messages--error\">No courses in the list. Use 'Add must courses' first.</span>");
+                        clearWeekGrid();
+                        document.getElementById("weeklyScheduleNav").style.display = "none";
+                        return;
+                    }
+
+                    var surnameKey = surname.toUpperCase().slice(0, 2) || "AA";
+                    var studentDeptShort = getStudentDeptShort(programCode);
+
+                    function canPlaceMeetings(meetings, placed, courseCode) {
+                        meetings = meetings || [];
+                        var flags = getCourseRuleFlags(courseCode || "");
+                        var checkCollision = !!flags.checkCollision;
+                        if (!checkCollision) return true;
+                        for (var i = 0; i < meetings.length; i++) {
+                            var m = meetings[i];
+                            var day = (fixEncoding(m.day || "") || "").toLowerCase();
+                            if (!day) continue;
+                            var start = parseTimeToMinutes(m.start);
+                            var end = parseTimeToMinutes(m.end);
+                            if (start == null || end == null) continue;
+                            if (!placed[day]) placed[day] = [];
+                            var slots = placed[day];
+                            for (var j = 0; j < slots.length; j++) {
+                                var s2 = slots[j];
+                                // if existing slot does not enforce collision, skip it
+                                if (!s2.checkCollision) continue;
+                                if (start < s2.end && end > s2.start) return false;
+                            }
+                        }
+                        return true;
+                    }
+
+                    function placeMeetings(placed, code, meetings) {
+                        meetings = meetings || [];
+                        var flags = getCourseRuleFlags(code || "");
+                        var checkCollision = !!flags.checkCollision;
+                        for (var i = 0; i < meetings.length; i++) {
+                            var m = meetings[i];
+                            var day = (fixEncoding(m.day || "") || "").toLowerCase();
+                            if (!day) continue;
+                            var start = parseTimeToMinutes(m.start);
+                            var end = parseTimeToMinutes(m.end);
+                            if (start == null || end == null) continue;
+                            if (!placed[day]) placed[day] = [];
+                            placed[day].push({ start: start, end: end, code: code, checkCollision: checkCollision });
+                        }
+                    }
+
+                    function sectionAllowedForSurname(section, courseCode) {
+                        var rules = Array.isArray(section.rules) ? section.rules : [];
+                        if (!rules.length) return true;
+                        var flags = getCourseRuleFlags(courseCode);
+                        var checkDept = !!flags.checkDept;
+                        var checkSurname = !!flags.checkSurname;
+                        if (!checkDept && !checkSurname) return true;
+                        var key = normalizeForSurnameRange(surnameKey);
+                        var anyMatch = false;
+                        for (var i = 0; i < rules.length; i++) {
+                            var r = rules[i];
+                            var ruleDept = (r.given_dept || "").toUpperCase().trim();
+                            if (checkDept && ruleDept && ruleDept !== "ALL" && studentDeptShort && ruleDept !== studentDeptShort) {
+                                // This rule is for a different department; skip it
+                                continue;
+                            }
+                            // If we are not checking surname, any matching dept rule is enough
+                            if (!checkSurname) {
+                                anyMatch = true;
+                                break;
+                            }
+                            var sc = normalizeForSurnameRange(fixEncoding(r.start_char || ""));
+                            var ec = normalizeForSurnameRange(fixEncoding(r.end_char || ""));
+                            if (!sc && !ec) {
+                                // Dept matches (or is empty) and no surname restriction → allowed
+                                anyMatch = true;
+                                break;
+                            }
+                            var startKey = sc || "AA";
+                            var endKey = ec || "ZZ";
+                            if (key >= startKey && key <= endKey) {
+                                anyMatch = true;
+                                break;
+                            }
+                        }
+                        // If checking dept only and we had no matching rule, allow by default
+                        if (!checkSurname) return anyMatch || !checkDept;
+                        return anyMatch;
+                    }
+
+                    function runGreedy(plannedOrder, shuffleSections) {
+                        var placed = {};
+                        var chosen = [];
+                        for (var i = 0; i < plannedOrder.length; i++) {
+                            var pc = plannedOrder[i];
+                            var sections = weeklySectionsBy7 && weeklySectionsBy7[pc.code7];
+                            if (!sections || !sections.length) continue;
+                            var list = sections.slice();
+                            if (shuffleSections && list.length > 1) {
+                                for (var k = list.length - 1; k > 0; k--) {
+                                    var j = Math.floor(Math.random() * (k + 1));
+                                    var tmp = list[k];
+                                    list[k] = list[j];
+                                    list[j] = tmp;
+                                }
+                            }
+                            var placedThis = false;
+                            for (var j = 0; j < list.length; j++) {
+                                var s = list[j];
+                                if (!sectionAllowedForSurname(s, pc.code)) continue;
+                                if (!canPlaceMeetings(s.meetings, placed, pc.code)) continue;
+                                placeMeetings(placed, pc.code, s.meetings);
+                                chosen.push({
+                                    code: pc.code,
+                                    code7: pc.code7,
+                                    sectionNum: s.section,
+                                    section: s,
+                                    meetings: s.meetings || [],
+                                    accent: (weeklyAccentByCode && weeklyAccentByCode[pc.code]) || "1"
+                                });
+                                placedThis = true;
+                                break;
+                            }
+                            if (!placedThis) return null;
+                        }
+                        return chosen.length === plannedOrder.length ? chosen : null;
+                    }
+
+                    function scheduleKey(schedule) {
+                        return schedule.map(function (x) { return x.code + ":" + x.sectionNum; }).sort().join("|");
+                    }
+
+                    function deepCopyPlaced(placed) {
+                        var out = {};
+                        for (var day in placed) {
+                            if (placed.hasOwnProperty(day) && Array.isArray(placed[day])) {
+                                out[day] = placed[day].slice();
+                            }
+                        }
+                        return out;
+                    }
+
+                    // Build allowed sections per course (filtered by department + surname only, honoring toggles)
+                    var allowedByCourse = [];
+                    for (var i = 0; i < planned.length; i++) {
+                        var pc = planned[i];
+                        var sections = weeklySectionsBy7 && weeklySectionsBy7[pc.code7];
+                        var list = [];
+                        if (sections) {
+                                for (var j = 0; j < sections.length; j++) {
+                                    if (sectionAllowedForSurname(sections[j], pc.code)) list.push(sections[j]);
+                            }
+                        }
+                        allowedByCourse.push({ pc: pc, sections: list });
+                    }
+
+                    var failed = [];
+                    var courseOptions = {};
+
+                    // Collect all sections that satisfy department + surname rules,
+                    // ignoring time collisions completely.
+                    planned.forEach(function (pc) {
+                        var sections = weeklySectionsBy7 && weeklySectionsBy7[pc.code7];
+                        var opts = [];
+                        if (sections && sections.length) {
+                            for (var i = 0; i < sections.length; i++) {
+                                var s = sections[i];
+                                if (sectionAllowedForSurname(s, pc.code)) {
+                                    opts.push(s.section || "?");
+                                }
+                            }
+                        }
+                        courseOptions[pc.code] = opts;
+                    });
+
+                    // Separate pass to see which courses we fail to place when considering time collisions
+                    (function () {
+                        var placed = {};
+                        planned.forEach(function (pc) {
+                            var sections = weeklySectionsBy7 && weeklySectionsBy7[pc.code7];
+                            if (!sections || !sections.length) {
+                                failed.push(pc.code + " (no sections data)");
+                                return;
+                            }
+                            var placedThis = false;
+                            for (var i = 0; i < sections.length; i++) {
+                                var s = sections[i];
+                                if (!sectionAllowedForSurname(s, pc.code)) continue;
+                                if (!canPlaceMeetings(s.meetings, placed, pc.code)) continue;
+                                placeMeetings(placed, pc.code, s.meetings);
+                                placedThis = true;
+                                break;
+                            }
+                            if (!placedThis) failed.push(pc.code);
+                        });
+                    })();
+
+                    // Serialize for worker: only pc + sections with normalized meeting times + collision flag
+                    var allowedByCourseSerial = allowedByCourse.map(function (item) {
+                        var flags = getCourseRuleFlags(item.pc.code);
+                        return {
+                            pc: { code: item.pc.code, code7: item.pc.code7 },
+                            checkCollision: !!(flags && flags.checkCollision),
+                            sections: (item.sections || []).map(function (s) {
+                                return {
+                                    section: s.section,
+                                    meetings: (s.meetings || []).map(function (m) {
+                                        return {
+                                            day: (fixEncoding(m.day) || "").toLowerCase(),
+                                            start: m.start,
+                                            end: m.end,
+                                            room: m.room
+                                        };
+                                    })
+                                };
+                            })
+                        };
+                    });
+
+                    setScheduleSummary("<span class=\"weekly-messages--info\">Finding all non-conflicting schedules…</span>");
+                    clearWeekGrid();
+                    document.getElementById("weeklyScheduleNav").style.display = "none";
+
+                    var worker = new Worker("schedule_worker.js");
+
+                    // Convert busy slot rows into minute ranges for the worker
+                    var busyPayload = {};
+                    if (weeklyBusySlots) {
+                        for (var d = 0; d < WEEK_COL_TO_DAY.length; d++) {
+                            var dayKey = WEEK_COL_TO_DAY[d];
+                            var rows = weeklyBusySlots[dayKey] || [];
+                            if (!rows.length) continue;
+                            busyPayload[dayKey] = rows.map(function (rowIdx) {
+                                var start = WEEK_FIRST_SLOT_START + rowIdx * WEEK_SLOT_MINUTES;
+                                return {
+                                    start: start,
+                                    end: start + WEEK_SLOT_MINUTES
+                                };
+                            });
+                        }
+                    }
+
+                    worker.postMessage({ allowedByCourse: allowedByCourseSerial, busySlots: busyPayload });
+
+                    worker.onmessage = function (e) {
+                        worker.terminate();
+                        var solutions = e.data.list || [];
+                        // Add accent and section ref for existing render/nav (unchanged)
+                        solutions.forEach(function (sol) {
+                            sol.forEach(function (item) {
+                                item.accent = (weeklyAccentByCode && weeklyAccentByCode[item.code]) || "1";
+                                item.section = { section: item.sectionNum, meetings: item.meetings || [] };
+                            });
+                        });
+                        if (solutions.length === 0) {
+                            var one = runGreedy(planned, false);
+                            if (one) solutions.push(one);
+                        }
+
+                        currentSchedulesList = solutions;
+                        currentScheduleIndex = 0;
+                        currentScheduleFailed = failed;
+                        currentCourseOptions = courseOptions;
+                        currentScheduleCapHit = false;
+
+                        if (solutions.length === 0) {
+                            var noSectionsData = failed.length && failed.every(function (f) { return f.indexOf("(no sections data)") !== -1; });
+                            var html = "";
+                            if (noSectionsData && (!weeklySectionsBy7 || !Object.keys(weeklySectionsBy7).length)) {
+                                html += "<div class=\"weekly-messages--error\"><strong>Sections data not loaded.</strong> Put <code>oibs_sections_20252.json</code> in the same folder (run <code>update_oibs.bat</code>).</div><br>";
+                            }
+                            if (noSectionsData && failed.length) {
+                                // Friendlier message when some courses simply have no section data
+                                var failedCourses = failed.map(function (f) {
+                                    var idx = f.indexOf(" (");
+                                    return idx >= 0 ? f.slice(0, idx) : f;
+                                });
+                                html += "<div class=\"weekly-messages--info\">";
+                                html += "We couldn't find any section times in OIBS for the following course(s), so a complete weekly schedule including them couldn't be built: <strong>";
+                                html += failedCourses.join(", ");
+                                html += "</strong>. They may not be opened this semester or their section data is missing.";
+                                html += "</div>";
+                            } else {
+                                if (courseOptions && Object.keys(courseOptions).length) {
+                                    html += "<div><strong>Possible sections (dept + surname rules only):</strong><br>";
+                                    Object.keys(courseOptions).forEach(function (code) {
+                                        var list = courseOptions[code];
+                                        html += code + ": " + (!list || !list.length ? "none" : list.join(", ")) + "<br>";
+                                    });
+                                    html += "</div>";
+                                }
+                                html += "<div class=\"weekly-messages--error\"><strong>Could not build a schedule.</strong></div>";
+                                if (failed.length) html += "<br>Could not place: " + failed.join(", ");
+                            }
+                            setScheduleSummary(html);
+                            document.getElementById("weeklyScheduleNav").style.display = "none";
+                            clearWeekGrid();
+                            return;
+                        }
+
+                        renderScheduleInGrid(solutions[0]);
+                        showScheduleNav(solutions.length, failed);
+                    };
+
+                    worker.onerror = function (err) {
+                        worker.terminate();
+                        var msg = "Schedule worker failed.";
+                        if (err && err.message) msg += " " + err.message;
+                        setScheduleSummary("<span class=\"weekly-messages--error\">" + msg + "</span>");
+                        document.getElementById("weeklyScheduleNav").style.display = "none";
+                        clearWeekGrid();
+                    };
+                })
+                .catch(function (err) {
+                    var msg = "Could not load data to build schedule.";
+                    if (err && err.message) msg += " " + err.message;
+                    else msg += " Make sure oibs_sections_20252.json exists and run update_oibs.bat if needed.";
+                    setScheduleSummary("<span class=\"weekly-messages--error\">" + msg + "</span>");
+                    document.getElementById("weeklyScheduleNav").style.display = "none";
+                    clearWeekGrid();
+                });
+        });
+    }
+
+    // Manual add by code in Weekly view
+    var addCourseInput = document.getElementById("weeklyAddCourseInput");
+    var addCourseBtn = document.getElementById("weeklyAddCourseBtn");
+    var suggestBox = document.getElementById("weeklyAddCourseSuggestions");
+    if (addCourseBtn && addCourseInput) {
+        addCourseBtn.addEventListener("click", function () {
+            addCourseCardByCode(addCourseInput.value);
+        });
+        addCourseInput.addEventListener("keydown", function (e) {
+            if (e.key === "Enter") {
+                e.preventDefault();
+                addCourseCardByCode(addCourseInput.value);
+            }
+        });
+        addCourseInput.addEventListener("input", function () {
+            var q = (addCourseInput.value || "").trim().toUpperCase();
+            if (!q || q.length < 2 || !suggestBox) {
+                if (suggestBox) {
+                    suggestBox.innerHTML = "";
+                    suggestBox.classList.remove("is-open");
+                }
+                return;
+            }
+            function buildSuggestions() {
+                if (!weeklyCoursesByCode || !weeklyOfferedBy7) return;
+                var matches = [];
+                Object.keys(weeklyCoursesByCode).some(function (code) {
+                    if (matches.length >= 12) return true;
+                    var info = weeklyCoursesByCode[code];
+                    var code7 = info && info.course_code_7digit ? String(info.course_code_7digit) : "";
+                    if (!code7 || !weeklyOfferedBy7[code7]) return false;
+                    var upper = String(code).toUpperCase();
+                    var name = info && fixEncoding(info.name) || "";
+                    if (upper.indexOf(q) === -1 && name.toUpperCase().indexOf(q) === -1) return false;
+                    matches.push({ code: code, name: name });
+                    return false;
+                });
+                suggestBox.innerHTML = "";
+                if (!matches.length) {
+                    suggestBox.classList.remove("is-open");
+                    return;
+                }
+                matches.forEach(function (m) {
+                    var item = document.createElement("button");
+                    item.type = "button";
+                    item.className = "weekly-suggest-item";
+                    var codeEl = document.createElement("code");
+                    codeEl.textContent = m.code;
+                    var nameEl = document.createElement("span");
+                    nameEl.textContent = m.name || "";
+                    item.appendChild(codeEl);
+                    item.appendChild(nameEl);
+                    item.addEventListener("click", function () {
+                        addCourseInput.value = m.code;
+                        suggestBox.innerHTML = "";
+                        suggestBox.classList.remove("is-open");
+                        addCourseCardByCode(m.code);
+                    });
+                    suggestBox.appendChild(item);
+                });
+                suggestBox.classList.add("is-open");
+            }
+            if (!weeklyCoursesByCode || !weeklyOfferedBy7) {
+                ensureDataLoaded()
+                    .then(buildSuggestions)
+                    .catch(function () {
+                        suggestBox.innerHTML = "";
+                        suggestBox.classList.remove("is-open");
+                    });
+            } else {
+                buildSuggestions();
+            }
+        });
+    }
+
+    // Prefill from Planner: load codes from localStorage and add them
+    try {
+        var prefillRaw = localStorage.getItem("metu_weekly_prefill_codes");
+        if (prefillRaw) {
+            var prefillCodes = JSON.parse(prefillRaw);
+            if (Array.isArray(prefillCodes) && prefillCodes.length) {
+                ensureDataLoaded().then(function () {
+                    prefillCodes.forEach(function (c) {
+                        addCourseCardByCode(c);
+                    });
+                    // clear after use so it doesn't re-add next time
+                    localStorage.removeItem("metu_weekly_prefill_codes");
+                });
+            }
+        }
+    } catch (e) {
+        // ignore errors
+    }
+
+    // --- Save / Load / Save to portal for weekly configuration ---
+    function getWeeklyState() {
+        var listEl = document.getElementById("weeklyCoursesList");
+        var courses = [];
+        if (listEl) {
+            listEl.querySelectorAll(".weekly-course-card").forEach(function (card) {
+                var codeEl = card.querySelector(".weekly-course-code");
+                var code = codeEl && codeEl.textContent ? codeEl.textContent.trim() : "";
+                if (!code) return;
+                courses.push(code);
+            });
+        }
+        return {
+            version: 2,
+            codes: courses,
+            schedules: currentSchedulesList || [],
+            selectedIndex: currentScheduleIndex || 0,
+            failed: currentScheduleFailed || [],
+            busySlots: weeklyBusySlots || {},
+            rules: {
+                checkDept: !!weeklyCheckDeptGlobal,
+                checkSurname: !!weeklyCheckSurnameGlobal,
+                checkCollision: !!weeklyCheckCollisionGlobal
+            },
+            plannedCodes: currentPlannedCodes || []
+        };
+    }
+
+    function applyWeeklyState(state) {
+        if (!state || !state.codes || !Array.isArray(state.codes)) return;
+        var codes = state.codes.slice();
+        if (!codes.length) return;
+
+        // Backwards-compat for old v1 saves (codes only)
+        var isV1 = !state.version || state.version === 1;
+
+        // Restore global flags when available
+        if (!isV1 && state.rules) {
+            weeklyCheckDeptGlobal = !!state.rules.checkDept;
+            weeklyCheckSurnameGlobal = !!state.rules.checkSurname;
+            weeklyCheckCollisionGlobal = !!state.rules.checkCollision;
+        }
+        if (!isV1 && state.busySlots) {
+            weeklyBusySlots = state.busySlots || {};
+        } else {
+            weeklyBusySlots = weeklyBusySlots || {};
+        }
+
+        if (!isV1) {
+            currentSchedulesList = Array.isArray(state.schedules) ? state.schedules.slice() : [];
+            currentScheduleIndex = typeof state.selectedIndex === "number" ? state.selectedIndex : 0;
+            currentScheduleFailed = Array.isArray(state.failed) ? state.failed.slice() : [];
+            currentPlannedCodes = Array.isArray(state.plannedCodes) ? state.plannedCodes.slice() : codes.slice();
+        } else {
+            currentSchedulesList = [];
+            currentScheduleIndex = 0;
+            currentScheduleFailed = [];
+            currentPlannedCodes = codes.slice();
+        }
+
+        var listEl = document.getElementById("weeklyCoursesList");
+        if (listEl) listEl.innerHTML = "";
+
+        ensureDataLoaded().then(function () {
+            // Rebuild course cards
+            codes.forEach(function (c) {
+                addCourseCardByCode(c);
+            });
+
+            // If we have saved schedules, restore the week view as well
+            if (!isV1 && currentSchedulesList && currentSchedulesList.length) {
+                var idx = currentScheduleIndex;
+                if (idx < 0 || idx >= currentSchedulesList.length) idx = 0;
+                currentScheduleIndex = idx;
+                renderScheduleInGrid(currentSchedulesList[currentScheduleIndex]);
+                showScheduleNav(currentSchedulesList.length, currentScheduleFailed || []);
+            } else {
+                clearWeekGrid();
+                var nav = document.getElementById("weeklyScheduleNav");
+                if (nav) nav.style.display = "none";
+            }
+        });
+    }
+
+    var weeklySaveBtn = document.getElementById("weeklySaveBtn");
+    if (weeklySaveBtn) {
+        weeklySaveBtn.addEventListener("click", function () {
+            var state = getWeeklyState();
+            if (!state.codes.length) {
+                setScheduleSummary("<span class=\"weekly-messages--error\">Nothing to save: no courses in the weekly list.</span>");
+                return;
+            }
+            var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "metu-weekly-schedule.json";
+            a.click();
+            URL.revokeObjectURL(a.href);
+        });
+    }
+
+    var weeklyLoadBtn = document.getElementById("weeklyLoadBtn");
+    if (weeklyLoadBtn) {
+        weeklyLoadBtn.addEventListener("click", function () {
+            var input = document.createElement("input");
+            input.type = "file";
+            input.accept = ".json,application/json";
+            input.addEventListener("change", function (e) {
+                var file = e.target.files && e.target.files[0];
+                if (!file) return;
+                var reader = new FileReader();
+                reader.onload = function () {
+                    try {
+                        var data = JSON.parse(reader.result);
+                        applyWeeklyState(data);
+                        setScheduleSummary("<span class=\"weekly-messages--info\">Weekly schedule loaded from file.</span>");
+                    } catch (err) {
+                        setScheduleSummary("<span class=\"weekly-messages--error\">Could not load weekly schedule file.</span>");
+                    }
+                };
+                reader.readAsText(file, "UTF-8");
+            });
+            input.click();
+        });
+    }
+
+    var weeklySaveToPortalBtn = document.getElementById("weeklySaveToPortalBtn");
+    if (weeklySaveToPortalBtn) {
+        weeklySaveToPortalBtn.addEventListener("click", function () {
+            var state = getWeeklyState();
+            try {
+                localStorage.setItem("metu_portal_weekly_preview", JSON.stringify(state));
+                setScheduleSummary("<span class=\"weekly-messages--info\">Weekly schedule saved for portal preview.</span>");
+            } catch (e) {
+                setScheduleSummary("<span class=\"weekly-messages--error\">Could not save weekly schedule for portal.</span>");
+            }
+        });
+    }
+
+    // Clear list button
+    var clearBtn = document.getElementById("weeklyClearCoursesBtn");
+    if (clearBtn) {
+        clearBtn.addEventListener("click", function () {
+            var listEl = document.getElementById("weeklyCoursesList");
+            if (listEl) listEl.innerHTML = "";
+            currentSchedulesList = [];
+            currentScheduleIndex = 0;
+            currentPlannedCodes = [];
+            currentScheduleNoTimesCourses = [];
+            document.getElementById("weeklyScheduleNav").style.display = "none";
+            clearWeekGrid();
+            setScheduleSummary("");
+            setMessage("Cleared all courses from the list.", false);
+        });
+    }
+
+    // Initialize the week grid immediately so the user can add/remove
+    // BUSY slots even before adding any courses or running Schedule.
+    clearWeekGrid();
+})();
+</script>
+</body>
+</html>
+

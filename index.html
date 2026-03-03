@@ -274,6 +274,41 @@ body {
     font-size: 0.85rem;
 }
 
+.portal-week-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+}
+
+.portal-week-grid thead th {
+    text-align: center;
+    padding: 4px 6px;
+    border-bottom: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+}
+
+.portal-week-grid th,
+.portal-week-grid td {
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 4px 6px;
+    text-align: center;
+}
+
+.portal-week-grid .portal-week-time {
+    text-align: right;
+    color: var(--text-muted);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.portal-week-grid .portal-week-slot {
+    min-width: 72px;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 @media (max-width: 600px) {
     body { padding: 20px 16px; }
     .portal-header { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -314,6 +349,18 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
     </div>
   </section>
 
+  <section class="portal-courses-section" id="portalWeeklySection" style="display: none;">
+    <div class="portal-courses-header">
+      <h2 class="portal-courses-title">Saved weekly schedule</h2>
+      <div class="portal-courses-actions">
+        <a href="weekly.html" class="portal-btn portal-btn--primary">Open weekly</a>
+      </div>
+    </div>
+    <div class="portal-course-list" id="portalWeeklyList">
+      <span class="portal-course-list--empty">No weekly schedule saved</span>
+    </div>
+  </section>
+
   <main class="portal-grid">
     <a href="planner.html" class="portal-card" id="plannerCard">
       <h3>Course Planner</h3>
@@ -321,11 +368,11 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
       <span class="portal-card-continue" id="plannerContinue" style="display: none;"></span>
     </a>
 
-    <div class="portal-card portal-card--disabled" aria-disabled="true">
+    <a href="weekly.html" class="portal-card">
       <h3>Weekly Schedule</h3>
       <p>View and edit your weekly timetable by course sections.</p>
-      <span class="portal-card-badge">Coming soon</span>
-    </div>
+      <span class="portal-card-badge">Beta</span>
+    </a>
 
     <div class="portal-card portal-card--disabled" aria-disabled="true">
       <h3>Section Selection</h3>
@@ -338,10 +385,18 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
 <script>
 (function() {
   var METU_PORTAL_PLANNER_STATE = 'metu_portal_planner_state';
+  var METU_PORTAL_WEEKLY_PREVIEW = 'metu_portal_weekly_preview';
 
   function getPlanState() {
     try {
       var raw = localStorage.getItem(METU_PORTAL_PLANNER_STATE);
+      return raw ? JSON.parse(raw) : null;
+    } catch (e) { return null; }
+  }
+
+  function getWeeklyPreviewState() {
+    try {
+      var raw = localStorage.getItem(METU_PORTAL_WEEKLY_PREVIEW);
       return raw ? JSON.parse(raw) : null;
     } catch (e) { return null; }
   }
@@ -377,6 +432,116 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
     selectEl.value = state.semesters[0].semNumber;
     updateCourseList();
     selectEl.onchange = updateCourseList;
+  }
+
+  function renderWeeklyPreviewSection() {
+    var state = getWeeklyPreviewState();
+    var section = document.getElementById('portalWeeklySection');
+    var listEl = document.getElementById('portalWeeklyList');
+    if (!section || !listEl) return;
+    if (!state || !Array.isArray(state.codes) || !state.codes.length) {
+      section.style.display = 'none';
+      return;
+    }
+    section.style.display = 'block';
+    listEl.innerHTML = '';
+    listEl.classList.remove('portal-course-list--empty');
+
+    var codes = state.codes.slice();
+    var schedules = Array.isArray(state.schedules) ? state.schedules : [];
+    var selectedIndex = typeof state.selectedIndex === 'number' ? state.selectedIndex : 0;
+
+    if (schedules.length) {
+      var WEEK_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+      var WEEK_SLOTS = ['08:40–09:30', '09:40–10:30', '10:40–11:30', '11:40–12:30', '12:40–13:30', '13:40–14:30', '14:40–15:30', '15:40–16:30', '16:40–17:30'];
+
+      function dayToCol(day) {
+        if (!day) return -1;
+        var d = String(day).toLowerCase();
+        if (d.indexOf('mon') === 0) return 0;
+        if (d.indexOf('tue') === 0) return 1;
+        if (d.indexOf('wed') === 0) return 2;
+        if (d.indexOf('thu') === 0) return 3;
+        if (d.indexOf('fri') === 0) return 4;
+        return -1;
+      }
+
+      var grid = [];
+      for (var r = 0; r < WEEK_SLOTS.length; r++) {
+        grid[r] = [];
+        for (var c = 0; c < WEEK_DAYS.length; c++) {
+          grid[r][c] = '';
+        }
+      }
+
+      var sched = schedules[selectedIndex] || schedules[0];
+      if (Array.isArray(sched)) {
+        sched.forEach(function (item) {
+          if (!item || !item.code) return;
+          var labelBase = item.code + (item.sectionNum ? (' Sec ' + item.sectionNum) : '');
+          var meetings = item.meetings || [];
+          meetings.forEach(function (m) {
+            var day = (m.day || '').toLowerCase();
+            var col = dayToCol(day);
+            var slotLabel = (m.start || '') + '–' + (m.end || '');
+            var row = WEEK_SLOTS.indexOf(slotLabel);
+            if (col < 0 || row < 0) return;
+            if (grid[row][col]) grid[row][col] += ', ' + labelBase;
+            else grid[row][col] = labelBase;
+          });
+        });
+      }
+
+      var table = document.createElement('table');
+      table.className = 'portal-week-grid';
+
+      var thead = document.createElement('thead');
+      var hr = document.createElement('tr');
+      var emptyTh = document.createElement('th');
+      emptyTh.className = 'portal-week-time';
+      hr.appendChild(emptyTh);
+      WEEK_DAYS.forEach(function (d) {
+        var th = document.createElement('th');
+        th.textContent = d;
+        hr.appendChild(th);
+      });
+      thead.appendChild(hr);
+      table.appendChild(thead);
+
+      var tbody = document.createElement('tbody');
+      for (var r2 = 0; r2 < WEEK_SLOTS.length; r2++) {
+        var tr = document.createElement('tr');
+        var timeCell = document.createElement('th');
+        timeCell.className = 'portal-week-time';
+        timeCell.textContent = WEEK_SLOTS[r2];
+        tr.appendChild(timeCell);
+        for (var c2 = 0; c2 < WEEK_DAYS.length; c2++) {
+          var td = document.createElement('td');
+          td.className = 'portal-week-slot';
+          td.textContent = grid[r2][c2];
+          tr.appendChild(td);
+        }
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+
+      listEl.appendChild(table);
+    } else {
+      // Fallback: just list course codes if no schedule saved
+      codes.forEach(function (code) {
+        var item = document.createElement('div');
+        item.className = 'portal-course-item';
+        var codeSpan = document.createElement('span');
+        codeSpan.className = 'portal-course-code';
+        codeSpan.textContent = code;
+        var label = document.createElement('span');
+        label.className = 'portal-course-grade';
+        label.textContent = '';
+        item.appendChild(codeSpan);
+        item.appendChild(label);
+        listEl.appendChild(item);
+      });
+    }
   }
 
   function updateCourseList() {
@@ -424,12 +589,13 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
 
   setContinueHint();
   renderCoursesSection();
-  window.addEventListener('storage', function() { setContinueHint(); renderCoursesSection(); });
+  renderWeeklyPreviewSection();
+  window.addEventListener('storage', function() { setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); });
   document.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'visible') { setContinueHint(); renderCoursesSection(); }
+    if (document.visibilityState === 'visible') { setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); }
   });
   window.addEventListener('pageshow', function(e) {
-    if (e.persisted) { setContinueHint(); renderCoursesSection(); }
+    if (e.persisted) { setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); }
   });
 
   var saveBtn = document.getElementById('portalSaveBtn');

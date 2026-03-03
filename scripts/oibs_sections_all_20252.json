@@ -1,0 +1,109 @@
+{
+  "semester": "20252",
+  "departments": [
+    {
+      "value": "976",
+      "text": "Actuarial Science/AktÃ¼erya Bilimleri",
+      "courses": []
+    },
+    {
+      "value": "572",
+      "text": "Aerospace Engineering/HavacÄ±lÄ±k ve Uzay MÃ¼hendisliÄi",
+      "courses": [
+        {
+          "internal_code": "5720172",
+          "code": "5720172",
+          "name": "INTRODUCTION TO AIRCRAFT PERFORMANCE (HAVA ARAÃLARI PERFORMANSINA GÄ°RÄ°Å)",
+          "sections": [
+            {
+              "section": "1",
+              "instr1": "KAHVECÄ° HARÄ°KA SENEM",
+              "instr2": "STAFF",
+              "rules": [
+                {
+                  "given_dept": "AEE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "internal_code": "5720200",
+          "code": "5720200",
+          "name": "SUMMER PRACTICE I (YAZ STAJI I)",
+          "sections": [
+            {
+              "section": "1",
+              "instr1": "GÃLOÄLU GÃRKEM EÄEMEN",
+              "instr2": "STAFF",
+              "rules": [
+                {
+                  "given_dept": "AEE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "internal_code": "5720244",
+          "code": "5720244",
+          "name": "FLUID MECHANICS (AKIÅKANLAR MEKANÄ°ÄÄ°)",
+          "sections": [
+            {
+              "section": "1",
+              "instr1": "BAÅKAN PERÃÄ°N ÃZGE",
+              "instr2": "STAFF",
+              "rules": [
+                {
+                  "given_dept": "AEE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "1",
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
+            },
+            {
+              "section": "2",
+              "instr1": "KAHVECÄ° HARÄ°KA SENEM",
+              "instr2": "STAFF",
+              "rules": [
+                {
+                  "given_dept": "AEE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "1",
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

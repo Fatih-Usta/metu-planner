@@ -123,7 +123,7 @@ body {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 #langSelect {
@@ -135,11 +135,38 @@ body {
     font-size: 0.8rem;
     font-weight: 500;
     cursor: pointer;
-    transition: border-color var(--transition);
+    transition: border-color var(--transition), background var(--transition), color var(--transition);
 }
+
 #langSelect:focus {
     outline: none;
     border-color: var(--metu-red);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    padding: 6px 10px;
+    border-radius: var(--radius-full);
+    transition: background var(--transition), color var(--transition);
+}
+
+.nav-links a:hover {
+    background: var(--accent-soft);
+    color: var(--text-main);
+}
+
+.nav-links a.active {
+    background: var(--metu-red-soft);
+    color: var(--metu-red);
+    font-weight: 600;
 }
 
 .layout {
@@ -244,6 +271,27 @@ button {
     gap: 8px;
     transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
     box-shadow: 0 2px 8px rgba(196, 30, 58, 0.3);
+}
+
+/* Override generic button styles for the header theme toggle
+   so it matches the Weekly Schedule page appearance. */
+button.theme-toggle {
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: none;
+    transform: none;
+    gap: 0;
+}
+
+button.theme-toggle:hover {
+    background: var(--accent-soft);
+    color: var(--text-main);
+    border-color: var(--metu-red);
 }
 
 button:hover {
@@ -369,6 +417,12 @@ button span.dot {
 .semester-max-input::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.semester-header .semester-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .semester-max-input[type="number"] {
@@ -923,9 +977,51 @@ button span.dot {
 
 .dept-right {
     display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+}
+
+.dept-row-main {
+    display: flex;
     align-items: center;
     gap: 10px;
     flex-wrap: wrap;
+}
+
+.dept-row-plan {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.plan-tools-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: -4px 0 20px; /* close to dept-bar but no box */
+}
+
+.plan-to-weekly-btn {
+    padding: 8px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color var(--transition), background var(--transition), color var(--transition);
+    box-shadow: none;
+}
+
+.plan-to-weekly-btn:hover {
+    border-color: var(--metu-red);
+    background: var(--accent-soft);
+    color: var(--metu-red);
 }
 
 .plan-slot-wrap {
@@ -952,14 +1048,36 @@ button span.dot {
     color: var(--text-muted);
     font-size: 0.78rem;
     cursor: pointer;
-    transition: color var(--transition), border-color var(--transition), background var(--transition);
+    box-shadow: none; /* remove red glow from generic button style */
+    transition: color var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
 }
 
 .plan-slot-save-btn:hover,
 .plan-slot-load-btn:hover {
     color: var(--text-main);
+    border-color: var(--border-subtle);
+    background: var(--bg-input);
+    box-shadow: none;
+}
+
+.semester-weekly-btn {
+    padding: 6px 10px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: none;
+    transition: border-color var(--transition), background var(--transition), color var(--transition);
+    white-space: nowrap;
+}
+
+.semester-weekly-btn:hover {
     border-color: var(--metu-red);
     background: var(--accent-soft);
+    color: var(--metu-red);
 }
 
 #departmentSelect {
@@ -1295,10 +1413,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       </div>
     </div>
     <div class="header-actions">
-      <a href="index.html" class="portal-link" data-i18n="portalBack">Portal</a>
-      <button type="button" class="about-btn" id="aboutBtn" aria-label="Hakkında">
-        <span data-i18n="aboutBtn">Hakkında</span>
-      </button>
+      <nav class="nav-links">
+        <a href="index.html" data-i18n="navPortal">Portal</a>
+        <a href="planner.html" class="active" data-i18n="navPlanner">Planner</a>
+        <a href="weekly.html" data-i18n="navWeekly">Weekly schedule</a>
+      </nav>
       <select id="langSelect" onchange="setLanguage(this.value)">
         <option value="tr">Türkçe</option>
         <option value="en">English</option>
@@ -1332,33 +1451,37 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       <span data-i18n="deptComingSoon">Bölümü seçip uygulayınca müfredat dönemlere otomatik yüklenir.</span>
     </div>
     <div class="dept-right">
-      <select id="departmentSelect">
-        <option value="" data-i18n-opt="deptPlaceholder">Bölüm seç...</option>
-      </select>
-      <button type="button" onclick="setDepartment()">
-        <span class="dot"></span>
-        <span data-i18n="deptApply">Bölümü uygula</span>
-      </button>
-      <div class="plan-slot-wrap">
-        <select id="planSlotSelect" class="plan-slot-select">
-          <option value="main">Plan 1</option>
-          <option value="alt1">Plan 2</option>
-          <option value="alt2">Plan 3</option>
+      <div class="dept-row-main">
+        <select id="departmentSelect">
+          <option value="" data-i18n-opt="deptPlaceholder">Bölüm seç...</option>
         </select>
-        <button type="button" onclick="savePlanToSlot()" class="plan-slot-save-btn">
-          <span data-i18n="planSlotSave">Bu slota kaydet</span>
-        </button>
-        <button type="button" onclick="loadPlanFromSlot()" class="plan-slot-load-btn">
-          <span data-i18n="planSlotLoad">Slottan yükle</span>
+        <button type="button" onclick="setDepartment()">
+          <span class="dot"></span>
+          <span data-i18n="deptApply">Bölümü uygula</span>
         </button>
       </div>
-      <button type="button" onclick="savePlan()" id="savePlanBtn">
-        <span data-i18n="savePlan">Kaydet</span>
-      </button>
-      <button type="button" onclick="document.getElementById('loadPlanFile').click()" id="loadPlanBtn">
-        <span data-i18n="loadPlan">Yükle</span>
-      </button>
-      <input type="file" id="loadPlanFile" accept=".json" style="display:none" onchange="onLoadPlanFileChosen(event)">
+      <div class="dept-row-plan">
+        <div class="plan-slot-wrap">
+          <select id="planSlotSelect" class="plan-slot-select">
+            <option value="main">Plan 1</option>
+            <option value="alt1">Plan 2</option>
+            <option value="alt2">Plan 3</option>
+          </select>
+          <button type="button" onclick="savePlanToSlot()" class="plan-slot-save-btn">
+            <span data-i18n="planSlotSave">Bu slota kaydet</span>
+          </button>
+          <button type="button" onclick="loadPlanFromSlot()" class="plan-slot-load-btn">
+            <span data-i18n="planSlotLoad">Slottan yükle</span>
+          </button>
+        </div>
+        <button type="button" onclick="savePlan()" id="savePlanBtn">
+          <span data-i18n="savePlan">Kaydet</span>
+        </button>
+        <button type="button" onclick="document.getElementById('loadPlanFile').click()" id="loadPlanBtn">
+          <span data-i18n="loadPlan">Yükle</span>
+        </button>
+        <input type="file" id="loadPlanFile" accept=".json" style="display:none" onchange="onLoadPlanFileChosen(event)">
+      </div>
     </div>
   </div>
 
@@ -1549,6 +1672,9 @@ const translations = {
     aboutP2: "Bu siteyi, ben de dahil olmak üzere çevremde çoğu kişinin yaşadığı ortalama hesaplama sorunu ve okul uzar mı uzamaz mı problemleri yüzünden yaptım.",
     aboutP3: "Site bölümünüze göre ders programınızı ekliyor; istediğiniz gibi dersleri ayarlayıp çakışmalara ve dönemlere göre uyarılarla programınızı düzenleyebiliyorsunuz. Notlarınızı girdiğiniz zaman ise direkt ortalamanızı görebiliyorsunuz.",
     aboutP4: "Siteyi ileride daha da geliştirip SAIS'e entegre, hatta alternatif olabilecek hale getirmek istiyorum. Eğer bir sorun görürseniz ya da tavsiye vermek isterseniz aşağıdaki mailden ulaşabilirsiniz.",
+    navPortal: "Portal",
+    navPlanner: "Planlayıcı",
+    navWeekly: "Haftalık program",
     aboutCloseLabel: "Kapat"
   },
   en: {
@@ -1643,6 +1769,9 @@ const translations = {
     aboutP2: "I built this site because many people around me, including myself, struggle with GPA calculations and wondering whether their degree will take longer than expected.",
     aboutP3: "The site loads your curriculum by department; you can arrange courses as you like and get warnings for conflicts and semesters. When you enter your grades, you see your average right away.",
     aboutP4: "I plan to develop it further and integrate it with SAIS, or even offer it as an alternative. If you see any issue or want to suggest something, you can reach me at the email below.",
+    navPortal: "Portal",
+    navPlanner: "Planner",
+    navWeekly: "Weekly schedule",
     aboutCloseLabel: "Close"
   }
 };
@@ -1894,19 +2023,34 @@ function addYearRow() {
         div.className = "semester";
         div.id = "semester" + semesterNumber;
         div.dataset.semester = semesterNumber;
-        div.innerHTML =
-            "<div class='semester-header'>" +
-                "<div class='semester-title'>" + semesterNumber + ". " + t("semester") + "</div>" +
+    div.innerHTML =
+        "<div class='semester-header'>" +
+            "<div class='semester-title'>" + semesterNumber + ". " + t("semester") + "</div>" +
+            "<div class='semester-actions'>" +
                 "<label class='semester-max'>" +
                     "<span>" + t("maxCredits") + "</span>" +
                     "<input type='number' class='semester-max-input' value='5' min='1'>" +
                 "</label>" +
             "</div>" +
-            "<div class='semester-courses'></div>" +
-            "<div class='semester-gpa'>GPA: --</div>";
+        "</div>" +
+        "<div class='semester-courses'></div>" +
+        "<div class='semester-gpa'>GPA: --</div>";
         div.ondrop = drop;
         div.ondragover = allowDrop;
-        yearSemesters.appendChild(div);
+    // Add "to weekly schedule" button for this semester
+    var header = div.querySelector(".semester-actions");
+    if (header) {
+        var weeklyBtn = document.createElement("button");
+        weeklyBtn.type = "button";
+        weeklyBtn.className = "semester-weekly-btn";
+        weeklyBtn.textContent = currentLang === "tr" ? "Haftalık programa aktar" : "Send to weekly";
+        weeklyBtn.addEventListener("click", function () {
+            openWeeklyForSemester(semesterNumber);
+        });
+        header.appendChild(weeklyBtn);
+    }
+
+    yearSemesters.appendChild(div);
     }
 
     var summerSlot = document.createElement("div");
@@ -1970,17 +2114,28 @@ function addSummerForYear(yearIndex) {
     summerDiv.innerHTML =
         "<div class='semester-header'>" +
             "<div class='semester-title'>" + t("summer") + " " + summerDisplayIndex + "</div>" +
-            "<label class='semester-max'>" +
-                "<span>" + t("maxCourses") + "</span>" +
-                "<input type='number' class='semester-max-input' value='2' min='0' max='2'>" +
-            "</label>" +
+            "<div class='semester-actions'>" +
+                "<label class='semester-max'>" +
+                    "<span>" + t("maxCourses") + "</span>" +
+                    "<input type='number' class='semester-max-input' value='2' min='0' max='2'>" +
+                "</label>" +
+            "</div>" +
         "</div>" +
         "<div class='semester-courses'></div>" +
         "<div class='semester-gpa'>GPA: --</div>";
     summerDiv.ondrop = drop;
     summerDiv.ondragover = allowDrop;
-    var header = summerDiv.querySelector(".semester-header");
+    var header = summerDiv.querySelector(".semester-actions");
     if (header) {
+        var weeklyBtn = document.createElement("button");
+        weeklyBtn.type = "button";
+        weeklyBtn.className = "semester-weekly-btn";
+        weeklyBtn.textContent = currentLang === "tr" ? "Haftalık programa aktar" : "Send to weekly";
+        weeklyBtn.addEventListener("click", function () {
+            openWeeklyForSemester(summerSemNum);
+        });
+        header.appendChild(weeklyBtn);
+
         var removeSummerBtn = document.createElement("button");
         removeSummerBtn.type = "button";
         removeSummerBtn.className = "remove-summer-btn";
@@ -2028,6 +2183,37 @@ function removeSummerForYear(yearIndex) {
     updateWrongSemesterWarnings();
     updatePrereqViolations();
     persistPlannerState();
+}
+
+function openWeeklyForSemester(semNumber) {
+    var semestersContainer = document.getElementById("semesters");
+    if (!semestersContainer) {
+        showToast(currentLang === "tr" ? "Önce dönemleri oluştur." : "Create semesters first.", "error");
+        return;
+    }
+    var selector = ".semester[data-semester=\"" + String(semNumber) + "\"]";
+    var semEl = semestersContainer.querySelector(selector);
+    if (!semEl) {
+        showToast(currentLang === "tr" ? "Bu dönem bulunamadı." : "That semester could not be found.", "error");
+        return;
+    }
+    var courseEls = semEl.querySelectorAll(".course");
+    if (!courseEls.length) {
+        showToast(currentLang === "tr" ? "Bu dönemde yerleştirilmiş ders yok." : "No placed courses in this semester.", "error");
+        return;
+    }
+    var codesSet = {};
+    courseEls.forEach(function (el) {
+        var code = el.dataset.courseCode;
+        if (code) codesSet[code] = true;
+    });
+    var codes = Object.keys(codesSet);
+    try {
+        localStorage.setItem("metu_weekly_prefill_codes", JSON.stringify(codes));
+    } catch (e) {
+        // ignore storage errors
+    }
+    window.location.href = "weekly.html";
 }
 
 for (let i = 0; i < 4; i++) {

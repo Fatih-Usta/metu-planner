@@ -1,8 +1,21 @@
-# Ignore everything in the repo root except the app and data files
+# Ignore everything in the repo root
 /*
+
+# Keep these root files
 !/.gitignore
 !/index.html
 !/planner.html
 !/programs.json
 !/curriculums.json
 !/courses.json
+!/weekly.html
+
+# Allow the scripts folder itself
+!/scripts/
+
+# Ignore everything inside scripts
+/scripts/*
+
+# Re-include specific files inside scripts
+!/scripts/oibs_sections_all_20252_full.json
+!/scripts/oibs_sections_all_20252.json
