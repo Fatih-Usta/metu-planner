@@ -1229,8 +1229,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 fetch("oibs_offerings_20252.json")
                     .then(function (r) {
                         if (r.ok) return r;
-                        // Fallback to scripts/ path if root copy does not exist yet
-                        return fetch("scripts/oibs_offerings_all_20252.json");
+                        // Fallback to root all-offerings file if main copy missing
+                        return fetch("oibs_offerings_all_20252.json");
                     })
                     .then(function (r) { return r.json(); })
                     .then(function (data) {

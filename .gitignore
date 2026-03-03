@@ -11,6 +11,9 @@
 !/weekly.html
 !/oibs_sections_all_20252_full.json
 !/oibs_sections_all_20252.json
+!/oibs_offerings_all_20252.json
+!/oibs_offerings_20252.json
+!/oibs_sections_20252.json
 
 # Allow the scripts folder itself
 !/scripts/
