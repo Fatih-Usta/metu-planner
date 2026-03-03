@@ -1250,7 +1250,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 fetch("oibs_sections_20252.json")
                     .then(function (r) {
                         if (r.ok) return r;
-                        return fetch("scripts/oibs_sections_all_20252_full.json");
+                        return fetch("oibs_sections_all_20252_full.json");
                     })
                     .then(function (r) {
                         if (!r.ok) return null;

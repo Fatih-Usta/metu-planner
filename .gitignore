@@ -9,13 +9,11 @@
 !/curriculums.json
 !/courses.json
 !/weekly.html
+!/oibs_sections_all_20252_full.json
+!/oibs_sections_all_20252.json
 
 # Allow the scripts folder itself
 !/scripts/
 
 # Ignore everything inside scripts
 /scripts/*
-
-# Re-include specific files inside scripts
-!/scripts/oibs_sections_all_20252_full.json
-!/scripts/oibs_sections_all_20252.json
