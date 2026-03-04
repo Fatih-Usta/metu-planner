@@ -55,7 +55,7 @@ body {
 }
 
 .portal-shell {
-    max-width: 900px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -179,6 +179,14 @@ body {
 
 .portal-courses-section {
     margin-bottom: 28px;
+}
+
+.portal-main-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 32px;
 }
 
 .portal-courses-header {
@@ -370,10 +378,11 @@ body {
 .week-schedule-block[data-accent="12"] { background: rgba(248, 180, 180, 0.12); }
 .week-schedule-block[data-accent="13"] { background: rgba(163, 230, 53, 0.12); }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     body { padding: 20px 16px; }
     .portal-header { flex-direction: column; align-items: flex-start; gap: 16px; }
     .portal-grid { grid-template-columns: 1fr; }
+    .portal-main-layout { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -396,31 +405,33 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
     </button>
   </header>
 
-  <section class="portal-courses-section" id="portalCoursesSection" style="display: none;">
-    <div class="portal-courses-header">
-      <h2 class="portal-courses-title">This semester's courses</h2>
-      <div class="portal-courses-actions">
-        <select class="portal-select" id="portalSemesterSelect" aria-label="Select semester"></select>
-        <button type="button" class="portal-btn" id="portalSaveBtn">Save plan</button>
-        <a href="planner.html" class="portal-btn portal-btn--primary">Open planner</a>
+  <div class="portal-main-layout">
+    <section class="portal-courses-section" id="portalWeeklySection">
+      <div class="portal-courses-header">
+        <h2 class="portal-courses-title">Saved weekly schedule</h2>
+        <div class="portal-courses-actions">
+          <a href="weekly.html" class="portal-btn portal-btn--primary">Open weekly</a>
+        </div>
       </div>
-    </div>
-    <div class="portal-course-list" id="portalCourseList">
-      <span class="portal-course-list--empty">No courses</span>
-    </div>
-  </section>
+      <div class="portal-course-list" id="portalWeeklyList">
+        <span class="portal-course-list--empty">No weekly schedule saved</span>
+      </div>
+    </section>
 
-  <section class="portal-courses-section" id="portalWeeklySection">
-    <div class="portal-courses-header">
-      <h2 class="portal-courses-title">Saved weekly schedule</h2>
-      <div class="portal-courses-actions">
-        <a href="weekly.html" class="portal-btn portal-btn--primary">Open weekly</a>
+    <section class="portal-courses-section" id="portalCoursesSection" style="display: none;">
+      <div class="portal-courses-header">
+        <h2 class="portal-courses-title">This semester's courses</h2>
+        <div class="portal-courses-actions">
+          <select class="portal-select" id="portalSemesterSelect" aria-label="Select semester"></select>
+          <button type="button" class="portal-btn" id="portalSaveBtn">Save plan</button>
+          <a href="planner.html" class="portal-btn portal-btn--primary">Open planner</a>
+        </div>
       </div>
-    </div>
-    <div class="portal-course-list" id="portalWeeklyList">
-      <span class="portal-course-list--empty">No weekly schedule saved</span>
-    </div>
-  </section>
+      <div class="portal-course-list" id="portalCourseList">
+        <span class="portal-course-list--empty">No courses</span>
+      </div>
+    </section>
+  </div>
 
   <main class="portal-grid">
     <a href="planner.html" class="portal-card" id="plannerCard">

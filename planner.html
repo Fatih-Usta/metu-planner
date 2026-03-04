@@ -7,204 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="main-ui.css">
 <style>
-:root {
-    --metu-red: #c41e3a;
-    --metu-red-hover: #a01830;
-    --metu-red-soft: rgba(196, 30, 58, 0.12);
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-full: 9999px;
-    --transition: 0.2s ease;
-}
-
-[data-theme="light"] {
-    --bg: #f8f9fa;
-    --bg-elevated: #ffffff;
-    --bg-input: #ffffff;
-    --border-subtle: #e8eaed;
-    --text-main: #1a1d21;
-    --text-muted: #5f6368;
-    --accent-soft: rgba(196, 30, 58, 0.08);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="dark"] {
-    --bg: #0f1114;
-    --bg-elevated: #1a1d21;
-    --bg-input: #15181c;
-    --border-subtle: #2d3238;
-    --text-main: #e8eaed;
-    --text-muted: #9aa0a6;
-    --accent-soft: rgba(196, 30, 58, 0.18);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 28px 24px;
-    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text-main);
-    font-size: 15px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-.app-shell {
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.branding {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.branding-mark {
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--metu-red) 0%, var(--metu-red-hover) 100%);
-    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.35);
-}
-
-.title-block h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-
-.title-block span {
-    display: block;
-    margin-top: 4px;
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-muted);
-}
-
-.theme-toggle {
-    padding: 8px 14px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-elevated);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: color var(--transition), border-color var(--transition), background var(--transition);
-}
-.theme-toggle:hover {
-    color: var(--text-main);
-    border-color: var(--metu-red);
-    background: var(--accent-soft);
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-#langSelect {
-    padding: 8px 12px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-elevated);
-    color: var(--text-main);
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: border-color var(--transition), background var(--transition), color var(--transition);
-}
-
-#langSelect:focus {
-    outline: none;
-    border-color: var(--metu-red);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.85rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    padding: 6px 10px;
-    border-radius: var(--radius-full);
-    transition: background var(--transition), color var(--transition);
-}
-
-.nav-links a:hover {
-    background: var(--accent-soft);
-    color: var(--text-main);
-}
-
-.nav-links a.active {
-    background: var(--metu-red-soft);
-    color: var(--metu-red);
-    font-weight: 600;
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.95fr);
-    gap: 28px;
-}
-
-.panel {
-    background: var(--bg-elevated);
-    border-radius: var(--radius-lg);
-    padding: 22px 24px;
-    border: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-md);
-    transition: box-shadow var(--transition);
-}
-.panel:hover {
-    box-shadow: var(--shadow-lg);
-}
-
-.panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 18px;
-}
-
-.panel-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-}
-
-.panel-caption {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    margin-top: 2px;
-}
+/* Header, layout, panel, field: main-ui.css */
 
 .form-grid {
     display: grid;
@@ -243,13 +48,12 @@ select {
     font-size: 0.9rem;
     font-family: inherit;
     outline: none;
-    transition: border-color var(--transition), box-shadow var(--transition);
+    transition: border-color var(--transition);
 }
 input[type="text"]:focus,
 input[type="number"]:focus,
 select:focus {
     border-color: var(--metu-red);
-    box-shadow: 0 0 0 3px var(--metu-red-soft);
 }
 
 #semesterType {
@@ -269,39 +73,15 @@ button {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    transition: transform var(--transition), background var(--transition), box-shadow var(--transition);
-    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.3);
-}
-
-/* Override generic button styles for the header theme toggle
-   so it matches the Weekly Schedule page appearance. */
-button.theme-toggle {
-    padding: 8px 14px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-elevated);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    font-weight: 500;
-    box-shadow: none;
-    transform: none;
-    gap: 0;
-}
-
-button.theme-toggle:hover {
-    background: var(--accent-soft);
-    color: var(--text-main);
-    border-color: var(--metu-red);
+    transition: transform var(--transition), background var(--transition);
 }
 
 button:hover {
     background: var(--metu-red-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(196, 30, 58, 0.4);
 }
 
 button:active {
-    transform: translateY(0);
+    transform: none;
 }
 
 button span.dot {
@@ -770,42 +550,34 @@ button span.dot {
     right: 0;
     top: 100%;
     margin-top: 4px;
-    max-height: 260px;
+    max-height: 220px;
     overflow-y: auto;
     background: var(--bg-elevated);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
-    z-index: 100;
+    z-index: 20;
     display: none;
+    text-align: left;
 }
 .course-search-dropdown.is-open {
     display: block;
 }
-.course-search-dropdown::-webkit-scrollbar {
-    width: 8px;
-}
-.course-search-dropdown::-webkit-scrollbar-track {
-    background: var(--bg-input);
-    border-radius: var(--radius-full);
-}
-.course-search-dropdown::-webkit-scrollbar-thumb {
-    background: var(--border-subtle);
-    border-radius: var(--radius-full);
-}
-.course-search-dropdown::-webkit-scrollbar-thumb:hover {
-    background: var(--text-muted);
-}
 .course-search-item {
-    padding: 10px 14px;
-    font-size: 0.88rem;
+    padding: 8px 12px;
+    font-size: 0.85rem;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
     text-align: left;
     border: none;
-    background: none;
-    width: 100%;
+    background: transparent;
     color: var(--text-main);
     font-family: inherit;
+    box-sizing: border-box;
     transition: background var(--transition);
 }
 .course-search-item:hover,
@@ -814,7 +586,6 @@ button span.dot {
 }
 .course-search-item code {
     font-weight: 600;
-    margin-right: 6px;
 }
 .course-search-item span {
     color: var(--text-muted);
@@ -1080,10 +851,7 @@ button span.dot {
     color: var(--metu-red);
 }
 
-#departmentSelect {
-    min-width: 180px;
-    padding: 9px 14px;
-}
+/* Department select is hidden; width controlled by .field-same-width__row + .dept-bar .dept-right */
 
 @media (max-width: 900px) {
     .layout {
@@ -1099,27 +867,7 @@ button span.dot {
         padding: 12px 14px;
         overflow-x: hidden;
     }
-
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-        margin-bottom: 18px;
-        padding-bottom: 14px;
-    }
-
-    .header-actions {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .title-block h1 {
-        font-size: 1.25rem;
-    }
-
-    .title-block span {
-        font-size: 0.8rem;
-    }
+    /* .header, .header-actions, .title-block: main-ui.css */
 
     .dept-bar {
         flex-direction: column;
@@ -1408,8 +1156,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     <div class="branding">
       <div class="branding-mark"></div>
       <div class="title-block">
-        <h1 data-i18n="title">METU Ders Planlayıcı</h1>
-        <span data-i18n="subtitle">Kişisel dönem planını, ön koşulları bozmadan oluştur.</span>
+        <h1 data-i18n="title">METU Course Planner</h1>
+        <span data-i18n="subtitle">Create your semester plan without breaking prerequisites.</span>
       </div>
     </div>
     <div class="header-actions">
@@ -1418,12 +1166,19 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         <a href="planner.html" class="active" data-i18n="navPlanner">Planner</a>
         <a href="weekly.html" data-i18n="navWeekly">Weekly schedule</a>
       </nav>
-      <select id="langSelect" onchange="setLanguage(this.value)">
+      <select id="langSelect" class="header-hidden-select" onchange="setLanguage(this.value)" tabindex="-1" aria-hidden="true">
         <option value="tr">Türkçe</option>
         <option value="en">English</option>
       </select>
+      <div class="header-lang" id="langCombo">
+        <button type="button" id="langButton" class="header-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+          <span id="langButtonLabel">English</span>
+          <span class="header-lang-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="langList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
+      </div>
       <button type="button" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        <span id="themeLabel">Açık tema</span>
+        <span id="themeLabel">Light theme</span>
       </button>
     </div>
   </header>
@@ -1451,10 +1206,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       <span data-i18n="deptComingSoon">Bölümü seçip uygulayınca müfredat dönemlere otomatik yüklenir.</span>
     </div>
     <div class="dept-right">
-      <div class="dept-row-main">
-        <select id="departmentSelect">
+      <div class="dept-row-main field-same-width__row">
+        <select id="departmentSelect" class="planner-hidden-select">
           <option value="" data-i18n-opt="deptPlaceholder">Bölüm seç...</option>
         </select>
+        <div class="planner-combobox" id="departmentCombo">
+          <button type="button" id="departmentButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+            <span id="departmentButtonLabel">Bölüm seç...</span>
+            <span class="planner-select-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div id="departmentList" class="course-search-dropdown" role="listbox" aria-labelledby="departmentButtonLabel"></div>
+        </div>
         <button type="button" onclick="setDepartment()">
           <span class="dot"></span>
           <span data-i18n="deptApply">Bölümü uygula</span>
@@ -1462,11 +1224,18 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       </div>
       <div class="dept-row-plan">
         <div class="plan-slot-wrap">
-          <select id="planSlotSelect" class="plan-slot-select">
+          <select id="planSlotSelect" class="plan-slot-select planner-hidden-select">
             <option value="main">Plan 1</option>
             <option value="alt1">Plan 2</option>
             <option value="alt2">Plan 3</option>
           </select>
+          <div class="planner-combobox" id="planSlotCombo">
+            <button type="button" id="planSlotButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span id="planSlotButtonLabel">Plan 1</span>
+              <span class="planner-select-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div id="planSlotList" class="course-search-dropdown" role="listbox" aria-label="Plan slot"></div>
+          </div>
           <button type="button" onclick="savePlanToSlot()" class="plan-slot-save-btn">
             <span data-i18n="planSlotSave">Bu slota kaydet</span>
           </button>
@@ -1524,11 +1293,18 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
           </div>
           <div class="field">
             <label for="semesterType" data-i18n="semesterType">Açıldığı dönem</label>
-            <select id="semesterType">
+            <select id="semesterType" class="planner-hidden-select">
               <option value="odd" data-i18n-opt="semOdd">Tek</option>
               <option value="even" data-i18n-opt="semEven">Çift</option>
               <option value="both" data-i18n-opt="semBoth">Hem tek hem çift</option>
             </select>
+            <div class="planner-combobox" id="semesterTypeCombo">
+              <button type="button" id="semesterTypeButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                <span id="semesterTypeButtonLabel">Tek</span>
+                <span class="planner-select-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div id="semesterTypeList" class="course-search-dropdown" role="listbox" aria-labelledby="semesterTypeButtonLabel"></div>
+            </div>
           </div>
         </div>
         <button type="button" class="manual-add-btn" onclick="addCourse()">
@@ -1778,6 +1554,70 @@ const translations = {
 
 let currentLang = localStorage.getItem("lang") || "en";
 
+// Generic helper to turn a native <select> into a themed button + dropdown combo,
+// while keeping the original <select> (and its events) as the single source of truth.
+function initPlannerCombobox(config) {
+  var selectEl = document.getElementById(config.selectId);
+  var button = document.getElementById(config.buttonId);
+  var labelEl = document.getElementById(config.labelId);
+  var listEl = document.getElementById(config.listId);
+  if (!selectEl || !button || !labelEl || !listEl) return;
+
+  function syncLabelFromSelect() {
+    var opt = selectEl.options[selectEl.selectedIndex] || null;
+    labelEl.textContent = opt && opt.textContent ? opt.textContent : (config.placeholder || "");
+  }
+
+  // Rebuild items from current <select> options (flat list, no grouping)
+  listEl.innerHTML = "";
+  for (var i = 0; i < selectEl.options.length; i++) {
+    var opt = selectEl.options[i];
+    var item = document.createElement("button");
+    item.type = "button";
+    item.className = "course-search-item";
+    item.setAttribute("role", "option");
+    item.textContent = opt.textContent || opt.value || config.placeholder || "";
+    (function (value) {
+      item.addEventListener("click", function () {
+        selectEl.value = value;
+        var evt;
+        try {
+          evt = new Event("change", { bubbles: true });
+        } catch (e) {
+          evt = document.createEvent("Event");
+          evt.initEvent("change", true, true);
+        }
+        selectEl.dispatchEvent(evt);
+        syncLabelFromSelect();
+        listEl.classList.remove("is-open");
+        button.setAttribute("aria-expanded", "false");
+      });
+    })(opt.value);
+    listEl.appendChild(item);
+  }
+
+  syncLabelFromSelect();
+
+  button.onclick = function () {
+    var isOpen = listEl.classList.contains("is-open");
+    listEl.classList.toggle("is-open", !isOpen);
+    listEl.setAttribute("aria-hidden", isOpen ? "true" : "false");
+    button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+  };
+
+  if (!listEl.dataset.comboInit) {
+    document.addEventListener("click", function (ev) {
+      if (!listEl.classList.contains("is-open")) return;
+      if (!button.contains(ev.target) && !listEl.contains(ev.target)) {
+        listEl.classList.remove("is-open");
+        listEl.setAttribute("aria-hidden", "true");
+        button.setAttribute("aria-expanded", "false");
+      }
+    });
+    listEl.dataset.comboInit = "1";
+  }
+}
+
 function showToast(message, type) {
     type = type || "success";
     var container = document.getElementById("toastContainer");
@@ -1806,6 +1646,14 @@ function setLanguage(lang) {
   const sel = document.getElementById("langSelect");
   if (sel) sel.value = lang;
   applyLanguage();
+  // Rebuild any comboboxes whose option labels are language‑dependent
+  initPlannerCombobox({
+    selectId: "semesterType",
+    buttonId: "semesterTypeButton",
+    labelId: "semesterTypeButtonLabel",
+    listId: "semesterTypeList",
+    placeholder: ""
+  });
 }
 
 function applyLanguage() {
@@ -2307,6 +2155,14 @@ function loadProgramsIntoSelect() {
                 var last = localStorage.getItem(METU_LAST_PROGRAM_CODE) || "";
                 if (last) sel.value = last;
             }
+            // Build / refresh the custom combobox UI for department select
+            initPlannerCombobox({
+                selectId: "departmentSelect",
+                buttonId: "departmentButton",
+                labelId: "departmentButtonLabel",
+                listId: "departmentList",
+                placeholder: t("deptPlaceholder")
+            });
             restoreFromPortalState();
         })
         .catch(function() {
@@ -3764,6 +3620,28 @@ function setDismissedError(key, dismissed) {
     const theme = document.documentElement.getAttribute('data-theme') || 'dark';
     const themeLabel = document.getElementById('themeLabel');
     if (themeLabel) themeLabel.textContent = theme === 'dark' ? t('themeLight') : t('themeDark');
+    // Build initial combobox UIs
+    initPlannerCombobox({
+        selectId: "langSelect",
+        buttonId: "langButton",
+        labelId: "langButtonLabel",
+        listId: "langList",
+        placeholder: "Language"
+    });
+    initPlannerCombobox({
+        selectId: "planSlotSelect",
+        buttonId: "planSlotButton",
+        labelId: "planSlotButtonLabel",
+        listId: "planSlotList",
+        placeholder: "Plan"
+    });
+    initPlannerCombobox({
+        selectId: "semesterType",
+        buttonId: "semesterTypeButton",
+        labelId: "semesterTypeButtonLabel",
+        listId: "semesterTypeList",
+        placeholder: ""
+    });
     setupCourseSearch();
     var aboutBtn = document.getElementById("aboutBtn");
     if (aboutBtn) aboutBtn.addEventListener("click", openAbout);

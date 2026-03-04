@@ -7,228 +7,26 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="main-ui.css">
 <style>
-:root {
-    --metu-red: #c41e3a;
-    --metu-red-hover: #a01830;
-    --metu-red-soft: rgba(196, 30, 58, 0.12);
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-full: 9999px;
-    --transition: 0.2s ease;
-}
+/* Header, layout, panel, field, combobox/trigger: main-ui.css */
 
-[data-theme="light"] {
-    --bg: #f8f9fa;
-    --bg-elevated: #ffffff;
-    --bg-input: #ffffff;
-    --border-subtle: #e8eaed;
-    --text-main: #1a1d21;
-    --text-muted: #5f6368;
-    --accent-soft: rgba(196, 30, 58, 0.08);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.1);
-}
-
-[data-theme="dark"] {
-    --bg: #0f1114;
-    --bg-elevated: #1a1d21;
-    --bg-input: #15181c;
-    --border-subtle: #2d3238;
-    --text-main: #e8eaed;
-    --text-muted: #9aa0a6;
-    --accent-soft: rgba(196, 30, 58, 0.18);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 28px 24px;
-    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text-main);
-    font-size: 15px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-.app-shell {
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.branding {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.branding-mark {
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--metu-red) 0%, var(--metu-red-hover) 100%);
-    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.35);
-}
-
-.title-block h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-
-.title-block span {
-    display: block;
-    margin-top: 4px;
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-muted);
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
+/* Make main selects (dept, semester, language) clearly follow theme */
+#weeklyDeptSelect,
+#weeklySemesterSelect,
 #weeklyLangSelect {
-    padding: 8px 12px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-elevated);
+    background: var(--bg-input);
     color: var(--text-main);
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: border-color var(--transition), background var(--transition), color var(--transition);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
 }
 
+#weeklyDeptSelect:focus,
+#weeklySemesterSelect:focus,
 #weeklyLangSelect:focus {
     outline: none;
     border-color: var(--metu-red);
-}
-
-.theme-toggle {
-    padding: 8px 14px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-elevated);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: color var(--transition), border-color var(--transition), background var(--transition);
-}
-.theme-toggle:hover {
-    color: var(--text-main);
-    border-color: var(--metu-red);
-    background: var(--accent-soft);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.85rem;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    padding: 6px 10px;
-    border-radius: var(--radius-full);
-    transition: background var(--transition), color var(--transition);
-}
-
-.nav-links a:hover {
-    background: var(--accent-soft);
-    color: var(--text-main);
-}
-
-.nav-links a.active {
-    background: var(--metu-red-soft);
-    color: var(--metu-red);
-    font-weight: 600;
-}
-
-.layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.95fr);
-    gap: 28px;
-}
-
-.panel {
-    background: var(--bg-elevated);
-    border-radius: var(--radius-lg);
-    padding: 22px 24px;
-    border: 1px solid var(--border-subtle);
-    box-shadow: var(--shadow-md);
-}
-
-.panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 18px;
-}
-
-.panel-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-}
-
-.panel-caption {
-    font-size: 0.82rem;
-    color: var(--text-muted);
-    margin-top: 2px;
-}
-
-.field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    margin-bottom: 14px;
-}
-
-.field label {
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-muted);
-}
-
-.field input,
-.field select {
-    padding: 8px 10px;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-input);
-    color: var(--text-main);
-    font-size: 0.9rem;
-}
-
-.field input:focus,
-.field select:focus {
-    outline: none;
-    border-color: var(--metu-red);
+    box-shadow: 0 0 0 3px var(--metu-red-soft);
 }
 
 .weekly-hint-text {
@@ -303,6 +101,7 @@ body {
     box-shadow: var(--shadow-lg);
     z-index: 20;
     display: none;
+    text-align: left;
 }
 .weekly-suggest-dropdown.is-open {
     display: block;
@@ -313,6 +112,7 @@ body {
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 2px;
     width: 100%;
     text-align: left;
@@ -773,6 +573,7 @@ body {
 </head>
 <body>
 <script>
+document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
 document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' ? 'tr' : 'en';
 </script>
 <div class="app-shell">
@@ -790,11 +591,18 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 <a id="weeklyNavPlanner" href="planner.html">Planner</a>
                 <a id="weeklyNavWeekly" href="weekly.html" class="active">Weekly schedule</a>
             </nav>
-            <select id="weeklyLangSelect">
+            <select id="weeklyLangSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
                 <option value="tr">Türkçe</option>
                 <option value="en">English</option>
             </select>
-            <button id="themeToggle" class="theme-toggle">
+            <div class="header-lang" id="weeklyLangCombo">
+                <button type="button" id="weeklyLangButton" class="header-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="weeklyLangButtonLabel">English</span>
+                    <span class="header-lang-chevron" aria-hidden="true">▾</span>
+                </button>
+                <div id="weeklyLangList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
+            </div>
+            <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
                 <span id="weeklyThemeLabel">Light theme</span>
             </button>
         </div>
@@ -809,21 +617,31 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 </div>
             </div>
 
-            <div class="field">
-                <label for="weeklyDeptSelect" id="weeklyDeptLabel">Department</label>
-                <select id="weeklyDeptSelect">
-                    <option value="">Select department</option>
-                </select>
+            <div class="field weekly-field-same-width">
+                <label for="weeklyDeptButton" id="weeklyDeptLabel">Department</label>
+                <div class="weekly-field-same-width__row">
+                    <select id="weeklyDeptSelect" class="weekly-hidden-select" tabindex="-1" aria-hidden="true">
+                        <option value="">Select department</option>
+                    </select>
+                    <div class="weekly-dept-combobox" id="weeklyDeptCombo">
+                        <button type="button" id="weeklyDeptButton" class="weekly-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                            <span id="weeklyDeptButtonLabel">Select department</span>
+                            <span class="weekly-select-chevron" aria-hidden="true">▾</span>
+                        </button>
+                        <div id="weeklyDeptList" class="weekly-suggest-dropdown" role="listbox" aria-labelledby="weeklyDeptLabel"></div>
+                    </div>
+                    <span class="weekly-field-same-width__spacer" aria-hidden="true"></span>
+                </div>
             </div>
 
-            <div class="field">
+            <div class="field field-half-width">
                 <label for="weeklySurname" id="weeklySurnameLabel">Surname</label>
-                <input id="weeklySurname" type="text" placeholder="Your surname">
+                <input id="weeklySurname" type="text" placeholder="Your surname" class="input-uppercase">
             </div>
 
             <div class="field">
-                <label for="weeklySemesterSelect" id="weeklySemesterLabel">Semester</label>
-                <select id="weeklySemesterSelect">
+                <label for="weeklySemesterButton" id="weeklySemesterLabel">Semester</label>
+                <select id="weeklySemesterSelect" class="weekly-hidden-select" tabindex="-1" aria-hidden="true">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -833,6 +651,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     <option value="7">7</option>
                     <option value="8">8</option>
                 </select>
+                <div class="weekly-dept-combobox" id="weeklySemesterCombo">
+                    <button type="button" id="weeklySemesterButton" class="weekly-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                        <span id="weeklySemesterButtonLabel">1</span>
+                        <span class="weekly-select-chevron" aria-hidden="true">▾</span>
+                    </button>
+                    <div id="weeklySemesterList" class="weekly-suggest-dropdown" role="listbox" aria-labelledby="weeklySemesterLabel"></div>
+                </div>
             </div>
 
             <div class="field">
@@ -851,11 +676,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 <button type="button" id="weeklyClearCoursesBtn" class="weekly-btn weekly-btn--primary">Clear list</button>
             </div>
 
-            <div class="field">
+            <div class="field weekly-field-same-width">
                 <label for="weeklyAddCourseInput" id="weeklyAddCourseLabel">Add course by code</label>
-                <div style="display:flex; gap:8px;">
-                    <div style="position:relative; flex:1 1 auto;">
-                        <input id="weeklyAddCourseInput" type="text" placeholder="e.g. CENG223, MATH120" style="width:100%;" autocomplete="off">
+                <div class="weekly-field-same-width__row">
+                    <div class="weekly-field-same-width__input-wrap">
+                        <input id="weeklyAddCourseInput" type="text" placeholder="e.g. CENG223, MATH120" autocomplete="off">
                         <div id="weeklyAddCourseSuggestions" class="weekly-suggest-dropdown" aria-hidden="true"></div>
                     </div>
                     <button type="button" id="weeklyAddCourseBtn" class="weekly-btn">Add</button>
@@ -1178,6 +1003,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 document.documentElement.lang = v;
                 applyWeeklyLanguage(v);
             });
+            // Build the custom themed language dropdown UI on top of the native select
+            initWeeklyLangCombobox();
         }
     })();
 
@@ -1248,6 +1075,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     }
 
     loadWeeklyPrefs();
+    initWeeklySemesterCombobox();
 
     function weeklyNextAccent() {
         if (weeklyAccentIndex >= weeklyAccentPool.length) {
@@ -1299,6 +1127,179 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         return s;
     }
 
+    // Custom themed combobox UI for department selection, backed by the hidden native <select>
+    function initWeeklyDeptCombobox() {
+        var selectEl = document.getElementById("weeklyDeptSelect");
+        var button = document.getElementById("weeklyDeptButton");
+        var labelEl = document.getElementById("weeklyDeptButtonLabel");
+        var listEl = document.getElementById("weeklyDeptList");
+        if (!selectEl || !button || !labelEl || !listEl) return;
+
+        function syncLabelFromSelect() {
+            var opt = selectEl.options[selectEl.selectedIndex] || null;
+            labelEl.textContent = opt && opt.textContent ? opt.textContent : "Select department";
+        }
+
+        // Build the custom list from the current <select> options (flat list, no grouping)
+        listEl.innerHTML = "";
+        for (var i = 0; i < selectEl.options.length; i++) {
+            var opt = selectEl.options[i];
+            if (!opt.value) continue; // skip placeholder
+            var item = document.createElement("button");
+            item.type = "button";
+            item.className = "weekly-suggest-item";
+            item.setAttribute("role", "option");
+            item.textContent = opt.textContent || opt.value;
+            (function (value) {
+                item.addEventListener("click", function () {
+                    selectEl.value = value;
+                    var evt;
+                    try {
+                        evt = new Event("change", { bubbles: true });
+                    } catch (e) {
+                        evt = document.createEvent("Event");
+                        evt.initEvent("change", true, true);
+                    }
+                    selectEl.dispatchEvent(evt);
+                    syncLabelFromSelect();
+                    listEl.classList.remove("is-open");
+                    button.setAttribute("aria-expanded", "false");
+                });
+            })(opt.value);
+            listEl.appendChild(item);
+        }
+
+        syncLabelFromSelect();
+
+        button.addEventListener("click", function () {
+            var isOpen = listEl.classList.contains("is-open");
+            listEl.classList.toggle("is-open", !isOpen);
+            button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+        });
+
+        document.addEventListener("click", function (ev) {
+            if (!listEl.classList.contains("is-open")) return;
+            if (!button.contains(ev.target) && !listEl.contains(ev.target)) {
+                listEl.classList.remove("is-open");
+                button.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+
+    // Custom themed combobox UI for language selection in header
+    function initWeeklyLangCombobox() {
+        var selectEl = document.getElementById("weeklyLangSelect");
+        var button = document.getElementById("weeklyLangButton");
+        var labelEl = document.getElementById("weeklyLangButtonLabel");
+        var listEl = document.getElementById("weeklyLangList");
+        if (!selectEl || !button || !labelEl || !listEl) return;
+
+        function syncLabelFromSelect() {
+            var opt = selectEl.options[selectEl.selectedIndex] || null;
+            labelEl.textContent = opt && opt.textContent ? opt.textContent : "Language";
+        }
+
+        listEl.innerHTML = "";
+        for (var i = 0; i < selectEl.options.length; i++) {
+            var opt = selectEl.options[i];
+            var item = document.createElement("button");
+            item.type = "button";
+            item.className = "weekly-suggest-item";
+            item.setAttribute("role", "option");
+            item.textContent = opt.textContent || opt.value;
+            (function (value) {
+                item.addEventListener("click", function () {
+                    selectEl.value = value;
+                    var evt;
+                    try {
+                        evt = new Event("change", { bubbles: true });
+                    } catch (e) {
+                        evt = document.createEvent("Event");
+                        evt.initEvent("change", true, true);
+                    }
+                    selectEl.dispatchEvent(evt);
+                    syncLabelFromSelect();
+                    listEl.classList.remove("is-open");
+                    button.setAttribute("aria-expanded", "false");
+                });
+            })(opt.value);
+            listEl.appendChild(item);
+        }
+
+        syncLabelFromSelect();
+
+        button.addEventListener("click", function () {
+            var isOpen = listEl.classList.contains("is-open");
+            listEl.classList.toggle("is-open", !isOpen);
+            button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+        });
+
+        document.addEventListener("click", function (ev) {
+            if (!listEl.classList.contains("is-open")) return;
+            if (!button.contains(ev.target) && !listEl.contains(ev.target)) {
+                listEl.classList.remove("is-open");
+                button.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+
+    // Custom themed combobox UI for semester selection, backed by the hidden native <select>
+    function initWeeklySemesterCombobox() {
+        var selectEl = document.getElementById("weeklySemesterSelect");
+        var button = document.getElementById("weeklySemesterButton");
+        var labelEl = document.getElementById("weeklySemesterButtonLabel");
+        var listEl = document.getElementById("weeklySemesterList");
+        if (!selectEl || !button || !labelEl || !listEl) return;
+
+        function syncLabelFromSelect() {
+            var opt = selectEl.options[selectEl.selectedIndex] || null;
+            labelEl.textContent = opt && opt.textContent ? opt.textContent : "Select semester";
+        }
+
+        listEl.innerHTML = "";
+        for (var i = 0; i < selectEl.options.length; i++) {
+            var opt = selectEl.options[i];
+            var item = document.createElement("button");
+            item.type = "button";
+            item.className = "weekly-suggest-item";
+            item.setAttribute("role", "option");
+            item.textContent = opt.textContent || opt.value;
+            (function (value) {
+                item.addEventListener("click", function () {
+                    selectEl.value = value;
+                    var evt;
+                    try {
+                        evt = new Event("change", { bubbles: true });
+                    } catch (e) {
+                        evt = document.createEvent("Event");
+                        evt.initEvent("change", true, true);
+                    }
+                    selectEl.dispatchEvent(evt);
+                    syncLabelFromSelect();
+                    listEl.classList.remove("is-open");
+                    button.setAttribute("aria-expanded", "false");
+                });
+            })(opt.value);
+            listEl.appendChild(item);
+        }
+
+        syncLabelFromSelect();
+
+        button.addEventListener("click", function () {
+            var isOpen = listEl.classList.contains("is-open");
+            listEl.classList.toggle("is-open", !isOpen);
+            button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+        });
+
+        document.addEventListener("click", function (ev) {
+            if (!listEl.classList.contains("is-open")) return;
+            if (!button.contains(ev.target) && !listEl.contains(ev.target)) {
+                listEl.classList.remove("is-open");
+                button.setAttribute("aria-expanded", "false");
+            }
+        });
+    }
+
     // Infer student's department short code (CENG, EEE, etc.) from a course that belongs to their program
     // (7-digit code starts with program code), so we get CENG for 571, not PHYS from PHYS106
     function getStudentDeptShort(programCode) {
@@ -1313,7 +1314,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 var item = items[j];
                 var code = (item.code || "").toUpperCase();
                 var code7 = item.course_code_7digit != null ? String(item.course_code_7digit) : "";
-                var m = /^([A-Z]{3,4})\d+/.exec(code);
+                // Allow 2–4 letter department prefixes (e.g. ID, CE, CENG)
+                var m = /^([A-Z]{2,4})\d+/.exec(code);
                 if (m && code7.indexOf(programPrefix) === 0) return m[1];
             }
         }
@@ -1322,7 +1324,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var items = sem.courses || [];
             for (var j = 0; j < items.length; j++) {
                 var code = (items[j].code || "").toUpperCase();
-                var m = /^([A-Z]{3,4})\d+/.exec(code);
+                // Fallback: still allow 2–4 letter prefixes
+                var m = /^([A-Z]{2,4})\d+/.exec(code);
                 if (m) return m[1];
             }
         }
@@ -2743,6 +2746,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         window.localStorage.setItem(METU_LAST_PROGRAM_CODE, deptSelect.value);
                     }
                 });
+
+                // After the native <select> is populated, build the custom themed dropdown UI
+                initWeeklyDeptCombobox();
             })
             .catch(function () {
                 // Leave the simple placeholder if programs.json fails
@@ -2815,10 +2821,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         });
     }
 
-    // Auto‑save surname as the user types
+    // Auto‑save surname as the user types; keep value in all caps
     var weeklySurnameInput = document.getElementById("weeklySurname");
     if (weeklySurnameInput) {
         weeklySurnameInput.addEventListener("input", function () {
+            var start = this.selectionStart;
+            var end = this.selectionEnd;
+            this.value = this.value.toUpperCase();
+            this.setSelectionRange(start, end);
             saveWeeklyPrefs();
         });
     }
@@ -2931,6 +2941,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             var ec = normalizeForSurnameRange(fixEncoding(r.end_char || ""));
                             if (!sc && !ec) {
                                 // Dept matches (or is empty) and no surname restriction → allowed
+                                anyMatch = true;
+                                break;
+                            }
+                            // Special case: AA–AA (or any X–X) means "all surnames accepted"
+                            if (sc && ec && sc === ec) {
                                 anyMatch = true;
                                 break;
                             }
