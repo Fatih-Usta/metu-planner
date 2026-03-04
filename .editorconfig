@@ -1,0 +1,5 @@
+# Ensure consistent line endings (LF) so small edits don't show as "whole file changed"
+root = true
+
+[*]
+end_of_line = lf

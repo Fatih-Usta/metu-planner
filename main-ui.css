@@ -39,6 +39,11 @@
   box-sizing: border-box;
 }
 
+/* Reserve space for scrollbar so header/content center stays same on all pages */
+html {
+  scrollbar-gutter: stable;
+}
+
 /* ----- Reusable scrollbar theme: add class="scroll-theme" to any scrollable element ----- */
 .scroll-theme,
 .weekly-suggest-dropdown,
@@ -96,6 +101,7 @@ body {
 }
 
 .app-shell {
+  width: 100%;
   max-width: 1600px;
   margin: 0 auto;
 }
@@ -104,6 +110,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   margin-bottom: 28px;
   padding-bottom: 20px;
   border-bottom: 1px solid var(--border-subtle);

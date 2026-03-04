@@ -7,111 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="main-ui.css">
 <style>
-:root {
-    --metu-red: #c41e3a;
-    --metu-red-hover: #a01830;
-    --metu-red-soft: rgba(196, 30, 58, 0.12);
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --radius-full: 9999px;
-    --transition: 0.2s ease;
-}
-
-[data-theme="light"] {
-    --bg: #f8f9fa;
-    --bg-elevated: #ffffff;
-    --border-subtle: #e8eaed;
-    --text-main: #1a1d21;
-    --text-muted: #5f6368;
-    --accent-soft: rgba(196, 30, 58, 0.08);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="dark"] {
-    --bg: #0f1114;
-    --bg-elevated: #1a1d21;
-    --border-subtle: #2d3238;
-    --text-main: #e8eaed;
-    --text-muted: #9aa0a6;
-    --accent-soft: rgba(196, 30, 58, 0.18);
-    --shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-* { box-sizing: border-box; }
-
-body {
-    margin: 0;
-    padding: 28px 24px;
-    font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
-    background: var(--bg);
-    color: var(--text-main);
-    font-size: 15px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-}
-
-.portal-shell {
-    max-width: 1600px;
-    margin: 0 auto;
-}
-
-.portal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 32px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.portal-branding {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.portal-mark {
-    width: 44px;
-    height: 44px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, var(--metu-red) 0%, var(--metu-red-hover) 100%);
-    box-shadow: 0 2px 8px rgba(196, 30, 58, 0.35);
-}
-
-.portal-title {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-
-.portal-subtitle {
-    display: block;
-    margin-top: 4px;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
-.theme-toggle {
-    padding: 8px 14px;
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-subtle);
-    background: var(--bg-elevated);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: color var(--transition), border-color var(--transition), background var(--transition);
-}
-.theme-toggle:hover {
-    color: var(--text-main);
-    border-color: var(--metu-red);
-    background: var(--accent-soft);
-}
+/* Page-specific: portal cards and content; header/layout from main-ui.css */
 
 .portal-grid {
     display: grid;
@@ -380,7 +278,7 @@ body {
 
 @media (max-width: 900px) {
     body { padding: 20px 16px; }
-    .portal-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .header { flex-direction: column; align-items: flex-start; gap: 16px; }
     .portal-grid { grid-template-columns: 1fr; }
     .portal-main-layout { grid-template-columns: 1fr; }
 }
@@ -389,20 +287,39 @@ body {
 <body>
 <script>
 document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' ? 'tr' : 'en';
 </script>
 
-<div class="portal-shell">
-  <header class="portal-header">
-    <div class="portal-branding">
-      <div class="portal-mark" aria-hidden="true"></div>
-      <div>
-        <h1 class="portal-title">METU Portal</h1>
-        <span class="portal-subtitle" id="portalSubtitle">Plan your semesters, schedule, and courses</span>
+<div class="app-shell">
+  <header class="header">
+    <div class="branding">
+      <div class="branding-mark"></div>
+      <div class="title-block">
+        <h1 id="pageTitle">METU Portal</h1>
+        <span id="pageSubtitle">Plan your semesters, schedule, and courses</span>
       </div>
     </div>
-    <button type="button" class="theme-toggle" id="themeBtn" aria-label="Toggle theme">
-      <span id="themeLabel">Light</span>
-    </button>
+    <div class="header-actions">
+      <nav class="nav-links">
+        <a id="navPortal" href="index.html" class="active">Portal</a>
+        <a id="navPlanner" href="planner.html">Planner</a>
+        <a id="navWeekly" href="weekly.html">Weekly schedule</a>
+      </nav>
+      <select id="langSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
+        <option value="tr">Türkçe</option>
+        <option value="en">English</option>
+      </select>
+      <div class="header-lang" id="langCombo">
+        <button type="button" id="langButton" class="header-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+          <span id="langButtonLabel">English</span>
+          <span class="header-lang-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div id="langList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
+      </div>
+      <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+        <span id="themeLabel">Light theme</span>
+      </button>
+    </div>
   </header>
 
   <div class="portal-main-layout">
@@ -718,18 +635,67 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
   var saveBtn = document.getElementById('portalSaveBtn');
   if (saveBtn) saveBtn.onclick = savePlanFromPortal;
 
+  function setLanguage(lang) {
+    if (!lang || (lang !== 'tr' && lang !== 'en')) return;
+    localStorage.setItem('lang', lang);
+    document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
+    var label = document.getElementById('langButtonLabel');
+    if (label) label.textContent = lang === 'tr' ? 'Türkçe' : 'English';
+    var sel = document.getElementById('langSelect');
+    if (sel) sel.value = lang;
+    var list = document.getElementById('langList');
+    if (list) list.classList.remove('is-open');
+    var btn = document.getElementById('langButton');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
+  }
+
   function toggleTheme() {
     var root = document.documentElement;
     var current = root.getAttribute('data-theme') || 'dark';
     var next = current === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
-    document.getElementById('themeLabel').textContent = next === 'dark' ? 'Light' : 'Dark';
+    var themeLabel = document.getElementById('themeLabel');
+    if (themeLabel) themeLabel.textContent = next === 'dark' ? 'Light theme' : 'Dark theme';
   }
 
   var theme = document.documentElement.getAttribute('data-theme') || 'dark';
-  document.getElementById('themeLabel').textContent = theme === 'dark' ? 'Light' : 'Dark';
-  document.getElementById('themeBtn').onclick = toggleTheme;
+  var themeLabel = document.getElementById('themeLabel');
+  if (themeLabel) themeLabel.textContent = theme === 'dark' ? 'Light theme' : 'Dark theme';
+  var themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) themeToggle.onclick = toggleTheme;
+
+  var lang = localStorage.getItem('lang') || 'en';
+  var langButtonLabel = document.getElementById('langButtonLabel');
+  if (langButtonLabel) langButtonLabel.textContent = lang === 'tr' ? 'Türkçe' : 'English';
+  var langSelect = document.getElementById('langSelect');
+  if (langSelect) {
+    langSelect.value = lang;
+    langSelect.onchange = function() { setLanguage(langSelect.value); };
+  }
+  var langList = document.getElementById('langList');
+  var langButton = document.getElementById('langButton');
+  var langCombo = document.getElementById('langCombo');
+  if (langList && langButton) {
+    ['tr', 'en'].forEach(function(l) {
+      var opt = document.createElement('button');
+      opt.type = 'button';
+      opt.className = 'course-search-item';
+      opt.setAttribute('role', 'option');
+      opt.textContent = l === 'tr' ? 'Türkçe' : 'English';
+      opt.onclick = function() { setLanguage(l); };
+      langList.appendChild(opt);
+    });
+    langButton.onclick = function() {
+      var open = langList.classList.toggle('is-open');
+      langButton.setAttribute('aria-expanded', open);
+    };
+    if (langCombo) {
+      document.addEventListener('click', function(e) {
+        if (!langCombo.contains(e.target)) langList.classList.remove('is-open');
+      });
+    }
+  }
 })();
 </script>
 </body>

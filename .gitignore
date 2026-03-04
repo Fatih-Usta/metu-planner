@@ -3,6 +3,10 @@
 
 # Keep these root files
 !/.gitignore
+!/.gitattributes
+!/.editorconfig
+!/.vscode
+!/.vscode/settings.json
 !/index.html
 !/planner.html
 !/programs.json

@@ -11,10 +11,10 @@
 <style>
 /* Header, layout, panel, field, combobox/trigger: main-ui.css */
 
-/* Make main selects (dept, semester, language) clearly follow theme */
+/* Make main selects (dept, semester, header lang) clearly follow theme */
 #weeklyDeptSelect,
 #weeklySemesterSelect,
-#weeklyLangSelect {
+#langSelect {
     background: var(--bg-input);
     color: var(--text-main);
     border-radius: var(--radius-md);
@@ -23,7 +23,7 @@
 
 #weeklyDeptSelect:focus,
 #weeklySemesterSelect:focus,
-#weeklyLangSelect:focus {
+#langSelect:focus {
     outline: none;
     border-color: var(--metu-red);
     box-shadow: 0 0 0 3px var(--metu-red-soft);
@@ -581,29 +581,29 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         <div class="branding">
             <div class="branding-mark"></div>
             <div class="title-block">
-                <h1 id="weeklyTitle">Weekly Schedule (Beta)</h1>
-                <span id="weeklySubtitle">Create a timetable based on OIBS data</span>
+                <h1 id="pageTitle">Weekly Schedule (Beta)</h1>
+                <span id="pageSubtitle">Create a timetable based on OIBS data</span>
             </div>
         </div>
         <div class="header-actions">
             <nav class="nav-links">
-                <a id="weeklyNavPortal" href="index.html">Portal</a>
-                <a id="weeklyNavPlanner" href="planner.html">Planner</a>
-                <a id="weeklyNavWeekly" href="weekly.html" class="active">Weekly schedule</a>
+                <a id="navPortal" href="index.html">Portal</a>
+                <a id="navPlanner" href="planner.html">Planner</a>
+                <a id="navWeekly" href="weekly.html" class="active">Weekly schedule</a>
             </nav>
-            <select id="weeklyLangSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
+            <select id="langSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
                 <option value="tr">Türkçe</option>
                 <option value="en">English</option>
             </select>
-            <div class="header-lang" id="weeklyLangCombo">
-                <button type="button" id="weeklyLangButton" class="header-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
-                    <span id="weeklyLangButtonLabel">English</span>
+            <div class="header-lang" id="langCombo">
+                <button type="button" id="langButton" class="header-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="langButtonLabel">English</span>
                     <span class="header-lang-chevron" aria-hidden="true">▾</span>
                 </button>
-                <div id="weeklyLangList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
+                <div id="langList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
             </div>
             <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-                <span id="weeklyThemeLabel">Light theme</span>
+                <span id="themeLabel">Light theme</span>
             </button>
         </div>
     </header>
@@ -918,15 +918,15 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     function applyWeeklyLanguage(langCode) {
         var dict = weeklyTranslations[langCode] || weeklyTranslations.en;
         var el;
-        el = document.getElementById("weeklyTitle");
+        el = document.getElementById("pageTitle");
         if (el) el.textContent = dict.title;
-        el = document.getElementById("weeklySubtitle");
+        el = document.getElementById("pageSubtitle");
         if (el) el.textContent = dict.subtitle;
-        el = document.getElementById("weeklyNavPortal");
+        el = document.getElementById("navPortal");
         if (el) el.textContent = dict.navPortal;
-        el = document.getElementById("weeklyNavPlanner");
+        el = document.getElementById("navPlanner");
         if (el) el.textContent = dict.navPlanner;
-        el = document.getElementById("weeklyNavWeekly");
+        el = document.getElementById("navWeekly");
         if (el) el.textContent = dict.navWeekly;
         el = document.getElementById("weeklyStudentTitle");
         if (el) el.textContent = dict.studentTitle;
@@ -980,7 +980,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         el = document.getElementById("weeklyDayFri");
         if (el) el.textContent = dict.dayFri;
         // Theme toggle label
-        var themeLabel = document.getElementById("weeklyThemeLabel");
+        var themeLabel = document.getElementById("themeLabel");
         if (themeLabel) {
             var currentTheme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
             themeLabel.textContent = currentTheme === "dark" ? dict.themeLight : dict.themeDark;
@@ -994,7 +994,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         localStorage.setItem("lang", normalized);
         document.documentElement.lang = normalized;
         applyWeeklyLanguage(normalized);
-        var sel = document.getElementById("weeklyLangSelect");
+        var sel = document.getElementById("langSelect");
         if (sel) {
             sel.value = normalized;
             sel.addEventListener("change", function () {
@@ -1188,10 +1188,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
     // Custom themed combobox UI for language selection in header
     function initWeeklyLangCombobox() {
-        var selectEl = document.getElementById("weeklyLangSelect");
-        var button = document.getElementById("weeklyLangButton");
-        var labelEl = document.getElementById("weeklyLangButtonLabel");
-        var listEl = document.getElementById("weeklyLangList");
+        var selectEl = document.getElementById("langSelect");
+        var button = document.getElementById("langButton");
+        var labelEl = document.getElementById("langButtonLabel");
+        var listEl = document.getElementById("langList");
         if (!selectEl || !button || !labelEl || !listEl) return;
 
         function syncLabelFromSelect() {
