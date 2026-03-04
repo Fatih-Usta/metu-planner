@@ -252,7 +252,8 @@ body {
     gap: 6px;
 }
 .weekly-rule-toggles input[type="checkbox"],
-.weekly-course-rule-flags input[type="checkbox"] {
+.weekly-course-rule-flags input[type="checkbox"],
+.weekly-section-choices input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -268,18 +269,21 @@ body {
 }
 
 /* Global rule checkboxes: force perfect visual square relative to label font */
-.weekly-rule-toggles input[type="checkbox"] {
+.weekly-rule-toggles input[type="checkbox"],
+.weekly-section-choices input[type="checkbox"] {
     width: 1em;
     height: 1em;
     aspect-ratio: 1 / 1;
     display: inline-block;
 }
 .weekly-rule-toggles input[type="checkbox"]:hover,
-.weekly-course-rule-flags input[type="checkbox"]:hover {
+.weekly-course-rule-flags input[type="checkbox"]:hover,
+.weekly-section-choices input[type="checkbox"]:hover {
     border-color: var(--text-muted);
 }
 .weekly-rule-toggles input[type="checkbox"]:checked,
-.weekly-course-rule-flags input[type="checkbox"]:checked {
+.weekly-course-rule-flags input[type="checkbox"]:checked,
+.weekly-section-choices input[type="checkbox"]:checked {
     background: var(--metu-red);
     border-color: var(--metu-red);
     box-shadow: 0 0 0 1px rgba(196, 30, 58, 0.4);
@@ -495,6 +499,52 @@ body {
     color: var(--text-muted);
 }
 
+.weekly-section-choices {
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.weekly-section-choices-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.weekly-section-choices-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+}
+
+.weekly-section-choice-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.78rem;
+}
+
+.weekly-section-toggleall {
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.weekly-section-toggleall:hover {
+    border-color: var(--metu-red);
+    color: var(--metu-red);
+}
+
 .weekly-section-block {
     margin-top: 8px;
     margin-left: 4px;
@@ -526,6 +576,18 @@ body {
 .weekly-section-room {
     margin-left: 6px;
     opacity: 0.9;
+}
+
+.weekly-section-room-input {
+    margin-left: 6px;
+    padding: 1px 4px;
+    border-radius: 6px;
+    border: 1px solid var(--border-subtle);
+    background: rgba(15, 23, 42, 0.02);
+    font-size: 0.75rem;
+    color: var(--text-main);
+    min-width: 80px;
+    max-width: 140px;
 }
 
 .weekly-section-rule {
@@ -939,6 +1001,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var deptSelect = document.getElementById("weeklyDeptSelect");
     var semSelect = document.getElementById("weeklySemesterSelect");
     var weeklySemester = semSelect ? Number(semSelect.value || "1") : 1;
+    if (semSelect) {
+        semSelect.addEventListener("change", function () {
+            weeklySemester = Number(semSelect.value || "1") || 1;
+            saveWeeklyPrefs();
+        });
+    }
     var weeklyCurriculums = null;
     var weeklyOfferings = null;
     var weeklyOfferedBy7 = null;
@@ -952,6 +1020,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var weeklySectionsBy7 = null;
     var weeklyCoursesByCode = null;
     var weeklyAccentByCode = {};
+    var weeklySectionPrefs = {};
     var weeklyAccentPool = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
     var weeklyAccentIndex = 0;
 
@@ -1121,6 +1190,64 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var weeklyCheckCollisionGlobal = true;
     var weeklyAccentPool = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
     var weeklyAccentIndex = 0;
+    var weeklySectionsPrefsKey = "metu_weekly_prefs_v1";
+
+    function saveWeeklyPrefs() {
+        try {
+            var surnameInput = document.getElementById("weeklySurname");
+            var prefs = {
+                surname: surnameInput ? (surnameInput.value || "").trim() : "",
+                semester: weeklySemester,
+                rules: {
+                    checkDept: !!weeklyCheckDeptGlobal,
+                    checkSurname: !!weeklyCheckSurnameGlobal,
+                    checkCollision: !!weeklyCheckCollisionGlobal
+                },
+                sectionPrefs: weeklySectionPrefs || {}
+            };
+            localStorage.setItem(weeklySectionsPrefsKey, JSON.stringify(prefs));
+        } catch (e) {
+            // ignore storage errors
+        }
+    }
+
+    function loadWeeklyPrefs() {
+        try {
+            var raw = localStorage.getItem(weeklySectionsPrefsKey);
+            if (!raw) return;
+            var prefs = JSON.parse(raw);
+            if (prefs && prefs.rules) {
+                weeklyCheckDeptGlobal = !!prefs.rules.checkDept;
+                weeklyCheckSurnameGlobal = !!prefs.rules.checkSurname;
+                weeklyCheckCollisionGlobal = !!prefs.rules.checkCollision;
+            }
+            if (prefs && prefs.sectionPrefs && typeof prefs.sectionPrefs === "object") {
+                weeklySectionPrefs = prefs.sectionPrefs;
+            }
+            if (prefs && typeof prefs.surname === "string") {
+                var surnameInput = document.getElementById("weeklySurname");
+                if (surnameInput) surnameInput.value = prefs.surname;
+            }
+            if (prefs && typeof prefs.semester === "number") {
+                weeklySemester = prefs.semester;
+                var semSelectEl = document.getElementById("weeklySemesterSelect");
+                if (semSelectEl) {
+                    semSelectEl.value = String(weeklySemester);
+                }
+            }
+            // Apply saved rule toggles to checkboxes if they exist
+            var deptToggleEl = document.getElementById("weeklyGlobalCheckDept");
+            if (deptToggleEl) deptToggleEl.checked = weeklyCheckDeptGlobal;
+            var surnameToggleEl = document.getElementById("weeklyGlobalCheckSurname");
+            if (surnameToggleEl) surnameToggleEl.checked = weeklyCheckSurnameGlobal;
+            var collToggleEl = document.getElementById("weeklyGlobalCheckCollision");
+            if (collToggleEl) collToggleEl.checked = weeklyCheckCollisionGlobal;
+        } catch (e) {
+            // ignore parse errors
+        }
+    }
+
+    loadWeeklyPrefs();
 
     function weeklyNextAccent() {
         if (weeklyAccentIndex >= weeklyAccentPool.length) {
@@ -1504,7 +1631,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         pill.textContent = code7 || "—";
         header.appendChild(codeEl);
         header.appendChild(pill);
-        // reuse same remove button + sections toggle helpers via a tiny shim
+        // reuse same remove button helper via a tiny shim
         (function addRemoveButton(headerEl, cardEl) {
             var btn = document.createElement("button");
             btn.type = "button";
@@ -1516,6 +1643,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             btn.style.fontSize = "14px";
             btn.style.marginLeft = "8px";
             btn.addEventListener("click", function () {
+                var codeNode = cardEl.querySelector(".weekly-course-code");
+                var codeText = codeNode && codeNode.textContent ? codeNode.textContent.trim() : "";
+                if (codeText && weeklySectionPrefs && weeklySectionPrefs.hasOwnProperty(codeText)) {
+                    delete weeklySectionPrefs[codeText];
+                }
                 cardEl.remove();
             });
             headerEl.appendChild(btn);
@@ -1572,7 +1704,49 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var details = document.createElement("div");
             details.className = "weekly-sections";
             details.style.display = "none";
+
+            var courseCodeNode = cardEl.querySelector(".weekly-course-code");
+            var courseCode = courseCodeNode && courseCodeNode.textContent ? courseCodeNode.textContent.trim() : "";
+            var existingPrefs = (weeklySectionPrefs && courseCode) ? weeklySectionPrefs[courseCode] : null;
+
+            var choices = document.createElement("div");
+            choices.className = "weekly-section-choices";
+
+            var choicesHeader = document.createElement("div");
+            choicesHeader.className = "weekly-section-choices-header";
+            var choicesLabel = document.createElement("span");
+            choicesLabel.textContent = "Available sections";
+            var toggleAllBtn = document.createElement("button");
+            toggleAllBtn.type = "button";
+            toggleAllBtn.className = "weekly-section-toggleall";
+            toggleAllBtn.textContent = "Toggle all";
+            choicesHeader.appendChild(choicesLabel);
+            choicesHeader.appendChild(toggleAllBtn);
+            choices.appendChild(choicesHeader);
+
+            var choicesList = document.createElement("div");
+            choicesList.className = "weekly-section-choices-list";
+            var checkboxes = [];
+
+            // Show the section selection controls above all section detail blocks
+            details.appendChild(choices);
+
             sections.forEach(function (s) {
+                var secNum = (s.section != null ? String(s.section) : "").trim();
+                if (secNum) {
+                    var item = document.createElement("label");
+                    item.className = "weekly-section-choice-item";
+                    var cb = document.createElement("input");
+                    cb.type = "checkbox";
+                    cb.value = secNum;
+                    var defaultChecked = !existingPrefs || !existingPrefs.length || existingPrefs.indexOf(secNum) !== -1;
+                    cb.checked = defaultChecked;
+                    item.appendChild(cb);
+                    item.appendChild(document.createTextNode(" " + secNum));
+                    choicesList.appendChild(item);
+                    checkboxes.push(cb);
+                }
+
                 var block = document.createElement("div");
                 block.className = "weekly-section-block";
                 var headerRow = document.createElement("div");
@@ -1598,16 +1772,61 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         var txt = (fixEncoding(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
                         chip.textContent = txt.trim();
                         row.appendChild(chip);
-                        var room = document.createElement("span");
-                        room.className = "weekly-section-room";
-                        var roomText = m.room ? fixEncoding(m.room) : "Not entered";
-                        room.textContent = roomText;
-                        row.appendChild(room);
+                        var roomInput = document.createElement("input");
+                        roomInput.type = "text";
+                        roomInput.className = "weekly-section-room-input";
+                        roomInput.value = m.room ? fixEncoding(m.room) : "";
+                        roomInput.placeholder = "Room";
+                        roomInput.title = "Edit room / place";
+                        roomInput.addEventListener("change", function () {
+                            m.room = roomInput.value.trim();
+                        });
+                        row.appendChild(roomInput);
                         block.appendChild(row);
                     });
                 }
                 details.appendChild(block);
             });
+
+            choices.appendChild(choicesList);
+
+            function syncSectionPrefs() {
+                if (!courseCode) return;
+                var selected = [];
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) selected.push(checkboxes[i].value);
+                }
+                if (!weeklySectionPrefs) weeklySectionPrefs = {};
+                if (!selected.length || selected.length === checkboxes.length) {
+                    delete weeklySectionPrefs[courseCode];
+                } else {
+                    weeklySectionPrefs[courseCode] = selected;
+                }
+                saveWeeklyPrefs();
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].addEventListener("change", syncSectionPrefs);
+            }
+
+            toggleAllBtn.addEventListener("click", function () {
+                if (!checkboxes.length) return;
+                var allChecked = true;
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (!checkboxes[i].checked) {
+                        allChecked = false;
+                        break;
+                    }
+                }
+                var newState = !allChecked;
+                for (var j = 0; j < checkboxes.length; j++) {
+                    checkboxes[j].checked = newState;
+                }
+                syncSectionPrefs();
+            });
+
+            syncSectionPrefs();
+
             toggle.addEventListener("click", function () {
                 var visible = details.style.display === "block";
                 details.style.display = visible ? "none" : "block";
@@ -2036,6 +2255,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             btn.style.fontSize = "14px";
             btn.style.marginLeft = "8px";
             btn.addEventListener("click", function () {
+                var codeNode = cardEl.querySelector(".weekly-course-code");
+                var codeText = codeNode && codeNode.textContent ? codeNode.textContent.trim() : "";
+                if (codeText && weeklySectionPrefs && weeklySectionPrefs.hasOwnProperty(codeText)) {
+                    delete weeklySectionPrefs[codeText];
+                }
                 cardEl.remove();
             });
             headerEl.appendChild(btn);
@@ -2055,7 +2279,48 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             details.className = "weekly-sections";
             details.style.display = "none";
 
+            var courseCodeNode = cardEl.querySelector(".weekly-course-code");
+            var courseCode = courseCodeNode && courseCodeNode.textContent ? courseCodeNode.textContent.trim() : "";
+            var existingPrefs = (weeklySectionPrefs && courseCode) ? weeklySectionPrefs[courseCode] : null;
+
+            var choices = document.createElement("div");
+            choices.className = "weekly-section-choices";
+
+            var choicesHeader = document.createElement("div");
+            choicesHeader.className = "weekly-section-choices-header";
+            var choicesLabel = document.createElement("span");
+            choicesLabel.textContent = "Available sections";
+            var toggleAllBtn = document.createElement("button");
+            toggleAllBtn.type = "button";
+            toggleAllBtn.className = "weekly-section-toggleall";
+            toggleAllBtn.textContent = "Toggle all";
+            choicesHeader.appendChild(choicesLabel);
+            choicesHeader.appendChild(toggleAllBtn);
+            choices.appendChild(choicesHeader);
+
+            var choicesList = document.createElement("div");
+            choicesList.className = "weekly-section-choices-list";
+            var checkboxes = [];
+
+            // Show the section selection controls above all section detail blocks
+            details.appendChild(choices);
+
             sections.forEach(function (s) {
+                var secNum = (s.section != null ? String(s.section) : "").trim();
+                if (secNum) {
+                    var item = document.createElement("label");
+                    item.className = "weekly-section-choice-item";
+                    var cb = document.createElement("input");
+                    cb.type = "checkbox";
+                    cb.value = secNum;
+                    var defaultChecked = !existingPrefs || !existingPrefs.length || existingPrefs.indexOf(secNum) !== -1;
+                    cb.checked = defaultChecked;
+                    item.appendChild(cb);
+                    item.appendChild(document.createTextNode(" " + secNum));
+                    choicesList.appendChild(item);
+                    checkboxes.push(cb);
+                }
+
                 var block = document.createElement("div");
                 block.className = "weekly-section-block";
 
@@ -2103,11 +2368,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         chip.textContent = txt.trim();
                         row.appendChild(chip);
 
-                        var room = document.createElement("span");
-                        room.className = "weekly-section-room";
-                        var roomText = m.room ? fixEncoding(m.room) : "Not entered";
-                        room.textContent = roomText;
-                        row.appendChild(room);
+                        var roomInput = document.createElement("input");
+                        roomInput.type = "text";
+                        roomInput.className = "weekly-section-room-input";
+                        roomInput.value = m.room ? fixEncoding(m.room) : "";
+                        roomInput.placeholder = "Room";
+                        roomInput.title = "Edit room / place";
+                        roomInput.addEventListener("change", function () {
+                            m.room = roomInput.value.trim();
+                        });
+                        row.appendChild(roomInput);
 
                         block.appendChild(row);
                     });
@@ -2115,6 +2385,44 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                 details.appendChild(block);
             });
+
+            choices.appendChild(choicesList);
+
+            function syncSectionPrefs() {
+                if (!courseCode) return;
+                var selected = [];
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) selected.push(checkboxes[i].value);
+                }
+                if (!weeklySectionPrefs) weeklySectionPrefs = {};
+                if (!selected.length || selected.length === checkboxes.length) {
+                    delete weeklySectionPrefs[courseCode];
+                } else {
+                    weeklySectionPrefs[courseCode] = selected;
+                }
+            }
+
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].addEventListener("change", syncSectionPrefs);
+            }
+
+            toggleAllBtn.addEventListener("click", function () {
+                if (!checkboxes.length) return;
+                var allChecked = true;
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (!checkboxes[i].checked) {
+                        allChecked = false;
+                        break;
+                    }
+                }
+                var newState = !allChecked;
+                for (var j = 0; j < checkboxes.length; j++) {
+                    checkboxes[j].checked = newState;
+                }
+                syncSectionPrefs();
+            });
+
+            syncSectionPrefs();
 
             toggle.addEventListener("click", function () {
                 var visible = details.style.display === "block";
@@ -2481,6 +2789,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             document.querySelectorAll(".weekly-course-toggle-dept").forEach(function (el) {
                 el.checked = weeklyCheckDeptGlobal;
             });
+            saveWeeklyPrefs();
         });
     }
     if (globalSurnameToggle) {
@@ -2491,6 +2800,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             document.querySelectorAll(".weekly-course-toggle-surname").forEach(function (el) {
                 el.checked = weeklyCheckSurnameGlobal;
             });
+            saveWeeklyPrefs();
         });
     }
     var globalCollToggle = document.getElementById("weeklyGlobalCheckCollision");
@@ -2501,6 +2811,15 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             document.querySelectorAll(".weekly-course-toggle-collision").forEach(function (el) {
                 el.checked = weeklyCheckCollisionGlobal;
             });
+            saveWeeklyPrefs();
+        });
+    }
+
+    // Auto‑save surname as the user types
+    var weeklySurnameInput = document.getElementById("weeklySurname");
+    if (weeklySurnameInput) {
+        weeklySurnameInput.addEventListener("input", function () {
+            saveWeeklyPrefs();
         });
     }
 
@@ -2509,7 +2828,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (scheduleBtn) {
             scheduleBtn.addEventListener("click", function () {
                 var programCode = deptSelect ? deptSelect.value : "";
-                var surname = (document.getElementById("weeklySurname").value || "").trim();
+                var surnameInputEl = document.getElementById("weeklySurname");
+                var surname = (surnameInputEl && surnameInputEl.value || "").trim();
                 if (!programCode) {
                     setScheduleSummary("<span class=\"weekly-messages--error\">Please select a department first.</span>");
                     clearWeekGrid();
@@ -2520,6 +2840,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     clearWeekGrid();
                     return;
                 }
+                saveWeeklyPrefs();
             ensureDataLoaded()
                 .then(function () {
                     var planned = buildPlannedCourses();
@@ -2575,6 +2896,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     }
 
                     function sectionAllowedForSurname(section, courseCode) {
+                        // Respect user‑selected section preferences per course (if any)
+                        if (section && courseCode && weeklySectionPrefs) {
+                            var prefs = weeklySectionPrefs[courseCode];
+                            if (Array.isArray(prefs) && prefs.length) {
+                                var secNum = (section.section != null ? String(section.section) : "").trim();
+                                if (!secNum || prefs.indexOf(secNum) === -1) {
+                                    return false;
+                                }
+                            }
+                        }
+
                         var rules = Array.isArray(section.rules) ? section.rules : [];
                         if (!rules.length) return true;
                         var flags = getCourseRuleFlags(courseCode);
@@ -2954,6 +3286,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 courses.push(code);
             });
         }
+        var surnameInput = document.getElementById("weeklySurname");
+        var surnameVal = surnameInput ? (surnameInput.value || "").trim() : "";
         return {
             version: 2,
             codes: courses,
@@ -2966,7 +3300,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 checkSurname: !!weeklyCheckSurnameGlobal,
                 checkCollision: !!weeklyCheckCollisionGlobal
             },
-            plannedCodes: currentPlannedCodes || []
+            plannedCodes: currentPlannedCodes || [],
+            surname: surnameVal,
+            sectionPrefs: weeklySectionPrefs || {}
         };
     }
 
@@ -2978,7 +3314,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         // Backwards-compat for old v1 saves (codes only)
         var isV1 = !state.version || state.version === 1;
 
-        // Restore global flags when available
+        // Restore global flags, surname, section preferences when available
         if (!isV1 && state.rules) {
             weeklyCheckDeptGlobal = !!state.rules.checkDept;
             weeklyCheckSurnameGlobal = !!state.rules.checkSurname;
@@ -2988,6 +3324,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             weeklyBusySlots = state.busySlots || {};
         } else {
             weeklyBusySlots = weeklyBusySlots || {};
+        }
+        if (!isV1 && state.sectionPrefs && typeof state.sectionPrefs === "object") {
+            weeklySectionPrefs = state.sectionPrefs;
+        }
+        if (!isV1 && typeof state.surname === "string") {
+            var surnameInput = document.getElementById("weeklySurname");
+            if (surnameInput) surnameInput.value = state.surname;
         }
 
         if (!isV1) {
@@ -3034,6 +3377,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 setScheduleSummary("<span class=\"weekly-messages--error\">Nothing to save: no courses in the weekly list.</span>");
                 return;
             }
+            saveWeeklyPrefs();
             var blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
             var a = document.createElement("a");
             a.href = URL.createObjectURL(blob);
@@ -3073,6 +3417,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         weeklySaveToPortalBtn.addEventListener("click", function () {
             var state = getWeeklyState();
             try {
+                saveWeeklyPrefs();
                 localStorage.setItem("metu_portal_weekly_preview", JSON.stringify(state));
                 setScheduleSummary("<span class=\"weekly-messages--info\">Weekly schedule saved for portal preview.</span>");
             } catch (e) {

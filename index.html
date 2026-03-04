@@ -274,40 +274,101 @@ body {
     font-size: 0.85rem;
 }
 
-.portal-week-grid {
+/* Weekly preview grid – reuse Weekly page styling */
+.week-shell {
+    overflow: auto;
+}
+
+.week-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 0.75rem;
+    table-layout: fixed;
+    font-size: 0.85rem;
 }
 
-.portal-week-grid thead th {
+.week-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--bg-elevated);
+}
+
+.week-table th,
+.week-table td {
+    border: 1px solid var(--border-subtle);
+    padding: 6px 8px;
     text-align: center;
-    padding: 4px 6px;
-    border-bottom: 1px solid var(--border-subtle);
-    color: var(--text-muted);
 }
 
-.portal-week-grid th,
-.portal-week-grid td {
-    border-bottom: 1px solid var(--border-subtle);
-    padding: 4px 6px;
-    text-align: center;
+.week-time-header {
+    width: 70px;
 }
 
-.portal-week-grid .portal-week-time {
+.week-time-label {
     text-align: right;
+    font-weight: 600;
     color: var(--text-muted);
-    font-weight: 500;
-    white-space: nowrap;
+    background: var(--bg);
 }
 
-.portal-week-grid .portal-week-slot {
-    min-width: 72px;
-    max-width: 120px;
+.week-table td {
+    min-height: 44px;
+    height: 44px;
+    background: var(--bg-elevated);
+    position: relative;
+    vertical-align: top;
+}
+
+.week-table td.empty-slot {
+    background: rgba(148, 163, 184, 0.08);
+}
+
+.week-schedule-block {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 6px;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    white-space: pre-line;
+    color: var(--text-main);
+    box-sizing: border-box;
+    flex: 1 1 0;
 }
+
+.week-table td.week-schedule-cell {
+    vertical-align: middle;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-main);
+    border-left: none;
+    white-space: pre-line;
+    padding: 0;
+}
+
+.week-schedule-cell-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+    gap: 0;
+    height: 100%;
+}
+
+/* Accent colors – match weekly course cards */
+.week-schedule-block[data-accent="1"] { background: rgba(56, 189, 248, 0.12); }
+.week-schedule-block[data-accent="2"] { background: rgba(59, 130, 246, 0.12); }
+.week-schedule-block[data-accent="3"] { background: rgba(129, 140, 248, 0.12); }
+.week-schedule-block[data-accent="4"] { background: rgba(244, 114, 182, 0.12); }
+.week-schedule-block[data-accent="5"] { background: rgba(251, 191, 36, 0.12); }
+.week-schedule-block[data-accent="6"] { background: rgba(52, 211, 153, 0.12); }
+.week-schedule-block[data-accent="7"] { background: rgba(96, 165, 250, 0.10); }
+.week-schedule-block[data-accent="8"] { background: rgba(148, 163, 184, 0.10); }
+.week-schedule-block[data-accent="9"] { background: rgba(45, 212, 191, 0.12); }
+.week-schedule-block[data-accent="10"] { background: rgba(244, 163, 84, 0.12); }
+.week-schedule-block[data-accent="11"] { background: rgba(196, 181, 253, 0.12); }
+.week-schedule-block[data-accent="12"] { background: rgba(248, 180, 180, 0.12); }
+.week-schedule-block[data-accent="13"] { background: rgba(163, 230, 53, 0.12); }
 
 @media (max-width: 600px) {
     body { padding: 20px 16px; }
@@ -349,7 +410,7 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
     </div>
   </section>
 
-  <section class="portal-courses-section" id="portalWeeklySection" style="display: none;">
+  <section class="portal-courses-section" id="portalWeeklySection">
     <div class="portal-courses-header">
       <h2 class="portal-courses-title">Saved weekly schedule</h2>
       <div class="portal-courses-actions">
@@ -386,6 +447,138 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
 (function() {
   var METU_PORTAL_PLANNER_STATE = 'metu_portal_planner_state';
   var METU_PORTAL_WEEKLY_PREVIEW = 'metu_portal_weekly_preview';
+
+  // Shared helpers for weekly preview grid (match Weekly page logic, read-only here)
+  var PREVIEW_WEEK_TIME_LABELS = ["08:40–09:30", "09:40–10:30", "10:40–11:30", "11:40–12:30", "12:40–13:30", "13:40–14:30", "14:40–15:30", "15:40–16:30", "16:40–17:30"];
+  var PREVIEW_WEEK_FIRST_SLOT_START = 520; // 08:40
+  var PREVIEW_WEEK_SLOT_MINUTES = 60;
+
+  function previewParseTimeToMinutes(str) {
+    if (!str) return null;
+    var parts = String(str).split(':');
+    if (parts.length !== 2) return null;
+    var h = parseInt(parts[0], 10);
+    var m = parseInt(parts[1], 10);
+    if (isNaN(h) || isNaN(m)) return null;
+    return h * 60 + m;
+  }
+
+  function previewTimeToGridRow(startMinutes) {
+    if (startMinutes == null) return -1;
+    var row = Math.floor((startMinutes - PREVIEW_WEEK_FIRST_SLOT_START) / PREVIEW_WEEK_SLOT_MINUTES);
+    if (row < 0 || row > 8) return -1;
+    return row;
+  }
+
+  function previewTimeToRowSpan(startMinutes, endMinutes) {
+    if (startMinutes == null || endMinutes == null) return 1;
+    var row = Math.floor((startMinutes - PREVIEW_WEEK_FIRST_SLOT_START) / PREVIEW_WEEK_SLOT_MINUTES);
+    var endSlot = Math.floor((endMinutes - PREVIEW_WEEK_FIRST_SLOT_START) / PREVIEW_WEEK_SLOT_MINUTES);
+    var span = endSlot - row + 1;
+    if (span < 1) span = 1;
+    if (row + span > 9) span = 9 - row;
+    return span;
+  }
+
+  function previewDayToCol(dayStr) {
+    var d = String(dayStr || '').toLowerCase();
+    if (d.indexOf('mon') === 0) return 0;
+    if (d.indexOf('tue') === 0) return 1;
+    if (d.indexOf('wed') === 0) return 2;
+    if (d.indexOf('thu') === 0) return 3;
+    if (d.indexOf('fri') === 0) return 4;
+    return -1;
+  }
+
+  function renderWeeklyPreviewGrid(containerEl, schedule) {
+    containerEl.innerHTML = '';
+    var shell = document.createElement('div');
+    shell.className = 'week-shell';
+
+    var table = document.createElement('table');
+    table.className = 'week-table';
+
+    var thead = document.createElement('thead');
+    var hr = document.createElement('tr');
+    var emptyTh = document.createElement('th');
+    emptyTh.className = 'week-time-header';
+    hr.appendChild(emptyTh);
+    ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].forEach(function(d) {
+      var th = document.createElement('th');
+      th.textContent = d;
+      hr.appendChild(th);
+    });
+    thead.appendChild(hr);
+    table.appendChild(thead);
+
+    // cells[row][col] -> array of blocks
+    var cells = [];
+    for (var r = 0; r < 9; r++) {
+      cells[r] = [];
+      for (var c = 0; c < 5; c++) {
+        cells[r][c] = [];
+      }
+    }
+
+    if (Array.isArray(schedule)) {
+      schedule.forEach(function(item) {
+        if (!item || !item.code) return;
+        var baseLabel = item.code + (item.sectionNum ? (' Sec ' + item.sectionNum) : '');
+        var accent = item.accent || '1';
+        var meetings = item.meetings || [];
+        meetings.forEach(function(m) {
+          var col = previewDayToCol(m.day || '');
+          var start = previewParseTimeToMinutes(m.start);
+          var end = previewParseTimeToMinutes(m.end);
+          if (col < 0 || start == null || end == null) return;
+          var startRow = previewTimeToGridRow(start);
+          var span = previewTimeToRowSpan(start, end);
+          if (startRow < 0 || span < 1) return;
+          var room = (m.room || '').trim();
+          var label = room ? (baseLabel + '\n' + room) : baseLabel;
+          for (var i = 0; i < span && startRow + i < 9; i++) {
+            cells[startRow + i][col].push({ label: label, accent: accent });
+          }
+        });
+      });
+    }
+
+    var tbody = document.createElement('tbody');
+    for (var r2 = 0; r2 < 9; r2++) {
+      var tr = document.createElement('tr');
+      var th = document.createElement('th');
+      th.className = 'week-time-label';
+      th.textContent = PREVIEW_WEEK_TIME_LABELS[r2];
+      tr.appendChild(th);
+
+      for (var c2 = 0; c2 < 5; c2++) {
+        var td = document.createElement('td');
+        var blocks = cells[r2][c2] || [];
+        if (blocks.length > 0) {
+          td.className = 'week-schedule-cell';
+          var inner = document.createElement('div');
+          inner.className = 'week-schedule-cell-inner';
+          blocks.forEach(function(entry) {
+            var block = document.createElement('div');
+            block.className = 'week-schedule-block';
+            block.setAttribute('data-accent', entry.accent || '1');
+            block.textContent = entry.label;
+            block.title = entry.label;
+            inner.appendChild(block);
+          });
+          td.appendChild(inner);
+        } else {
+          td.className = 'empty-slot';
+        }
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+
+    table.appendChild(tbody);
+    shell.appendChild(table);
+    containerEl.appendChild(shell);
+  }
 
   function getPlanState() {
     try {
@@ -439,108 +632,21 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
     var section = document.getElementById('portalWeeklySection');
     var listEl = document.getElementById('portalWeeklyList');
     if (!section || !listEl) return;
-    if (!state || !Array.isArray(state.codes) || !state.codes.length) {
-      section.style.display = 'none';
-      return;
-    }
+
+    // Always show the weekly section, even if nothing is saved yet.
     section.style.display = 'block';
     listEl.innerHTML = '';
     listEl.classList.remove('portal-course-list--empty');
 
-    var codes = state.codes.slice();
-    var schedules = Array.isArray(state.schedules) ? state.schedules : [];
-    var selectedIndex = typeof state.selectedIndex === 'number' ? state.selectedIndex : 0;
+    var schedules = Array.isArray(state && state.schedules) ? state.schedules : [];
+    var selectedIndex = state && typeof state.selectedIndex === 'number' ? state.selectedIndex : 0;
 
     if (schedules.length) {
-      var WEEK_DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-      var WEEK_SLOTS = ['08:40–09:30', '09:40–10:30', '10:40–11:30', '11:40–12:30', '12:40–13:30', '13:40–14:30', '14:40–15:30', '15:40–16:30', '16:40–17:30'];
-
-      function dayToCol(day) {
-        if (!day) return -1;
-        var d = String(day).toLowerCase();
-        if (d.indexOf('mon') === 0) return 0;
-        if (d.indexOf('tue') === 0) return 1;
-        if (d.indexOf('wed') === 0) return 2;
-        if (d.indexOf('thu') === 0) return 3;
-        if (d.indexOf('fri') === 0) return 4;
-        return -1;
-      }
-
-      var grid = [];
-      for (var r = 0; r < WEEK_SLOTS.length; r++) {
-        grid[r] = [];
-        for (var c = 0; c < WEEK_DAYS.length; c++) {
-          grid[r][c] = '';
-        }
-      }
-
       var sched = schedules[selectedIndex] || schedules[0];
-      if (Array.isArray(sched)) {
-        sched.forEach(function (item) {
-          if (!item || !item.code) return;
-          var labelBase = item.code + (item.sectionNum ? (' Sec ' + item.sectionNum) : '');
-          var meetings = item.meetings || [];
-          meetings.forEach(function (m) {
-            var day = (m.day || '').toLowerCase();
-            var col = dayToCol(day);
-            var slotLabel = (m.start || '') + '–' + (m.end || '');
-            var row = WEEK_SLOTS.indexOf(slotLabel);
-            if (col < 0 || row < 0) return;
-            if (grid[row][col]) grid[row][col] += ', ' + labelBase;
-            else grid[row][col] = labelBase;
-          });
-        });
-      }
-
-      var table = document.createElement('table');
-      table.className = 'portal-week-grid';
-
-      var thead = document.createElement('thead');
-      var hr = document.createElement('tr');
-      var emptyTh = document.createElement('th');
-      emptyTh.className = 'portal-week-time';
-      hr.appendChild(emptyTh);
-      WEEK_DAYS.forEach(function (d) {
-        var th = document.createElement('th');
-        th.textContent = d;
-        hr.appendChild(th);
-      });
-      thead.appendChild(hr);
-      table.appendChild(thead);
-
-      var tbody = document.createElement('tbody');
-      for (var r2 = 0; r2 < WEEK_SLOTS.length; r2++) {
-        var tr = document.createElement('tr');
-        var timeCell = document.createElement('th');
-        timeCell.className = 'portal-week-time';
-        timeCell.textContent = WEEK_SLOTS[r2];
-        tr.appendChild(timeCell);
-        for (var c2 = 0; c2 < WEEK_DAYS.length; c2++) {
-          var td = document.createElement('td');
-          td.className = 'portal-week-slot';
-          td.textContent = grid[r2][c2];
-          tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-      }
-      table.appendChild(tbody);
-
-      listEl.appendChild(table);
+      renderWeeklyPreviewGrid(listEl, Array.isArray(sched) ? sched : []);
     } else {
-      // Fallback: just list course codes if no schedule saved
-      codes.forEach(function (code) {
-        var item = document.createElement('div');
-        item.className = 'portal-course-item';
-        var codeSpan = document.createElement('span');
-        codeSpan.className = 'portal-course-code';
-        codeSpan.textContent = code;
-        var label = document.createElement('span');
-        label.className = 'portal-course-grade';
-        label.textContent = '';
-        item.appendChild(codeSpan);
-        item.appendChild(label);
-        listEl.appendChild(item);
-      });
+      // No saved schedules yet – render an empty week grid.
+      renderWeeklyPreviewGrid(listEl, []);
     }
   }
 
