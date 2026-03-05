@@ -1,6 +1,6 @@
 {
   "source": "catalog.metu.edu.tr",
-  "scraped_at": "2026-03-01 13:26:32",
+  "scraped_at": "2026-03-05 11:30:51",
   "curriculums": {
     "120": {
       "program_code": "120",
@@ -12276,6 +12276,21 @@
     "608": {
       "program_code": "608",
       "program": "MODERN LANGUAGES DEPARTMENT (SPANISH)",
+      "semesters": []
+    },
+    "454": {
+      "program_code": "454",
+      "program": "Educational Sciences",
+      "semesters": []
+    },
+    "460": {
+      "program_code": "460",
+      "program": "Mathematics and Science Education",
+      "semesters": []
+    },
+    "561": {
+      "program_code": "561",
+      "program": "Engineering Sciences",
       "semesters": []
     }
   }

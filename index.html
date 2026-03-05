@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="main-ui.css">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <style>
 /* Page-specific: portal cards and content; header/layout from main-ui.css */
 
@@ -107,6 +109,40 @@
     display: flex;
     gap: 8px;
     align-items: center;
+}
+
+.portal-export-dropdown {
+    position: relative;
+}
+.portal-export-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 4px;
+    padding: 6px 0;
+    background: var(--bg-elevated);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-lg);
+    min-width: 120px;
+    display: none;
+    z-index: 30;
+}
+.portal-export-menu.is-open {
+    display: block;
+}
+.portal-export-item {
+    width: 100%;
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    cursor: pointer;
+}
+.portal-export-item:hover {
+    background: var(--accent-soft);
 }
 
 .portal-btn {
@@ -327,6 +363,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       <div class="portal-courses-header">
         <h2 class="portal-courses-title">Saved weekly schedule</h2>
         <div class="portal-courses-actions">
+          <div class="portal-export-dropdown">
+            <button type="button" id="portalWeeklyExportToggle" class="portal-btn">Export ▾</button>
+            <div id="portalWeeklyExportMenu" class="portal-export-menu" aria-label="Export weekly schedule" aria-hidden="true">
+              <button type="button" id="portalWeeklyExportPng" class="portal-export-item">PNG</button>
+              <button type="button" id="portalWeeklyExportPdf" class="portal-export-item">PDF</button>
+            </div>
+          </div>
           <a href="weekly.html" class="portal-btn portal-btn--primary">Open weekly</a>
         </div>
       </div>
@@ -621,6 +664,54 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     }
   }
 
+  function exportPortalWeeklyAsPng() {
+    var container = document.getElementById('portalWeeklyList');
+    if (!container || typeof html2canvas !== 'function') {
+      alert('Export not available in this browser.');
+      return;
+    }
+    var theme = (document.documentElement.getAttribute('data-theme') || 'dark') === 'light' ? 'light' : 'dark';
+    var bgColor = theme === 'dark' ? '#0f1114' : '#f8f9fa';
+    html2canvas(container, { backgroundColor: bgColor, scale: 2 }).then(function(canvas) {
+      var link = document.createElement('a');
+      link.href = canvas.toDataURL('image/png');
+      link.download = 'weekly-schedule-preview.png';
+      link.click();
+    }).catch(function() {
+      alert('Could not export PNG.');
+    });
+  }
+
+  function exportPortalWeeklyAsPdf() {
+    var container = document.getElementById('portalWeeklyList');
+    if (!container || typeof html2canvas !== 'function' || !(window.jspdf && window.jspdf.jsPDF)) {
+      alert('Export not available in this browser.');
+      return;
+    }
+    var theme = (document.documentElement.getAttribute('data-theme') || 'dark') === 'light' ? 'light' : 'dark';
+    var bgColor = theme === 'dark' ? '#0f1114' : '#f8f9fa';
+    html2canvas(container, { backgroundColor: bgColor, scale: 2 }).then(function(canvas) {
+      var imgData = canvas.toDataURL('image/png');
+      var pdf = new window.jspdf.jsPDF('l', 'pt', 'a4');
+      var pageWidth = pdf.internal.pageSize.getWidth();
+      var pageHeight = pdf.internal.pageSize.getHeight();
+      pdf.setFillColor(bgColor);
+      pdf.rect(0, 0, pageWidth, pageHeight, 'F');
+      var imgWidth = pageWidth;
+      var imgHeight = canvas.height * imgWidth / canvas.width;
+      if (imgHeight > pageHeight) {
+        imgHeight = pageHeight;
+        imgWidth = canvas.width * imgHeight / canvas.height;
+      }
+      var x = (pageWidth - imgWidth) / 2;
+      var y = (pageHeight - imgHeight) / 2;
+      pdf.addImage(imgData, 'PNG', x, y, imgWidth, imgHeight);
+      pdf.save('weekly-schedule-preview.pdf');
+    }).catch(function() {
+      alert('Could not export PDF.');
+    });
+  }
+
   function updateCourseList() {
     var state = getPlanState();
     var listEl = document.getElementById('portalCourseList');
@@ -677,6 +768,39 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
   var saveBtn = document.getElementById('portalSaveBtn');
   if (saveBtn) saveBtn.onclick = savePlanFromPortal;
+
+  var portalWeeklyExportToggle = document.getElementById('portalWeeklyExportToggle');
+  var portalWeeklyExportMenu = document.getElementById('portalWeeklyExportMenu');
+  if (portalWeeklyExportToggle && portalWeeklyExportMenu) {
+    portalWeeklyExportToggle.addEventListener('click', function () {
+      var isOpen = portalWeeklyExportMenu.classList.contains('is-open');
+      portalWeeklyExportMenu.classList.toggle('is-open', !isOpen);
+      portalWeeklyExportMenu.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+    });
+    var exportPngBtn = document.getElementById('portalWeeklyExportPng');
+    var exportPdfBtn = document.getElementById('portalWeeklyExportPdf');
+    if (exportPngBtn) {
+      exportPngBtn.addEventListener('click', function () {
+        portalWeeklyExportMenu.classList.remove('is-open');
+        portalWeeklyExportMenu.setAttribute('aria-hidden', 'true');
+        exportPortalWeeklyAsPng();
+      });
+    }
+    if (exportPdfBtn) {
+      exportPdfBtn.addEventListener('click', function () {
+        portalWeeklyExportMenu.classList.remove('is-open');
+        portalWeeklyExportMenu.setAttribute('aria-hidden', 'true');
+        exportPortalWeeklyAsPdf();
+      });
+    }
+    document.addEventListener('click', function (e) {
+      if (!portalWeeklyExportMenu.classList.contains('is-open')) return;
+      if (!portalWeeklyExportMenu.contains(e.target) && !portalWeeklyExportToggle.contains(e.target)) {
+        portalWeeklyExportMenu.classList.remove('is-open');
+        portalWeeklyExportMenu.setAttribute('aria-hidden', 'true');
+      }
+    });
+  }
 
   function setLanguage(lang) {
     if (!lang || (lang !== 'tr' && lang !== 'en')) return;
@@ -741,5 +865,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   }
 })();
 </script>
+<a
+  href="changelog.html"
+  target="_blank"
+  rel="noopener"
+  aria-label="Open update history"
+  style="position: fixed; right: 16px; bottom: 12px; left: auto; font-size: 12px; color: rgba(154, 160, 166, 0.95); z-index: 9999; text-decoration: none; cursor: pointer;"
+>1.0.0</a>
 </body>
 </html>

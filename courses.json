@@ -1,6 +1,6 @@
 {
   "source": "catalog.metu.edu.tr",
-  "scraped_at": "2026-03-01 02:32:49",
+  "scraped_at": "2026-03-05 11:30:51",
   "courses": [
     {
       "code": "ARCH101",
@@ -61111,6 +61111,3136 @@
       "prerequisites": null,
       "programs": [
         "608"
+      ]
+    },
+    {
+      "code": "EDS119",
+      "course_code_7digit": "4540119",
+      "name": "INTRODUCTION TO TEACHING PROFESSION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS200",
+      "course_code_7digit": "4540200",
+      "name": "INTRODUCTION TO EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS212",
+      "course_code_7digit": "4540212",
+      "name": "INSTRUCTIONAL PRINCIPLES AND METHODS",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS213",
+      "course_code_7digit": "4540213",
+      "name": "HISTORY OF TURKISH EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS214",
+      "course_code_7digit": "4540214",
+      "name": "RESEARCH METHODS IN EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS216",
+      "course_code_7digit": "4540216",
+      "name": "LEARNING IN NON-SCHOOL CONTEXTS",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS220",
+      "course_code_7digit": "4540220",
+      "name": "EDUCATIONAL PSYCHOLOGY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "4540120"
+          ],
+          [
+            "4540200"
+          ],
+          [
+            "4540119"
+          ]
+        ]
+      },
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS221",
+      "course_code_7digit": "4540221",
+      "name": "DEVELOPMENT AND LEARNING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS222",
+      "course_code_7digit": "4540222",
+      "name": "INSTRUC.PLANN.AND EVALUATION",
+      "credits": 4,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS226",
+      "course_code_7digit": "4540226",
+      "name": "EDUC.EXCEPTIONAL CHILDREN&YOUTH",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS240",
+      "course_code_7digit": "4540240",
+      "name": "EDUCATIONAL SOCIOLOGY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS255",
+      "course_code_7digit": "4540255",
+      "name": "EDUCATIONAL PHILOSOPHY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS266",
+      "course_code_7digit": "4540266",
+      "name": "INSTRUCTIONAL TECHNOLOGIES",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS301",
+      "course_code_7digit": "4540301",
+      "name": "ORGANIZATIONAL BEHAVIOR",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS304",
+      "course_code_7digit": "4540304",
+      "name": "CLASSROOM MANAGEMENT",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS309",
+      "course_code_7digit": "4540309",
+      "name": "OPEN AND DISTANCE LEARNING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS312",
+      "course_code_7digit": "4540312",
+      "name": "INCLUSIVE EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS330",
+      "course_code_7digit": "4540330",
+      "name": "MEASUREMENT AND EVALUATION IN EDUCATIO",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "4540320"
+          ],
+          [
+            "4540230"
+          ]
+        ]
+      },
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS336",
+      "course_code_7digit": "4540336",
+      "name": "ADULT EDUCATION AND LIFELONG LEARNING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS339",
+      "course_code_7digit": "4540339",
+      "name": "EXTRA-CURRICULAR ACTIVITIES",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS416",
+      "course_code_7digit": "4540416",
+      "name": "TURKISH EDUCATIONAL SYSTEM AND SCHOOL MANAGEMENT",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS424",
+      "course_code_7digit": "4540424",
+      "name": "GUIDANCE",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS501",
+      "course_code_7digit": "4540501",
+      "name": "SOCIAL THEORIES AS APPLIED TO EDUCATIO",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS502",
+      "course_code_7digit": "4540502",
+      "name": "RESEARCH METHODS AND ETHICS IN EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS504",
+      "course_code_7digit": "4540504",
+      "name": "EDUCATIONAL STATISTICS",
+      "credits": 4,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS505",
+      "course_code_7digit": "4540505",
+      "name": "PROTHESIS SEMINAR",
+      "credits": 0,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS507",
+      "course_code_7digit": "4540507",
+      "name": "DEVELOPMENT AND LEARNING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS509",
+      "course_code_7digit": "4540509",
+      "name": "INSTRUCTIONAL PLAN.AND EVALUATION",
+      "credits": 4,
+      "department": "Educational Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS510",
+      "course_code_7digit": "4540510",
+      "name": "CLASSROOM MANAGEMENT",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "4540200",
+            "4540220"
+          ]
+        ]
+      },
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS513",
+      "course_code_7digit": "4540513",
+      "name": "ADMINISTRATIVE PROBLEMS IN EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS515",
+      "course_code_7digit": "4540515",
+      "name": "ORGANIZATIONAL PSYCHOLOGY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS516",
+      "course_code_7digit": "4540516",
+      "name": "GROUP DYNAMICS AND LEADERSHIP",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS517",
+      "course_code_7digit": "4540517",
+      "name": "EDUCATIONAL ORGANIZATION AND DESIGN",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS520",
+      "course_code_7digit": "4540520",
+      "name": "STRATEGIC PLANNING IN HIGHER EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS522",
+      "course_code_7digit": "4540522",
+      "name": "GUIDANCE",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "4540200",
+            "4540220"
+          ]
+        ]
+      },
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS523",
+      "course_code_7digit": "4540523",
+      "name": "THEORIES OF COUNSELING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS524",
+      "course_code_7digit": "4540524",
+      "name": "GAP ANALYSIS IN EDUCATIONAL ORGANIZATIONS",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS525",
+      "course_code_7digit": "4540525",
+      "name": "SYSTEMS ANALYSIS IN EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS526",
+      "course_code_7digit": "4540526",
+      "name": "ECONOMICS OF EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS533",
+      "course_code_7digit": "4540533",
+      "name": "TOTAL QUALITY MANAGEMENT IN EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS534",
+      "course_code_7digit": "4540534",
+      "name": "CRITICAL TEXTS ON THE POLITICS OF EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS536",
+      "course_code_7digit": "4540536",
+      "name": "RESEARCH AND PRACTICE ON TECNOLOGY IN TEACHER EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS538",
+      "course_code_7digit": "4540538",
+      "name": "HIGHER EDUCATION GOVERNANCE AND ADMINISTRATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS539",
+      "course_code_7digit": "4540539",
+      "name": "CREATIVE DRAMA IN EDUCATION AND RESEARCH",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS540",
+      "course_code_7digit": "4540540",
+      "name": "FUNDAMENTALS OF CURRICULUM DEV.",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS541",
+      "course_code_7digit": "4540541",
+      "name": "INSTRUCTIONAL DESIGN",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS542",
+      "course_code_7digit": "4540542",
+      "name": "LEARNING SCIENCE: FOUNDATIONS AND APPLICATIONS",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS544",
+      "course_code_7digit": "4540544",
+      "name": "THEORIES OF INSTRUCTION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS545",
+      "course_code_7digit": "4540545",
+      "name": "RESEARCH ON TEACHING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS546",
+      "course_code_7digit": "4540546",
+      "name": "CONTEMPORARY ISSUES IN CURR. AND INST.",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS547",
+      "course_code_7digit": "4540547",
+      "name": "CURRICULUM EVALUATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS550",
+      "course_code_7digit": "4540550",
+      "name": "NEEDS ASSESSMENT",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS552",
+      "course_code_7digit": "4540552",
+      "name": "EDUCATION AND SOCIAL POLICY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS553",
+      "course_code_7digit": "4540553",
+      "name": "SCHOOL IMPROVEMENT",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS554",
+      "course_code_7digit": "4540554",
+      "name": "SCALE CONSTRUCTION IN AFFECTIVE DOMAIN",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS559",
+      "course_code_7digit": "4540559",
+      "name": "TEST CONSTRUCTION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS560",
+      "course_code_7digit": "4540560",
+      "name": "ELEMENTS OF SCALING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS562",
+      "course_code_7digit": "4540562",
+      "name": "THEORY/MEASUREMENT/RESEARCH IN AFF.DOM",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS566",
+      "course_code_7digit": "4540566",
+      "name": "ELEMENTS OF FACTOR ANALYSIS AND REL. T",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS571",
+      "course_code_7digit": "4540571",
+      "name": "COMPARATIVE EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS573",
+      "course_code_7digit": "4540573",
+      "name": "CURRENT ISSUES IN TURKISH EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS578",
+      "course_code_7digit": "4540578",
+      "name": "CONTEMPORARY PHILOSOPHIES OF EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS579",
+      "course_code_7digit": "4540579",
+      "name": "INDEPENDENT STUDY IN EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS582",
+      "course_code_7digit": "4540582",
+      "name": "PRINCIPLES &TECHNIQUES OF COUNSELING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS583",
+      "course_code_7digit": "4540583",
+      "name": "GROUP COUNSELING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS584",
+      "course_code_7digit": "4540584",
+      "name": "FIELD PRACTICE I",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS585",
+      "course_code_7digit": "4540585",
+      "name": "FIELD PRACTICE II",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS590",
+      "course_code_7digit": "4540590",
+      "name": "COUNSELING IN HIGHER EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS593",
+      "course_code_7digit": "4540593",
+      "name": "CRISIS COUNSELING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS596",
+      "course_code_7digit": "4540596",
+      "name": "ASSESSMENT TECHNIQUES IN COUNSELING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS599",
+      "course_code_7digit": "4540599",
+      "name": "MASTERS THESIS",
+      "credits": 0,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS601",
+      "course_code_7digit": "4540601",
+      "name": "QUALITATIVE RESEARCH METHODS IN EDUC.",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS604",
+      "course_code_7digit": "4540604",
+      "name": "MULTIVARIATE STATISTICAL TECHNIQUES IN EDUCATION",
+      "credits": 4,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "4540504"
+          ]
+        ]
+      },
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS607",
+      "course_code_7digit": "4540607",
+      "name": "ISSUES IN EDUCATIONAL ADMINISTRATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS609",
+      "course_code_7digit": "4540609",
+      "name": "SCHOOL AND SOCIETY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS610",
+      "course_code_7digit": "4540610",
+      "name": "EDUCATIONAL LEADERSHIP AND CHANGE",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS617",
+      "course_code_7digit": "4540617",
+      "name": "RESTRUCTING EDUCATIONAL ORGANIZATIONS",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS618",
+      "course_code_7digit": "4540618",
+      "name": "THEO.&PRACTIC. IMPLICATIONS OF EDUC.RE",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS619",
+      "course_code_7digit": "4540619",
+      "name": "ORGANIZATION AND ADMINISTRATION OF HIGHER EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS624",
+      "course_code_7digit": "4540624",
+      "name": "MIXED METHODS RESEARCH IN EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "4540502"
+          ],
+          [
+            "4540695"
+          ]
+        ]
+      },
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS625",
+      "course_code_7digit": "4540625",
+      "name": "EDUCATIONAL PLANNING FOR SOCIAL DEVEL.",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS640",
+      "course_code_7digit": "4540640",
+      "name": "INSTRUCTION: THEORY AND RESEARCH",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS641",
+      "course_code_7digit": "4540641",
+      "name": "CURRICULUM: THEORY AND RESEARCH",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS649",
+      "course_code_7digit": "4540649",
+      "name": "A COMPARATIVE STUDY OF TEACHER EDUC.",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS651",
+      "course_code_7digit": "4540651",
+      "name": "PRACTICUM IN DESIGN. CURRICU.&INSTRUCT",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS653",
+      "course_code_7digit": "4540653",
+      "name": "SEMINAR IN TEACHING METHODS",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS654",
+      "course_code_7digit": "4540654",
+      "name": "PRACTICUM IN CURRICULUM EVALUATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS655",
+      "course_code_7digit": "4540655",
+      "name": "PARADIGMS IN CURRICULUM",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS656",
+      "course_code_7digit": "4540656",
+      "name": "CHANGING WORLD PERSPECTIVES IN EDUC.",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS658",
+      "course_code_7digit": "4540658",
+      "name": "CURRICULUM POLICY IN HIGHER EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS660",
+      "course_code_7digit": "4540660",
+      "name": "TEACHING IN HIGHER EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS681",
+      "course_code_7digit": "4540681",
+      "name": "ADVANCED INDIVIDUAL COUNSELING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS682",
+      "course_code_7digit": "4540682",
+      "name": "ADVANCED GROUP COUNSELING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS683",
+      "course_code_7digit": "4540683",
+      "name": "CONTEMPORARY APPROACHES TO COUNSELING",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS685",
+      "course_code_7digit": "4540685",
+      "name": "ADVANCED SEMINAR IN GUIDANCE &COUNSELI",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS687",
+      "course_code_7digit": "4540687",
+      "name": "SPECIAL TOPICS IN GUIDANCE",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS695",
+      "course_code_7digit": "4540695",
+      "name": "SEMINAR ON RESEARCH METHODS AND ETHICS  IN EDUCATIONAL SCIENCES",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS696",
+      "course_code_7digit": "4540696",
+      "name": "DOCTORAL SEMINAR IN EDUCATION",
+      "credits": 0,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS699",
+      "course_code_7digit": "4540699",
+      "name": "PH.D. DISSERTATION",
+      "credits": 0,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS777",
+      "course_code_7digit": "4540777",
+      "name": "INTERNATIONAL GRADUATE STUDENT PRACTICE",
+      "credits": 0,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS4200",
+      "course_code_7digit": "4544200",
+      "name": "INTRODUCTION TO EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS4220",
+      "course_code_7digit": "4544220",
+      "name": "EDUCATIONAL PSYCHOLOGY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "EDS5549",
+      "course_code_7digit": "4545549",
+      "name": "EDUCATIONAL CHANGE",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "454"
+      ]
+    },
+    {
+      "code": "MSE210",
+      "course_code_7digit": "4600210",
+      "name": "THEORIES OF TEACHING AND LEARNING IN SCIENCE AND MATHEMATICS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE221",
+      "course_code_7digit": "4600221",
+      "name": "INSTRUCTIONAL PRINCIPLES AND METHODS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE235",
+      "course_code_7digit": "4600235",
+      "name": "LEARNING AND TEACHING APPROACHES IN PHYSICS",
+      "credits": 2,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE236",
+      "course_code_7digit": "4600236",
+      "name": "PHYSICS TEACHING CURRICULA",
+      "credits": 2,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE241",
+      "course_code_7digit": "4600241",
+      "name": "INTRODUCTION TO MATHEMATICS EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE288",
+      "course_code_7digit": "4600288",
+      "name": "COMMUNITY SERVICE",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE301",
+      "course_code_7digit": "4600301",
+      "name": "METHODS OF SCIENCE TEACHING IN MIDDLE SCHOOLS I",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE302",
+      "course_code_7digit": "4600302",
+      "name": "METHODS OF SCIENCE TEACHING IN MIDDLE SCHOOLS II",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE303",
+      "course_code_7digit": "4600303",
+      "name": "LABORATORY APPLICATIONS IN SCIENCE TEACHING-I",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE305",
+      "course_code_7digit": "4600305",
+      "name": "ASSESSMENT OF LEARNING IN SCIENCE AND MATHEMATICS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE308",
+      "course_code_7digit": "4600308",
+      "name": "BIOLOGICAL DIVERSITY IN TURKEY",
+      "credits": 2,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE309",
+      "course_code_7digit": "4600309",
+      "name": "STATISTICAL APPLICATIONS IN EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE310",
+      "course_code_7digit": "4600310",
+      "name": "METHODS OF SECONDARY SCIENCE TEACHING I",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE312",
+      "course_code_7digit": "4600312",
+      "name": "HUMAN ANATOMY AND PHYSIOLOGY",
+      "credits": 2,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE313",
+      "course_code_7digit": "4600313",
+      "name": "ISSUES IN SCIENCE AND TECHNOLOGY",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE320",
+      "course_code_7digit": "4600320",
+      "name": "NUTRITION AND HEALTH",
+      "credits": 2,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE321",
+      "course_code_7digit": "4600321",
+      "name": "TEACHING AND LEARNING SECONDARY SCHOOL MATHEMATICS I",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE322",
+      "course_code_7digit": "4600322",
+      "name": "TEACHING AND LEARNING SECONDARY SCHOOL MATHEMATICS II",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE326",
+      "course_code_7digit": "4600326",
+      "name": "CURRICULUM DEVELOPMENT AND INSTRUCTION IN SCIENCE AND MATHEMATICS EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE329",
+      "course_code_7digit": "4600329",
+      "name": "INSTRUCTIONAL TECHNOLOGY AND MATERIAL DEVELOPMENT",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE341",
+      "course_code_7digit": "4600341",
+      "name": "METHODS OF TEACHING MATHEMATICS IN MIDDLE SCHOOLS I",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE342",
+      "course_code_7digit": "4600342",
+      "name": "METHODS OF TEACHING MATHEMATICS IN MIDDLE SCHOOLS II",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE346",
+      "course_code_7digit": "4600346",
+      "name": "TEACHING COMPLEX SYSTEMS IN SCIENCE",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE349",
+      "course_code_7digit": "4600349",
+      "name": "HISTORY AND NATURE OF SCIENCE",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE352",
+      "course_code_7digit": "4600352",
+      "name": "MIDDLE SCHOOL MATHEMATICS CURRICULA",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE401",
+      "course_code_7digit": "4600401",
+      "name": "INTERDISCIPLINARY SCIENCE TEACHING",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE405",
+      "course_code_7digit": "4600405",
+      "name": "LABORATORY APPLICATIONS IN SECONDARY SCIENCE EDUCATION I",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE407",
+      "course_code_7digit": "4600407",
+      "name": "LABORATORY APPLICATIONS IN SECONDARY SCIENCE EDUCATION II",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE409",
+      "course_code_7digit": "4600409",
+      "name": "PRACTICE TEACHING  I",
+      "credits": 5,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE410",
+      "course_code_7digit": "4600410",
+      "name": "PRACTICE TEACHING II",
+      "credits": 5,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "4600409"
+          ]
+        ]
+      },
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE411",
+      "course_code_7digit": "4600411",
+      "name": "METHODS OF SECONDARY SCIENCE TEACHING II",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE414",
+      "course_code_7digit": "4600414",
+      "name": "NUTRITION AND HEALTH",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE415",
+      "course_code_7digit": "4600415",
+      "name": "EDUCATION FOR SUSTAINABLE DEVELOPMENT IN MIDDLE SCHOOLS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE422",
+      "course_code_7digit": "4600422",
+      "name": "ARGUMENTATION IN SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE425",
+      "course_code_7digit": "4600425",
+      "name": "SCIENCE. TECHNOLOGY. AND SOCIETY",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE427",
+      "course_code_7digit": "4600427",
+      "name": "INTERDISCIPLINARY CHEMISTRY TEACHING",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE429",
+      "course_code_7digit": "4600429",
+      "name": "CHEMISTRY IN DAILY LIFE",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE430",
+      "course_code_7digit": "4600430",
+      "name": "EXPLORING GEOMETRY WITH DYNAMIC GEOMETRY APPLICATIONS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE431",
+      "course_code_7digit": "4600431",
+      "name": "RESEARCH METHODS IN EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE432",
+      "course_code_7digit": "4600432",
+      "name": "REASONING AND PROOF IN SCHOOL MATHEMATICS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE434",
+      "course_code_7digit": "4600434",
+      "name": "ANALYSIS OF CHEMISTRY TEXTBOOKS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE441",
+      "course_code_7digit": "4600441",
+      "name": "METHODS OF TEACHING MATHEMATICS IN MIDDLE SCHOOLS III",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE443",
+      "course_code_7digit": "4600443",
+      "name": "HIGH SCHOOL PHYSICS CURRICULUM REVIEW I",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE444",
+      "course_code_7digit": "4600444",
+      "name": "HIGH SCHOOL PHYSICS CURRICULUM REVIEW II",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE448",
+      "course_code_7digit": "4600448",
+      "name": "FUNDAMENTAL CONCEPTS IN PHYSICS AND TEACHING",
+      "credits": 2,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE451",
+      "course_code_7digit": "4600451",
+      "name": "TEACHING AND LEARNING SECONDARY SCHOOL  MATHEMATICS III",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE452",
+      "course_code_7digit": "4600452",
+      "name": "TEACHING AND LEARNING SECONDARY SCHOOL MATHEMATICS IV",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE455",
+      "course_code_7digit": "4600455",
+      "name": "MATHEMATICAL MODELING FOR TEACHERS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE463",
+      "course_code_7digit": "4600463",
+      "name": "DEVELOPING STRATEGIC COMPETENCE IN MATHEMATICS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE473",
+      "course_code_7digit": "4600473",
+      "name": "STEM EDUCATION: NATURE OF INQUIRY AND DESIGN",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE474",
+      "course_code_7digit": "4600474",
+      "name": "EDUCATION AND AWARENESS FOR SUSTAINABILITY",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE475",
+      "course_code_7digit": "4600475",
+      "name": "CLIMATE CHANGE EDUCATION FOR SUSTAINABILITY",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE480",
+      "course_code_7digit": "4600480",
+      "name": "ANALYSIS OF MATHEMATICS TEXTBOOKS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE482",
+      "course_code_7digit": "4600482",
+      "name": "PROJECTS IN MATHEMATICS AND SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE486",
+      "course_code_7digit": "4600486",
+      "name": "PROBLEM SOLVING IN MATHEMATICS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE487",
+      "course_code_7digit": "4600487",
+      "name": "ENVIRONMENTAL SCIENCE",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE492",
+      "course_code_7digit": "4600492",
+      "name": "TEACHING AND ASSESSMENT IN THE INTERNATIONAL SECONDARY EDUCATION PROGRAMMES",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE493",
+      "course_code_7digit": "4600493",
+      "name": "FORMATIVE ASSESSMENT IN MATHEMATICS AND SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE500",
+      "course_code_7digit": "4600500",
+      "name": "M.S. THESIS",
+      "credits": 0,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE501",
+      "course_code_7digit": "4600501",
+      "name": "EDUCATIONAL STATISTICS",
+      "credits": 4,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE502",
+      "course_code_7digit": "4600502",
+      "name": "RESEARCH METHODS AND ETHICS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE510",
+      "course_code_7digit": "4600510",
+      "name": "FUNDAMENTALS OF RESEARCH IN MATHEMATICS  EDUCATION - I",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE511",
+      "course_code_7digit": "4600511",
+      "name": "ADVANCED PROBLEM SOLVING IN MATHEMATICS AND SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE512",
+      "course_code_7digit": "4600512",
+      "name": "TECHNOLOGY IN MATHEMATICS EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE513",
+      "course_code_7digit": "4600513",
+      "name": "INDEPENDENT STUDY IN MATHEMATICS EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE531",
+      "course_code_7digit": "4600531",
+      "name": "READINGS IN SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE532",
+      "course_code_7digit": "4600532",
+      "name": "TEACHING SCIENCE WITH TECHNOLOGY",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE535",
+      "course_code_7digit": "4600535",
+      "name": "NEW TRENDS IN EDUCATION: EDUCATION FOR SUSTAINABILITY",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE536",
+      "course_code_7digit": "4600536",
+      "name": "SKILLS ON ENVIRONMENTAL ISSUE INVESTIGATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE539",
+      "course_code_7digit": "4600539",
+      "name": "HISTORICAL DEVELOPMENT OF BASIC CONCEPTS OF SCIENCE",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE540",
+      "course_code_7digit": "4600540",
+      "name": "INDEPENDENT STUDY IN SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE570",
+      "course_code_7digit": "4600570",
+      "name": "TEST CONSTRUCTION IN MATHEMATICS AND SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE573",
+      "course_code_7digit": "4600573",
+      "name": "COGNITIVE DEVELOPMENT IN MATHEMATICS AND SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE599",
+      "course_code_7digit": "4600599",
+      "name": "M.S. SEMINAR",
+      "credits": 0,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE600",
+      "course_code_7digit": "4600600",
+      "name": "PH.D. THESIS",
+      "credits": 0,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE601",
+      "course_code_7digit": "4600601",
+      "name": "ADVANCED STATISTICS IN EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE602",
+      "course_code_7digit": "4600602",
+      "name": "ADVANCED EDUCATIONAL RESEARCH",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE603",
+      "course_code_7digit": "4600603",
+      "name": "QUALITATIVE RESEARCH",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE607",
+      "course_code_7digit": "4600607",
+      "name": "DIJITAL TOOLS IN QUALITATIVE INQUIRY",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE611",
+      "course_code_7digit": "4600611",
+      "name": "THEORETICAL PERSPECTIVES IN MATHEMATICS EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE613",
+      "course_code_7digit": "4600613",
+      "name": "TEACHING AND LEARNING OF SCHOOL ALGEBRA",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE615",
+      "course_code_7digit": "4600615",
+      "name": "ISSUES IN MATHEMATICS TEACHER EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE633",
+      "course_code_7digit": "4600633",
+      "name": "PHILOSOPHY AND SCIENCE TEACHING",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE670",
+      "course_code_7digit": "4600670",
+      "name": "AFFECTIVE VARIABLES IN MATHEMATICS AND SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE673",
+      "course_code_7digit": "4600673",
+      "name": "MOTIVATION IN MATHEMATICS AND SCIENCE EDUCATION",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE699",
+      "course_code_7digit": "4600699",
+      "name": "PH.D. SEMINAR",
+      "credits": 0,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE701",
+      "course_code_7digit": "4600701",
+      "name": "SCIENCE EDUCATION IN INFORMAL LEARNING SETTINGS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE702",
+      "course_code_7digit": "4600702",
+      "name": "STEM EDUCATION TRENDS AND ISSUES",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE704",
+      "course_code_7digit": "4600704",
+      "name": "ADVANCED FIELDWORK METHODS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE708",
+      "course_code_7digit": "4600708",
+      "name": "MATHEMATICS EDUCATION FOR GIFTED STUDENTS",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "MSE716",
+      "course_code_7digit": "4600716",
+      "name": "ONLINE MATHEMATICS EDUCATION FOR K-12",
+      "credits": 3,
+      "department": "Mathematics And Science Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "460"
+      ]
+    },
+    {
+      "code": "ES202",
+      "course_code_7digit": "5610202",
+      "name": "MATHEMATICS FOR ENGINEERS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360120"
+          ],
+          [
+            "2360152"
+          ],
+          [
+            "2360158"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES221",
+      "course_code_7digit": "5610221",
+      "name": "ENGINEERING MECHANICS I",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360155"
+          ],
+          [
+            "2360157"
+          ],
+          [
+            "2360119"
+          ],
+          [
+            "2360151"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES222",
+      "course_code_7digit": "5610222",
+      "name": "ENGINEERING MECHANICS II",
+      "credits": 2,
+      "department": "Engineering Sciences",
+      "offered_semester": "Once in several years.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5610221"
+          ],
+          [
+            "5610223"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES223",
+      "course_code_7digit": "5610223",
+      "name": "STATICS AND STRENGTH OF MATERIALS",
+      "credits": 4,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360157"
+          ],
+          [
+            "2360155"
+          ],
+          [
+            "2360119"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES224",
+      "course_code_7digit": "5610224",
+      "name": "STRENGTH OF MATERIALS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5610221"
+          ],
+          [
+            "5610225"
+          ],
+          [
+            "3640221"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES225",
+      "course_code_7digit": "5610225",
+      "name": "ENGINEERING MECHANICS",
+      "credits": 4,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2300105",
+            "2360119"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES301",
+      "course_code_7digit": "5610301",
+      "name": "NUMERICAL METHODS IN ENGINEERING",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360155",
+            "5710230"
+          ],
+          [
+            "2360157",
+            "5710230"
+          ],
+          [
+            "2360155",
+            "5710200"
+          ],
+          [
+            "2360157",
+            "5710200"
+          ],
+          [
+            "2360119",
+            "5710200"
+          ],
+          [
+            "2360119",
+            "5710230"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES303",
+      "course_code_7digit": "5610303",
+      "name": "STATISTICAL METHODS FOR ENGINEERS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360155"
+          ],
+          [
+            "2360157"
+          ],
+          [
+            "2360119"
+          ],
+          [
+            "2360151"
+          ],
+          [
+            "3570119"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES305",
+      "course_code_7digit": "5610305",
+      "name": "COMPUTING METHODS IN ENGINEERING",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360119",
+            "5710200"
+          ],
+          [
+            "2360119",
+            "5710230"
+          ],
+          [
+            "2360151",
+            "5710230"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES361",
+      "course_code_7digit": "5610361",
+      "name": "COMPUTING METHODS IN ENGINEERING",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360119"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES401",
+      "course_code_7digit": "5610401",
+      "name": "NUMERICAL ANALYSIS IN ENGINEERING",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Once in several years.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES403",
+      "course_code_7digit": "5610403",
+      "name": "FINITE ELEMENT METHOD",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Once in several years.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES441",
+      "course_code_7digit": "5610441",
+      "name": "INTRODUCTION TO BIOMECHANICS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES443",
+      "course_code_7digit": "5610443",
+      "name": "HUMAN PHYSIOLOGY FOR ENGINEERS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES444",
+      "course_code_7digit": "5610444",
+      "name": "FUNDAMENTALS OF TISSUE ENGINEERING",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES494",
+      "course_code_7digit": "5610494",
+      "name": "SPECIAL TOPICS IN ES/INRO.TO BIOENG.",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES500",
+      "course_code_7digit": "5610500",
+      "name": "M.S. THESIS",
+      "credits": 0,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES501",
+      "course_code_7digit": "5610501",
+      "name": "ANALYTICAL METHODS IN ENGINEERING I",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES502",
+      "course_code_7digit": "5610502",
+      "name": "ANALYTICAL METHODS INENGINEERING II",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5610501"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES503",
+      "course_code_7digit": "5610503",
+      "name": "FINITE ELEMENT METHOD",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES504",
+      "course_code_7digit": "5610504",
+      "name": "NUM. SOLUTION OF PARTIAL DIFF. EQUATIONS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES505",
+      "course_code_7digit": "5610505",
+      "name": "VARIATIONAL METHODS IN ENGINEERING",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES506",
+      "course_code_7digit": "5610506",
+      "name": "RELIABILITY",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES507",
+      "course_code_7digit": "5610507",
+      "name": "BOUNDARY ELEMENT METHOD",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES510",
+      "course_code_7digit": "5610510",
+      "name": "NUM. SOLUTION OF ORDINARY DIFF.EQUATION",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES511",
+      "course_code_7digit": "5610511",
+      "name": "BASIC PRINCIPLES OF MECHANICS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES514",
+      "course_code_7digit": "5610514",
+      "name": "MECHANIC.BEHAVIOUR OF DEFORMABLE BODIES",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES516",
+      "course_code_7digit": "5610516",
+      "name": "SPECTRAL METHODS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES521",
+      "course_code_7digit": "5610521",
+      "name": "ELASTICITY",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES525",
+      "course_code_7digit": "5610525",
+      "name": "THEORY OF CONTINUOUS MEDIA I",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES526",
+      "course_code_7digit": "5610526",
+      "name": "THEORY OF CONTINUOUS MEDIA II",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5610525",
+            "5690547"
+          ]
+        ]
+      },
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES528",
+      "course_code_7digit": "5610528",
+      "name": "WAVE PROPAGATION IN SOLIDS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES531",
+      "course_code_7digit": "5610531",
+      "name": "MECHANICS OF COMPOSITE MATERIALS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES532",
+      "course_code_7digit": "5610532",
+      "name": "MATHEMATICAL THEORY OF PLASTICITY",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES534",
+      "course_code_7digit": "5610534",
+      "name": "ELASTIC STABILITY",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES536",
+      "course_code_7digit": "5610536",
+      "name": "ENERGY METHODS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES538",
+      "course_code_7digit": "5610538",
+      "name": "SOIL-STRUCTURE INTERACTION ANALYSIS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES541",
+      "course_code_7digit": "5610541",
+      "name": "INTRODUCTION TO  BIOMECHANICS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES542",
+      "course_code_7digit": "5610542",
+      "name": "ADVANCED BIOMECHANICS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES545",
+      "course_code_7digit": "5610545",
+      "name": "TISSUE ENGINEERING",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES551",
+      "course_code_7digit": "5610551",
+      "name": "STOCHASTIC METHODS IN ENG. MECHANICS I",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES570",
+      "course_code_7digit": "5610570",
+      "name": "RESEARCH METHODS AND ETHICS IN ENGINEERING SCIENCES",
+      "credits": 0,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES571",
+      "course_code_7digit": "5610571",
+      "name": "BASIC PRINCIPLES OF FLUID MECHANICS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES591",
+      "course_code_7digit": "5610591",
+      "name": "SEMINAR",
+      "credits": 0,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES600",
+      "course_code_7digit": "5610600",
+      "name": "PH.D. THESIS",
+      "credits": 0,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES691",
+      "course_code_7digit": "5610691",
+      "name": "SEMINAR",
+      "credits": 0,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES702",
+      "course_code_7digit": "5610702",
+      "name": "PSEUDOSPECTRAL METHODS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Once in several years.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES705",
+      "course_code_7digit": "5610705",
+      "name": "OCCUPATIONAL BIOMECHANICS",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES706",
+      "course_code_7digit": "5610706",
+      "name": "MECHANICS OF HARD AND SOFT TISSUES",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
+      ]
+    },
+    {
+      "code": "ES799",
+      "course_code_7digit": "5610799",
+      "name": "ORIENTATION GRADUATE SEMINARS",
+      "credits": 0,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": [
+        "561"
       ]
     }
   ]

@@ -1,6 +1,6 @@
 {
   "source": "METU Ankara Campus",
-  "scraped_at": "2026-02-28 13:38:12",
+  "scraped_at": "2026-03-05 11:30:51",
   "faculties": {
     "Faculty of Architecture": {
       "name": "Faculty of Architecture",
@@ -136,6 +136,14 @@
         {
           "code": "453",
           "name": "Physical Education and Sports"
+        },
+        {
+          "code": "454",
+          "name": "Educational Sciences"
+        },
+        {
+          "code": "460",
+          "name": "Mathematics and Science Education"
         }
       ]
     },
@@ -202,6 +210,10 @@
         {
           "code": "566",
           "name": "Petroleum and Natural Gas Engineering"
+        },
+        {
+          "code": "561",
+          "name": "Engineering Sciences"
         }
       ]
     },
@@ -529,6 +541,21 @@
       "faculty": "School of Foreign Languages",
       "program": "MODERN LANGUAGES DEPARTMENT (SPANISH)",
       "program_code": "608"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Educational Sciences",
+      "program_code": "454"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Mathematics and Science Education",
+      "program_code": "460"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Engineering Sciences",
+      "program_code": "561"
     }
   ]
 }
