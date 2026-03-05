@@ -1508,7 +1508,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             showToast("Export not available in this browser.", "error");
             return;
         }
-        html2canvas(shell, { backgroundColor: null, scale: 2 }).then(function(canvas) {
+        html2canvas(shell, { backgroundColor: null, scale: 1.25 }).then(function(canvas) {
             var link = document.createElement("a");
             link.href = canvas.toDataURL("image/png");
             link.download = "weekly-schedule.png";
@@ -1528,8 +1528,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         var theme = (document.documentElement.getAttribute("data-theme") || "dark") === "light" ? "light" : "dark";
         var bgColor = theme === "dark" ? "#0f1114" : "#f8f9fa";
 
-        html2canvas(shell, { backgroundColor: bgColor, scale: 2 }).then(function(canvas) {
-            var imgData = canvas.toDataURL("image/png");
+        html2canvas(shell, { backgroundColor: bgColor, scale: 1.25 }).then(function(canvas) {
+            var imgData = canvas.toDataURL("image/jpeg", 0.88);
             var pdf = new window.jspdf.jsPDF("l", "pt", "a4");
             var pageWidth = pdf.internal.pageSize.getWidth();
             var pageHeight = pdf.internal.pageSize.getHeight();
@@ -1546,7 +1546,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             }
             var x = (pageWidth - imgWidth) / 2;
             var y = (pageHeight - imgHeight) / 2;
-            pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
+            pdf.addImage(imgData, "JPEG", x, y, imgWidth, imgHeight);
             pdf.save("weekly-schedule.pdf");
         }).catch(function() {
             showToast("Could not export PDF.", "error");
