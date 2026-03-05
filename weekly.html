@@ -3,11 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Weekly Schedule (Beta)</title>
+<title>Weekly Schedule</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="main-ui.css">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <style>
 /* Header, layout, panel, field, combobox/trigger: main-ui.css */
 
@@ -202,6 +204,101 @@
 
 .weekly-messages--info {
     color: var(--text-muted);
+}
+
+.weekly-export-dropdown {
+    position: relative;
+}
+.weekly-export-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin-top: 4px;
+    padding: 6px 0;
+    background: var(--bg-elevated);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-lg);
+    min-width: 120px;
+    display: none;
+    z-index: 30;
+}
+.weekly-export-menu.is-open {
+    display: block;
+}
+.weekly-export-item {
+    width: 100%;
+    padding: 6px 12px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    cursor: pointer;
+}
+.weekly-export-item:hover {
+    background: var(--accent-soft);
+}
+
+.program-errors-wrap {
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: var(--bg-input);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+}
+.program-errors-title {
+    font-size: 0.85rem;
+    margin: 0 0 8px 0;
+    color: var(--text-muted);
+}
+.program-errors-list {
+    margin: 0;
+    padding-left: 20px;
+    font-size: 0.8rem;
+    color: var(--text-main);
+}
+.program-errors-list li {
+    margin-bottom: 4px;
+}
+
+.toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 360px;
+    pointer-events: none;
+}
+.toast {
+    padding: 14px 18px;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-lg);
+    pointer-events: auto;
+    animation: toast-in 0.3s ease;
+}
+.toast--success {
+    border-left: 4px solid #16a34a;
+}
+.toast--error {
+    border-left: 4px solid #dc2626;
+}
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .weekly-courses-list {
@@ -581,7 +678,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         <div class="branding">
             <div class="branding-mark"></div>
             <div class="title-block">
-                <h1 id="pageTitle">Weekly Schedule (Beta)</h1>
+                <h1 id="pageTitle">Weekly Schedule</h1>
                 <span id="pageSubtitle">Create a timetable based on OIBS data</span>
             </div>
         </div>
@@ -702,6 +799,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     <button type="button" id="weeklySaveBtn" class="weekly-btn">Save</button>
                     <button type="button" id="weeklyLoadBtn" class="weekly-btn">Load</button>
                     <button type="button" id="weeklySaveToPortalBtn" class="weekly-btn">Save to portal</button>
+                    <div class="weekly-export-dropdown">
+                        <button type="button" id="weeklyExportToggle" class="weekly-btn">Export ▾</button>
+                        <div id="weeklyExportMenu" class="weekly-export-menu" aria-label="Export format" aria-hidden="true">
+                            <button type="button" id="weeklyExportPng" class="weekly-export-item">PNG</button>
+                            <button type="button" id="weeklyExportPdf" class="weekly-export-item">PDF</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -797,9 +901,15 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             <div id="weeklyScheduleNav" class="week-schedule-nav" style="display: none;"></div>
             <div id="weeklyScheduleSummary" class="weekly-messages" style="margin-top: 10px;"></div>
+            <div class="program-errors-wrap" id="weeklyErrorsWrap">
+                <h4 class="program-errors-title">Week messages</h4>
+                <ul class="program-errors-list" id="weeklyErrorsList" aria-live="polite"></ul>
+            </div>
         </section>
     </main>
 </div>
+
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
 <script>
 (function () {
@@ -830,6 +940,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         semSelect.addEventListener("change", function () {
             weeklySemester = Number(semSelect.value || "1") || 1;
             saveWeeklyPrefs();
+            try {
+                window.localStorage.setItem("metu_current_semester", String(weeklySemester));
+            } catch (e) {}
         });
     }
     var weeklyCurriculums = null;
@@ -841,6 +954,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var currentCourseOptions = null;
     var currentScheduleCapHit = false;
     var currentScheduleNoTimesCourses = []; // course codes in current view but no section times found
+    var weeklyCourseRuleOverrides = {}; // code -> { checkDept, checkSurname, checkCollision } overrides
     var currentPlannedCodes = []; // codes of courses currently in the list when schedules were built
     var weeklySectionsBy7 = null;
     var weeklyCoursesByCode = null;
@@ -852,7 +966,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     // Simple i18n for Weekly page (TR / EN)
     var weeklyTranslations = {
         en: {
-            title: "Weekly Schedule (Beta)",
+            title: "Weekly Schedule",
             subtitle: "Create a timetable based on OIBS data",
             navPortal: "Portal",
             navPlanner: "Planner",
@@ -883,7 +997,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             themeDark: "Dark theme"
         },
         tr: {
-            title: "Haftalık Program (Beta)",
+            title: "Haftalık Program",
             subtitle: "OİBS verilerine göre ders programı oluştur.",
             navPortal: "Portal",
             navPlanner: "Planlayıcı",
@@ -1018,6 +1132,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var weeklyAccentPool = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
     var weeklyAccentIndex = 0;
     var weeklySectionsPrefsKey = "metu_weekly_prefs_v1";
+    var weeklyPortalPreviewKey = "metu_portal_weekly_preview";
 
     function saveWeeklyPrefs() {
         try {
@@ -1061,6 +1176,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 if (semSelectEl) {
                     semSelectEl.value = String(weeklySemester);
                 }
+                try {
+                    window.localStorage.setItem("metu_current_semester", String(weeklySemester));
+                } catch (e) {}
             }
             // Apply saved rule toggles to checkboxes if they exist
             var deptToggleEl = document.getElementById("weeklyGlobalCheckDept");
@@ -1075,6 +1193,19 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     }
 
     loadWeeklyPrefs();
+    // If there is a saved weekly preview for the portal, also use it to restore
+    // the weekly page so that a refresh does not lose the last saved schedule.
+    try {
+        var portalPreviewRaw = localStorage.getItem(weeklyPortalPreviewKey);
+        if (portalPreviewRaw) {
+            var portalPreviewState = JSON.parse(portalPreviewRaw);
+            if (portalPreviewState && Array.isArray(portalPreviewState.schedules)) {
+                applyWeeklyState(portalPreviewState);
+            }
+        }
+    } catch (e) {
+        // ignore parse errors
+    }
     initWeeklySemesterCombobox();
 
     function weeklyNextAccent() {
@@ -1340,9 +1471,86 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     }
 
     function setScheduleSummary(html) {
+        // Clear the inline summary (we use only the persistent list now)
         var box = document.getElementById("weeklyScheduleSummary");
-        if (!box) return;
-        box.innerHTML = html || "";
+        if (box) box.innerHTML = "";
+
+        // Append error/info messages to a persistent log below the week view,
+        // so important notices don't disappear when a new one arrives.
+        if (!html) return;
+        var log = document.getElementById("weeklyErrorsList");
+        if (!log) return;
+        var li = document.createElement("li");
+        li.innerHTML = html;
+        log.appendChild(li);
+    }
+
+    function showToast(message, type) {
+        type = type || "success";
+        var container = document.getElementById("toastContainer");
+        if (!container) return;
+        var toast = document.createElement("div");
+        toast.className = "toast toast--" + type;
+        toast.setAttribute("role", "alert");
+        toast.textContent = message;
+        container.appendChild(toast);
+        setTimeout(function() {
+            toast.style.opacity = "0";
+            toast.style.transform = "translateX(20px)";
+            toast.style.transition = "opacity 0.25s ease, transform 0.25s ease";
+            setTimeout(function() { toast.remove(); }, 280);
+        }, 4200);
+    }
+
+    function exportWeekAsPng() {
+        var shell = document.querySelector(".week-shell");
+        if (!shell || typeof html2canvas !== "function") {
+            showToast("Export not available in this browser.", "error");
+            return;
+        }
+        html2canvas(shell, { backgroundColor: null, scale: 2 }).then(function(canvas) {
+            var link = document.createElement("a");
+            link.href = canvas.toDataURL("image/png");
+            link.download = "weekly-schedule.png";
+            link.click();
+        }).catch(function() {
+            showToast("Could not export PNG.", "error");
+        });
+    }
+
+    function exportWeekAsPdf() {
+        var shell = document.querySelector(".week-shell");
+        if (!shell || typeof html2canvas !== "function" || !(window.jspdf && window.jspdf.jsPDF)) {
+            showToast("Export not available in this browser.", "error");
+            return;
+        }
+        // Match PDF background to current theme
+        var theme = (document.documentElement.getAttribute("data-theme") || "dark") === "light" ? "light" : "dark";
+        var bgColor = theme === "dark" ? "#0f1114" : "#f8f9fa";
+
+        html2canvas(shell, { backgroundColor: bgColor, scale: 2 }).then(function(canvas) {
+            var imgData = canvas.toDataURL("image/png");
+            var pdf = new window.jspdf.jsPDF("l", "pt", "a4");
+            var pageWidth = pdf.internal.pageSize.getWidth();
+            var pageHeight = pdf.internal.pageSize.getHeight();
+
+            // Fill page background according to theme
+            pdf.setFillColor(bgColor);
+            pdf.rect(0, 0, pageWidth, pageHeight, "F");
+
+            var imgWidth = pageWidth;
+            var imgHeight = canvas.height * imgWidth / canvas.width;
+            if (imgHeight > pageHeight) {
+                imgHeight = pageHeight;
+                imgWidth = canvas.width * imgHeight / canvas.height;
+            }
+            var x = (pageWidth - imgWidth) / 2;
+            var y = (pageHeight - imgHeight) / 2;
+            pdf.addImage(imgData, "PNG", x, y, imgWidth, imgHeight);
+            pdf.save("weekly-schedule.pdf");
+        }).catch(function() {
+            showToast("Could not export PDF.", "error");
+        });
     }
 
     function ensureDataLoaded() {
@@ -2837,6 +3045,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         var scheduleBtn = document.getElementById("weeklyScheduleBtn");
         if (scheduleBtn) {
             scheduleBtn.addEventListener("click", function () {
+                // Starting a new schedule run: clear the persistent week messages log
+                var log = document.getElementById("weeklyErrorsList");
+                if (log) log.innerHTML = "";
                 var programCode = deptSelect ? deptSelect.value : "";
                 var surnameInputEl = document.getElementById("weeklySurname");
                 var surname = (surnameInputEl && surnameInputEl.value || "").trim();
@@ -3163,7 +3374,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                                     html += "</div>";
                                 }
                                 html += "<div class=\"weekly-messages--error\"><strong>Could not build a schedule.</strong></div>";
-                                if (failed.length) html += "<br>Could not place: " + failed.join(", ");
+                                if (failed.length) {
+                                    html += "<div class=\"weekly-messages--error\" style=\"margin-top:6px\"><strong>Could not place:</strong><br>";
+                                    failed.forEach(function (f) {
+                                        var idx = f.indexOf(" (");
+                                        var code = idx >= 0 ? f.slice(0, idx) : f;
+                                        var reason = idx >= 0 ? f.slice(idx + 2, -1) : "no available non‑conflicting section times";
+                                        html += code + ": " + reason + "<br>";
+                                    });
+                                    html += "</div>";
+                                }
                             }
                             setScheduleSummary(html);
                             document.getElementById("weeklyScheduleNav").style.display = "none";
@@ -3173,6 +3393,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                         renderScheduleInGrid(solutions[0]);
                         showScheduleNav(solutions.length, failed);
+                        // Also record the possible sections that were considered for this run,
+                        // so users can see which section numbers are compatible with their rules.
+                        if (courseOptions && Object.keys(courseOptions).length) {
+                            var htmlInfo = "<div><strong>Possible sections (dept + surname rules only):</strong><br>";
+                            Object.keys(courseOptions).forEach(function (code) {
+                                var list = courseOptions[code];
+                                htmlInfo += code + ": " + (!list || !list.length ? "none" : list.join(", ")) + "<br>";
+                            });
+                            htmlInfo += "</div>";
+                            setScheduleSummary(htmlInfo);
+                        }
                     };
 
                     worker.onerror = function (err) {
@@ -3293,12 +3524,33 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     function getWeeklyState() {
         var listEl = document.getElementById("weeklyCoursesList");
         var courses = [];
+        var courseRuleOverrides = {};
         if (listEl) {
             listEl.querySelectorAll(".weekly-course-card").forEach(function (card) {
                 var codeEl = card.querySelector(".weekly-course-code");
                 var code = codeEl && codeEl.textContent ? codeEl.textContent.trim() : "";
                 if (!code) return;
                 courses.push(code);
+
+                // Capture per-course rule flags when they differ from the globals,
+                // so user overrides (dept/surname/collision) survive refresh and
+                // can be used in the portal preview.
+                var deptToggle = card.querySelector(".weekly-course-toggle-dept");
+                var surnameToggle = card.querySelector(".weekly-course-toggle-surname");
+                var collToggle = card.querySelector(".weekly-course-toggle-collision");
+                var flags = {
+                    checkDept: weeklyCheckDeptGlobal,
+                    checkSurname: weeklyCheckSurnameGlobal,
+                    checkCollision: weeklyCheckCollisionGlobal
+                };
+                if (deptToggle) flags.checkDept = !!deptToggle.checked;
+                if (surnameToggle) flags.checkSurname = !!surnameToggle.checked;
+                if (collToggle) flags.checkCollision = !!collToggle.checked;
+                if (flags.checkDept !== weeklyCheckDeptGlobal ||
+                    flags.checkSurname !== weeklyCheckSurnameGlobal ||
+                    flags.checkCollision !== weeklyCheckCollisionGlobal) {
+                    courseRuleOverrides[code] = flags;
+                }
             });
         }
         var surnameInput = document.getElementById("weeklySurname");
@@ -3317,7 +3569,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             },
             plannedCodes: currentPlannedCodes || [],
             surname: surnameVal,
-            sectionPrefs: weeklySectionPrefs || {}
+            sectionPrefs: weeklySectionPrefs || {},
+            courseRuleOverrides: courseRuleOverrides
         };
     }
 
@@ -3353,6 +3606,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             currentScheduleIndex = typeof state.selectedIndex === "number" ? state.selectedIndex : 0;
             currentScheduleFailed = Array.isArray(state.failed) ? state.failed.slice() : [];
             currentPlannedCodes = Array.isArray(state.plannedCodes) ? state.plannedCodes.slice() : codes.slice();
+            // Restore any per-course rule overrides (dept/surname/collision flags)
+            // so individual course checkboxes match what the user saved.
+            if (state.courseRuleOverrides && typeof state.courseRuleOverrides === "object") {
+                weeklyCourseRuleOverrides = state.courseRuleOverrides;
+            } else {
+                weeklyCourseRuleOverrides = {};
+            }
         } else {
             currentSchedulesList = [];
             currentScheduleIndex = 0;
@@ -3368,6 +3628,35 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             codes.forEach(function (c) {
                 addCourseCardByCode(c);
             });
+
+            // After cards exist, apply any saved per-course rule overrides to
+            // their toggles so UI and logic use the same flags.
+            try {
+                if (weeklyCourseRuleOverrides && typeof weeklyCourseRuleOverrides === "object") {
+                    var listEl2 = document.getElementById("weeklyCoursesList");
+                    if (listEl2) {
+                        Object.keys(weeklyCourseRuleOverrides).forEach(function (code) {
+                            var flags = weeklyCourseRuleOverrides[code];
+                            var cards = listEl2.querySelectorAll(".weekly-course-card");
+                            for (var i = 0; i < cards.length; i++) {
+                                var card = cards[i];
+                                var codeEl = card.querySelector(".weekly-course-code");
+                                if (!codeEl) continue;
+                                if (codeEl.textContent.trim().toUpperCase() !== String(code).toUpperCase()) continue;
+                                var deptToggle = card.querySelector(".weekly-course-toggle-dept");
+                                var surnameToggle = card.querySelector(".weekly-course-toggle-surname");
+                                var collToggle = card.querySelector(".weekly-course-toggle-collision");
+                                if (deptToggle && typeof flags.checkDept === "boolean") deptToggle.checked = flags.checkDept;
+                                if (surnameToggle && typeof flags.checkSurname === "boolean") surnameToggle.checked = flags.checkSurname;
+                                if (collToggle && typeof flags.checkCollision === "boolean") collToggle.checked = flags.checkCollision;
+                                break;
+                            }
+                        });
+                    }
+                }
+            } catch (e) {
+                // ignore restore errors
+            }
 
             // If we have saved schedules, restore the week view as well
             if (!isV1 && currentSchedulesList && currentSchedulesList.length) {
@@ -3416,9 +3705,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     try {
                         var data = JSON.parse(reader.result);
                         applyWeeklyState(data);
-                        setScheduleSummary("<span class=\"weekly-messages--info\">Weekly schedule loaded from file.</span>");
+                                var msg = "Weekly schedule loaded from file.";
+                                setScheduleSummary("<span class=\"weekly-messages--info\">" + msg + "</span>");
+                                showToast(msg, "success");
                     } catch (err) {
-                        setScheduleSummary("<span class=\"weekly-messages--error\">Could not load weekly schedule file.</span>");
+                                var errMsg = "Could not load weekly schedule file.";
+                                setScheduleSummary("<span class=\"weekly-messages--error\">" + errMsg + "</span>");
+                                showToast(errMsg, "error");
                     }
                 };
                 reader.readAsText(file, "UTF-8");
@@ -3434,9 +3727,46 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             try {
                 saveWeeklyPrefs();
                 localStorage.setItem("metu_portal_weekly_preview", JSON.stringify(state));
-                setScheduleSummary("<span class=\"weekly-messages--info\">Weekly schedule saved for portal preview.</span>");
+                var msg = "Weekly schedule saved for portal preview.";
+                setScheduleSummary("<span class=\"weekly-messages--info\">" + msg + "</span>");
+                showToast(msg, "success");
             } catch (e) {
-                setScheduleSummary("<span class=\"weekly-messages--error\">Could not save weekly schedule for portal.</span>");
+                var errMsg = "Could not save weekly schedule for portal.";
+                setScheduleSummary("<span class=\"weekly-messages--error\">" + errMsg + "</span>");
+                showToast(errMsg, "error");
+            }
+        });
+    }
+
+    var weeklyExportToggle = document.getElementById("weeklyExportToggle");
+    var weeklyExportMenu = document.getElementById("weeklyExportMenu");
+    if (weeklyExportToggle && weeklyExportMenu) {
+        weeklyExportToggle.addEventListener("click", function () {
+            var isOpen = weeklyExportMenu.classList.contains("is-open");
+            weeklyExportMenu.classList.toggle("is-open", !isOpen);
+            weeklyExportMenu.setAttribute("aria-hidden", isOpen ? "true" : "false");
+        });
+        var exportPngItem = document.getElementById("weeklyExportPng");
+        var exportPdfItem = document.getElementById("weeklyExportPdf");
+        if (exportPngItem) {
+            exportPngItem.addEventListener("click", function () {
+                weeklyExportMenu.classList.remove("is-open");
+                weeklyExportMenu.setAttribute("aria-hidden", "true");
+                exportWeekAsPng();
+            });
+        }
+        if (exportPdfItem) {
+            exportPdfItem.addEventListener("click", function () {
+                weeklyExportMenu.classList.remove("is-open");
+                weeklyExportMenu.setAttribute("aria-hidden", "true");
+                exportWeekAsPdf();
+            });
+        }
+        document.addEventListener("click", function (e) {
+            if (!weeklyExportMenu.classList.contains("is-open")) return;
+            if (!weeklyExportMenu.contains(e.target) && !weeklyExportToggle.contains(e.target)) {
+                weeklyExportMenu.classList.remove("is-open");
+                weeklyExportMenu.setAttribute("aria-hidden", "true");
             }
         });
     }

@@ -339,7 +339,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       <div class="portal-courses-header">
         <h2 class="portal-courses-title">This semester's courses</h2>
         <div class="portal-courses-actions">
-          <select class="portal-select" id="portalSemesterSelect" aria-label="Select semester"></select>
+          <select class="portal-select planner-hidden-select" id="portalSemesterSelect" aria-label="Select semester"></select>
+          <div class="planner-combobox" id="portalSemesterCombo">
+            <button type="button" id="portalSemesterButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+              <span id="portalSemesterButtonLabel">Semester</span>
+              <span class="planner-select-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div id="portalSemesterList" class="course-search-dropdown" role="listbox" aria-label="Select semester"></div>
+          </div>
           <button type="button" class="portal-btn" id="portalSaveBtn">Save plan</button>
           <a href="planner.html" class="portal-btn portal-btn--primary">Open planner</a>
         </div>
@@ -350,25 +357,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     </section>
   </div>
 
-  <main class="portal-grid">
-    <a href="planner.html" class="portal-card" id="plannerCard">
-      <h3>Course Planner</h3>
-      <p>Build your semester plan, check prerequisites, and track your GPA.</p>
-      <span class="portal-card-continue" id="plannerContinue" style="display: none;"></span>
-    </a>
-
-    <a href="weekly.html" class="portal-card">
-      <h3>Weekly Schedule</h3>
-      <p>View and edit your weekly timetable by course sections.</p>
-      <span class="portal-card-badge">Beta</span>
-    </a>
-
-    <div class="portal-card portal-card--disabled" aria-disabled="true">
-      <h3>Section Selection</h3>
-      <p>Choose course sections and see if you can get the course.</p>
-      <span class="portal-card-badge">Coming soon</span>
-    </div>
-  </main>
 </div>
 
 <script>
@@ -550,9 +538,64 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       opt.textContent = label;
       selectEl.appendChild(opt);
     });
-    selectEl.value = state.semesters[0].semNumber;
+    var storedCurrent = window.localStorage.getItem('metu_current_semester');
+    var defaultSem = state.semesters[0].semNumber;
+    var found = state.semesters.some(function(s) { return String(s.semNumber) === storedCurrent; });
+    selectEl.value = found && storedCurrent != null ? storedCurrent : defaultSem;
+    initPortalSemesterCombobox();
     updateCourseList();
     selectEl.onchange = updateCourseList;
+  }
+
+  function initPortalSemesterCombobox() {
+    var selectEl = document.getElementById('portalSemesterSelect');
+    var button = document.getElementById('portalSemesterButton');
+    var labelEl = document.getElementById('portalSemesterButtonLabel');
+    var listEl = document.getElementById('portalSemesterList');
+    if (!selectEl || !button || !labelEl || !listEl) return;
+
+    function syncLabelFromSelect() {
+      var opt = selectEl.options[selectEl.selectedIndex] || null;
+      labelEl.textContent = opt && opt.textContent ? opt.textContent : 'Semester';
+    }
+
+    listEl.innerHTML = '';
+    for (var i = 0; i < selectEl.options.length; i++) {
+      var opt = selectEl.options[i];
+      var item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'course-search-item';
+      item.setAttribute('role', 'option');
+      item.textContent = opt.textContent || opt.value || 'Semester';
+      (function(value) {
+        item.addEventListener('click', function() {
+          selectEl.value = value;
+          syncLabelFromSelect();
+          updateCourseList();
+          listEl.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+        });
+      })(opt.value);
+      listEl.appendChild(item);
+    }
+
+    syncLabelFromSelect();
+
+    if (!listEl.dataset.comboInit) {
+      button.addEventListener('click', function() {
+        var isOpen = listEl.classList.contains('is-open');
+        listEl.classList.toggle('is-open', !isOpen);
+        button.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+      });
+      document.addEventListener('click', function(ev) {
+        if (!listEl.classList.contains('is-open')) return;
+        if (!button.contains(ev.target) && !listEl.contains(ev.target)) {
+          listEl.classList.remove('is-open');
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+      listEl.dataset.comboInit = '1';
+    }
   }
 
   function renderWeeklyPreviewSection() {

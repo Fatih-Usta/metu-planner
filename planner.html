@@ -472,10 +472,14 @@ select:focus {
 }
 .program-errors-list .error-dismiss-wrap {
     display: flex;
-    align-items: center;
-    gap: 8px;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
     flex: 1;
     min-width: 0;
+}
+.program-errors-list .error-dismiss-wrap > span:first-child {
+    flex: 1;
 }
 .program-errors-list .error-dismiss-label {
     flex-shrink: 0;
