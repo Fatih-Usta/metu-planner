@@ -361,7 +361,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   <div class="portal-main-layout">
     <section class="portal-courses-section" id="portalWeeklySection">
       <div class="portal-courses-header">
-        <h2 class="portal-courses-title">Saved weekly schedule</h2>
+        <h2 id="portalWeeklySectionTitle" class="portal-courses-title">Saved weekly schedule</h2>
         <div class="portal-courses-actions">
           <div class="portal-export-dropdown">
             <button type="button" id="portalWeeklyExportToggle" class="portal-btn">Export ▾</button>
@@ -370,7 +370,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
               <button type="button" id="portalWeeklyExportPdf" class="portal-export-item">PDF</button>
             </div>
           </div>
-          <a href="weekly.html" class="portal-btn portal-btn--primary">Open weekly</a>
+          <a id="portalOpenWeeklyLink" href="weekly.html" class="portal-btn portal-btn--primary">Open weekly</a>
         </div>
       </div>
       <div class="portal-course-list" id="portalWeeklyList">
@@ -380,7 +380,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
     <section class="portal-courses-section" id="portalCoursesSection" style="display: none;">
       <div class="portal-courses-header">
-        <h2 class="portal-courses-title">This semester's courses</h2>
+        <h2 id="portalCoursesSectionTitle" class="portal-courses-title">This semester's courses</h2>
         <div class="portal-courses-actions">
           <select class="portal-select planner-hidden-select" id="portalSemesterSelect" aria-label="Select semester"></select>
           <div class="planner-combobox" id="portalSemesterCombo">
@@ -391,7 +391,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             <div id="portalSemesterList" class="course-search-dropdown" role="listbox" aria-label="Select semester"></div>
           </div>
           <button type="button" class="portal-btn" id="portalSaveBtn">Save plan</button>
-          <a href="planner.html" class="portal-btn portal-btn--primary">Open planner</a>
+          <a id="portalOpenPlannerLink" href="planner.html" class="portal-btn portal-btn--primary">Open planner</a>
         </div>
       </div>
       <div class="portal-course-list" id="portalCourseList">
@@ -406,6 +406,86 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 (function() {
   var METU_PORTAL_PLANNER_STATE = 'metu_portal_planner_state';
   var METU_PORTAL_WEEKLY_PREVIEW = 'metu_portal_weekly_preview';
+
+  var PORTAL_STRINGS = {
+    en: {
+      pageTitle: 'METU Portal',
+      pageSubtitle: 'Plan your semesters, schedule, and courses',
+      navPortal: 'Portal',
+      navPlanner: 'Planner',
+      navWeekly: 'Weekly schedule',
+      savedWeeklySchedule: 'Saved weekly schedule',
+      thisSemesterCourses: "This semester's courses",
+      exportBtn: 'Export ▾',
+      openWeekly: 'Open weekly',
+      openPlanner: 'Open planner',
+      semester: 'Semester',
+      savePlan: 'Save plan',
+      noWeeklySaved: 'No weekly schedule saved',
+      noCourses: 'No courses',
+      noCoursesInSemester: 'No courses in this semester',
+      lightTheme: 'Light theme',
+      darkTheme: 'Dark theme',
+      semesterLabel: 'Semester',
+      summerLabel: 'Summer'
+    },
+    tr: {
+      pageTitle: 'METU Portal',
+      pageSubtitle: 'Dönemlerinizi, programınızı ve derslerinizi planlayın',
+      navPortal: 'Portal',
+      navPlanner: 'Planlayıcı',
+      navWeekly: 'Haftalık program',
+      savedWeeklySchedule: 'Kayıtlı haftalık program',
+      thisSemesterCourses: "Bu dönemin dersleri",
+      exportBtn: 'Dışa aktar ▾',
+      openWeekly: 'Haftalığı aç',
+      openPlanner: 'Planlayıcıyı aç',
+      semester: 'Dönem',
+      savePlan: 'Planı kaydet',
+      noWeeklySaved: 'Haftalık program kaydedilmedi',
+      noCourses: 'Ders yok',
+      noCoursesInSemester: 'Bu dönemde ders yok',
+      lightTheme: 'Açık tema',
+      darkTheme: 'Koyu tema',
+      semesterLabel: 'Dönem',
+      summerLabel: 'Yaz'
+    }
+  };
+
+  function getPortalLang() {
+    return (localStorage.getItem('lang') || 'en') === 'tr' ? 'tr' : 'en';
+  }
+
+  function getPortalStrings() {
+    return PORTAL_STRINGS[getPortalLang()] || PORTAL_STRINGS.en;
+  }
+
+  function applyPortalTranslations(lang) {
+    var s = PORTAL_STRINGS[lang] || PORTAL_STRINGS.en;
+    var set = function(id, text) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text;
+    };
+    set('pageTitle', s.pageTitle);
+    set('pageSubtitle', s.pageSubtitle);
+    set('navPortal', s.navPortal);
+    set('navPlanner', s.navPlanner);
+    set('navWeekly', s.navWeekly);
+    set('portalWeeklySectionTitle', s.savedWeeklySchedule);
+    set('portalCoursesSectionTitle', s.thisSemesterCourses);
+    set('portalSemesterButtonLabel', s.semester);
+    set('portalSaveBtn', s.savePlan);
+    set('portalOpenWeeklyLink', s.openWeekly);
+    set('portalOpenPlannerLink', s.openPlanner);
+    var exportBtn = document.getElementById('portalWeeklyExportToggle');
+    if (exportBtn) exportBtn.textContent = s.exportBtn;
+    var themeLabel = document.getElementById('themeLabel');
+    if (themeLabel) themeLabel.textContent = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark' ? s.lightTheme : s.darkTheme;
+    var weeklyEmpty = document.querySelector('#portalWeeklyList .portal-course-list--empty');
+    if (weeklyEmpty) weeklyEmpty.textContent = s.noWeeklySaved;
+    var coursesEmpty = document.querySelector('#portalCourseList .portal-course-list--empty');
+    if (coursesEmpty) coursesEmpty.textContent = s.noCourses;
+  }
 
   // Shared helpers for weekly preview grid (match Weekly page logic, read-only here)
   var PREVIEW_WEEK_TIME_LABELS = ["08:40–09:30", "09:40–10:30", "10:40–11:30", "11:40–12:30", "12:40–13:30", "13:40–14:30", "14:40–15:30", "15:40–16:30", "16:40–17:30"];
@@ -573,11 +653,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       return;
     }
     section.style.display = 'block';
+    var str = getPortalStrings();
     selectEl.innerHTML = '';
     state.semesters.forEach(function(s) {
       var opt = document.createElement('option');
       opt.value = s.semNumber;
-      var label = s.semNumber % 1 === 0.5 ? 'Summer ' + ((s.semNumber - 0.5) / 2) : 'Semester ' + s.semNumber;
+      var label = s.semNumber % 1 === 0.5 ? str.summerLabel + ' ' + ((s.semNumber - 0.5) / 2) : str.semesterLabel + ' ' + s.semNumber;
       opt.textContent = label;
       selectEl.appendChild(opt);
     });
@@ -599,7 +680,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
     function syncLabelFromSelect() {
       var opt = selectEl.options[selectEl.selectedIndex] || null;
-      labelEl.textContent = opt && opt.textContent ? opt.textContent : 'Semester';
+      labelEl.textContent = opt && opt.textContent ? opt.textContent : getPortalStrings().semester;
     }
 
     listEl.innerHTML = '';
@@ -609,7 +690,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       item.type = 'button';
       item.className = 'course-search-item';
       item.setAttribute('role', 'option');
-      item.textContent = opt.textContent || opt.value || 'Semester';
+      item.textContent = opt.textContent || opt.value || getPortalStrings().semester;
       (function(value) {
         item.addEventListener('click', function() {
           selectEl.value = value;
@@ -723,7 +804,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     listEl.classList.remove('portal-course-list--empty');
     if (!sem || !sem.courses || !sem.courses.length) {
       listEl.classList.add('portal-course-list--empty');
-      listEl.textContent = 'No courses in this semester';
+      listEl.textContent = getPortalStrings().noCoursesInSemester;
       return;
     }
     sem.courses.forEach(function(c) {
@@ -814,6 +895,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     if (list) list.classList.remove('is-open');
     var btn = document.getElementById('langButton');
     if (btn) btn.setAttribute('aria-expanded', 'false');
+    applyPortalTranslations(lang);
+    renderCoursesSection();
   }
 
   function toggleTheme() {
@@ -823,16 +906,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     root.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     var themeLabel = document.getElementById('themeLabel');
-    if (themeLabel) themeLabel.textContent = next === 'dark' ? 'Light theme' : 'Dark theme';
+    if (themeLabel) themeLabel.textContent = next === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
   }
 
   var theme = document.documentElement.getAttribute('data-theme') || 'dark';
   var themeLabel = document.getElementById('themeLabel');
-  if (themeLabel) themeLabel.textContent = theme === 'dark' ? 'Light theme' : 'Dark theme';
+  if (themeLabel) themeLabel.textContent = theme === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
   var themeToggle = document.getElementById('themeToggle');
   if (themeToggle) themeToggle.onclick = toggleTheme;
 
-  var lang = localStorage.getItem('lang') || 'en';
+  var lang = getPortalLang();
   var langButtonLabel = document.getElementById('langButtonLabel');
   if (langButtonLabel) langButtonLabel.textContent = lang === 'tr' ? 'Türkçe' : 'English';
   var langSelect = document.getElementById('langSelect');
@@ -863,6 +946,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       });
     }
   }
+  applyPortalTranslations(lang);
 })();
 </script>
 <a
