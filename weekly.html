@@ -11,6 +11,9 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <style>
+/* Hidden hints (kept in DOM, feedback: too much text) */
+.weekly-hint-hidden { display: none !important; }
+
 /* Header, layout, panel, field, combobox/trigger: main-ui.css */
 
 /* Make main selects (dept, semester, header lang) clearly follow theme */
@@ -710,7 +713,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             <div class="panel-header">
                 <div>
                     <div class="panel-title" id="weeklyStudentTitle">Student &amp; department</div>
-                    <div class="panel-caption" id="weeklyStudentCaption">We&apos;ll later use this to filter courses and personalize the schedule.</div>
+                    <div class="panel-caption weekly-hint-hidden" id="weeklyStudentCaption">We&apos;ll later use this to filter courses and personalize the schedule.</div>
                 </div>
             </div>
 
@@ -758,13 +761,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             </div>
 
             <div class="field">
-                <label id="weeklyRulesLabel">Rules to apply when picking sections</label>
+                <label class="weekly-hint-hidden" id="weeklyRulesLabel">Rules to apply when picking sections</label>
                 <div class="weekly-rule-toggles">
                     <label><input type="checkbox" id="weeklyGlobalCheckDept" checked> <span id="weeklyRuleDeptText">Check departments</span></label>
                     <label><input type="checkbox" id="weeklyGlobalCheckSurname" checked> <span id="weeklyRuleSurnameText">Check surnames</span></label>
                     <label><input type="checkbox" id="weeklyGlobalCheckCollision" checked> <span id="weeklyRuleCollisionText">Check time collisions</span></label>
                 </div>
-                <span class="weekly-hint-text" id="weeklyRulesHint">You can also override these per course below.</span>
+                <span class="weekly-hint-text weekly-hint-hidden" id="weeklyRulesHint">You can also override these per course below.</span>
             </div>
 
             <div class="weekly-actions">
@@ -782,7 +785,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     </div>
                     <button type="button" id="weeklyAddCourseBtn" class="weekly-btn">Add</button>
                 </div>
-                <span class="weekly-hint-text" id="weeklyAddCourseHint">Adds a single course using this semester&apos;s OIBS offerings. Start typing to see suggestions.</span>
+                <span class="weekly-hint-text weekly-hint-hidden" id="weeklyAddCourseHint">Adds a single course using this semester&apos;s OIBS offerings. Start typing to see suggestions.</span>
             </div>
 
             <div id="weeklyMessages" class="weekly-messages"></div>

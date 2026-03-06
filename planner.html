@@ -9,6 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="main-ui.css">
 <style>
+/* Hidden hints (kept in DOM, feedback: too much text) */
+.planner-hint-hidden { display: none !important; }
+
 /* Header, layout, panel, field: main-ui.css */
 /* Body and .app-shell padding come from main-ui.css so Portal and Planner match. */
 
@@ -1209,7 +1212,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   <div class="dept-bar">
     <div class="dept-left">
       <strong data-i18n="deptSelect">Bölümünü seç</strong>
-      <span data-i18n="deptComingSoon">Bölümü seçip uygulayınca müfredat dönemlere otomatik yüklenir.</span>
+      <span class="planner-hint-hidden" data-i18n="deptComingSoon">Bölümü seçip uygulayınca müfredat dönemlere otomatik yüklenir.</span>
     </div>
     <div class="dept-right">
       <div class="dept-row-main field-same-width__row">
@@ -1265,13 +1268,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       <div class="panel-header">
         <div>
           <div class="panel-title" data-i18n="addCourse">Ders Ekle</div>
-          <div class="panel-caption" data-i18n="addCourseCaption">Veritabanından ara veya manuel gir.</div>
+          <div class="panel-caption planner-hint-hidden" data-i18n="addCourseCaption">Veritabanından ara veya manuel gir.</div>
         </div>
       </div>
 
       <div class="add-course-section">
-        <h4 class="add-course-section-title" data-i18n="addFromDataset">Veritabanından ekle</h4>
-        <p class="add-course-section-caption" data-i18n="courseSearchHint">Veritabanından aramak için yazın (örn. 119, math). Tıklayarak havuza ekleyin.</p>
+        <h4 class="add-course-section-title planner-hint-hidden" data-i18n="addFromDataset">Veritabanından ekle</h4>
+        <p class="add-course-section-caption planner-hint-hidden" data-i18n="courseSearchHint">Veritabanından aramak için yazın (örn. 119, math). Tıklayarak havuza ekleyin.</p>
         <div class="field course-search-field">
           <label for="courseSearchInput" data-i18n="searchCourse">Ders ara</label>
           <div class="course-search-wrap">
@@ -1283,7 +1286,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
       <div class="add-course-section">
         <h4 class="add-course-section-title" data-i18n="addManual">Manuel ekle</h4>
-        <p class="add-course-section-caption" data-i18n="addCourseCaptionManual">Kod, kredi, ön koşul ve dönem tipini girip ekleyin.</p>
+        <p class="add-course-section-caption planner-hint-hidden" data-i18n="addCourseCaptionManual">Kod, kredi, ön koşul ve dönem tipini girip ekleyin.</p>
         <div class="form-grid">
           <div class="field">
             <label for="courseName" data-i18n="courseCode">Ders kodu</label>
@@ -1319,7 +1322,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         </button>
       </div>
 
-      <div class="helper-text" data-i18n="helperAdd"></div>
+      <div class="helper-text planner-hint-hidden" data-i18n="helperAdd"></div>
 
       <h3 style="margin-top:16px; font-size:0.9rem;" data-i18n="coursePool">Ders Havuzu</h3>
       <div class="pool" id="coursePool"
@@ -1335,19 +1338,19 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       <div class="panel-header">
         <div>
           <div class="panel-title" data-i18n="semesters">Dönemler</div>
-          <div class="panel-caption" data-i18n="semestersCaption">Dersleri sürükleyip bırak; ön koşul ve tek/çift kuralları otomatik kontrol edilir.</div>
+          <div class="panel-caption planner-hint-hidden" data-i18n="semestersCaption">Dersleri sürükleyip bırak; ön koşul ve tek/çift kuralları otomatik kontrol edilir.</div>
         </div>
         <button type="button" class="btn-primary" onclick="addYearRow()">
           + <span data-i18n="addYear">1 yıl daha</span>
         </button>
       </div>
 
-      <div class="legend-wrap" aria-hidden="true">
+      <div class="legend-wrap planner-hint-hidden" aria-hidden="true">
         <span class="legend-item legend-item--yellow"><span class="legend-dot legend-dot--yellow"></span><span data-i18n="legendYellow"></span></span>
         <span class="legend-item legend-item--red"><span class="legend-dot legend-dot--red"></span><span data-i18n="legendRed"></span></span>
       </div>
 
-      <p class="gpa-disclaimer" data-i18n="gpaDisclaimer"></p>
+      <p class="gpa-disclaimer planner-hint-hidden" data-i18n="gpaDisclaimer"></p>
 
       <div class="year-grid" id="semesters"></div>
 
