@@ -1,0 +1,1445 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Details</title>
+  <link rel="stylesheet" href="main-ui.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .course-details-main {
+      display: grid;
+      grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+      gap: 16px;
+    }
+    @media (max-width: 1024px) {
+      .course-details-main {
+        grid-template-columns: 1fr;
+      }
+    }
+    .course-details-stack {
+      display: grid;
+      gap: 12px;
+    }
+    .details-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+    .details-card-title {
+      margin: 0 0 8px 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .details-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    .details-select {
+      width: 100%;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-main);
+      padding: 9px 10px;
+      font-size: 0.88rem;
+    }
+    .details-search-wrap {
+      position: relative;
+    }
+    .details-search-input {
+      width: 100%;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-main);
+      padding: 9px 10px;
+      font-size: 0.88rem;
+    }
+    .details-search-input:focus,
+    .details-select:focus {
+      outline: none;
+      border-color: var(--metu-red);
+      box-shadow: 0 0 0 2px var(--metu-red-soft);
+    }
+    .details-suggest {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: calc(100% + 4px);
+      z-index: 60;
+      display: none;
+      max-height: 240px;
+      overflow-y: auto;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+    }
+    .details-suggest.is-open {
+      display: block;
+    }
+    .details-suggest-item {
+      width: 100%;
+      text-align: left;
+      border: 0;
+      border-bottom: 1px solid var(--border-subtle);
+      background: transparent;
+      color: var(--text-main);
+      font-size: 0.86rem;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+    .details-suggest-item:last-child {
+      border-bottom: 0;
+    }
+    .details-suggest-item:hover {
+      background: var(--accent-soft);
+    }
+    .active-course-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .active-course-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 6px 10px;
+      font-size: 0.8rem;
+      color: var(--text-main);
+      background: var(--bg-input);
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .active-course-chip:hover {
+      border-color: var(--metu-red);
+      background: var(--accent-soft);
+    }
+    .active-course-chip.is-selected {
+      border-color: var(--metu-red);
+      color: var(--metu-red);
+      background: var(--metu-red-soft);
+    }
+    .details-empty {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+    .result-grid {
+      display: grid;
+      gap: 8px;
+    }
+    .result-row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr);
+      gap: 8px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      padding: 8px 10px;
+    }
+    @media (max-width: 600px) {
+      .result-row {
+        grid-template-columns: 1fr;
+      }
+    }
+    .result-key {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .result-val {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      word-break: break-word;
+    }
+    .result-pill {
+      display: inline-flex;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 5px 9px;
+      font-size: 0.8rem;
+      color: var(--metu-red);
+      background: var(--metu-red-soft);
+      font-weight: 600;
+    }
+    .result-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .result-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.25;
+    }
+    .result-course-name {
+      margin: 0 0 10px 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .result-help {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .result-divider {
+      height: 1px;
+      background: var(--border-subtle);
+      margin: 12px 0;
+    }
+    .section-details-title {
+      margin: 0 0 10px 0;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .section-details-list {
+      display: grid;
+      gap: 10px;
+    }
+    .section-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      padding: 9px 10px;
+    }
+    .section-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .section-card-code {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .section-card-instr {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: right;
+    }
+    .section-block-title {
+      margin: 8px 0 5px 0;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+    .section-line {
+      font-size: 0.82rem;
+      color: var(--text-main);
+      margin: 3px 0;
+      word-break: break-word;
+    }
+    .section-empty {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .mini-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .course-details-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 8px 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      background: var(--bg-input);
+      font-weight: 600;
+      font-size: 0.82rem;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .course-details-back:hover {
+      border-color: var(--metu-red);
+      background: var(--accent-soft);
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <div class="branding">
+        <div class="branding-mark"></div>
+        <div class="title-block">
+          <h1 id="pageTitle">Course Details</h1>
+          <span id="pageSubtitle">Dedicated page for course-level details.</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="mobileMenuBtn" aria-label="Open menu" aria-controls="mobileDrawerOverlay" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+        <nav class="nav-links">
+          <a id="navPortal" href="index.html">Portal</a>
+          <a id="navPlanner" href="planner.html">Planner</a>
+          <a id="navWeekly" href="weekly.html">Weekly schedule</a>
+          <a id="navTools" href="tools.html" class="active">Tools</a>
+        </nav>
+        <select id="langSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+        </select>
+        <div class="header-lang" id="langCombo">
+          <button type="button" id="langButton" class="header-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+            <span id="langButtonLabel">English</span>
+            <span class="header-lang-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div id="langList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
+        </div>
+        <button type="button" id="envelopeBtn" class="envelope-btn" aria-label="Message" title="Message">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </button>
+        <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <span id="themeLabel">Light theme</span>
+        </button>
+      </div>
+    </header>
+
+    <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" aria-hidden="true">
+      <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="mobile-drawer-header">
+          <div class="mobile-drawer-title">Menu</div>
+          <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <div class="mobile-drawer-body">
+          <div class="mobile-drawer-section">
+            <div class="mobile-drawer-section-title">Pages</div>
+            <div class="mobile-drawer-list">
+              <a class="mobile-drawer-link" href="index.html">Portal</a>
+              <a class="mobile-drawer-link" href="planner.html">Planner</a>
+              <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+              <a id="mobileNavTools" class="mobile-drawer-link" href="tools.html">Tools</a>
+            </div>
+          </div>
+          <div class="mobile-drawer-section">
+            <div class="mobile-drawer-section-title">Settings</div>
+            <div class="mobile-drawer-list">
+              <div class="mobile-drawer-pill-row" aria-label="Language">
+                <button type="button" id="mobileLangTr" class="mobile-drawer-pill">Türkçe</button>
+                <button type="button" id="mobileLangEn" class="mobile-drawer-pill">English</button>
+              </div>
+              <button type="button" id="mobileContactBtn" class="mobile-drawer-btn">Contact</button>
+              <button type="button" id="mobileThemeBtn" class="mobile-drawer-btn">
+                <span>Theme</span>
+                <span id="mobileThemeLabel">Light theme</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <main class="layout course-details-main">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" id="detailsPanelTitle">Course details</div>
+          </div>
+        </div>
+        <div class="course-details-stack">
+          <div class="details-card">
+            <h3 class="details-card-title" id="filtersTitle">Filters</h3>
+            <div class="field">
+              <label for="detailsSemesterSelect" id="detailsSemesterLabel">Semester</label>
+              <select id="detailsSemesterSelect" class="details-select"></select>
+            </div>
+            <div class="field">
+              <label for="detailsDeptInput" id="detailsDeptLabel">Department</label>
+              <div class="details-search-wrap">
+                <input id="detailsDeptInput" class="details-search-input" type="text" autocomplete="off" placeholder="Type department...">
+                <div id="detailsDeptList" class="details-suggest scroll-theme"></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="detailsCourseInput" id="detailsCourseLabel">Course (from selected department)</label>
+              <div class="details-search-wrap">
+                <input id="detailsCourseInput" class="details-search-input" type="text" autocomplete="off" placeholder="Type course code or name...">
+                <div id="detailsCourseList" class="details-suggest scroll-theme"></div>
+              </div>
+            </div>
+            <p class="details-note" id="filtersHint"></p>
+          </div>
+
+          <div class="details-card">
+            <h3 class="details-card-title" id="activeCoursesTitle">Active courses in selected semester</h3>
+            <div id="activeCourseList" class="active-course-list"></div>
+            <p id="activeCoursesEmpty" class="details-empty" style="display:none;">No active courses found in your planner for this semester.</p>
+            <div class="mini-actions">
+              <a href="tools.html" id="backToToolsBtn" class="course-details-back">Back to tools</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" id="searchPanelTitle">Search and details</div>
+          </div>
+        </div>
+        <div class="details-card">
+          <div class="field">
+            <label for="detailsSearchInput" id="detailsSearchLabel">Search course</label>
+            <div class="details-search-wrap">
+              <input id="detailsSearchInput" class="details-search-input" type="text" autocomplete="off" placeholder="Search course code or name...">
+              <div id="detailsSearchList" class="details-suggest scroll-theme"></div>
+            </div>
+          </div>
+
+          <div class="result-divider"></div>
+
+          <div id="detailsResultBox">
+            <p id="detailsResultHint" class="result-help"></p>
+            <div id="detailsResultContent" style="display:none;">
+              <div class="result-head">
+                <h3 id="resultCourseCode">-</h3>
+                <span id="resultCode7" class="result-pill">-</span>
+              </div>
+              <p id="resultCourseName" class="result-course-name">-</p>
+              <div class="result-grid">
+                <div class="result-row">
+                  <div class="result-key" id="kDepartment">Department</div>
+                  <div class="result-val" id="vDepartment">-</div>
+                </div>
+                <div class="result-row">
+                  <div class="result-key" id="kCredits">Credits</div>
+                  <div class="result-val" id="vCredits">-</div>
+                </div>
+                <div class="result-row">
+                  <div class="result-key" id="kEcts">ECTS</div>
+                  <div class="result-val" id="vEcts">-</div>
+                </div>
+                <div class="result-row">
+                  <div class="result-key" id="kLevel">Level</div>
+                  <div class="result-val" id="vLevel">-</div>
+                </div>
+                <div class="result-row">
+                  <div class="result-key" id="kType">Type</div>
+                  <div class="result-val" id="vType">-</div>
+                </div>
+                <div class="result-row">
+                  <div class="result-key" id="kOffered">Offered semesters</div>
+                  <div class="result-val" id="vOffered">-</div>
+                </div>
+                <div class="result-row">
+                  <div class="result-key" id="kSections">Sections</div>
+                  <div class="result-val" id="vSections">-</div>
+                </div>
+                <div class="result-row">
+                  <div class="result-key" id="kPrograms">Programs</div>
+                  <div class="result-val" id="vPrograms">-</div>
+                </div>
+                <div class="result-row">
+                  <div class="result-key" id="kPrereqs">Prerequisites</div>
+                  <div class="result-val" id="vPrereqs">-</div>
+                </div>
+              </div>
+              <div class="result-divider"></div>
+              <h4 id="sectionsDetailTitle" class="section-details-title">Sections and rules</h4>
+              <div id="sectionsDetailList" class="section-details-list"></div>
+              <p id="sectionsDetailEmpty" class="section-empty">No section details found for this course in selected term.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="envelopeDialog" class="envelope-dialog">
+    <div class="envelope-modal">
+      <div class="envelope-modal-header">
+        <h3 id="envelopeModalTitle" class="envelope-modal-title">Contact information</h3>
+        <button type="button" id="envelopeModalClose" class="envelope-modal-close">Close</button>
+      </div>
+      <div id="envelopeModalContent" class="envelope-modal-body scroll-theme">
+        <a href="mailto:fatih.usta@metu.edu.tr">fatih.usta@metu.edu.tr</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+  (function() {
+    var root = document.documentElement;
+    var STRINGS = {
+      en: {
+        pageTitle: "Course Details",
+        pageSubtitle: "Inspect details of your semester courses.",
+        navPortal: "Portal",
+        navPlanner: "Planner",
+        navWeekly: "Weekly schedule",
+        navTools: "Tools",
+        detailsPanelTitle: "Course details",
+        detailsPanelCaption: "",
+        filtersTitle: "Filters",
+        detailsSemesterLabel: "Term",
+        detailsDeptLabel: "Department",
+        detailsCourseLabel: "Course (from selected department)",
+        filtersHint: "",
+        deptPlaceholder: "Type department...",
+        coursePlaceholder: "Type course code or name...",
+        activeCoursesTitle: "Courses in selected term",
+        activeCoursesEmpty: "No courses found for this term/department.",
+        searchPanelTitle: "Search and details",
+        searchPanelCaption: "",
+        detailsSearchLabel: "Search course",
+        searchPlaceholder: "Search course code or name...",
+        detailsResultHint: "",
+        kDepartment: "Department",
+        kCredits: "Credits",
+        kEcts: "ECTS",
+        kLevel: "Level",
+        kType: "Type",
+        kOffered: "Offered semesters",
+        kSections: "Sections",
+        kPrograms: "Programs",
+        kPrereqs: "Prerequisites",
+        sectionsDetailTitle: "Sections and rules",
+        sectionsDetailEmpty: "No section details found for this course in selected term.",
+        sectionLabel: "Section",
+        instructorLabel: "Instructor",
+        meetingsLabel: "Meetings",
+        noMeetings: "No meetings listed.",
+        rulesLabel: "Rules",
+        noRules: "No rules listed.",
+        ruleDeptLabel: "Department",
+        ruleSurnameLabel: "Surname",
+        ruleGpaLabel: "GPA",
+        ruleYearLabel: "Year",
+        ruleGradeLabel: "Grade",
+        anyLabel: "any",
+        orJoin: "or",
+        levelUndergrad: "Undergraduate/Lisans",
+        levelGraduate: "Graduate/Lisansustu",
+        none: "None",
+        backToToolsBtn: "Back to tools",
+        themeLight: "Light theme",
+        themeDark: "Dark theme",
+        contactBtn: "Contact",
+        contactModalTitle: "Contact information",
+        closeBtn: "Close"
+      },
+      tr: {
+        pageTitle: "Ders Detayları",
+        pageSubtitle: "Dönemdeki derslerin detaylarını inceleyin.",
+        navPortal: "Portal",
+        navPlanner: "Planlayıcı",
+        navWeekly: "Haftalık program",
+        navTools: "Araçlar",
+        detailsPanelTitle: "Ders detayları",
+        detailsPanelCaption: "",
+        filtersTitle: "Filtreler",
+        detailsSemesterLabel: "Akademik dönem",
+        detailsDeptLabel: "Bölüm",
+        detailsCourseLabel: "Ders (seçili bölümden)",
+        filtersHint: "",
+        deptPlaceholder: "Bölüm yazın...",
+        coursePlaceholder: "Ders kodu veya adı yazın...",
+        activeCoursesTitle: "Seçili akademik dönemdeki dersler",
+        activeCoursesEmpty: "Bu dönem/bölüm için ders bulunamadı.",
+        searchPanelTitle: "Arama ve detaylar",
+        searchPanelCaption: "",
+        detailsSearchLabel: "Ders ara",
+        searchPlaceholder: "Ders kodu veya adına göre ara...",
+        detailsResultHint: "",
+        kDepartment: "Bölüm",
+        kCredits: "Kredi",
+        kEcts: "AKTS",
+        kLevel: "Seviye",
+        kType: "Tür",
+        kOffered: "Açıldığı dönemler",
+        kSections: "Şubeler",
+        kPrograms: "Programlar",
+        kPrereqs: "Önkoşullar",
+        sectionsDetailTitle: "Şubeler ve kurallar",
+        sectionsDetailEmpty: "Seçili dönemde bu ders için şube detayı bulunamadı.",
+        sectionLabel: "Şube",
+        instructorLabel: "Öğretim elemanı",
+        meetingsLabel: "Ders saatleri",
+        noMeetings: "Ders saati bilgisi yok.",
+        rulesLabel: "Kurallar",
+        noRules: "Kural bilgisi yok.",
+        ruleDeptLabel: "Bölüm",
+        ruleSurnameLabel: "Soyad",
+        ruleGpaLabel: "GNO",
+        ruleYearLabel: "Sınıf",
+        ruleGradeLabel: "Not",
+        anyLabel: "herhangi",
+        orJoin: "veya",
+        levelUndergrad: "Lisans",
+        levelGraduate: "Lisansüstü",
+        none: "Yok",
+        backToToolsBtn: "Araçlara dön",
+        themeLight: "Açık tema",
+        themeDark: "Koyu tema",
+        contactBtn: "İletişim",
+        contactModalTitle: "İletişim bilgileri",
+        closeBtn: "Kapat"
+      }
+    };
+
+    var METU_LAST_PROGRAM_CODE = "metu_last_program_code";
+    var OIBS_TERM_CODES = ["20252", "20251", "20242", "20241", "20232", "20231"];
+    var allCourses = [];
+    var coursesByCode = {};
+    var codeBy7 = {};
+    var programNameByCode = {};
+    var oibsOfferingsByTerm = {};
+    var oibsSectionsByTerm = {};
+    var sectionsCountByTerm = {};
+    var sectionsByTermByCode7 = {};
+    var selectedProgramCode = "";
+    var selectedCourseCode = "";
+    var selectedFrom = "";
+    var selectedCourseData = null;
+
+    var els = {
+      semesterSelect: null,
+      deptInput: null,
+      deptList: null,
+      courseInput: null,
+      courseList: null,
+      searchInput: null,
+      searchList: null,
+      activeCourseList: null,
+      activeCoursesEmpty: null,
+      resultHint: null,
+      resultContent: null,
+      sectionsDetailList: null,
+      sectionsDetailEmpty: null
+    };
+
+    function setText(id, text) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    function getLang() {
+      return (localStorage.getItem("lang") || "en") === "tr" ? "tr" : "en";
+    }
+
+    function t(key) {
+      var dict = STRINGS[getLang()] || STRINGS.en;
+      return dict[key] || (STRINGS.en[key] || key);
+    }
+
+    function normalizeText(v) {
+      return String(v || "").toLocaleLowerCase("tr");
+    }
+
+    function uniqueByCode(list) {
+      var seen = {};
+      var out = [];
+      for (var i = 0; i < list.length; i++) {
+        var c = list[i];
+        if (!c || !c.code) continue;
+        if (seen[c.code]) continue;
+        seen[c.code] = true;
+        out.push(c);
+      }
+      return out;
+    }
+
+    function getCurrentTermCode() {
+      return String(els.semesterSelect && els.semesterSelect.value ? els.semesterSelect.value : "20252");
+    }
+
+    function safeText(v) {
+      var s = String(v || "");
+      try {
+        return decodeURIComponent(escape(s));
+      } catch (_e) {
+        return s;
+      }
+    }
+
+    function formatTermLabel(termCode) {
+      var code = String(termCode || "");
+      var y = parseInt(code.slice(0, 4), 10);
+      var termDigit = code.slice(-1);
+      var yearLabel = isNaN(y) ? code : (y + "-" + (y + 1));
+      var fall = getLang() === "tr" ? "Güz" : "Fall";
+      var spring = getLang() === "tr" ? "Bahar" : "Spring";
+      var summer = getLang() === "tr" ? "Yaz" : "Summer";
+      var termName = termDigit === "1" ? fall : (termDigit === "2" ? spring : summer);
+      return yearLabel + " " + termName;
+    }
+
+    function getTermDepartments(termCode) {
+      var data = oibsOfferingsByTerm[String(termCode)];
+      if (!data || !Array.isArray(data.departments)) return [];
+      return data.departments.map(function(d) {
+        var code = String(d.value || "");
+        var raw = safeText(d.text || d.value || "");
+        var englishFromOibs = raw.indexOf("/") !== -1 ? raw.split("/")[0].trim() : raw.trim();
+        var mapped = programNameByCode[code] || "";
+        var campusMatch = raw.match(/\([^)]*Kampüsü[^)]*\)/i);
+        var campusSuffix = campusMatch ? campusMatch[0] : "";
+        var bestName = mapped || englishFromOibs || code;
+        if (campusSuffix && bestName.indexOf(campusSuffix) === -1) {
+          bestName = (bestName + " " + campusSuffix).trim();
+        }
+        return {
+          value: code,
+          text: bestName,
+          rawText: raw,
+          courses: Array.isArray(d.courses) ? d.courses : []
+        };
+      });
+    }
+
+    function initSemesterOptions() {
+      if (!els.semesterSelect) return;
+      els.semesterSelect.innerHTML = "";
+      var terms = Object.keys(oibsOfferingsByTerm).sort().reverse();
+      if (!terms.length) terms = ["20252"];
+      for (var i = 0; i < terms.length; i++) {
+        var termCode = terms[i];
+        var opt = document.createElement("option");
+        opt.value = termCode;
+        opt.textContent = formatTermLabel(termCode);
+        els.semesterSelect.appendChild(opt);
+      }
+      var storedTerm = localStorage.getItem("metu_current_semester");
+      if (storedTerm && terms.indexOf(String(storedTerm)) !== -1) els.semesterSelect.value = String(storedTerm);
+      else els.semesterSelect.value = terms[0];
+    }
+
+    function resolveDefaultProgramCode() {
+      return "";
+    }
+
+    function getDepartmentSemesterCoursePool(termCode, deptCode) {
+      var term = String(termCode || "");
+      var depts = getTermDepartments(term);
+      if (!depts.length) return [];
+      var filtered = depts;
+      var dCode = String(deptCode || "").trim();
+      if (dCode) filtered = depts.filter(function(d) { return d.value === dCode; });
+      var out = [];
+      filtered.forEach(function(dep) {
+        dep.courses.forEach(function(raw) {
+          var code7 = String((raw && (raw.internal_code || raw.code)) || "").trim();
+          if (!code7) return;
+          var mappedCode = codeBy7[code7] || code7;
+          var catalog = coursesByCode[mappedCode] || null;
+          out.push({
+            code: mappedCode,
+            course_code_7digit: code7,
+            name: safeText((raw && raw.name) || (catalog && catalog.name) || ""),
+            credits: catalog && catalog.credits != null ? catalog.credits : null,
+            department: safeText(dep.text || (catalog && catalog.department) || ""),
+            offered_semester: (catalog && catalog.offered_semester) || formatTermLabel(term),
+            prerequisites: catalog ? catalog.prerequisites : null,
+            programs: catalog && Array.isArray(catalog.programs) ? catalog.programs : [dep.value],
+            oibsDeptCode: dep.value,
+            sections_count: (sectionsCountByTerm[term] && sectionsCountByTerm[term][code7] != null) ? sectionsCountByTerm[term][code7] : null,
+            ects: raw && (raw.ects || raw.ects_credit || raw.akts || raw.ectsCredit || null),
+            level: raw && (raw.level || raw.course_level || null),
+            type: raw && (raw.type || raw.course_type || raw.courseType || null)
+          });
+        });
+      });
+      return uniqueByCode(out);
+    }
+
+    function renderSuggestionList(listEl, items, onPick) {
+      if (!listEl) return;
+      listEl.innerHTML = "";
+      if (!items.length) {
+        listEl.classList.remove("is-open");
+        return;
+      }
+      items.forEach(function(item) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "details-suggest-item";
+        btn.textContent = item.label;
+        btn.addEventListener("click", function() {
+          onPick(item);
+          listEl.classList.remove("is-open");
+        });
+        listEl.appendChild(btn);
+      });
+      listEl.classList.add("is-open");
+    }
+
+    function closeSuggestion(listEl) {
+      if (listEl) listEl.classList.remove("is-open");
+    }
+
+    function filterDepartments(query) {
+      var termCode = getCurrentTermCode();
+      var q = normalizeText(query).trim();
+      var list = getTermDepartments(termCode).map(function(d) {
+        return {
+          code: d.value,
+          name: d.text,
+          label: d.value + " - " + d.text
+        };
+      });
+      if (q) {
+        list = list.filter(function(p) {
+          return normalizeText(p.label).indexOf(q) !== -1 || normalizeText(p.name).indexOf(q) !== -1 || normalizeText(p.code).indexOf(q) !== -1;
+        });
+      }
+      return list.map(function(p) {
+        return { value: p.code, label: p.label, data: p };
+      });
+    }
+
+    function filterCourses(query, termCode, deptCode) {
+      var pool = getDepartmentSemesterCoursePool(termCode, deptCode);
+      var q = normalizeText(query).trim();
+      if (!q) return pool.slice(0, 80).map(function(c) {
+        return { value: c.code, label: c.code + " - " + (c.name || ""), data: c };
+      });
+      return pool.filter(function(c) {
+        return normalizeText(c.code).indexOf(q) !== -1 || normalizeText(c.name).indexOf(q) !== -1;
+      }).slice(0, 120).map(function(c) {
+        return { value: c.code, label: c.code + " - " + (c.name || ""), data: c };
+      });
+    }
+
+    function formatPrerequisites(pr) {
+      if (!pr) return t("none");
+      if (typeof pr === "string") return pr;
+      if (!pr.one_of || !Array.isArray(pr.one_of)) return JSON.stringify(pr);
+      var mappedGroups = pr.one_of.map(function(group) {
+        if (!Array.isArray(group) || !group.length) return [];
+        return group.map(function(id7) {
+          var key = String(id7 || "");
+          return codeBy7[key] || key;
+        }).filter(Boolean);
+      }).filter(function(g) { return g.length > 0; });
+      if (!mappedGroups.length) return t("none");
+
+      // Common catalog shape: one group means alternatives.
+      if (mappedGroups.length === 1) {
+        return mappedGroups[0].join(" " + t("orJoin") + " ");
+      }
+
+      // Multiple groups: each group is "together" (+), groups are alternatives (or).
+      var renderedGroups = mappedGroups.map(function(g) { return g.join(" + "); });
+      return renderedGroups.join(" " + t("orJoin") + " ");
+    }
+
+    function formatPrograms(programs) {
+      if (!Array.isArray(programs) || !programs.length) return t("none");
+      return programs.map(function(code) {
+        var c = String(code);
+        var n = programNameByCode[c] || "";
+        return n ? (c + " - " + n) : c;
+      }).join(", ");
+    }
+
+    function inferCourseLevel(course) {
+      if (!course) return t("none");
+      var known = safeText(course.level || "").trim();
+      if (known) return known;
+      var hay = normalizeText((course.name || "") + " " + (course.department || ""));
+      if (hay.indexOf("lisansustu") !== -1 || hay.indexOf("lisansüstü") !== -1 || hay.indexOf("graduate") !== -1) return t("levelGraduate");
+      var code7 = String(course.course_code_7digit || "");
+      var suffix = code7.slice(-3);
+      var n = parseInt(suffix, 10);
+      if (!isNaN(n) && n >= 500) return t("levelGraduate");
+      return t("levelUndergrad");
+    }
+
+    function localizeDay(dayRaw) {
+      var d = normalizeText(safeText(dayRaw || ""));
+      if (d.indexOf("mon") === 0 || d.indexOf("paz") === 0) return getLang() === "tr" ? "Pazartesi" : "Monday";
+      if (d.indexOf("tue") === 0 || d.indexOf("sal") === 0) return getLang() === "tr" ? "Salı" : "Tuesday";
+      if (d.indexOf("wed") === 0 || d.indexOf("çar") === 0 || d.indexOf("car") === 0) return getLang() === "tr" ? "Çarşamba" : "Wednesday";
+      if (d.indexOf("thu") === 0 || d.indexOf("per") === 0) return getLang() === "tr" ? "Perşembe" : "Thursday";
+      if (d.indexOf("fri") === 0 || d.indexOf("cum") === 0) return getLang() === "tr" ? "Cuma" : "Friday";
+      return safeText(dayRaw || "");
+    }
+
+    function getCourseSections(termCode, code7) {
+      var byCode7 = sectionsByTermByCode7[String(termCode)] || {};
+      return byCode7[String(code7)] || [];
+    }
+
+    function renderSectionDetails(course) {
+      if (!els.sectionsDetailList || !els.sectionsDetailEmpty) return;
+      els.sectionsDetailList.innerHTML = "";
+      if (!course || !course.course_code_7digit) {
+        els.sectionsDetailEmpty.style.display = "";
+        return;
+      }
+      var sections = getCourseSections(getCurrentTermCode(), course.course_code_7digit);
+      if (!sections.length) {
+        els.sectionsDetailEmpty.style.display = "";
+        return;
+      }
+      els.sectionsDetailEmpty.style.display = "none";
+
+      sections.forEach(function(sec) {
+        var card = document.createElement("div");
+        card.className = "section-card";
+
+        var head = document.createElement("div");
+        head.className = "section-card-head";
+
+        var code = document.createElement("div");
+        code.className = "section-card-code";
+        code.textContent = t("sectionLabel") + " " + String(sec.section || "?");
+        head.appendChild(code);
+
+        var instr = document.createElement("div");
+        instr.className = "section-card-instr";
+        var i1 = safeText(sec.instr1 || "");
+        var i2 = safeText(sec.instr2 || "");
+        instr.textContent = (i1 || i2) ? ((i1 + (i2 ? " / " + i2 : "")).trim()) : (t("instructorLabel") + ": -");
+        head.appendChild(instr);
+        card.appendChild(head);
+
+        var mt = document.createElement("div");
+        mt.className = "section-block-title";
+        mt.textContent = t("meetingsLabel");
+        card.appendChild(mt);
+        var meetings = Array.isArray(sec.meetings) ? sec.meetings : [];
+        if (!meetings.length) {
+          var em = document.createElement("div");
+          em.className = "section-empty";
+          em.textContent = t("noMeetings");
+          card.appendChild(em);
+        } else {
+          meetings.forEach(function(m) {
+            var line = document.createElement("div");
+            line.className = "section-line";
+            var room = m.room ? (" (" + safeText(m.room) + ")") : "";
+            line.textContent = localizeDay(m.day) + " " + (m.start || "") + (m.end ? "–" + m.end : "") + room;
+            card.appendChild(line);
+          });
+        }
+
+        var rt = document.createElement("div");
+        rt.className = "section-block-title";
+        rt.textContent = t("rulesLabel");
+        card.appendChild(rt);
+        var rules = Array.isArray(sec.rules) ? sec.rules : [];
+        if (!rules.length) {
+          var er = document.createElement("div");
+          er.className = "section-empty";
+          er.textContent = t("noRules");
+          card.appendChild(er);
+        } else {
+          rules.forEach(function(r) {
+            var dept = safeText((r && r.given_dept) || "") || t("anyLabel");
+            var sc = safeText((r && r.start_char) || "");
+            var ec = safeText((r && r.end_char) || "");
+            var surname = (sc || ec) ? (sc + "–" + ec) : t("anyLabel");
+            var minG = safeText((r && r.min_cgpa) || "");
+            var maxG = safeText((r && r.max_cgpa) || "");
+            var gpa = (minG || maxG) ? ((minG || "0.00") + " - " + (maxG || "4.00")) : t("anyLabel");
+            var minY = safeText((r && r.min_year) || "");
+            var maxY = safeText((r && r.max_year) || "");
+            var year = (minY || maxY) ? ((minY || "0") + " - " + (maxY || "95")) : t("anyLabel");
+            var g1 = safeText((r && r.start_grade) || "");
+            var g2 = safeText((r && r.end_grade) || "");
+            var grade = (g1 || g2) ? (g1 + (g2 && g2 !== g1 ? " -> " + g2 : "")) : t("anyLabel");
+
+            var line = document.createElement("div");
+            line.className = "section-line";
+            line.textContent =
+              t("ruleDeptLabel") + ": " + dept + " | " +
+              t("ruleSurnameLabel") + ": " + surname + " | " +
+              t("ruleGpaLabel") + ": " + gpa + " | " +
+              t("ruleYearLabel") + ": " + year + " | " +
+              t("ruleGradeLabel") + ": " + grade;
+            card.appendChild(line);
+          });
+        }
+
+        els.sectionsDetailList.appendChild(card);
+      });
+    }
+
+    function renderCourseDetails(course) {
+      var hint = els.resultHint;
+      var content = els.resultContent;
+      if (!hint || !content) return;
+      if (!course) {
+        hint.style.display = "";
+        content.style.display = "none";
+        selectedCourseData = null;
+        renderSectionDetails(null);
+        return;
+      }
+      hint.style.display = "none";
+      content.style.display = "";
+      selectedCourseData = course;
+      setText("resultCourseCode", course.code || "-");
+      setText("resultCode7", course.course_code_7digit || "-");
+      setText("resultCourseName", course.name || "-");
+      setText("vDepartment", course.department || t("none"));
+      setText("vCredits", course.credits != null ? String(course.credits) : t("none"));
+      setText("vEcts", course.ects != null && String(course.ects).trim() !== "" ? String(course.ects) : t("none"));
+      setText("vLevel", inferCourseLevel(course));
+      setText("vType", course.type != null && String(course.type).trim() !== "" ? String(course.type) : t("none"));
+      setText("vOffered", course.offered_semester || t("none"));
+      setText("vSections", course.sections_count != null ? String(course.sections_count) : t("none"));
+      setText("vPrograms", formatPrograms(course.programs));
+      setText("vPrereqs", formatPrerequisites(course.prerequisites));
+      renderSectionDetails(course);
+    }
+
+    function renderActiveCourses() {
+      if (!els.activeCourseList || !els.activeCoursesEmpty) return;
+      var termCode = getCurrentTermCode();
+      var active = selectedProgramCode ? getDepartmentSemesterCoursePool(termCode, selectedProgramCode).slice(0, 60) : [];
+      els.activeCourseList.innerHTML = "";
+      if (!active.length) {
+        // Keep this area visually empty until a department is chosen.
+        els.activeCoursesEmpty.style.display = selectedProgramCode ? "" : "none";
+        return;
+      }
+      els.activeCoursesEmpty.style.display = "none";
+      active.forEach(function(course) {
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "active-course-chip";
+        btn.textContent = course.code;
+        if (selectedCourseCode && selectedCourseCode === course.code && selectedFrom === "active") btn.classList.add("is-selected");
+        btn.addEventListener("click", function() {
+          selectedCourseCode = course.code;
+          selectedFrom = "active";
+          if (els.courseInput) els.courseInput.value = course.code + " - " + (course.name || "");
+          if (els.searchInput) els.searchInput.value = course.code + " - " + (course.name || "");
+          renderCourseDetails(course);
+          renderActiveCourses();
+        });
+        els.activeCourseList.appendChild(btn);
+      });
+    }
+
+    function refreshCourseInputsFromSelection() {
+      var termCode = getCurrentTermCode();
+      var selectedCourse = null;
+      if (selectedCourseCode) {
+        selectedCourse = getDepartmentSemesterCoursePool(termCode, selectedProgramCode).find(function(c) { return c.code === selectedCourseCode; }) || coursesByCode[selectedCourseCode] || null;
+      }
+      if (selectedCourse) {
+        var label = selectedCourse.code + " - " + (selectedCourse.name || "");
+        if (els.courseInput && (!els.courseInput.value || selectedFrom !== "course")) els.courseInput.value = label;
+        if (els.searchInput && (!els.searchInput.value || selectedFrom !== "search")) els.searchInput.value = label;
+      }
+      renderActiveCourses();
+      if (selectedCourseCode && !coursesByCode[selectedCourseCode]) {
+        selectedCourseCode = "";
+      }
+      if (selectedCourseCode) {
+        var pool = getDepartmentSemesterCoursePool(termCode, selectedProgramCode);
+        var exists = pool.some(function(c) { return c.code === selectedCourseCode; });
+        if (!exists && selectedFrom !== "active") {
+          selectedCourseCode = "";
+          renderCourseDetails(null);
+        } else {
+          renderCourseDetails(selectedCourse || null);
+        }
+      } else {
+        renderCourseDetails(null);
+      }
+    }
+
+    function attachSuggestionBehavior() {
+      if (els.deptInput && els.deptList) {
+        els.deptInput.addEventListener("input", function() {
+          selectedProgramCode = "";
+          var items = filterDepartments(els.deptInput.value);
+          renderSuggestionList(els.deptList, items, function(item) {
+            selectedProgramCode = item.value;
+            els.deptInput.value = item.label;
+            localStorage.setItem(METU_LAST_PROGRAM_CODE, selectedProgramCode);
+            refreshCourseInputsFromSelection();
+          });
+        });
+        els.deptInput.addEventListener("focus", function() {
+          var items = filterDepartments("");
+          renderSuggestionList(els.deptList, items, function(item) {
+            selectedProgramCode = item.value;
+            els.deptInput.value = item.label;
+            localStorage.setItem(METU_LAST_PROGRAM_CODE, selectedProgramCode);
+            refreshCourseInputsFromSelection();
+          });
+        });
+      }
+
+      if (els.courseInput && els.courseList) {
+        els.courseInput.addEventListener("input", function() {
+          var items = filterCourses(els.courseInput.value, getCurrentTermCode(), selectedProgramCode);
+          renderSuggestionList(els.courseList, items, function(item) {
+            selectedCourseCode = item.value;
+            selectedFrom = "course";
+            els.courseInput.value = item.label;
+            renderCourseDetails(item.data);
+            renderActiveCourses();
+          });
+        });
+        els.courseInput.addEventListener("focus", function() {
+          var items = filterCourses(els.courseInput.value, getCurrentTermCode(), selectedProgramCode);
+          renderSuggestionList(els.courseList, items, function(item) {
+            selectedCourseCode = item.value;
+            selectedFrom = "course";
+            els.courseInput.value = item.label;
+            renderCourseDetails(item.data);
+            renderActiveCourses();
+          });
+        });
+      }
+
+      if (els.searchInput && els.searchList) {
+        els.searchInput.addEventListener("input", function() {
+          var items = filterCourses(els.searchInput.value, getCurrentTermCode(), "");
+          renderSuggestionList(els.searchList, items, function(item) {
+            selectedCourseCode = item.value;
+            selectedFrom = "search";
+            els.searchInput.value = item.label;
+            renderCourseDetails(item.data);
+            renderActiveCourses();
+          });
+        });
+        els.searchInput.addEventListener("focus", function() {
+          var items = filterCourses(els.searchInput.value, getCurrentTermCode(), "");
+          renderSuggestionList(els.searchList, items, function(item) {
+            selectedCourseCode = item.value;
+            selectedFrom = "search";
+            els.searchInput.value = item.label;
+            renderCourseDetails(item.data);
+            renderActiveCourses();
+          });
+        });
+      }
+
+      document.addEventListener("click", function(ev) {
+        if (els.deptInput && els.deptList && !els.deptInput.contains(ev.target) && !els.deptList.contains(ev.target)) closeSuggestion(els.deptList);
+        if (els.courseInput && els.courseList && !els.courseInput.contains(ev.target) && !els.courseList.contains(ev.target)) closeSuggestion(els.courseList);
+        if (els.searchInput && els.searchList && !els.searchInput.contains(ev.target) && !els.searchList.contains(ev.target)) closeSuggestion(els.searchList);
+      });
+
+      if (els.semesterSelect) {
+        els.semesterSelect.addEventListener("change", function() {
+          localStorage.setItem("metu_current_semester", String(getCurrentTermCode()));
+          if (selectedProgramCode) {
+            var items = getTermDepartments(getCurrentTermCode());
+            var stillExists = items.some(function(d) { return d.value === selectedProgramCode; });
+            if (!stillExists) {
+              selectedProgramCode = "";
+              if (els.deptInput) els.deptInput.value = "";
+            }
+          }
+          refreshCourseInputsFromSelection();
+        });
+      }
+    }
+
+    function initDetailElements() {
+      els.semesterSelect = document.getElementById("detailsSemesterSelect");
+      els.deptInput = document.getElementById("detailsDeptInput");
+      els.deptList = document.getElementById("detailsDeptList");
+      els.courseInput = document.getElementById("detailsCourseInput");
+      els.courseList = document.getElementById("detailsCourseList");
+      els.searchInput = document.getElementById("detailsSearchInput");
+      els.searchList = document.getElementById("detailsSearchList");
+      els.activeCourseList = document.getElementById("activeCourseList");
+      els.activeCoursesEmpty = document.getElementById("activeCoursesEmpty");
+      els.resultHint = document.getElementById("detailsResultHint");
+      els.resultContent = document.getElementById("detailsResultContent");
+      els.sectionsDetailList = document.getElementById("sectionsDetailList");
+      els.sectionsDetailEmpty = document.getElementById("sectionsDetailEmpty");
+    }
+
+    function initDataAndExplorer() {
+      Promise.all([
+        fetch("programs.json").then(function(r) { return r.json(); }),
+        fetch("courses.json").then(function(r) { return r.json(); }),
+        Promise.all(OIBS_TERM_CODES.map(function(termCode) {
+          return fetch("oibs_offerings_all_" + termCode + ".json").then(function(r) {
+            if (!r.ok) return null;
+            return r.json().then(function(j) { return { code: termCode, data: j }; });
+          }).catch(function() { return null; });
+        })),
+        Promise.all(OIBS_TERM_CODES.map(function(termCode) {
+          return fetch("oibs_sections_all_" + termCode + "_full.json").then(function(r) {
+            if (!r.ok) return null;
+            return r.json().then(function(j) { return { code: termCode, data: j }; });
+          }).catch(function() { return null; });
+        }))
+      ]).then(function(results) {
+        var programsJson = results[0] || {};
+        var coursesJson = results[1] || {};
+        var offeringsList = results[2] || [];
+        var sectionsList = results[3] || [];
+        programNameByCode = {};
+        var flatPrograms = programsJson && Array.isArray(programsJson.programs) ? programsJson.programs : [];
+        flatPrograms.forEach(function(p) {
+          if (!p || !p.program_code) return;
+          programNameByCode[String(p.program_code)] = String(p.program || p.program_code);
+        });
+        offeringsList.forEach(function(item) {
+          if (!item || !item.code || !item.data) return;
+          oibsOfferingsByTerm[String(item.code)] = item.data;
+        });
+        sectionsList.forEach(function(item) {
+          if (!item || !item.code || !item.data) return;
+          oibsSectionsByTerm[String(item.code)] = item.data;
+        });
+        sectionsCountByTerm = {};
+        sectionsByTermByCode7 = {};
+        Object.keys(oibsSectionsByTerm).forEach(function(termCode) {
+          var map = {};
+          var detailsMap = {};
+          var data = oibsSectionsByTerm[termCode];
+          var deps = data && Array.isArray(data.departments) ? data.departments : [];
+          deps.forEach(function(dep) {
+            var courses = Array.isArray(dep.courses) ? dep.courses : [];
+            courses.forEach(function(c) {
+              var code7 = String((c && (c.internal_code || c.code)) || "");
+              if (!code7) return;
+              var sections = Array.isArray(c.sections) ? c.sections : [];
+              map[code7] = sections.length;
+              detailsMap[code7] = sections;
+            });
+          });
+          sectionsCountByTerm[termCode] = map;
+          sectionsByTermByCode7[termCode] = detailsMap;
+        });
+        allCourses = (coursesJson && Array.isArray(coursesJson.courses)) ? coursesJson.courses : [];
+        coursesByCode = {};
+        codeBy7 = {};
+        allCourses.forEach(function(c) {
+          if (!c || !c.code) return;
+          coursesByCode[String(c.code)] = c;
+          if (c.course_code_7digit) codeBy7[String(c.course_code_7digit)] = String(c.code);
+        });
+
+        initSemesterOptions();
+        selectedProgramCode = resolveDefaultProgramCode();
+        if (selectedProgramCode && els.deptInput) {
+          var depts = getTermDepartments(getCurrentTermCode());
+          var match = depts.find(function(d) { return d.value === selectedProgramCode; });
+          if (match) els.deptInput.value = selectedProgramCode + " - " + match.text;
+          else {
+            selectedProgramCode = "";
+            els.deptInput.value = "";
+          }
+        }
+
+        attachSuggestionBehavior();
+        refreshCourseInputsFromSelection();
+      }).catch(function() {
+        renderCourseDetails(null);
+      });
+    }
+
+    function applyLanguage(lang) {
+      var s = STRINGS[lang] || STRINGS.en;
+      setText("pageTitle", s.pageTitle);
+      setText("pageSubtitle", s.pageSubtitle);
+      setText("navPortal", s.navPortal);
+      setText("navPlanner", s.navPlanner);
+      setText("navWeekly", s.navWeekly);
+      setText("navTools", s.navTools);
+      setText("mobileNavTools", s.navTools);
+      setText("detailsPanelTitle", s.detailsPanelTitle);
+      setText("detailsPanelCaption", s.detailsPanelCaption);
+      setText("filtersTitle", s.filtersTitle);
+      setText("detailsSemesterLabel", s.detailsSemesterLabel);
+      setText("detailsDeptLabel", s.detailsDeptLabel);
+      setText("detailsCourseLabel", s.detailsCourseLabel);
+      setText("filtersHint", s.filtersHint);
+      setText("activeCoursesTitle", s.activeCoursesTitle);
+      setText("activeCoursesEmpty", s.activeCoursesEmpty);
+      setText("searchPanelTitle", s.searchPanelTitle);
+      setText("searchPanelCaption", s.searchPanelCaption);
+      setText("detailsSearchLabel", s.detailsSearchLabel);
+      setText("detailsResultHint", s.detailsResultHint);
+      setText("kDepartment", s.kDepartment);
+      setText("kCredits", s.kCredits);
+      setText("kEcts", s.kEcts);
+      setText("kLevel", s.kLevel);
+      setText("kType", s.kType);
+      setText("kOffered", s.kOffered);
+      setText("kSections", s.kSections);
+      setText("kPrograms", s.kPrograms);
+      setText("kPrereqs", s.kPrereqs);
+      setText("sectionsDetailTitle", s.sectionsDetailTitle);
+      setText("sectionsDetailEmpty", s.sectionsDetailEmpty);
+      setText("backToToolsBtn", s.backToToolsBtn);
+      setText("mobileContactBtn", s.contactBtn);
+      setText("envelopeModalTitle", s.contactModalTitle);
+      setText("envelopeModalClose", s.closeBtn);
+      if (els.deptInput) els.deptInput.placeholder = s.deptPlaceholder;
+      if (els.courseInput) els.courseInput.placeholder = s.coursePlaceholder;
+      if (els.searchInput) els.searchInput.placeholder = s.searchPlaceholder;
+      document.documentElement.lang = lang === "tr" ? "tr" : "en";
+
+      var currentTheme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+      setText("themeLabel", currentTheme === "dark" ? s.themeLight : s.themeDark);
+      setText("mobileThemeLabel", currentTheme === "dark" ? s.themeLight : s.themeDark);
+
+      var langSel = document.getElementById("langSelect");
+      if (langSel) langSel.value = lang;
+      var langButtonLabel = document.getElementById("langButtonLabel");
+      if (langButtonLabel) langButtonLabel.textContent = lang === "tr" ? "Türkçe" : "English";
+      localStorage.setItem("lang", lang);
+      if (els.semesterSelect) {
+        var current = els.semesterSelect.value;
+        for (var i = 0; i < els.semesterSelect.options.length; i++) {
+          var opt = els.semesterSelect.options[i];
+          opt.textContent = formatTermLabel(opt.value);
+        }
+        els.semesterSelect.value = current;
+      }
+      if (selectedCourseCode) refreshCourseInputsFromSelection();
+      renderActiveCourses();
+      if (selectedCourseData) renderSectionDetails(selectedCourseData);
+    }
+
+    function initLangCombo() {
+      var sel = document.getElementById("langSelect");
+      var btn = document.getElementById("langButton");
+      var list = document.getElementById("langList");
+      if (!sel || !btn || !list) return;
+      list.innerHTML = "";
+      for (var i = 0; i < sel.options.length; i++) {
+        var opt = sel.options[i];
+        var item = document.createElement("button");
+        item.type = "button";
+        item.className = "course-search-item";
+        item.setAttribute("role", "option");
+        item.textContent = opt.textContent;
+        (function(v) {
+          item.addEventListener("click", function() {
+            sel.value = v;
+            applyLanguage(v);
+            list.classList.remove("is-open");
+            btn.setAttribute("aria-expanded", "false");
+          });
+        })(opt.value);
+        list.appendChild(item);
+      }
+      btn.addEventListener("click", function() {
+        var isOpen = list.classList.contains("is-open");
+        list.classList.toggle("is-open", !isOpen);
+        btn.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+      });
+      document.addEventListener("click", function(ev) {
+        if (!list.classList.contains("is-open")) return;
+        if (!btn.contains(ev.target) && !list.contains(ev.target)) {
+          list.classList.remove("is-open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      });
+      sel.addEventListener("change", function() {
+        applyLanguage(sel.value === "tr" ? "tr" : "en");
+      });
+    }
+
+    function toggleTheme() {
+      var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+      var next = current === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      applyLanguage(getLang());
+    }
+
+    function initDrawer() {
+      var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      var mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
+      var mobileDrawerClose = document.getElementById("mobileDrawerClose");
+      var mobileThemeBtn = document.getElementById("mobileThemeBtn");
+      var mobileContactBtn = document.getElementById("mobileContactBtn");
+      var mobileLangTr = document.getElementById("mobileLangTr");
+      var mobileLangEn = document.getElementById("mobileLangEn");
+      var envelopeDialog = document.getElementById("envelopeDialog");
+
+      function setDrawerOpen(open) {
+        if (!mobileDrawerOverlay || !mobileMenuBtn) return;
+        mobileDrawerOverlay.classList.toggle("is-open", !!open);
+        mobileDrawerOverlay.setAttribute("aria-hidden", open ? "false" : "true");
+        mobileMenuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        document.documentElement.style.overflow = open ? "hidden" : "";
+      }
+
+      if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", function() { setDrawerOpen(true); });
+      if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", function() { setDrawerOpen(false); });
+      if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener("click", function(e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
+      document.addEventListener("keydown", function(e) { if (e.key === "Escape") setDrawerOpen(false); });
+
+      if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", function() {
+        toggleTheme();
+        setDrawerOpen(false);
+      });
+      if (mobileContactBtn) mobileContactBtn.addEventListener("click", function() {
+        setDrawerOpen(false);
+        if (envelopeDialog) envelopeDialog.showModal();
+      });
+      if (mobileLangTr) mobileLangTr.addEventListener("click", function() {
+        applyLanguage("tr");
+        if (mobileLangTr) mobileLangTr.classList.add("is-active");
+        if (mobileLangEn) mobileLangEn.classList.remove("is-active");
+        setDrawerOpen(false);
+      });
+      if (mobileLangEn) mobileLangEn.addEventListener("click", function() {
+        applyLanguage("en");
+        if (mobileLangTr) mobileLangTr.classList.remove("is-active");
+        if (mobileLangEn) mobileLangEn.classList.add("is-active");
+        setDrawerOpen(false);
+      });
+
+      var lang = getLang();
+      if (mobileLangTr) mobileLangTr.classList.toggle("is-active", lang === "tr");
+      if (mobileLangEn) mobileLangEn.classList.toggle("is-active", lang !== "tr");
+    }
+
+    var savedTheme = localStorage.getItem("theme");
+    var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+    root.setAttribute("data-theme", initialTheme);
+
+    var envelopeBtn = document.getElementById("envelopeBtn");
+    var envelopeDialog = document.getElementById("envelopeDialog");
+    var envelopeModalClose = document.getElementById("envelopeModalClose");
+    if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function() { envelopeDialog.showModal(); });
+    if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function() { envelopeDialog.close(); });
+    if (envelopeDialog) envelopeDialog.addEventListener("click", function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
+
+    var themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
+
+    initDetailElements();
+    initLangCombo();
+    initDrawer();
+    initDataAndExplorer();
+    applyLanguage(getLang());
+  })();
+  </script>
+</body>
+</html>

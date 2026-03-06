@@ -444,6 +444,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         <a id="navPortal" href="index.html" class="active">Portal</a>
         <a id="navPlanner" href="planner.html">Planner</a>
         <a id="navWeekly" href="weekly.html">Weekly schedule</a>
+        <a id="navTools" href="tools.html">Tools</a>
       </nav>
       <select id="langSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
         <option value="tr">Türkçe</option>
@@ -478,6 +479,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             <a class="mobile-drawer-link" href="index.html">Portal</a>
             <a class="mobile-drawer-link" href="planner.html">Planner</a>
             <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+            <a id="mobileNavTools" class="mobile-drawer-link" href="tools.html">Tools</a>
           </div>
         </div>
         <div class="mobile-drawer-section">
@@ -566,6 +568,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       navPortal: 'Portal',
       navPlanner: 'Planner',
       navWeekly: 'Weekly schedule',
+      navTools: 'Tools',
       savedWeeklySchedule: 'Saved weekly schedule',
       thisSemesterCourses: "This semester's courses",
       exportBtn: 'Export ▾',
@@ -590,6 +593,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       navPortal: 'Portal',
       navPlanner: 'Planlayıcı',
       navWeekly: 'Haftalık program',
+      navTools: 'Araçlar',
       savedWeeklySchedule: 'Kayıtlı haftalık program',
       thisSemesterCourses: "Bu dönemin dersleri",
       exportBtn: 'Dışa aktar ▾',
@@ -629,6 +633,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     set('navPortal', s.navPortal);
     set('navPlanner', s.navPlanner);
     set('navWeekly', s.navWeekly);
+    set('navTools', s.navTools);
+    set('mobileNavTools', s.navTools);
     set('portalWeeklySectionTitle', s.savedWeeklySchedule);
     set('portalCoursesSectionTitle', s.thisSemesterCourses);
     set('portalSemesterButtonLabel', s.semester);
@@ -1169,6 +1175,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   rel="noopener"
   aria-label="Open update history"
   style="position: fixed; right: 16px; bottom: 12px; top: auto; left: auto; font-size: 12px; color: rgba(154, 160, 166, 0.95); z-index: 9999; text-decoration: none; cursor: pointer;"
->1.0.2</a>
+>1.1.0</a>
 </body>
 </html>

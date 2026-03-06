@@ -1006,6 +1006,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 <a id="navPortal" href="index.html">Portal</a>
                 <a id="navPlanner" href="planner.html">Planner</a>
                 <a id="navWeekly" href="weekly.html" class="active">Weekly schedule</a>
+                <a id="navTools" href="tools.html">Tools</a>
             </nav>
             <select id="langSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
                 <option value="tr">Türkçe</option>
@@ -1040,6 +1041,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         <a class="mobile-drawer-link" href="index.html">Portal</a>
                         <a class="mobile-drawer-link" href="planner.html">Planner</a>
                         <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+                        <a id="mobileNavTools" class="mobile-drawer-link" href="tools.html">Tools</a>
                     </div>
                 </div>
                 <div class="mobile-drawer-section">
@@ -1451,6 +1453,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             navPortal: "Portal",
             navPlanner: "Planner",
             navWeekly: "Weekly schedule",
+            navTools: "Tools",
             studentTitle: "Student & department",
             studentCaption: "We'll later use this to filter courses and personalize the schedule.",
             deptLabel: "Department",
@@ -1533,6 +1536,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             navPortal: "Portal",
             navPlanner: "Planlayıcı",
             navWeekly: "Haftalık program",
+            navTools: "Araçlar",
             studentTitle: "Öğrenci ve bölüm",
             studentCaption: "Dersleri filtrelemek ve programı kişiselleştirmek için bunu kullanacağız.",
             deptLabel: "Bölüm",
@@ -1650,6 +1654,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = dict.navPlanner;
         el = document.getElementById("navWeekly");
         if (el) el.textContent = dict.navWeekly;
+        el = document.getElementById("navTools");
+        if (el) el.textContent = dict.navTools || "Tools";
+        el = document.getElementById("mobileNavTools");
+        if (el) el.textContent = dict.navTools || "Tools";
         el = document.getElementById("langButtonLabel");
         if (el) el.textContent = langCode === "tr" ? "Türkçe" : "English";
         el = document.getElementById("weeklyStudentTitle");

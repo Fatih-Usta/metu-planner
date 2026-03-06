@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools</title>
+  <link rel="stylesheet" href="main-ui.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .tools-main {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .tools-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: var(--bg-elevated);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      width: min(100%, 380px);
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .tools-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 1rem;
+    }
+    .tools-card p {
+      margin: 0 0 14px 0;
+      color: var(--text-muted);
+    }
+    .tools-open-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--metu-red);
+      color: #fff;
+      background: var(--metu-red);
+      border-radius: var(--radius-full);
+      padding: 9px 14px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.86rem;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .tools-open-btn:hover {
+      background: var(--metu-red-hover);
+      border-color: var(--metu-red-hover);
+    }
+    @media (max-width: 560px) {
+      .tools-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <div class="branding">
+        <div class="branding-mark"></div>
+        <div class="title-block">
+          <h1 id="pageTitle">Tools</h1>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="mobileMenuBtn" aria-label="Open menu" aria-controls="mobileDrawerOverlay" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+        <nav class="nav-links">
+          <a id="navPortal" href="index.html">Portal</a>
+          <a id="navPlanner" href="planner.html">Planner</a>
+          <a id="navWeekly" href="weekly.html">Weekly schedule</a>
+          <a id="navTools" href="tools.html" class="active">Tools</a>
+        </nav>
+        <select id="langSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+        </select>
+        <div class="header-lang" id="langCombo">
+          <button type="button" id="langButton" class="header-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+            <span id="langButtonLabel">English</span>
+            <span class="header-lang-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div id="langList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
+        </div>
+        <button type="button" id="envelopeBtn" class="envelope-btn" aria-label="Message" title="Message">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </button>
+        <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <span id="themeLabel">Light theme</span>
+        </button>
+      </div>
+    </header>
+
+    <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" aria-hidden="true">
+      <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="mobile-drawer-header">
+          <div class="mobile-drawer-title">Menu</div>
+          <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <div class="mobile-drawer-body">
+          <div class="mobile-drawer-section">
+            <div class="mobile-drawer-section-title">Pages</div>
+            <div class="mobile-drawer-list">
+              <a class="mobile-drawer-link" href="index.html">Portal</a>
+              <a class="mobile-drawer-link" href="planner.html">Planner</a>
+              <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+              <a id="mobileNavTools" class="mobile-drawer-link" href="tools.html">Tools</a>
+            </div>
+          </div>
+          <div class="mobile-drawer-section">
+            <div class="mobile-drawer-section-title">Settings</div>
+            <div class="mobile-drawer-list">
+              <div class="mobile-drawer-pill-row" aria-label="Language">
+                <button type="button" id="mobileLangTr" class="mobile-drawer-pill">Türkçe</button>
+                <button type="button" id="mobileLangEn" class="mobile-drawer-pill">English</button>
+              </div>
+              <button type="button" id="mobileContactBtn" class="mobile-drawer-btn">Contact</button>
+              <button type="button" id="mobileThemeBtn" class="mobile-drawer-btn">
+                <span>Theme</span>
+                <span id="mobileThemeLabel">Light theme</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <main class="layout tools-main">
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" id="toolsPanelTitle">Tools</div>
+          </div>
+        </div>
+        <div class="tools-card">
+          <h3 id="courseDetailsCardTitle">Course details</h3>
+          <a href="course-details.html" id="openCourseDetailsBtn" class="tools-open-btn">Open course details</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="envelopeDialog" class="envelope-dialog">
+    <div class="envelope-modal">
+      <div class="envelope-modal-header">
+        <h3 id="envelopeModalTitle" class="envelope-modal-title">Contact information</h3>
+        <button type="button" id="envelopeModalClose" class="envelope-modal-close">Close</button>
+      </div>
+      <div id="envelopeModalContent" class="envelope-modal-body scroll-theme">
+        <a href="mailto:fatih.usta@metu.edu.tr">fatih.usta@metu.edu.tr</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+  (function() {
+    var root = document.documentElement;
+    var STRINGS = {
+      en: {
+        pageTitle: "Tools",
+        navPortal: "Portal",
+        navPlanner: "Planner",
+        navWeekly: "Weekly schedule",
+        navTools: "Tools",
+        toolsPanelTitle: "Tools",
+        courseDetailsCardTitle: "Program course details",
+        openCourseDetailsBtn: "See program course details",
+        themeLight: "Light theme",
+        themeDark: "Dark theme",
+        contactBtn: "Contact",
+        contactModalTitle: "Contact information",
+        closeBtn: "Close"
+      },
+      tr: {
+        pageTitle: "Araçlar",
+        navPortal: "Portal",
+        navPlanner: "Planlayıcı",
+        navWeekly: "Haftalık program",
+        navTools: "Araçlar",
+        toolsPanelTitle: "Araçlar",
+        courseDetailsCardTitle: "Program Ders Detaylarını Görüntüle",
+        openCourseDetailsBtn: "Program Ders Detaylarını Görüntüle",
+        themeLight: "Açık tema",
+        themeDark: "Koyu tema",
+        contactBtn: "İletişim",
+        contactModalTitle: "İletişim bilgileri",
+        closeBtn: "Kapat"
+      }
+    };
+
+    function setText(id, text) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    function getLang() {
+      return (localStorage.getItem("lang") || "en") === "tr" ? "tr" : "en";
+    }
+
+    function applyLanguage(lang) {
+      var s = STRINGS[lang] || STRINGS.en;
+      setText("pageTitle", s.pageTitle);
+      setText("navPortal", s.navPortal);
+      setText("navPlanner", s.navPlanner);
+      setText("navWeekly", s.navWeekly);
+      setText("navTools", s.navTools);
+      setText("mobileNavTools", s.navTools);
+      setText("toolsPanelTitle", s.toolsPanelTitle);
+      setText("courseDetailsCardTitle", s.courseDetailsCardTitle);
+      setText("openCourseDetailsBtn", s.openCourseDetailsBtn);
+      setText("mobileContactBtn", s.contactBtn);
+      setText("envelopeModalTitle", s.contactModalTitle);
+      setText("envelopeModalClose", s.closeBtn);
+      document.documentElement.lang = lang === "tr" ? "tr" : "en";
+
+      var currentTheme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+      setText("themeLabel", currentTheme === "dark" ? s.themeLight : s.themeDark);
+      setText("mobileThemeLabel", currentTheme === "dark" ? s.themeLight : s.themeDark);
+
+      var langSel = document.getElementById("langSelect");
+      if (langSel) langSel.value = lang;
+      var langButtonLabel = document.getElementById("langButtonLabel");
+      if (langButtonLabel) langButtonLabel.textContent = lang === "tr" ? "Türkçe" : "English";
+      localStorage.setItem("lang", lang);
+    }
+
+    function initLangCombo() {
+      var sel = document.getElementById("langSelect");
+      var btn = document.getElementById("langButton");
+      var list = document.getElementById("langList");
+      if (!sel || !btn || !list) return;
+      list.innerHTML = "";
+      for (var i = 0; i < sel.options.length; i++) {
+        var opt = sel.options[i];
+        var item = document.createElement("button");
+        item.type = "button";
+        item.className = "course-search-item";
+        item.setAttribute("role", "option");
+        item.textContent = opt.textContent;
+        (function(v) {
+          item.addEventListener("click", function() {
+            sel.value = v;
+            applyLanguage(v);
+            list.classList.remove("is-open");
+            btn.setAttribute("aria-expanded", "false");
+          });
+        })(opt.value);
+        list.appendChild(item);
+      }
+      btn.addEventListener("click", function() {
+        var isOpen = list.classList.contains("is-open");
+        list.classList.toggle("is-open", !isOpen);
+        btn.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+      });
+      document.addEventListener("click", function(ev) {
+        if (!list.classList.contains("is-open")) return;
+        if (!btn.contains(ev.target) && !list.contains(ev.target)) {
+          list.classList.remove("is-open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      });
+      sel.addEventListener("change", function() {
+        applyLanguage(sel.value === "tr" ? "tr" : "en");
+      });
+    }
+
+    function toggleTheme() {
+      var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+      var next = current === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      applyLanguage(getLang());
+    }
+
+    function initDrawer() {
+      var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      var mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
+      var mobileDrawerClose = document.getElementById("mobileDrawerClose");
+      var mobileThemeBtn = document.getElementById("mobileThemeBtn");
+      var mobileContactBtn = document.getElementById("mobileContactBtn");
+      var mobileLangTr = document.getElementById("mobileLangTr");
+      var mobileLangEn = document.getElementById("mobileLangEn");
+      var envelopeDialog = document.getElementById("envelopeDialog");
+
+      function setDrawerOpen(open) {
+        if (!mobileDrawerOverlay || !mobileMenuBtn) return;
+        mobileDrawerOverlay.classList.toggle("is-open", !!open);
+        mobileDrawerOverlay.setAttribute("aria-hidden", open ? "false" : "true");
+        mobileMenuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        document.documentElement.style.overflow = open ? "hidden" : "";
+      }
+
+      if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", function() { setDrawerOpen(true); });
+      if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", function() { setDrawerOpen(false); });
+      if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener("click", function(e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
+      document.addEventListener("keydown", function(e) { if (e.key === "Escape") setDrawerOpen(false); });
+
+      if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", function() {
+        toggleTheme();
+        setDrawerOpen(false);
+      });
+      if (mobileContactBtn) mobileContactBtn.addEventListener("click", function() {
+        setDrawerOpen(false);
+        if (envelopeDialog) envelopeDialog.showModal();
+      });
+      if (mobileLangTr) mobileLangTr.addEventListener("click", function() {
+        applyLanguage("tr");
+        if (mobileLangTr) mobileLangTr.classList.add("is-active");
+        if (mobileLangEn) mobileLangEn.classList.remove("is-active");
+        setDrawerOpen(false);
+      });
+      if (mobileLangEn) mobileLangEn.addEventListener("click", function() {
+        applyLanguage("en");
+        if (mobileLangTr) mobileLangTr.classList.remove("is-active");
+        if (mobileLangEn) mobileLangEn.classList.add("is-active");
+        setDrawerOpen(false);
+      });
+
+      var lang = getLang();
+      if (mobileLangTr) mobileLangTr.classList.toggle("is-active", lang === "tr");
+      if (mobileLangEn) mobileLangEn.classList.toggle("is-active", lang !== "tr");
+    }
+
+    var savedTheme = localStorage.getItem("theme");
+    var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+    root.setAttribute("data-theme", initialTheme);
+
+    var envelopeBtn = document.getElementById("envelopeBtn");
+    var envelopeDialog = document.getElementById("envelopeDialog");
+    var envelopeModalClose = document.getElementById("envelopeModalClose");
+    if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function() { envelopeDialog.showModal(); });
+    if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function() { envelopeDialog.close(); });
+    if (envelopeDialog) envelopeDialog.addEventListener("click", function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
+
+    var themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
+
+    initLangCombo();
+    initDrawer();
+    applyLanguage(getLang());
+  })();
+  </script>
+</body>
+</html>

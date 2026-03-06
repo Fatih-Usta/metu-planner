@@ -1509,6 +1509,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         <a id="navPortal" href="index.html" data-i18n="navPortal">Portal</a>
         <a id="navPlanner" href="planner.html" class="active" data-i18n="navPlanner">Planner</a>
         <a id="navWeekly" href="weekly.html" data-i18n="navWeekly">Weekly schedule</a>
+        <a id="navTools" href="tools.html" data-i18n="navTools">Tools</a>
       </nav>
       <select id="langSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
         <option value="tr">Türkçe</option>
@@ -1543,6 +1544,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             <a class="mobile-drawer-link" href="index.html">Portal</a>
             <a class="mobile-drawer-link" href="planner.html">Planner</a>
             <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+            <a class="mobile-drawer-link" id="mobileNavTools" href="tools.html" data-i18n="navTools">Tools</a>
           </div>
         </div>
         <div class="mobile-drawer-section">
@@ -1857,6 +1859,7 @@ const translations = {
     navPortal: "Portal",
     navPlanner: "Planlayıcı",
     navWeekly: "Haftalık program",
+    navTools: "Araçlar",
     aboutCloseLabel: "Kapat"
   },
   en: {
@@ -1957,6 +1960,7 @@ const translations = {
     navPortal: "Portal",
     navPlanner: "Planner",
     navWeekly: "Weekly schedule",
+    navTools: "Tools",
     aboutCloseLabel: "Close"
   }
 };
