@@ -656,6 +656,86 @@
     color: var(--metu-red);
 }
 
+/* Debug panel (?debug=1) */
+.weekly-debug-panel {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: 360px;
+    max-height: 70vh;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+    z-index: 9998;
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+.weekly-debug-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(0,0,0,0.2);
+}
+.weekly-debug-header h4 { margin: 0; font-size: 13px; }
+.weekly-debug-close {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+}
+.weekly-debug-body {
+    padding: 10px 12px;
+    overflow-y: auto;
+    flex: 1;
+}
+.weekly-debug-section {
+    margin-bottom: 12px;
+}
+.weekly-debug-section h5 {
+    margin: 0 0 6px 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+.weekly-debug-row {
+    margin-bottom: 4px;
+}
+.weekly-debug-row label {
+    display: inline-block;
+    width: 70px;
+}
+.weekly-debug-section button {
+    margin-top: 6px;
+    margin-right: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-input);
+    color: var(--text-main);
+    cursor: pointer;
+}
+.weekly-debug-section button:hover {
+    border-color: var(--metu-red);
+}
+.weekly-debug-output {
+    margin: 6px 0 0 0;
+    padding: 8px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 180px;
+    overflow-y: auto;
+}
+
 .week-shell {
     overflow: auto;
 }
@@ -1080,6 +1160,41 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       <button type="button" id="weeklySectionDetailsClose" class="weekly-section-details-close">Close</button>
     </div>
     <div id="weeklySectionDetailsContent" class="weekly-section-details-body scroll-theme"></div>
+  </div>
+</div>
+
+<div id="weeklyDebugPanel" class="weekly-debug-panel" style="display: none;" aria-label="Debug panel">
+  <div class="weekly-debug-header">
+    <h4>Debug</h4>
+    <button type="button" id="weeklyDebugClose" title="Close">×</button>
+  </div>
+  <div class="weekly-debug-body">
+    <section class="weekly-debug-section">
+      <h5>Data status</h5>
+      <div id="weeklyDebugDataStatus">—</div>
+      <button type="button" id="weeklyDebugLoadData">Load data</button>
+    </section>
+    <section class="weekly-debug-section">
+      <h5>Test section filter</h5>
+      <div class="weekly-debug-row">
+        <label>Course:</label>
+        <input type="text" id="weeklyDebugCourseCode" placeholder="e.g. CENG223" style="width:100px">
+      </div>
+      <div class="weekly-debug-row">
+        <label>Surname:</label>
+        <input type="text" id="weeklyDebugSurname" placeholder="e.g. Kaya" style="width:80px">
+      </div>
+      <div class="weekly-debug-row">
+        <label>Dept code:</label>
+        <input type="text" id="weeklyDebugDept" placeholder="571 or CENG" style="width:80px" title="Program code from dropdown">
+      </div>
+      <button type="button" id="weeklyDebugTestFilter">Test filter</button>
+      <pre id="weeklyDebugFilterResult" class="weekly-debug-output"></pre>
+    </section>
+    <section class="weekly-debug-section">
+      <h5>Last run</h5>
+      <pre id="weeklyDebugLastRun" class="weekly-debug-output"></pre>
+    </section>
   </div>
 </div>
 
@@ -4091,6 +4206,165 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     // Initialize the week grid immediately so the user can add/remove
     // BUSY slots even before adding any courses or running Schedule.
     clearWeekGrid();
+
+    // Debug panel: show when ?debug=1 in URL
+    if (window.location.search.indexOf("debug=1") !== -1) {
+        var debugPanel = document.getElementById("weeklyDebugPanel");
+        var debugClose = document.getElementById("weeklyDebugClose");
+        if (debugPanel) debugPanel.style.display = "flex";
+        if (debugClose) debugClose.addEventListener("click", function () { debugPanel.style.display = "none"; });
+
+        if (deptSelect) {
+            var debugDeptInput = document.getElementById("weeklyDebugDept");
+            if (debugDeptInput) debugDeptInput.placeholder = "e.g. " + (deptSelect.value || "571");
+        }
+
+        function debugRefreshDataStatus() {
+            var el = document.getElementById("weeklyDebugDataStatus");
+            if (!el) return;
+            var parts = [];
+            parts.push("Courses: " + (weeklyCoursesByCode ? Object.keys(weeklyCoursesByCode).length : 0));
+            parts.push("Sections (code7): " + (weeklySectionsBy7 ? Object.keys(weeklySectionsBy7).length : 0));
+            var sectionCount = 0;
+            if (weeklySectionsBy7) {
+                for (var k in weeklySectionsBy7) {
+                    if (weeklySectionsBy7.hasOwnProperty(k) && Array.isArray(weeklySectionsBy7[k])) sectionCount += weeklySectionsBy7[k].length;
+                }
+            }
+            parts.push("Total sections: " + sectionCount);
+            parts.push("Offerings: " + (weeklyOfferedBy7 ? Object.keys(weeklyOfferedBy7).length : 0));
+            parts.push("Curriculums: " + (weeklyCurriculums ? Object.keys(weeklyCurriculums).length : 0));
+            el.textContent = parts.join("\n");
+        }
+
+        document.getElementById("weeklyDebugLoadData").addEventListener("click", function () {
+            ensureDataLoaded().then(function () {
+                debugRefreshDataStatus();
+            }).catch(function (e) {
+                document.getElementById("weeklyDebugDataStatus").textContent = "Error: " + (e && e.message ? e.message : String(e));
+            });
+        });
+
+        document.getElementById("weeklyDebugTestFilter").addEventListener("click", function () {
+            var codeInput = document.getElementById("weeklyDebugCourseCode");
+            var surnameInput = document.getElementById("weeklyDebugSurname");
+            var deptInput = document.getElementById("weeklyDebugDept");
+            var resultEl = document.getElementById("weeklyDebugFilterResult");
+            if (!resultEl) return;
+            var code = (codeInput && codeInput.value || "").trim().toUpperCase();
+            var surname = (surnameInput && surnameInput.value || "").trim().toUpperCase();
+            var programCode = (deptInput && deptInput.value || "").trim();
+            if (!programCode && deptSelect) programCode = deptSelect.value || "";
+
+            if (!code) {
+                resultEl.textContent = "Enter a course code.";
+                return;
+            }
+            if (!weeklyCoursesByCode || !weeklyCoursesByCode[code]) {
+                resultEl.textContent = "Course " + code + " not found in courses.json.";
+                return;
+            }
+            var courseInfo = weeklyCoursesByCode[code];
+            var code7 = courseInfo.course_code_7digit != null ? String(courseInfo.course_code_7digit) : "";
+            if (!code7) {
+                resultEl.textContent = "Course " + code + " has no 7-digit code.";
+                return;
+            }
+            var sections = weeklySectionsBy7 && weeklySectionsBy7[code7];
+            if (!sections || !sections.length) {
+                resultEl.textContent = "No sections for " + code + " (code7=" + code7 + ").";
+                return;
+            }
+
+            var surnameKey = surname ? surname.slice(0, 2) : "AA";
+            var studentDeptShort = getStudentDeptShort(programCode);
+            if (!studentDeptShort && programCode && /^[A-Za-z]{2,4}$/.test(programCode)) studentDeptShort = programCode.toUpperCase();
+
+            var flags = getCourseRuleFlags(code);
+            var prefs = (weeklySectionPrefs && weeklySectionPrefs[code]) || null;
+            var key = normalizeForSurnameRange(surnameKey);
+
+            var lines = [];
+            lines.push("Surname key: " + key + " | Dept short: " + (studentDeptShort || "(none)"));
+            lines.push("Flags: dept=" + flags.checkDept + " surname=" + flags.checkSurname + " collision=" + flags.checkCollision);
+            lines.push("Section prefs: " + (prefs && prefs.length ? prefs.join(", ") : "all"));
+            lines.push("");
+
+            sections.forEach(function (sec) {
+                var secNum = (sec.section != null ? String(sec.section) : "").trim();
+                var allowed = false;
+                var reason = "";
+
+                if (sec && prefs && Array.isArray(prefs) && prefs.length) {
+                    if (!secNum || prefs.indexOf(secNum) === -1) {
+                        reason = "not in prefs";
+                    }
+                }
+
+                if (!reason) {
+                    var rules = Array.isArray(sec.rules) ? sec.rules : [];
+                    if (!rules.length) {
+                        allowed = true;
+                        reason = "no rules";
+                    } else {
+                        for (var i = 0; i < rules.length; i++) {
+                            var r = rules[i];
+                            var ruleDept = (r.given_dept || "").toUpperCase().trim();
+                            if (flags.checkDept && ruleDept && ruleDept !== "ALL" && studentDeptShort && ruleDept !== studentDeptShort) continue;
+                            if (!flags.checkSurname) {
+                                allowed = true;
+                                reason = "dept match";
+                                break;
+                            }
+                            var sc = normalizeForSurnameRange(fixEncoding(r.start_char || ""));
+                            var ec = normalizeForSurnameRange(fixEncoding(r.end_char || ""));
+                            if (!sc && !ec) {
+                                allowed = true;
+                                reason = "no surname rule";
+                                break;
+                            }
+                            if (sc && ec && sc === ec) {
+                                allowed = true;
+                                reason = "all surnames";
+                                break;
+                            }
+                            var startKey = sc || "AA";
+                            var endKey = ec || "ZZ";
+                            if (key >= startKey && key <= endKey) {
+                                allowed = true;
+                                reason = "in range " + startKey + "–" + endKey;
+                                break;
+                            }
+                        }
+                        if (!flags.checkSurname) allowed = true;
+                        if (!reason && !allowed) reason = "no matching rule";
+                    }
+                }
+
+                lines.push((allowed ? "✓" : "✗") + " Sec " + secNum + ": " + reason);
+            });
+
+            resultEl.textContent = lines.join("\n");
+        });
+
+        function debugRefreshLastRun() {
+            var el = document.getElementById("weeklyDebugLastRun");
+            if (!el) return;
+            var obj = {
+                plannedCodes: currentPlannedCodes,
+                courseOptions: currentCourseOptions,
+                failed: currentScheduleFailed,
+                noTimesCourses: currentScheduleNoTimesCourses,
+                scheduleCount: currentSchedulesList ? currentSchedulesList.length : 0
+            };
+            el.textContent = JSON.stringify(obj, null, 2);
+        }
+
+        setInterval(debugRefreshDataStatus, 2000);
+        setInterval(debugRefreshLastRun, 2000);
+        debugRefreshDataStatus();
+        debugRefreshLastRun();
+    }
 })();
 </script>
 </body>
