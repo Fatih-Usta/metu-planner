@@ -7,12 +7,18 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="main-ui.css">
+<link rel="stylesheet" href="main-ui.css?v=2">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <style>
 /* Hidden hints (kept in DOM, feedback: too much text) */
 .weekly-hint-hidden { display: none !important; }
+
+/* Envelope dialog: force override browser defaults */
+#envelopeDialog {
+  padding: 0 !important;
+  border: none !important;
+}
 
 /* Header, layout, panel, field, combobox/trigger: main-ui.css */
 
@@ -912,7 +918,7 @@
 </head>
 <body>
 <script>
-document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
 document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' ? 'tr' : 'en';
 </script>
 <div class="app-shell">
@@ -941,6 +947,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 </button>
                 <div id="langList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
             </div>
+            <button type="button" id="envelopeBtn" class="envelope-btn" aria-label="Message" title="Message">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </button>
             <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
                 <span id="themeLabel">Light theme</span>
             </button>
@@ -1163,6 +1172,18 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   </div>
 </div>
 
+<dialog id="envelopeDialog" class="envelope-dialog">
+  <div class="envelope-modal">
+    <div class="envelope-modal-header">
+      <h3 id="envelopeModalTitle" class="envelope-modal-title">Contact information</h3>
+      <button type="button" id="envelopeModalClose" class="envelope-modal-close">Close</button>
+    </div>
+    <div id="envelopeModalContent" class="envelope-modal-body scroll-theme">
+      <a href="mailto:fatih.usta@metu.edu.tr">fatih.usta@metu.edu.tr</a>
+    </div>
+  </div>
+</dialog>
+
 <div id="weeklyDebugPanel" class="weekly-debug-panel" style="display: none;" aria-label="Debug panel">
   <div class="weekly-debug-header">
     <h4>Debug</h4>
@@ -1202,7 +1223,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 (function () {
     var root = document.documentElement;
     var saved = window.localStorage.getItem("theme");
-    var initial = saved === "light" || saved === "dark" ? saved : (root.getAttribute("data-theme") || "dark");
+    var initial = saved === "light" || saved === "dark" ? saved : (root.getAttribute("data-theme") || "light");
     root.setAttribute("data-theme", initial);
 
     var btn = document.getElementById("themeToggle");
@@ -1217,6 +1238,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             applyWeeklyLanguage(lang);
         });
     }
+
+    var envelopeBtn = document.getElementById("envelopeBtn");
+    var envelopeDialog = document.getElementById("envelopeDialog");
+    var envelopeModalClose = document.getElementById("envelopeModalClose");
+    if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function () { envelopeDialog.showModal(); });
+    if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function () { envelopeDialog.close(); });
+    if (envelopeDialog) envelopeDialog.addEventListener("click", function (e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
 
     // Shared department selector (same storage key as planner)
     var METU_LAST_PROGRAM_CODE = "metu_last_program_code";

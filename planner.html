@@ -7,10 +7,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="main-ui.css">
+<link rel="stylesheet" href="main-ui.css?v=2">
 <style>
 /* Hidden hints (kept in DOM, feedback: too much text) */
 .planner-hint-hidden { display: none !important; }
+
+/* Envelope dialog: force override browser defaults */
+#envelopeDialog {
+  padding: 0 !important;
+  border: none !important;
+}
 
 /* Header, layout, panel, field: main-ui.css */
 /* Body and .app-shell padding come from main-ui.css so Portal and Planner match. */
@@ -1264,7 +1270,7 @@ select:focus {
 </head>
 <body>
 <script>
-document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');
+document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');
 document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' ? 'tr' : 'en';
 </script>
 
@@ -1294,6 +1300,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         </button>
         <div id="langList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
       </div>
+      <button type="button" id="envelopeBtn" class="envelope-btn" aria-label="Message" title="Message">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </button>
       <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
         <span id="themeLabel">Light theme</span>
       </button>
@@ -1478,6 +1487,18 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     </section>
   </main>
 </div>
+
+<dialog id="envelopeDialog" class="envelope-dialog">
+  <div class="envelope-modal">
+    <div class="envelope-modal-header">
+      <h3 id="envelopeModalTitle" class="envelope-modal-title">Contact information</h3>
+      <button type="button" id="envelopeModalClose" class="envelope-modal-close">Close</button>
+    </div>
+    <div id="envelopeModalContent" class="envelope-modal-body scroll-theme">
+      <a href="mailto:fatih.usta@metu.edu.tr">fatih.usta@metu.edu.tr</a>
+    </div>
+  </div>
+</dialog>
 
 <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
@@ -3785,6 +3806,12 @@ function setDismissedError(key, dismissed) {
     setupCourseSearch();
     var themeToggleEl = document.getElementById("themeToggle");
     if (themeToggleEl) themeToggleEl.addEventListener("click", toggleTheme);
+    var envelopeBtn = document.getElementById("envelopeBtn");
+    var envelopeDialog = document.getElementById("envelopeDialog");
+    var envelopeModalClose = document.getElementById("envelopeModalClose");
+    if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function() { envelopeDialog.showModal(); });
+    if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function() { envelopeDialog.close(); });
+    if (envelopeDialog) envelopeDialog.addEventListener("click", function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
     var aboutBtn = document.getElementById("aboutBtn");
     if (aboutBtn) aboutBtn.addEventListener("click", openAbout);
     var aboutClose = document.getElementById("aboutClose");
