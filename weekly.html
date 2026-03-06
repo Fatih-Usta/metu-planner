@@ -1257,7 +1257,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             <div id="weeklyScheduleNav" class="week-schedule-nav" style="display: none;"></div>
             <div id="weeklyScheduleSummary" class="weekly-messages" style="margin-top: 10px;"></div>
             <div class="program-errors-wrap" id="weeklyErrorsWrap">
-                <h4 class="program-errors-title">Week messages</h4>
+                <h4 class="program-errors-title" id="weeklyErrorsTitle">Week messages</h4>
                 <ul class="program-errors-list" id="weeklyErrorsList" aria-live="polite"></ul>
             </div>
         </section>
@@ -1475,6 +1475,48 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             dayFri: "Friday",
             themeLight: "Light theme",
             themeDark: "Dark theme",
+            contactBtn: "Contact",
+            contactModalTitle: "Contact information",
+            exportBtn: "Export ▾",
+            weekMessagesTitle: "Week messages",
+            sectionToggleShow: "Sections",
+            sectionToggleHide: "Hide sections",
+            availableSections: "Available sections",
+            toggleAllSections: "Toggle all",
+            sectionLabelPrefix: "Section",
+            offeredThisSemester: "Offered this semester",
+            notOfferedThisSemester: "Not in OIBS offerings for 20252",
+            checkDepartmentSingle: "Check department",
+            checkSurnameSingle: "Check surname",
+            checkTimeCollisions: "Check time collisions",
+            scheduleCounterLabel: "Schedule",
+            scheduleCounterOf: "of",
+            prev10Title: "Previous 10",
+            prev10Aria: "Previous 10 schedules",
+            prevTitle: "Previous",
+            prevAria: "Previous schedule",
+            nextTitle: "Next",
+            nextAria: "Next schedule",
+            next10Title: "Next 10",
+            next10Aria: "Next 10 schedules",
+            scheduleNumberAria: "Schedule number",
+            msgAddedToList: "Added {code} to the list.",
+            msgAlreadyInList: "This course is already in the list.",
+            msgAllRequiredPresent: "All required courses for this semester are present in OIBS offerings.",
+            msgOnlyElectiveSlots: "This semester has only elective slots in the curriculum.",
+            msgAddedMustCourses: "Added must courses for program {programCode}. Existing courses were kept. Use 'Clear list' to start over if needed.",
+            msgNoCoursesInList: "No courses in the list. Use 'Add must courses' first.",
+            msgNothingToSave: "Nothing to save: no courses in the weekly list.",
+            msgClearedList: "Cleared all courses from the list.",
+            selectDepartment: "Select department",
+            requiredCourse: "Required course",
+            ignoredCourseTag: "This course (OHS / IS100) is not checked against OIBS here.",
+            addedManually: "Added manually",
+            electiveSlotTag: "Elective slot from curriculum",
+            chooseCourse: "Choose course",
+            addSelectedCourse: "Add selected course",
+            chosenFromOneOfGroup: "Chosen from one-of group",
+            anyLabel: "any",
             detailsBtn: "Details",
             sectionDetailsTitle: "Section details",
             minGpa: "Min GPA",
@@ -1515,6 +1557,48 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             dayFri: "Cuma",
             themeLight: "Açık tema",
             themeDark: "Koyu tema",
+            contactBtn: "İletişim",
+            contactModalTitle: "İletişim bilgileri",
+            exportBtn: "Dışa aktar ▾",
+            weekMessagesTitle: "Hafta mesajları",
+            sectionToggleShow: "Şubeler",
+            sectionToggleHide: "Şubeleri gizle",
+            availableSections: "Mevcut şubeler",
+            toggleAllSections: "Tümünü değiştir",
+            sectionLabelPrefix: "Şube",
+            offeredThisSemester: "Bu dönem açılıyor",
+            notOfferedThisSemester: "20252 için OİBS açılan derslerde yok",
+            checkDepartmentSingle: "Bölümü kontrol et",
+            checkSurnameSingle: "Soyadı kontrol et",
+            checkTimeCollisions: "Saat çakışmalarını kontrol et",
+            scheduleCounterLabel: "Program",
+            scheduleCounterOf: "/",
+            prev10Title: "Önceki 10",
+            prev10Aria: "Önceki 10 program",
+            prevTitle: "Önceki",
+            prevAria: "Önceki program",
+            nextTitle: "Sonraki",
+            nextAria: "Sonraki program",
+            next10Title: "Sonraki 10",
+            next10Aria: "Sonraki 10 program",
+            scheduleNumberAria: "Program numarası",
+            msgAddedToList: "{code} listeye eklendi.",
+            msgAlreadyInList: "Bu ders zaten listede.",
+            msgAllRequiredPresent: "Bu dönem için gerekli tüm dersler OİBS açılan derslerde mevcut.",
+            msgOnlyElectiveSlots: "Bu dönemde müfredatta sadece seçmeli slotları var.",
+            msgAddedMustCourses: "{programCode} programı için zorunlu dersler eklendi. Mevcut dersler korundu. Gerekirse sıfırdan başlamak için 'Listeyi temizle' kullanın.",
+            msgNoCoursesInList: "Listede ders yok. Önce 'Zorunlu dersleri ekle' kullanın.",
+            msgNothingToSave: "Kaydedilecek bir şey yok: haftalık listede ders bulunmuyor.",
+            msgClearedList: "Listedeki tüm dersler temizlendi.",
+            selectDepartment: "Bölüm seç",
+            requiredCourse: "Zorunlu ders",
+            ignoredCourseTag: "Bu ders (OHS / IS100) burada OİBS'ye karşı kontrol edilmiyor.",
+            addedManually: "Elle eklendi",
+            electiveSlotTag: "Müfredattan seçmeli slotu",
+            chooseCourse: "Ders seç",
+            addSelectedCourse: "Seçili dersi ekle",
+            chosenFromOneOfGroup: "Bir seçenek grubundan seçildi",
+            anyLabel: "herhangi",
             detailsBtn: "Detaylar",
             sectionDetailsTitle: "Şube detayları",
             minGpa: "Min GNO",
@@ -1526,6 +1610,32 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             closeBtn: "Kapat"
         }
     };
+
+    function wt(key) {
+        var langCode = (document.documentElement.lang === "tr" ? "tr" : "en");
+        var dict = weeklyTranslations[langCode] || weeklyTranslations.en;
+        return dict[key] || (weeklyTranslations.en && weeklyTranslations.en[key]) || key;
+    }
+
+    function wtf(key, vars) {
+        var text = String(wt(key));
+        if (!vars) return text;
+        Object.keys(vars).forEach(function (k) {
+            text = text.replace(new RegExp("\\{" + k + "\\}", "g"), String(vars[k]));
+        });
+        return text;
+    }
+
+    function localizeMeetingDay(dayRaw) {
+        var dayText = fixEncoding(dayRaw || "").trim();
+        var d = dayText.toLowerCase();
+        if (d.indexOf("mon") === 0 || d.indexOf("paz") === 0) return wt("dayMon");
+        if (d.indexOf("tue") === 0 || d.indexOf("sal") === 0) return wt("dayTue");
+        if (d.indexOf("wed") === 0 || d.indexOf("car") === 0 || d.indexOf("çar") === 0) return wt("dayWed");
+        if (d.indexOf("thu") === 0 || d.indexOf("per") === 0) return wt("dayThu");
+        if (d.indexOf("fri") === 0 || d.indexOf("cum") === 0) return wt("dayFri");
+        return dayText;
+    }
 
     function applyWeeklyLanguage(langCode) {
         var dict = weeklyTranslations[langCode] || weeklyTranslations.en;
@@ -1574,6 +1684,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = (langCode === "tr" ? "Yükle" : "Load");
         el = document.getElementById("weeklySaveToPortalBtn");
         if (el) el.textContent = (langCode === "tr" ? "Portala kaydet" : "Save to portal");
+        el = document.getElementById("weeklyExportToggle");
+        if (el) el.textContent = dict.exportBtn || "Export ▾";
         el = document.getElementById("weeklyAddCourseLabel");
         if (el) el.textContent = dict.addCourseLabel;
         var input = document.getElementById("weeklyAddCourseInput");
@@ -1595,6 +1707,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = dict.dayFri;
         el = document.getElementById("weeklySectionDetailsClose");
         if (el) el.textContent = dict.closeBtn || "Close";
+        el = document.getElementById("weeklyErrorsTitle");
+        if (el) el.textContent = dict.weekMessagesTitle || "Week messages";
         document.querySelectorAll(".weekly-section-details-btn").forEach(function (b) {
             b.textContent = dict.detailsBtn || "Details";
         });
@@ -1609,6 +1723,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var currentTheme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
             mobileThemeLabel.textContent = currentTheme === "dark" ? dict.themeLight : dict.themeDark;
         }
+        el = document.getElementById("mobileContactBtn");
+        if (el) el.textContent = dict.contactBtn || "Contact";
+        el = document.getElementById("envelopeModalTitle");
+        if (el) el.textContent = dict.contactModalTitle || "Contact information";
+        el = document.getElementById("envelopeModalClose");
+        if (el) el.textContent = dict.closeBtn || "Close";
     }
 
     // Sync language selector with planner (shared "lang" key)
@@ -1827,7 +1947,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
         function syncLabelFromSelect() {
             var opt = selectEl.options[selectEl.selectedIndex] || null;
-            labelEl.textContent = opt && opt.textContent ? opt.textContent : "Select department";
+            labelEl.textContent = opt && opt.textContent ? opt.textContent : wt("selectDepartment");
         }
 
         // Build the custom list from the current <select> options (flat list, no grouping)
@@ -2297,11 +2417,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
         var nameEl = document.createElement("div");
         nameEl.className = "weekly-course-name";
-        nameEl.textContent = "Required course";
+        nameEl.textContent = wt("requiredCourse");
 
         var tag = document.createElement("div");
         tag.className = "weekly-course-tag";
-        tag.textContent = "This course (OHS / IS100) is not checked against OIBS here.";
+        tag.textContent = wt("ignoredCourseTag");
 
         card.appendChild(header);
         card.appendChild(nameEl);
@@ -2315,28 +2435,28 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         deptChk2.className = "weekly-course-toggle-dept";
         deptChk2.checked = weeklyCheckDeptGlobal;
         deptLabel2.appendChild(deptChk2);
-        deptLabel2.appendChild(document.createTextNode(" Check department"));
+        deptLabel2.appendChild(document.createTextNode(" " + wt("checkDepartmentSingle")));
         var surLabel2 = document.createElement("label");
         var surChk2 = document.createElement("input");
         surChk2.type = "checkbox";
         surChk2.className = "weekly-course-toggle-surname";
         surChk2.checked = weeklyCheckSurnameGlobal;
         surLabel2.appendChild(surChk2);
-        surLabel2.appendChild(document.createTextNode(" Check surname"));
+        surLabel2.appendChild(document.createTextNode(" " + wt("checkSurnameSingle")));
         var collLabel2 = document.createElement("label");
         var collChk2 = document.createElement("input");
         collChk2.type = "checkbox";
         collChk2.className = "weekly-course-toggle-collision";
         collChk2.checked = weeklyCheckCollisionGlobal;
         collLabel2.appendChild(collChk2);
-        collLabel2.appendChild(document.createTextNode(" Check time collisions"));
+        collLabel2.appendChild(document.createTextNode(" " + wt("checkTimeCollisions")));
         flagsRow2.appendChild(deptLabel2);
         flagsRow2.appendChild(surLabel2);
         flagsRow2.appendChild(collLabel2);
         card.appendChild(flagsRow2);
 
         listEl.appendChild(card);
-        setMessage("Added " + code + " to the list.", false);
+        setMessage(wtf("msgAddedToList", { code: code }), false);
     }
 
     function addCourseCardByCode(rawCode) {
@@ -2369,7 +2489,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             if (el.textContent.trim().toUpperCase() === code) dup = true;
         });
         if (dup) {
-            setMessage("This course is already in the list.", true);
+            setMessage(wt("msgAlreadyInList"), true);
             return;
         }
         var courseInfo = weeklyCoursesByCode[code] || null;
@@ -2431,11 +2551,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
         var nameEl = document.createElement("div");
         nameEl.className = "weekly-course-name";
-        nameEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || "Added manually";
+        nameEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || wt("addedManually");
 
         var tag = document.createElement("div");
         tag.className = "weekly-course-tag";
-        tag.textContent = isOffered ? "Offered this semester" : "Not in OIBS offerings for 20252";
+        tag.textContent = isOffered ? wt("offeredThisSemester") : wt("notOfferedThisSemester");
 
         card.appendChild(header);
         card.appendChild(nameEl);
@@ -2448,21 +2568,21 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             deptChk2.className = "weekly-course-toggle-dept";
             deptChk2.checked = weeklyCheckDeptGlobal;
             deptLabel2.appendChild(deptChk2);
-            deptLabel2.appendChild(document.createTextNode(" Check department"));
+            deptLabel2.appendChild(document.createTextNode(" " + wt("checkDepartmentSingle")));
             var surLabel2 = document.createElement("label");
             var surChk2 = document.createElement("input");
             surChk2.type = "checkbox";
             surChk2.className = "weekly-course-toggle-surname";
             surChk2.checked = weeklyCheckSurnameGlobal;
             surLabel2.appendChild(surChk2);
-            surLabel2.appendChild(document.createTextNode(" Check surname"));
+            surLabel2.appendChild(document.createTextNode(" " + wt("checkSurnameSingle")));
             var collLabel2 = document.createElement("label");
             var collChk2 = document.createElement("input");
             collChk2.type = "checkbox";
             collChk2.className = "weekly-course-toggle-collision";
             collChk2.checked = weeklyCheckCollisionGlobal;
             collLabel2.appendChild(collChk2);
-            collLabel2.appendChild(document.createTextNode(" Check time collisions"));
+            collLabel2.appendChild(document.createTextNode(" " + wt("checkTimeCollisions")));
             flagsRow2.appendChild(deptLabel2);
             flagsRow2.appendChild(surLabel2);
             flagsRow2.appendChild(collLabel2);
@@ -2476,7 +2596,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var toggle = document.createElement("button");
             toggle.type = "button";
             toggle.className = "weekly-section-toggle";
-            toggle.textContent = "Sections";
+            toggle.textContent = wt("sectionToggleShow");
             var details = document.createElement("div");
             details.className = "weekly-sections";
             details.style.display = "none";
@@ -2491,11 +2611,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var choicesHeader = document.createElement("div");
             choicesHeader.className = "weekly-section-choices-header";
             var choicesLabel = document.createElement("span");
-            choicesLabel.textContent = "Available sections";
+            choicesLabel.textContent = wt("availableSections");
             var toggleAllBtn = document.createElement("button");
             toggleAllBtn.type = "button";
             toggleAllBtn.className = "weekly-section-toggleall";
-            toggleAllBtn.textContent = "Toggle all";
+            toggleAllBtn.textContent = wt("toggleAllSections");
             choicesHeader.appendChild(choicesLabel);
             choicesHeader.appendChild(toggleAllBtn);
             choices.appendChild(choicesHeader);
@@ -2529,7 +2649,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 headerRow.className = "weekly-section-header";
                 var label = document.createElement("span");
                 label.className = "weekly-section-label";
-                label.textContent = "Section " + (s.section || "?") + " -";
+                label.textContent = wt("sectionLabelPrefix") + " " + (s.section || "?") + " -";
                 headerRow.appendChild(label);
                 if (s.instr1) {
                     var instr = document.createElement("span");
@@ -2556,8 +2676,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         var dept = (r.given_dept || "ALL").trim();
                         var sc = fixEncoding(r.start_char || "").trim();
                         var ec = fixEncoding(r.end_char || "").trim();
-                        var range = (sc || ec) ? (sc + "–" + ec) : "any";
-                        return "Department: " + dept + "  Surname: " + range;
+                        var range = (sc || ec) ? (sc + "–" + ec) : wt("anyLabel");
+                        return wt("deptRule") + ": " + dept + "  " + wt("surnameRange") + ": " + range;
                     });
                     ruleLine.textContent = parts.join(" | ");
                     block.appendChild(ruleLine);
@@ -2569,7 +2689,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         row.className = "weekly-section-row";
                         var chip = document.createElement("span");
                         chip.className = "weekly-section-meeting";
-                        var txt = (fixEncoding(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
+                        var txt = (localizeMeetingDay(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
                         chip.textContent = txt.trim();
                         row.appendChild(chip);
                         var roomInput = document.createElement("input");
@@ -2630,7 +2750,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             toggle.addEventListener("click", function () {
                 var visible = details.style.display === "block";
                 details.style.display = visible ? "none" : "block";
-                toggle.textContent = visible ? "Sections" : "Hide sections";
+                toggle.textContent = visible ? wt("sectionToggleShow") : wt("sectionToggleHide");
             });
             var footer = document.createElement("div");
             footer.className = "weekly-course-footer";
@@ -2640,7 +2760,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         })(card, code7ForToggle);
 
         listEl.appendChild(card);
-        setMessage("Added " + code + " to the list.", false);
+        setMessage(wtf("msgAddedToList", { code: code }), false);
     }
     function clearWeekGrid() {
         // Re-use the main renderer with an empty schedule so that
@@ -2818,42 +2938,42 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         prev10Btn.type = "button";
         prev10Btn.className = "weekly-btn";
         prev10Btn.textContent = "\u2190\u2190";
-        prev10Btn.title = "Previous 10";
-        prev10Btn.setAttribute("aria-label", "Previous 10 schedules");
+        prev10Btn.title = wt("prev10Title");
+        prev10Btn.setAttribute("aria-label", wt("prev10Aria"));
         prev10Btn.disabled = currentScheduleIndex < 10;
         var prevBtn = document.createElement("button");
         prevBtn.type = "button";
         prevBtn.className = "weekly-btn";
         prevBtn.textContent = "\u2190";
-        prevBtn.title = "Previous";
-        prevBtn.setAttribute("aria-label", "Previous schedule");
+        prevBtn.title = wt("prevTitle");
+        prevBtn.setAttribute("aria-label", wt("prevAria"));
         prevBtn.disabled = currentScheduleIndex <= 0;
         var scheduleLabel = document.createElement("span");
         scheduleLabel.className = "week-schedule-counter";
-        scheduleLabel.textContent = "Schedule ";
+        scheduleLabel.textContent = wt("scheduleCounterLabel") + " ";
         var goInput = document.createElement("input");
         goInput.type = "number";
         goInput.className = "week-schedule-go-input";
         goInput.min = 1;
         goInput.max = total;
         goInput.value = currentScheduleIndex + 1;
-        goInput.setAttribute("aria-label", "Schedule number");
+        goInput.setAttribute("aria-label", wt("scheduleNumberAria"));
         var ofTotal = document.createElement("span");
         ofTotal.className = "week-schedule-counter";
-        ofTotal.textContent = " of " + total;
+        ofTotal.textContent = " " + wt("scheduleCounterOf") + " " + total;
         var nextBtn = document.createElement("button");
         nextBtn.type = "button";
         nextBtn.className = "weekly-btn";
         nextBtn.textContent = "\u2192";
-        nextBtn.title = "Next";
-        nextBtn.setAttribute("aria-label", "Next schedule");
+        nextBtn.title = wt("nextTitle");
+        nextBtn.setAttribute("aria-label", wt("nextAria"));
         nextBtn.disabled = currentScheduleIndex >= total - 1;
         var next10Btn = document.createElement("button");
         next10Btn.type = "button";
         next10Btn.className = "weekly-btn";
         next10Btn.textContent = "\u2192\u2192";
-        next10Btn.title = "Next 10";
-        next10Btn.setAttribute("aria-label", "Next 10 schedules");
+        next10Btn.title = wt("next10Title");
+        next10Btn.setAttribute("aria-label", wt("next10Aria"));
         next10Btn.disabled = currentScheduleIndex >= total - 10;
         function goToIndex(oneBased) {
             var idx = Math.max(0, Math.min(total - 1, (parseInt(oneBased, 10) || 1) - 1));
@@ -3065,7 +3185,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var toggle = document.createElement("button");
             toggle.type = "button";
             toggle.className = "weekly-section-toggle";
-            toggle.textContent = "Sections";
+            toggle.textContent = wt("sectionToggleShow");
 
             var details = document.createElement("div");
             details.className = "weekly-sections";
@@ -3081,11 +3201,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var choicesHeader = document.createElement("div");
             choicesHeader.className = "weekly-section-choices-header";
             var choicesLabel = document.createElement("span");
-            choicesLabel.textContent = "Available sections";
+            choicesLabel.textContent = wt("availableSections");
             var toggleAllBtn = document.createElement("button");
             toggleAllBtn.type = "button";
             toggleAllBtn.className = "weekly-section-toggleall";
-            toggleAllBtn.textContent = "Toggle all";
+            toggleAllBtn.textContent = wt("toggleAllSections");
             choicesHeader.appendChild(choicesLabel);
             choicesHeader.appendChild(toggleAllBtn);
             choices.appendChild(choicesHeader);
@@ -3121,7 +3241,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                 var label = document.createElement("span");
                 label.className = "weekly-section-label";
-                label.textContent = "Section " + (s.section || "?") + " -";
+                label.textContent = wt("sectionLabelPrefix") + " " + (s.section || "?") + " -";
                 header.appendChild(label);
 
                 if (s.instr1) {
@@ -3150,8 +3270,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         var dept = (r.given_dept || "ALL").trim();
                         var sc = fixEncoding(r.start_char || "").trim();
                         var ec = fixEncoding(r.end_char || "").trim();
-                        var range = (sc || ec) ? (sc + "–" + ec) : "any";
-                        return "Department: " + dept + "  Surname: " + range;
+                        var range = (sc || ec) ? (sc + "–" + ec) : wt("anyLabel");
+                        return wt("deptRule") + ": " + dept + "  " + wt("surnameRange") + ": " + range;
                     });
                     ruleLine.textContent = parts.join(" | ");
                     block.appendChild(ruleLine);
@@ -3164,7 +3284,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                         var chip = document.createElement("span");
                         chip.className = "weekly-section-meeting";
-                        var txt = (fixEncoding(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
+                        var txt = (localizeMeetingDay(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
                         chip.textContent = txt.trim();
                         row.appendChild(chip);
 
@@ -3227,7 +3347,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             toggle.addEventListener("click", function () {
                 var visible = details.style.display === "block";
                 details.style.display = visible ? "none" : "block";
-                toggle.textContent = visible ? "Sections" : "Hide sections";
+                toggle.textContent = visible ? wt("sectionToggleShow") : wt("sectionToggleHide");
             });
 
             var footer = document.createElement("div");
@@ -3274,14 +3394,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             var nameEl = document.createElement("div");
             nameEl.className = "weekly-course-name";
-            nameEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || "Required course";
+            nameEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || wt("requiredCourse");
 
             var tag = document.createElement("div");
             tag.className = "weekly-course-tag";
             if (isIgnoredForOfferings(code)) {
-                tag.textContent = "This course (OHS / IS100) is not checked against OIBS here.";
+                tag.textContent = wt("ignoredCourseTag");
             } else {
-                tag.textContent = isOffered ? "Offered this semester" : "Not in OIBS offerings for 20252";
+                tag.textContent = isOffered ? wt("offeredThisSemester") : wt("notOfferedThisSemester");
             }
 
             card.appendChild(header);
@@ -3295,21 +3415,21 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             deptChk.className = "weekly-course-toggle-dept";
             deptChk.checked = weeklyCheckDeptGlobal;
             deptLabel.appendChild(deptChk);
-            deptLabel.appendChild(document.createTextNode(" Check department"));
+            deptLabel.appendChild(document.createTextNode(" " + wt("checkDepartmentSingle")));
             var surLabel = document.createElement("label");
             var surChk = document.createElement("input");
             surChk.type = "checkbox";
             surChk.className = "weekly-course-toggle-surname";
             surChk.checked = weeklyCheckSurnameGlobal;
             surLabel.appendChild(surChk);
-            surLabel.appendChild(document.createTextNode(" Check surname"));
+            surLabel.appendChild(document.createTextNode(" " + wt("checkSurnameSingle")));
             var collLabel = document.createElement("label");
             var collChk = document.createElement("input");
             collChk.type = "checkbox";
             collChk.className = "weekly-course-toggle-collision";
             collChk.checked = weeklyCheckCollisionGlobal;
             collLabel.appendChild(collChk);
-            collLabel.appendChild(document.createTextNode(" Check time collisions"));
+            collLabel.appendChild(document.createTextNode(" " + wt("checkTimeCollisions")));
             flagsRow.appendChild(deptLabel);
             flagsRow.appendChild(surLabel);
             flagsRow.appendChild(collLabel);
@@ -3353,7 +3473,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             var tag = document.createElement("div");
             tag.className = "weekly-course-tag";
-            tag.textContent = "Elective slot from curriculum";
+            tag.textContent = wt("electiveSlotTag");
 
             card.appendChild(header);
             card.appendChild(nameEl);
@@ -3404,7 +3524,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             select.className = "weekly-select";
             var opt0 = document.createElement("option");
             opt0.value = "";
-            opt0.textContent = "Choose course";
+            opt0.textContent = wt("chooseCourse");
             select.appendChild(opt0);
             group.options.forEach(function (opt) {
                 var o = document.createElement("option");
@@ -3415,7 +3535,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             var chooseBtn = document.createElement("button");
             chooseBtn.type = "button";
-            chooseBtn.textContent = "Add selected course";
+            chooseBtn.textContent = wt("addSelectedCourse");
             chooseBtn.className = "weekly-btn";
             chooseBtn.style.marginTop = "6px";
 
@@ -3456,11 +3576,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                 var nEl = document.createElement("div");
                 nEl.className = "weekly-course-name";
-                nEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || "Chosen from one-of group";
+                nEl.textContent = (courseInfo && fixEncoding(courseInfo.name)) || wt("chosenFromOneOfGroup");
 
                 var tEl = document.createElement("div");
                 tEl.className = "weekly-course-tag";
-                tEl.textContent = isOffered ? "Offered this semester" : "Not in OIBS offerings for 20252";
+                tEl.textContent = isOffered ? wt("offeredThisSemester") : wt("notOfferedThisSemester");
 
                 addedCard.appendChild(h);
                 addedCard.appendChild(nEl);
@@ -3473,21 +3593,21 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 deptChk.className = "weekly-course-toggle-dept";
                 deptChk.checked = weeklyCheckDeptGlobal;
                 deptLabel.appendChild(deptChk);
-                deptLabel.appendChild(document.createTextNode(" Check department"));
+                deptLabel.appendChild(document.createTextNode(" " + wt("checkDepartmentSingle")));
                 var surLabel = document.createElement("label");
                 var surChk = document.createElement("input");
                 surChk.type = "checkbox";
                 surChk.className = "weekly-course-toggle-surname";
                 surChk.checked = weeklyCheckSurnameGlobal;
                 surLabel.appendChild(surChk);
-                surLabel.appendChild(document.createTextNode(" Check surname"));
+                surLabel.appendChild(document.createTextNode(" " + wt("checkSurnameSingle")));
                 var collLabel = document.createElement("label");
                 var collChk = document.createElement("input");
                 collChk.type = "checkbox";
                 collChk.className = "weekly-course-toggle-collision";
                 collChk.checked = weeklyCheckCollisionGlobal;
                 collLabel.appendChild(collChk);
-                collLabel.appendChild(document.createTextNode(" Check time collisions"));
+                collLabel.appendChild(document.createTextNode(" " + wt("checkTimeCollisions")));
                 flagsRow.appendChild(deptLabel);
                 flagsRow.appendChild(surLabel);
                 flagsRow.appendChild(collLabel);
@@ -3513,9 +3633,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 true
             );
         } else if (mustCourses.length) {
-            setMessage("All required courses for this semester are present in OIBS offerings.", false);
+            setMessage(wt("msgAllRequiredPresent"), false);
         } else {
-            setMessage("This semester has only elective slots in the curriculum.", false);
+            setMessage(wt("msgOnlyElectiveSlots"), false);
         }
     }
 
@@ -3529,7 +3649,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 deptSelect.innerHTML = "";
                 var opt0 = document.createElement("option");
                 opt0.value = "";
-                opt0.textContent = "Select department";
+                opt0.textContent = wt("selectDepartment");
                 deptSelect.appendChild(opt0);
 
                 Object.keys(faculties).forEach(function (facName) {
@@ -3588,7 +3708,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             ensureDataLoaded()
                 .then(function () {
                     renderCourseCards(programCode);
-                    setMessage("Added must courses for program " + programCode + ". Existing courses were kept. Use 'Clear list' to start over if needed.", false);
+                    setMessage(wtf("msgAddedMustCourses", { programCode: programCode }), false);
                 })
                 .catch(function () {
                     setMessage("Could not load data for this operation.", true);
@@ -3671,7 +3791,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     var planned = buildPlannedCourses();
                     currentPlannedCodes = planned.map(function (pc) { return pc.code; });
                     if (!planned.length) {
-                        setScheduleSummary("<span class=\"weekly-messages--error\">No courses in the list. Use 'Add must courses' first.</span>");
+                        setScheduleSummary("<span class=\"weekly-messages--error\">" + wt("msgNoCoursesInList") + "</span>");
                         clearWeekGrid();
                         document.getElementById("weeklyScheduleNav").style.display = "none";
                         return;
@@ -4285,7 +4405,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         weeklySaveBtn.addEventListener("click", function () {
             var state = getWeeklyState();
             if (!state.codes.length) {
-                setScheduleSummary("<span class=\"weekly-messages--error\">Nothing to save: no courses in the weekly list.</span>");
+                setScheduleSummary("<span class=\"weekly-messages--error\">" + wt("msgNothingToSave") + "</span>");
                 return;
             }
             saveWeeklyPrefs();
@@ -4391,7 +4511,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             document.getElementById("weeklyScheduleNav").style.display = "none";
             clearWeekGrid();
             setScheduleSummary("");
-            setMessage("Cleared all courses from the list.", false);
+            setMessage(wt("msgClearedList"), false);
         });
     }
 

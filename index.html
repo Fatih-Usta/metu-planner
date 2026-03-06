@@ -578,6 +578,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       noCoursesInSemester: 'No courses in this semester',
       lightTheme: 'Light theme',
       darkTheme: 'Dark theme',
+      contactBtn: 'Contact',
+      contactModalTitle: 'Contact information',
+      closeBtn: 'Close',
       semesterLabel: 'Semester',
       summerLabel: 'Summer'
     },
@@ -599,6 +602,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       noCoursesInSemester: 'Bu dönemde ders yok',
       lightTheme: 'Açık tema',
       darkTheme: 'Koyu tema',
+      contactBtn: 'İletişim',
+      contactModalTitle: 'İletişim bilgileri',
+      closeBtn: 'Kapat',
       semesterLabel: 'Dönem',
       summerLabel: 'Yaz'
     }
@@ -635,6 +641,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     if (themeLabel) themeLabel.textContent = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark' ? s.lightTheme : s.darkTheme;
     var mobileThemeLabel = document.getElementById('mobileThemeLabel');
     if (mobileThemeLabel) mobileThemeLabel.textContent = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark' ? s.lightTheme : s.darkTheme;
+    set('mobileContactBtn', s.contactBtn);
+    set('envelopeModalTitle', s.contactModalTitle);
+    set('envelopeModalClose', s.closeBtn);
     var weeklyEmpty = document.querySelector('#portalWeeklyList .portal-course-list--empty');
     if (weeklyEmpty) weeklyEmpty.textContent = s.noWeeklySaved;
     var coursesEmpty = document.querySelector('#portalCourseList .portal-course-list--empty');

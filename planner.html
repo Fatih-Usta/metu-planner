@@ -1552,7 +1552,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
               <button type="button" id="mobileLangTr" class="mobile-drawer-pill">Türkçe</button>
               <button type="button" id="mobileLangEn" class="mobile-drawer-pill">English</button>
             </div>
-            <button type="button" id="mobileContactBtn" class="mobile-drawer-btn">Contact</button>
+            <button type="button" id="mobileContactBtn" class="mobile-drawer-btn" data-i18n="contactBtn">Contact</button>
             <button type="button" id="mobileThemeBtn" class="mobile-drawer-btn">
               <span>Theme</span>
               <span id="mobileThemeLabel">Light theme</span>
@@ -1745,8 +1745,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 <dialog id="envelopeDialog" class="envelope-dialog">
   <div class="envelope-modal">
     <div class="envelope-modal-header">
-      <h3 id="envelopeModalTitle" class="envelope-modal-title">Contact information</h3>
-      <button type="button" id="envelopeModalClose" class="envelope-modal-close">Close</button>
+      <h3 id="envelopeModalTitle" class="envelope-modal-title" data-i18n="contactModalTitle">Contact information</h3>
+      <button type="button" id="envelopeModalClose" class="envelope-modal-close" data-i18n="contactClose">Close</button>
     </div>
     <div id="envelopeModalContent" class="envelope-modal-body scroll-theme">
       <a href="mailto:fatih.usta@metu.edu.tr">fatih.usta@metu.edu.tr</a>
@@ -1847,6 +1847,9 @@ const translations = {
     aboutBtn: "Hakkında",
     aboutTitle: "Hakkında",
     aboutEmailLabel: "İletişim",
+    contactBtn: "İletişim",
+    contactModalTitle: "İletişim bilgileri",
+    contactClose: "Kapat",
     aboutP1: "Merhaba Hocamlar, ben Efe Fatih Usta, bilgisayar mühendisliği öğrencisiyim.",
     aboutP2: "Bu siteyi, ben de dahil olmak üzere çevremde çoğu kişinin yaşadığı ortalama hesaplama sorunu ve okul uzar mı uzamaz mı problemleri yüzünden yaptım.",
     aboutP3: "Site bölümünüze göre ders programınızı ekliyor; istediğiniz gibi dersleri ayarlayıp çakışmalara ve dönemlere göre uyarılarla programınızı düzenleyebiliyorsunuz. Notlarınızı girdiğiniz zaman ise direkt ortalamanızı görebiliyorsunuz.",
@@ -1944,6 +1947,9 @@ const translations = {
     aboutBtn: "About",
     aboutTitle: "About",
     aboutEmailLabel: "Contact",
+    contactBtn: "Contact",
+    contactModalTitle: "Contact information",
+    contactClose: "Close",
     aboutP1: "Hello, I'm Efe Fatih Usta, a computer engineering student at METU.",
     aboutP2: "I built this site because many people around me, including myself, struggle with GPA calculations and wondering whether their degree will take longer than expected.",
     aboutP3: "The site loads your curriculum by department; you can arrange courses as you like and get warnings for conflicts and semesters. When you enter your grades, you see your average right away.",
