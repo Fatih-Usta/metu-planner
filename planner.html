@@ -3562,31 +3562,49 @@ document.addEventListener("dragover", function(e) {
 var PASSING_GRADES = { "AA": true, "BA": true, "BB": true, "CB": true, "CC": true, "DC": true, "DD": true, "S": true };
 var FAILING_GRADES = { "FF": true, "FD": true, "F": true };
 
-function getGradesForCourse(code) {
+function getGradesForCourse(codeOrId) {
     var grades = [];
-    document.querySelectorAll(".semester .course[data-course-code=\"" + CSS.escape(code) + "\"]").forEach(function(el) {
+    if (!codeOrId) return grades;
+    var s = String(codeOrId);
+    document.querySelectorAll(".semester .course").forEach(function(el) {
+        var match = (el.dataset.courseCode && el.dataset.courseCode === s)
+            || (el.dataset.courseCode7 && String(el.dataset.courseCode7) === s);
+        if (!match) return;
         var semEl = el.closest(".semester");
-        var semNum = semEl ? semEl.dataset.semester : null;
+        var semNum = semEl ? parseFloat(semEl.dataset.semester) : null;
+        var lookupCode = el.dataset.courseCode;
         var gSel = el.querySelector(".course-grade");
-        var g = (gSel && gSel.value) ? gSel.value : (courseGradesBySemester[code] && semNum && courseGradesBySemester[code][semNum]);
-        if (g !== undefined && g !== null && g !== "") grades.push(String(g));
+        var g = (gSel && gSel.value) ? gSel.value : (lookupCode && courseGradesBySemester[lookupCode] && semNum && courseGradesBySemester[lookupCode][String(semNum)]);
+        if (g !== undefined && g !== null && g !== "") grades.push({ grade: String(g), semNum: semNum });
     });
     return grades;
 }
 
+function getLatestGradeForCourse(codeOrId) {
+    var entries = getGradesForCourse(codeOrId);
+    if (!entries.length) return null;
+    var latest = entries[0];
+    for (var i = 1; i < entries.length; i++) {
+        if (entries[i].semNum != null && (latest.semNum == null || entries[i].semNum > latest.semNum)) {
+            latest = entries[i];
+        }
+    }
+    return latest ? latest.grade : null;
+}
+
 function hasPassingGrade(code) {
-    var grades = getGradesForCourse(code);
-    return grades.some(function(g) { return PASSING_GRADES[g]; });
+    var latest = getLatestGradeForCourse(code);
+    return latest != null && !!PASSING_GRADES[latest];
 }
 
 function hasFailingGrade(code) {
-    var grades = getGradesForCourse(code);
-    return grades.some(function(g) { return FAILING_GRADES[g]; });
+    var latest = getLatestGradeForCourse(code);
+    return latest != null && !!FAILING_GRADES[latest];
 }
 
 function getGradeDisplayForCourse(code) {
-    var grades = getGradesForCourse(code);
-    return grades.length > 0 ? grades[grades.length - 1] : "";
+    var latest = getLatestGradeForCourse(code);
+    return latest != null ? latest : "";
 }
 
 function findCourseSemester(courseCodeOrId) {
@@ -3627,7 +3645,7 @@ function updatePrereqViolations() {
             if (info.prereqsOneOf) {
                 var oneSatisfied = info.prereqs.some(function(prereq) {
                     var prereqSem = findCourseSemester(prereq);
-                    return prereqSem && prereqSem < semNum && !hasFailingGrade(prereq);
+                    return prereqSem && prereqSem < semNum && hasPassingGrade(prereq);
                 });
                 if (!oneSatisfied) {
                     var k = code + ":oneOf:" + (info.prereqs || []).join(",");
@@ -3641,7 +3659,7 @@ function updatePrereqViolations() {
                     var k;
                     if (!prereqSem) k = code + ":" + prereq + ":notPlaced";
                     else if (prereqSem >= semNum) k = code + ":" + prereq + ":order";
-                    else if (hasFailingGrade(prereq)) k = code + ":" + prereq + ":failed";
+                    else if (!hasPassingGrade(prereq)) k = code + ":" + prereq + ":failed";
                     else continue;
                     if (!courseToViolationKeys[code]) courseToViolationKeys[code] = [];
                     if (courseToViolationKeys[code].indexOf(k) === -1) courseToViolationKeys[code].push(k);
@@ -3790,7 +3808,7 @@ function updateProgramErrors() {
                 if (info.prereqsOneOf) {
                     var oneSatisfied = info.prereqs.some(function(prereq) {
                         var prereqSem = findCourseSemester(prereq);
-                        return prereqSem && prereqSem < semNum && !hasFailingGrade(prereq);
+                        return prereqSem && prereqSem < semNum && hasPassingGrade(prereq);
                     });
                     if (!oneSatisfied) {
                         var key = code + ":oneOf:" + (info.prereqs || []).join(",");
@@ -3804,7 +3822,7 @@ function updateProgramErrors() {
                             errors.push({ key: code + ":" + prereq + ":notPlaced", msg: prereq + t("errPrereqNotPlaced") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ").") });
                         } else if (prereqSem >= semNum) {
                             errors.push({ key: code + ":" + prereq + ":order", msg: prereq + t("errPrereqFor") + code + ";" + (currentLang === "tr" ? " " + prereq : " " + prereq) + t("errPrereqMustBeEarlier") });
-                        } else if (hasFailingGrade(prereq)) {
+                        } else if (!hasPassingGrade(prereq)) {
                             var gradeDisp = getGradeDisplayForCourse(prereq) || "FF";
                             errors.push({ key: code + ":" + prereq + ":failed", msg: prereq + t("errPrereqNotPassed") + gradeDisp + t("errPrereqNotPassedEnd") + (currentLang === "tr" ? " " + code + " için." : " for " + code + ".") });
                         }
