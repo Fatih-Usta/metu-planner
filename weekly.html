@@ -2467,8 +2467,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 var meetings = item.meetings || [];
                 var baseLabel = item.code + " Sec " + (item.sectionNum || "?");
                 var accent = (item.accent || (weeklyAccentByCode && weeklyAccentByCode[item.code])) || "1";
-                var flags = getCourseRuleFlags(item.code || "");
-                var checkCollision = !!flags.checkCollision;
 
                 meetings.forEach(function (m) {
                     var day = (fixEncoding(m.day || "") || "").toLowerCase();
@@ -2491,15 +2489,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     var rows = [];
                     for (var i = 0; i < span && startRow + i < 9; i++) {
                         rows.push(startRow + i);
-                    }
-
-                    // If collision checking is on, skip the whole meeting if any slot is occupied
-                    if (checkCollision) {
-                        for (var ri = 0; ri < rows.length; ri++) {
-                            if (cells[rows[ri]][col].length > 0) {
-                                return;
-                            }
-                        }
                     }
 
                     // Add a separate block into each row; this keeps 2‑hour classes
