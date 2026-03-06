@@ -357,6 +357,21 @@
 .weekly-course-card[data-accent="12"]::before { background: rgba(248, 180, 180, 0.12); } /* soft red */
 .weekly-course-card[data-accent="13"]::before { background: rgba(163, 230, 53, 0.12); }  /* soft lime */
 
+/* Light mode: stronger accent so course cards match week view blocks */
+[data-theme="light"] .weekly-course-card[data-accent="1"]::before { background: rgba(56, 189, 248, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="2"]::before { background: rgba(59, 130, 246, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="3"]::before { background: rgba(129, 140, 248, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="4"]::before { background: rgba(244, 114, 182, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="5"]::before { background: rgba(251, 191, 36, 0.35); }
+[data-theme="light"] .weekly-course-card[data-accent="6"]::before { background: rgba(52, 211, 153, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="7"]::before { background: rgba(96, 165, 250, 0.28); }
+[data-theme="light"] .weekly-course-card[data-accent="8"]::before { background: rgba(148, 163, 184, 0.28); }
+[data-theme="light"] .weekly-course-card[data-accent="9"]::before { background: rgba(45, 212, 191, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="10"]::before { background: rgba(244, 163, 84, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="11"]::before { background: rgba(196, 181, 253, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="12"]::before { background: rgba(248, 180, 180, 0.32); }
+[data-theme="light"] .weekly-course-card[data-accent="13"]::before { background: rgba(163, 230, 53, 0.32); }
+
 .weekly-course-header {
     display: flex;
     justify-content: space-between;
@@ -628,6 +643,21 @@
 .week-schedule-block[data-accent="11"] { background: rgba(196, 181, 253, 0.12); }
 .week-schedule-block[data-accent="12"] { background: rgba(248, 180, 180, 0.12); }
 .week-schedule-block[data-accent="13"] { background: rgba(163, 230, 53, 0.12); }
+
+/* Light mode: stronger accent colors so blocks don't look white on light background */
+[data-theme="light"] .week-schedule-block[data-accent="1"] { background: rgba(56, 189, 248, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="2"] { background: rgba(59, 130, 246, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="3"] { background: rgba(129, 140, 248, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="4"] { background: rgba(244, 114, 182, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="5"] { background: rgba(251, 191, 36, 0.35); }
+[data-theme="light"] .week-schedule-block[data-accent="6"] { background: rgba(52, 211, 153, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="7"] { background: rgba(96, 165, 250, 0.28); }
+[data-theme="light"] .week-schedule-block[data-accent="8"] { background: rgba(148, 163, 184, 0.28); }
+[data-theme="light"] .week-schedule-block[data-accent="9"] { background: rgba(45, 212, 191, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="10"] { background: rgba(244, 163, 84, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="11"] { background: rgba(196, 181, 253, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="12"] { background: rgba(248, 180, 180, 0.32); }
+[data-theme="light"] .week-schedule-block[data-accent="13"] { background: rgba(163, 230, 53, 0.32); }
 
 /* Busy blocks: pure dark neutral (no hue) */
 .week-schedule-block--busy {
@@ -1991,6 +2021,22 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     headerRow.appendChild(instr);
                 }
                 block.appendChild(headerRow);
+
+                var rules = Array.isArray(s.rules) ? s.rules : [];
+                if (rules.length) {
+                    var ruleLine = document.createElement("div");
+                    ruleLine.className = "weekly-section-rule";
+                    var parts = rules.map(function (r) {
+                        var dept = (r.given_dept || "ALL").trim();
+                        var sc = fixEncoding(r.start_char || "").trim();
+                        var ec = fixEncoding(r.end_char || "").trim();
+                        var range = (sc || ec) ? (sc + "–" + ec) : "any";
+                        return "Department: " + dept + "  Surname: " + range;
+                    });
+                    ruleLine.textContent = parts.join(" | ");
+                    block.appendChild(ruleLine);
+                }
+
                 if (Array.isArray(s.meetings)) {
                     s.meetings.forEach(function (m) {
                         var row = document.createElement("div");
