@@ -308,10 +308,13 @@ select:focus {
 }
 
 .course-grade {
-    padding: 6px 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 6px 28px 6px 10px;
     border-radius: var(--radius-sm);
     border: 1px solid var(--border-subtle);
-    background: var(--bg-elevated);
+    background: var(--bg-input);
     color: var(--text-main);
     font-size: 0.78rem;
     font-family: inherit;
@@ -322,9 +325,22 @@ select:focus {
     max-width: 4.5rem;
     box-sizing: border-box;
     transition: border-color var(--transition);
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
+      linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+    background-position:
+      calc(100% - 14px) 50%,
+      calc(100% - 10px) 50%;
+    background-size: 4px 4px, 4px 4px;
+    background-repeat: no-repeat;
 }
-.course-grade:focus {
+.course-grade:hover {
+    border-color: var(--text-muted);
+}
+.course-grade:focus,
+.course-grade:focus-visible {
     border-color: var(--metu-red);
+    box-shadow: 0 0 0 2px var(--metu-red-soft);
 }
 
 .course-actions {
@@ -607,12 +623,104 @@ select:focus {
 .add-course-section {
     margin-bottom: 24px;
     padding-bottom: 24px;
-    border-bottom: 1px solid var(--border-subtle);
 }
 .add-course-section:last-of-type {
     margin-bottom: 0;
     padding-bottom: 0;
-    border-bottom: none;
+}
+.add-course-section--collapsible .add-course-section-body {
+    display: none;
+    margin-top: 12px;
+}
+.add-course-section--collapsible.is-expanded .add-course-section-body {
+    display: block;
+}
+.add-course-section-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+}
+.add-course-section-toggle .add-course-section-title {
+    margin: 0;
+}
+.add-course-section-toggle .toggle-chevron {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+.add-course-section--collapsible.is-expanded .toggle-chevron {
+    transform: rotate(180deg);
+}
+.add-course-with-dept {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.add-course-dept {
+    flex: 0 0 auto;
+    min-width: 280px;
+}
+.add-course-dept .dept-bar {
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+.add-course-dept .dept-right {
+    flex-direction: column;
+    gap: 10px;
+}
+.add-course-dept .dept-row-main.field-same-width__row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100% !important;
+    max-width: none !important;
+}
+.add-course-dept #departmentCombo,
+.add-course-dept #departmentButton,
+.add-course-dept #departmentList {
+    width: 100%;
+}
+.add-course-dept .dept-row-main .btn-primary {
+    width: auto;
+    align-self: flex-start;
+}
+.add-course-content {
+    flex: 1 1 300px;
+    min-width: 0;
+}
+.add-course-content .panel-header {
+    margin-bottom: 16px;
+}
+.add-course-content .add-course-section + .add-course-section {
+    margin-top: 18px;
+}
+.add-course-dept .dept-left {
+    margin-bottom: 8px;
+}
+.add-course-dept .dept-right .dept-row-plan {
+    margin-top: 12px;
+}
+@media (max-width: 700px) {
+    .add-course-with-dept { flex-direction: column; }
+    .add-course-dept { min-width: 100%; }
 }
 .add-course-section-title {
     font-size: 0.95rem;
@@ -1209,69 +1317,72 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     </div>
   </div>
 
-  <div class="dept-bar">
-    <div class="dept-left">
-      <strong data-i18n="deptSelect">Bölümünü seç</strong>
-      <span class="planner-hint-hidden" data-i18n="deptComingSoon">Bölümü seçip uygulayınca müfredat dönemlere otomatik yüklenir.</span>
-    </div>
-    <div class="dept-right">
-      <div class="dept-row-main field-same-width__row">
-        <select id="departmentSelect" class="planner-hidden-select">
-          <option value="" data-i18n-opt="deptPlaceholder">Bölüm seç...</option>
-        </select>
-        <div class="planner-combobox" id="departmentCombo">
-          <button type="button" id="departmentButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
-            <span id="departmentButtonLabel">Bölüm seç...</span>
-            <span class="planner-select-chevron" aria-hidden="true">▾</span>
-          </button>
-          <div id="departmentList" class="course-search-dropdown" role="listbox" aria-labelledby="departmentButtonLabel"></div>
-        </div>
-        <button type="button" class="btn-primary" onclick="setDepartment()">
-          <span class="dot"></span>
-          <span data-i18n="deptApply">Bölümü uygula</span>
-        </button>
-      </div>
-      <div class="dept-row-plan">
-        <div class="plan-slot-wrap">
-          <select id="planSlotSelect" class="plan-slot-select planner-hidden-select">
-            <option value="main">Plan 1</option>
-            <option value="alt1">Plan 2</option>
-            <option value="alt2">Plan 3</option>
-          </select>
-          <div class="planner-combobox" id="planSlotCombo">
-            <button type="button" id="planSlotButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
-              <span id="planSlotButtonLabel">Plan 1</span>
-              <span class="planner-select-chevron" aria-hidden="true">▾</span>
-            </button>
-            <div id="planSlotList" class="course-search-dropdown" role="listbox" aria-label="Plan slot"></div>
-          </div>
-          <button type="button" onclick="savePlanToSlot()" class="plan-slot-save-btn">
-            <span data-i18n="planSlotSave">Bu slota kaydet</span>
-          </button>
-          <button type="button" onclick="loadPlanFromSlot()" class="plan-slot-load-btn">
-            <span data-i18n="planSlotLoad">Slottan yükle</span>
-          </button>
-        </div>
-        <button type="button" class="btn-primary" onclick="savePlan()" id="savePlanBtn">
-          <span data-i18n="savePlan">Kaydet</span>
-        </button>
-        <button type="button" class="btn-primary" onclick="document.getElementById('loadPlanFile').click()" id="loadPlanBtn">
-          <span data-i18n="loadPlan">Yükle</span>
-        </button>
-        <input type="file" id="loadPlanFile" accept=".json" style="display:none" onchange="onLoadPlanFileChosen(event)">
-      </div>
-    </div>
-  </div>
-
   <main class="layout">
     <section class="panel">
-      <div class="panel-header">
-        <div>
-          <div class="panel-title" data-i18n="addCourse">Ders Ekle</div>
-          <div class="panel-caption planner-hint-hidden" data-i18n="addCourseCaption">Veritabanından ara veya manuel gir.</div>
+      <div class="add-course-with-dept">
+        <div class="add-course-dept">
+          <div class="dept-bar">
+            <div class="dept-left">
+              <strong data-i18n="deptSelect">Bölümünü seç</strong>
+              <span class="planner-hint-hidden" data-i18n="deptComingSoon">Bölümü seçip uygulayınca müfredat dönemlere otomatik yüklenir.</span>
+            </div>
+            <div class="dept-right">
+              <div class="dept-row-main field-same-width__row">
+                <select id="departmentSelect" class="planner-hidden-select">
+                  <option value="" data-i18n-opt="deptPlaceholder">Bölüm seç...</option>
+                </select>
+                <div class="planner-combobox" id="departmentCombo">
+                  <button type="button" id="departmentButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                    <span id="departmentButtonLabel">Bölüm seç...</span>
+                    <span class="planner-select-chevron" aria-hidden="true">▾</span>
+                  </button>
+                  <div id="departmentList" class="course-search-dropdown" role="listbox" aria-labelledby="departmentButtonLabel"></div>
+                </div>
+                <button type="button" class="btn-primary" onclick="setDepartment()">
+                  <span class="dot"></span>
+                  <span data-i18n="deptApply">Bölümü uygula</span>
+                </button>
+              </div>
+              <div class="dept-row-plan">
+                <div class="plan-slot-wrap">
+                  <select id="planSlotSelect" class="plan-slot-select planner-hidden-select">
+                    <option value="main">Plan 1</option>
+                    <option value="alt1">Plan 2</option>
+                    <option value="alt2">Plan 3</option>
+                  </select>
+                  <div class="planner-combobox" id="planSlotCombo">
+                    <button type="button" id="planSlotButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
+                      <span id="planSlotButtonLabel">Plan 1</span>
+                      <span class="planner-select-chevron" aria-hidden="true">▾</span>
+                    </button>
+                    <div id="planSlotList" class="course-search-dropdown" role="listbox" aria-label="Plan slot"></div>
+                  </div>
+                  <button type="button" onclick="savePlanToSlot()" class="plan-slot-save-btn">
+                    <span data-i18n="planSlotSave">Bu slota kaydet</span>
+                  </button>
+                  <button type="button" onclick="loadPlanFromSlot()" class="plan-slot-load-btn">
+                    <span data-i18n="planSlotLoad">Slottan yükle</span>
+                  </button>
+                </div>
+                <button type="button" class="btn-primary" onclick="savePlan()" id="savePlanBtn">
+                  <span data-i18n="savePlan">Kaydet</span>
+                </button>
+                <button type="button" class="btn-primary" onclick="document.getElementById('loadPlanFile').click()" id="loadPlanBtn">
+                  <span data-i18n="loadPlan">Yükle</span>
+                </button>
+                <input type="file" id="loadPlanFile" accept=".json" style="display:none" onchange="onLoadPlanFileChosen(event)">
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
 
+        <div class="add-course-content">
+          <div class="panel-header">
+            <div>
+              <div class="panel-title" data-i18n="addCourse">Ders Ekle</div>
+              <div class="panel-caption planner-hint-hidden" data-i18n="addCourseCaption">Veritabanından ara veya manuel gir.</div>
+            </div>
+          </div>
       <div class="add-course-section">
         <h4 class="add-course-section-title planner-hint-hidden" data-i18n="addFromDataset">Veritabanından ekle</h4>
         <p class="add-course-section-caption planner-hint-hidden" data-i18n="courseSearchHint">Veritabanından aramak için yazın (örn. 119, math). Tıklayarak havuza ekleyin.</p>
@@ -1284,8 +1395,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         </div>
       </div>
 
-      <div class="add-course-section">
-        <h4 class="add-course-section-title" data-i18n="addManual">Manuel ekle</h4>
+      <div class="add-course-section add-course-section--collapsible" id="manualAddSection">
+        <button type="button" class="add-course-section-toggle" id="manualAddToggle" aria-expanded="false" aria-controls="manualAddBody">
+          <h4 class="add-course-section-title" data-i18n="addManual">Manuel ekle</h4>
+          <span class="toggle-chevron" aria-hidden="true">▾</span>
+        </button>
+        <div class="add-course-section-body" id="manualAddBody">
         <p class="add-course-section-caption planner-hint-hidden" data-i18n="addCourseCaptionManual">Kod, kredi, ön koşul ve dönem tipini girip ekleyin.</p>
         <div class="form-grid">
           <div class="field">
@@ -1320,6 +1435,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
           <span class="dot"></span>
           <span data-i18n="addCourseBtn">Dersi ekle</span>
         </button>
+        </div>
+      </div>
+
+        </div>
       </div>
 
       <div class="helper-text planner-hint-hidden" data-i18n="helperAdd"></div>
@@ -3630,6 +3749,14 @@ function setDismissedError(key, dismissed) {
         langSelectEl.addEventListener("change", function() { setLanguage(langSelectEl.value); });
     }
     applyLanguage();
+    var manualAddToggle = document.getElementById('manualAddToggle');
+    var manualAddSection = document.getElementById('manualAddSection');
+    if (manualAddToggle && manualAddSection) {
+        manualAddToggle.addEventListener('click', function() {
+            var expanded = manualAddSection.classList.toggle('is-expanded');
+            manualAddToggle.setAttribute('aria-expanded', expanded);
+        });
+    }
     const theme = document.documentElement.getAttribute('data-theme') || 'dark';
     const themeLabel = document.getElementById('themeLabel');
     if (themeLabel) themeLabel.textContent = theme === 'dark' ? t('themeLight') : t('themeDark');

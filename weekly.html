@@ -16,6 +16,20 @@
 
 /* Header, layout, panel, field, combobox/trigger: main-ui.css */
 
+/* Left panel: more space between fields (department, surname, semester, etc.) */
+.layout > .panel:first-child .panel-header {
+    margin-bottom: 16px;
+}
+.layout > .panel:first-child .field + .field {
+    margin-top: 18px;
+}
+.layout > .panel:first-child .field + .weekly-actions {
+    margin-top: 18px;
+}
+.layout > .panel:first-child .weekly-actions + .field {
+    margin-top: 18px;
+}
+
 /* Make main selects (dept, semester, header lang) clearly follow theme */
 #weeklyDeptSelect,
 #weeklySemesterSelect,
