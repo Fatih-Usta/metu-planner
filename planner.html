@@ -3645,7 +3645,7 @@ function updatePrereqViolations() {
             if (info.prereqsOneOf) {
                 var oneSatisfied = info.prereqs.some(function(prereq) {
                     var prereqSem = findCourseSemester(prereq);
-                    return prereqSem && prereqSem < semNum && hasPassingGrade(prereq);
+                    return prereqSem && prereqSem < semNum && !hasFailingGrade(prereq);
                 });
                 if (!oneSatisfied) {
                     var k = code + ":oneOf:" + (info.prereqs || []).join(",");
@@ -3659,7 +3659,7 @@ function updatePrereqViolations() {
                     var k;
                     if (!prereqSem) k = code + ":" + prereq + ":notPlaced";
                     else if (prereqSem >= semNum) k = code + ":" + prereq + ":order";
-                    else if (!hasPassingGrade(prereq)) k = code + ":" + prereq + ":failed";
+                    else if (hasFailingGrade(prereq)) k = code + ":" + prereq + ":failed";
                     else continue;
                     if (!courseToViolationKeys[code]) courseToViolationKeys[code] = [];
                     if (courseToViolationKeys[code].indexOf(k) === -1) courseToViolationKeys[code].push(k);
@@ -3808,7 +3808,7 @@ function updateProgramErrors() {
                 if (info.prereqsOneOf) {
                     var oneSatisfied = info.prereqs.some(function(prereq) {
                         var prereqSem = findCourseSemester(prereq);
-                        return prereqSem && prereqSem < semNum && hasPassingGrade(prereq);
+                        return prereqSem && prereqSem < semNum && !hasFailingGrade(prereq);
                     });
                     if (!oneSatisfied) {
                         var key = code + ":oneOf:" + (info.prereqs || []).join(",");
@@ -3822,7 +3822,7 @@ function updateProgramErrors() {
                             errors.push({ key: code + ":" + prereq + ":notPlaced", msg: prereq + t("errPrereqNotPlaced") + (currentLang === "tr" ? " (" + code + " için ön koşul)." : " (prerequisite for " + code + ").") });
                         } else if (prereqSem >= semNum) {
                             errors.push({ key: code + ":" + prereq + ":order", msg: prereq + t("errPrereqFor") + code + ";" + (currentLang === "tr" ? " " + prereq : " " + prereq) + t("errPrereqMustBeEarlier") });
-                        } else if (!hasPassingGrade(prereq)) {
+                        } else if (hasFailingGrade(prereq)) {
                             var gradeDisp = getGradeDisplayForCourse(prereq) || "FF";
                             errors.push({ key: code + ":" + prereq + ":failed", msg: prereq + t("errPrereqNotPassed") + gradeDisp + t("errPrereqNotPassedEnd") + (currentLang === "tr" ? " " + code + " için." : " for " + code + ".") });
                         }
