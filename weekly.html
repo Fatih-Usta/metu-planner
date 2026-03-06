@@ -379,6 +379,20 @@
     margin-bottom: 4px;
 }
 
+.weekly-course-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.weekly-course-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 8px;
+    padding-top: 6px;
+}
+
 .weekly-course-code {
     font-weight: 700;
     letter-spacing: 0.03em;
@@ -485,6 +499,7 @@
 
 .weekly-section-header {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
     gap: 4px;
     margin-bottom: 2px;
@@ -537,6 +552,106 @@
 }
 
 .weekly-section-toggle:hover {
+    border-color: var(--metu-red);
+    color: var(--metu-red);
+}
+
+.weekly-section-details-btn {
+    margin-left: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    font-size: 0.7rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+.weekly-section-details-btn:hover {
+    border-color: var(--metu-red);
+    color: var(--metu-red);
+}
+
+.weekly-section-details-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.weekly-section-details-modal {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    max-width: 420px;
+    width: 90%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.weekly-section-details-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 20px 24px 12px 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    flex-shrink: 0;
+}
+.weekly-section-details-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    padding-right: 8px;
+}
+.weekly-section-details-body {
+    padding: 16px 24px 20px 24px;
+    overflow-y: auto;
+    max-height: calc(85vh - 80px);
+}
+.weekly-section-details-rule {
+    margin-bottom: 14px;
+    padding: 12px 14px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    font-size: 0.82rem;
+}
+.weekly-section-details-rule:last-child {
+    margin-bottom: 0;
+}
+.weekly-section-details-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    line-height: 1.4;
+}
+.weekly-section-details-row:first-child {
+    margin-top: 0;
+}
+.weekly-section-details-key {
+    color: var(--text-muted);
+    flex-shrink: 0;
+    min-width: 90px;
+}
+.weekly-section-details-val {
+    color: var(--text-main);
+}
+.weekly-section-details-close {
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: border-color var(--transition), color var(--transition);
+}
+.weekly-section-details-close:hover {
     border-color: var(--metu-red);
     color: var(--metu-red);
 }
@@ -958,6 +1073,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
 <div class="toast-container" id="toastContainer" aria-live="polite"></div>
 
+<div id="weeklySectionDetailsOverlay" class="weekly-section-details-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="weeklySectionDetailsTitle">
+  <div class="weekly-section-details-modal">
+    <div class="weekly-section-details-header">
+      <h3 id="weeklySectionDetailsTitle" class="weekly-section-details-title"></h3>
+      <button type="button" id="weeklySectionDetailsClose" class="weekly-section-details-close">Close</button>
+    </div>
+    <div id="weeklySectionDetailsContent" class="weekly-section-details-body scroll-theme"></div>
+  </div>
+</div>
+
 <script>
 (function () {
     var root = document.documentElement;
@@ -1041,7 +1166,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             dayThu: "Thursday",
             dayFri: "Friday",
             themeLight: "Light theme",
-            themeDark: "Dark theme"
+            themeDark: "Dark theme",
+            detailsBtn: "Details",
+            sectionDetailsTitle: "Section details",
+            minGpa: "Min GPA",
+            maxGpa: "Max GPA",
+            surnameRange: "Surname",
+            yearRange: "Year",
+            gradeRestriction: "Grade",
+            deptRule: "Department",
+            closeBtn: "Close"
         },
         tr: {
             title: "Haftalık Program",
@@ -1072,7 +1206,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             dayThu: "Perşembe",
             dayFri: "Cuma",
             themeLight: "Açık tema",
-            themeDark: "Koyu tema"
+            themeDark: "Koyu tema",
+            detailsBtn: "Detaylar",
+            sectionDetailsTitle: "Şube detayları",
+            minGpa: "Min GNO",
+            maxGpa: "Maks GNO",
+            surnameRange: "Soyad",
+            yearRange: "Yıl",
+            gradeRestriction: "Not",
+            deptRule: "Bölüm",
+            closeBtn: "Kapat"
         }
     };
 
@@ -1140,6 +1283,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = dict.dayThu;
         el = document.getElementById("weeklyDayFri");
         if (el) el.textContent = dict.dayFri;
+        el = document.getElementById("weeklySectionDetailsClose");
+        if (el) el.textContent = dict.closeBtn || "Close";
+        document.querySelectorAll(".weekly-section-details-btn").forEach(function (b) {
+            b.textContent = dict.detailsBtn || "Details";
+        });
         // Theme toggle label
         var themeLabel = document.getElementById("themeLabel");
         if (themeLabel) {
@@ -1303,6 +1451,55 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         var s = str.toUpperCase().trim();
         s = s.replace(/\u0130/g, "I").replace(/\u0131/g, "I");
         return s;
+    }
+
+    function showSectionDetails(courseCode, courseName, section) {
+        var dict = (document.documentElement.lang === "tr" ? weeklyTranslations.tr : weeklyTranslations.en) || weeklyTranslations.en;
+        var overlay = document.getElementById("weeklySectionDetailsOverlay");
+        var titleEl = document.getElementById("weeklySectionDetailsTitle");
+        var contentEl = document.getElementById("weeklySectionDetailsContent");
+        var closeBtn = document.getElementById("weeklySectionDetailsClose");
+        if (!overlay || !titleEl || !contentEl) return;
+        var secNum = (section && section.section != null) ? String(section.section) : "?";
+        titleEl.textContent = (courseCode || "") + " Section " + secNum + " – " + (dict.detailsBtn || "Details");
+        contentEl.innerHTML = "";
+        var rules = Array.isArray(section && section.rules) ? section.rules : [];
+        if (!rules.length) {
+            contentEl.appendChild(document.createTextNode(dict.sectionDetailsTitle ? "No rules." : "No rules."));
+        } else {
+            rules.forEach(function (r) {
+                var dept = fixEncoding((r.given_dept || "ALL").trim());
+                var sc = fixEncoding((r.start_char || "").trim());
+                var ec = fixEncoding((r.end_char || "").trim());
+                var surnameVal = (sc || ec) ? (sc + "–" + ec) : "any";
+                var minGpa = (r.min_cgpa != null ? String(r.min_cgpa) : "").trim();
+                var maxGpa = (r.max_cgpa != null ? String(r.max_cgpa) : "").trim();
+                var minYear = (r.min_year != null ? String(r.min_year) : "").trim();
+                var maxYear = (r.max_year != null ? String(r.max_year) : "").trim();
+                var yearVal = (minYear || maxYear) ? (minYear + "–" + maxYear) : "any";
+                var gradeStart = fixEncoding((r.start_grade || "").trim());
+                var gradeEnd = fixEncoding((r.end_grade || "").trim());
+                var gradeVal = (gradeStart || gradeEnd) ? (gradeStart + (gradeStart && gradeEnd && gradeStart !== gradeEnd ? " → " + gradeEnd : "")) : "any";
+                var ruleDiv = document.createElement("div");
+                ruleDiv.className = "weekly-section-details-rule";
+                var html = "";
+                html += "<div class=\"weekly-section-details-row\"><span class=\"weekly-section-details-key\">" + (dict.deptRule || "Department") + ":</span><span class=\"weekly-section-details-val\">" + dept + "</span></div>";
+                html += "<div class=\"weekly-section-details-row\"><span class=\"weekly-section-details-key\">" + (dict.surnameRange || "Surname") + ":</span><span class=\"weekly-section-details-val\">" + surnameVal + "</span></div>";
+                html += "<div class=\"weekly-section-details-row\"><span class=\"weekly-section-details-key\">" + (dict.minGpa || "Min GPA") + ":</span><span class=\"weekly-section-details-val\">" + (minGpa || "—") + "</span></div>";
+                html += "<div class=\"weekly-section-details-row\"><span class=\"weekly-section-details-key\">" + (dict.maxGpa || "Max GPA") + ":</span><span class=\"weekly-section-details-val\">" + (maxGpa || "—") + "</span></div>";
+                html += "<div class=\"weekly-section-details-row\"><span class=\"weekly-section-details-key\">" + (dict.yearRange || "Year") + ":</span><span class=\"weekly-section-details-val\">" + yearVal + "</span></div>";
+                if (gradeVal && gradeVal !== "any") {
+                    html += "<div class=\"weekly-section-details-row\"><span class=\"weekly-section-details-key\">" + (dict.gradeRestriction || "Grade") + ":</span><span class=\"weekly-section-details-val\">" + gradeVal + "</span></div>";
+                }
+                ruleDiv.innerHTML = html;
+                contentEl.appendChild(ruleDiv);
+            });
+        }
+        if (closeBtn) closeBtn.textContent = dict.closeBtn || "Close";
+        overlay.style.display = "flex";
+        overlay.onclick = function (e) { if (e.target === overlay) overlay.style.display = "none"; };
+        if (closeBtn) closeBtn.onclick = function () { overlay.style.display = "none"; };
+        overlay.querySelector(".weekly-section-details-modal").onclick = function (e) { e.stopPropagation(); };
     }
 
     // Custom themed combobox UI for department selection, backed by the hidden native <select>
@@ -1758,14 +1955,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
         var header = document.createElement("div");
         header.className = "weekly-course-header";
+        var leftWrap = document.createElement("div");
+        leftWrap.className = "weekly-course-header-left";
         var codeEl = document.createElement("div");
         codeEl.className = "weekly-course-code";
         codeEl.textContent = code;
         var pill = document.createElement("div");
         pill.className = "weekly-course-pill";
         pill.textContent = "—";
-        header.appendChild(codeEl);
-        header.appendChild(pill);
+        leftWrap.appendChild(codeEl);
+        leftWrap.appendChild(pill);
+        header.appendChild(leftWrap);
         (function addRemoveButton(headerEl, cardEl) {
             var btn = document.createElement("button");
             btn.type = "button";
@@ -1881,14 +2081,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
         var header = document.createElement("div");
         header.className = "weekly-course-header";
+        var leftWrap = document.createElement("div");
+        leftWrap.className = "weekly-course-header-left";
         var codeEl = document.createElement("div");
         codeEl.className = "weekly-course-code";
         codeEl.textContent = code;
         var pill = document.createElement("div");
         pill.className = "weekly-course-pill";
         pill.textContent = code7 || "—";
-        header.appendChild(codeEl);
-        header.appendChild(pill);
+        leftWrap.appendChild(codeEl);
+        leftWrap.appendChild(pill);
+        header.appendChild(leftWrap);
         // reuse same remove button helper via a tiny shim
         (function addRemoveButton(headerEl, cardEl) {
             var btn = document.createElement("button");
@@ -1951,7 +2154,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             card.appendChild(flagsRow2);
         // show sections if we have them
         var code7ForToggle = code7;
-        (function attachSectionsToggle(headerEl, cardEl, code7Val) {
+        (function attachSectionsToggle(cardEl, code7Val) {
             if (!code7Val || !weeklySectionsBy7) return;
             var sections = weeklySectionsBy7[code7Val];
             if (!sections || !sections.length) return;
@@ -2020,6 +2223,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     instr.textContent = instrText;
                     headerRow.appendChild(instr);
                 }
+                var detailsBtn = document.createElement("button");
+                detailsBtn.type = "button";
+                detailsBtn.className = "weekly-section-details-btn";
+                detailsBtn.textContent = (document.documentElement.lang === "tr" ? weeklyTranslations.tr.detailsBtn : weeklyTranslations.en.detailsBtn) || "Details";
+                detailsBtn.style.marginLeft = "auto";
+                var courseNameVal = card ? (card.querySelector(".weekly-course-name") ? card.querySelector(".weekly-course-name").textContent.trim() : "") : "";
+                detailsBtn.addEventListener("click", function () { showSectionDetails(courseCode, courseNameVal, s); });
+                headerRow.appendChild(detailsBtn);
                 block.appendChild(headerRow);
 
                 var rules = Array.isArray(s.rules) ? s.rules : [];
@@ -2106,9 +2317,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 details.style.display = visible ? "none" : "block";
                 toggle.textContent = visible ? "Sections" : "Hide sections";
             });
-            headerEl.appendChild(toggle);
+            var footer = document.createElement("div");
+            footer.className = "weekly-course-footer";
+            footer.appendChild(toggle);
+            cardEl.appendChild(footer);
             cardEl.appendChild(details);
-        })(header, card, code7ForToggle);
+        })(card, code7ForToggle);
 
         listEl.appendChild(card);
         setMessage("Added " + code + " to the list.", false);
@@ -2539,7 +2753,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             headerEl.appendChild(btn);
         }
 
-        function attachSectionsToggle(headerEl, cardEl, code7) {
+        function attachSectionsToggle(cardEl, code7) {
             if (!code7 || !weeklySectionsBy7) return;
             var sections = weeklySectionsBy7[code7];
             if (!sections || !sections.length) return;
@@ -2613,6 +2827,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     instr.textContent = instrText;
                     header.appendChild(instr);
                 }
+                var detailsBtn2 = document.createElement("button");
+                detailsBtn2.type = "button";
+                detailsBtn2.className = "weekly-section-details-btn";
+                detailsBtn2.textContent = (document.documentElement.lang === "tr" ? weeklyTranslations.tr.detailsBtn : weeklyTranslations.en.detailsBtn) || "Details";
+                detailsBtn2.style.marginLeft = "auto";
+                var courseNameVal2 = cardEl ? (cardEl.querySelector(".weekly-course-name") ? cardEl.querySelector(".weekly-course-name").textContent.trim() : "") : "";
+                detailsBtn2.addEventListener("click", function () { showSectionDetails(courseCode, courseNameVal2, s); });
+                header.appendChild(detailsBtn2);
 
                 block.appendChild(header);
 
@@ -2704,7 +2926,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 toggle.textContent = visible ? "Sections" : "Hide sections";
             });
 
-            headerEl.appendChild(toggle);
+            var footer = document.createElement("div");
+            footer.className = "weekly-course-footer";
+            footer.appendChild(toggle);
+            cardEl.appendChild(footer);
             cardEl.appendChild(details);
         }
 
@@ -2730,14 +2955,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             var header = document.createElement("div");
             header.className = "weekly-course-header";
+            var leftWrap = document.createElement("div");
+            leftWrap.className = "weekly-course-header-left";
             var codeEl = document.createElement("div");
             codeEl.className = "weekly-course-code";
             codeEl.textContent = code;
             var pill = document.createElement("div");
             pill.className = "weekly-course-pill";
             pill.textContent = code7 || "—";
-            header.appendChild(codeEl);
-            header.appendChild(pill);
+            leftWrap.appendChild(codeEl);
+            leftWrap.appendChild(pill);
+            header.appendChild(leftWrap);
             addRemoveButton(header, card);
 
             var nameEl = document.createElement("div");
@@ -2782,7 +3010,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             flagsRow.appendChild(surLabel);
             flagsRow.appendChild(collLabel);
             card.appendChild(flagsRow);
-            attachSectionsToggle(header, card, code7);
+            attachSectionsToggle(card, code7);
             listEl.appendChild(card);
         });
 
@@ -2802,14 +3030,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             var header = document.createElement("div");
             header.className = "weekly-course-header";
+            var leftWrap = document.createElement("div");
+            leftWrap.className = "weekly-course-header-left";
             var codeEl = document.createElement("div");
             codeEl.className = "weekly-course-code";
             codeEl.textContent = label;
             var pill = document.createElement("div");
             pill.className = "weekly-course-pill";
             pill.textContent = "ELECTIVE";
-            header.appendChild(codeEl);
-            header.appendChild(pill);
+            leftWrap.appendChild(codeEl);
+            leftWrap.appendChild(pill);
+            header.appendChild(leftWrap);
             addRemoveButton(header, card);
 
             var nameEl = document.createElement("div");
@@ -2847,14 +3078,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             var header = document.createElement("div");
             header.className = "weekly-course-header";
+            var leftWrap = document.createElement("div");
+            leftWrap.className = "weekly-course-header-left";
             var codeEl = document.createElement("div");
             codeEl.className = "weekly-course-code";
             codeEl.textContent = "One of:";
             var pill = document.createElement("div");
             pill.className = "weekly-course-pill";
             pill.textContent = "CHOICE";
-            header.appendChild(codeEl);
-            header.appendChild(pill);
+            leftWrap.appendChild(codeEl);
+            leftWrap.appendChild(pill);
+            header.appendChild(leftWrap);
 
             var nameEl = document.createElement("div");
             nameEl.className = "weekly-course-name";
@@ -2903,14 +3137,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                 var h = document.createElement("div");
                 h.className = "weekly-course-header";
+                var leftWrap = document.createElement("div");
+                leftWrap.className = "weekly-course-header-left";
                 var cEl = document.createElement("div");
                 cEl.className = "weekly-course-code";
                 cEl.textContent = code;
                 var pEl = document.createElement("div");
                 pEl.className = "weekly-course-pill";
                 pEl.textContent = code7 || "—";
-                h.appendChild(cEl);
-                h.appendChild(pEl);
+                leftWrap.appendChild(cEl);
+                leftWrap.appendChild(pEl);
+                h.appendChild(leftWrap);
                 addRemoveButton(h, addedCard);
 
                 var nEl = document.createElement("div");
@@ -2952,7 +3189,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 flagsRow.appendChild(collLabel);
                 addedCard.appendChild(flagsRow);
 
-                attachSectionsToggle(h, addedCard, code7);
+                attachSectionsToggle(addedCard, code7);
                 listEl.appendChild(addedCard);
 
                 // Remove this one-of chooser card after a selection is added
