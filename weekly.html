@@ -3550,13 +3550,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         var checkSurname = !!flags.checkSurname;
                         if (!checkDept && !checkSurname) return true;
                         var key = normalizeForSurnameRange(surnameKey);
+                        var courseDeptShort = (/^([A-Z]{2,4})\d+/.exec((courseCode || "").toUpperCase()) || [])[1] || "";
                         var anyMatch = false;
                         for (var i = 0; i < rules.length; i++) {
                             var r = rules[i];
                             var ruleDept = (r.given_dept || "").toUpperCase().trim();
-                            if (checkDept && ruleDept && ruleDept !== "ALL" && studentDeptShort && ruleDept !== studentDeptShort) {
-                                // This rule is for a different department; skip it
-                                continue;
+                            if (checkDept && ruleDept && ruleDept !== "ALL") {
+                                var deptMatches = ruleDept === studentDeptShort || ruleDept === courseDeptShort;
+                                if (!deptMatches) {
+                                    continue;
+                                }
                             }
                             // If we are not checking surname, any matching dept rule is enough
                             if (!checkSurname) {
@@ -4279,13 +4282,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var surnameKey = surname ? surname.slice(0, 2) : "AA";
             var studentDeptShort = getStudentDeptShort(programCode);
             if (!studentDeptShort && programCode && /^[A-Za-z]{2,4}$/.test(programCode)) studentDeptShort = programCode.toUpperCase();
+            var courseDeptShort = (/^([A-Z]{2,4})\d+/.exec((code || "").toUpperCase()) || [])[1] || "";
 
             var flags = getCourseRuleFlags(code);
             var prefs = (weeklySectionPrefs && weeklySectionPrefs[code]) || null;
             var key = normalizeForSurnameRange(surnameKey);
 
             var lines = [];
-            lines.push("Surname key: " + key + " | Dept short: " + (studentDeptShort || "(none)"));
+            lines.push("Surname key: " + key + " | Student dept: " + (studentDeptShort || "(none)") + " | Course dept: " + (courseDeptShort || "(none)"));
             lines.push("Flags: dept=" + flags.checkDept + " surname=" + flags.checkSurname + " collision=" + flags.checkCollision);
             lines.push("Section prefs: " + (prefs && prefs.length ? prefs.join(", ") : "all"));
             lines.push("");
@@ -4310,7 +4314,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         for (var i = 0; i < rules.length; i++) {
                             var r = rules[i];
                             var ruleDept = (r.given_dept || "").toUpperCase().trim();
-                            if (flags.checkDept && ruleDept && ruleDept !== "ALL" && studentDeptShort && ruleDept !== studentDeptShort) continue;
+                            if (flags.checkDept && ruleDept && ruleDept !== "ALL") {
+                                var deptMatches = ruleDept === studentDeptShort || ruleDept === courseDeptShort;
+                                if (!deptMatches) continue;
+                            }
                             if (!flags.checkSurname) {
                                 allowed = true;
                                 reason = "dept match";
