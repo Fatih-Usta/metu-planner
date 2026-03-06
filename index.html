@@ -332,12 +332,89 @@
 [data-theme="light"] .week-schedule-block[data-accent="12"] { background: rgba(248, 180, 180, 0.32); }
 [data-theme="light"] .week-schedule-block[data-accent="13"] { background: rgba(163, 230, 53, 0.32); }
 
+/* ---------- Index responsive: tablet (900px) → phone (600px, 400px) ---------- */
 @media (max-width: 900px) {
     body { padding: 20px 16px; }
     .header { flex-direction: column; align-items: flex-start; gap: 16px; }
-    .portal-grid { grid-template-columns: 1fr; }
-    .portal-main-layout { grid-template-columns: 1fr; }
+    .header-actions { width: 100%; flex-wrap: wrap; }
+    .portal-grid { grid-template-columns: 1fr; gap: 16px; }
+    .portal-main-layout { grid-template-columns: 1fr; gap: 20px; }
+    .portal-courses-section { margin-bottom: 24px; }
+    .portal-courses-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .portal-courses-actions { width: 100%; flex-wrap: wrap; }
 }
+
+@media (max-width: 600px) {
+    body { padding: 14px 12px; overflow-x: hidden; }
+    /* Header full-bleed: negative margins extend to screen edges (matches body padding) */
+    .header {
+        width: auto;
+        min-width: 100%;
+        margin-left: -12px;
+        margin-right: -12px;
+        padding-left: calc(12px + env(safe-area-inset-left, 0));
+        padding-right: calc(12px + env(safe-area-inset-right, 0));
+        padding-top: 4px;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        box-sizing: border-box;
+    }
+    .title-block h1 { font-size: 1.55rem; }
+    .title-block span { font-size: 0.8rem; }
+    /* Phone header: let title/subtitle use full width */
+    .header { flex-direction: column; align-items: flex-start; }
+    .branding { width: 100%; min-width: 0; }
+    .title-block { max-width: 100%; }
+    .title-block h1 { line-height: 1.15; }
+    .title-block span { line-height: 1.35; }
+    .header-actions { width: 100%; justify-content: flex-end; flex-shrink: 0; }
+    #mobileMenuBtn {
+        flex-shrink: 0;
+        position: fixed;
+        top: calc(14px + 6px + env(safe-area-inset-top, 0));
+        right: calc(16px + env(safe-area-inset-right, 0));
+        z-index: 100000;
+    }
+    .header-actions .nav-links,
+    .header-actions #langCombo,
+    .header-actions #themeToggle,
+    .header-actions #envelopeBtn,
+    .header-actions #langSelect { display: none !important; }
+    #mobileMenuBtn { display: inline-flex !important; }
+    .portal-main-layout { gap: 20px; margin-bottom: 24px; }
+    .portal-courses-header { margin-bottom: 10px; }
+    .portal-courses-title { font-size: 0.95rem; }
+    .portal-btn { padding: 10px 16px; min-height: 44px; min-width: 44px; }
+    .portal-btn--primary { min-width: 0; }
+    .portal-course-list { padding: 12px 14px; }
+    .portal-course-item { padding: 10px 0; min-height: 44px; }
+    /* Weekly schedule: fit page width, no horizontal scroll */
+    .week-shell { overflow: hidden; width: 100%; }
+    /* Hide hours column so week grid uses full width */
+    .week-time-header,
+    .week-time-label { display: none; }
+    .week-table { width: 100%; table-layout: fixed; font-size: 0.72rem; min-width: 0; }
+    .week-table th, .week-table td { padding: 4px 2px; }
+    .week-schedule-block { font-size: 0.6rem; padding: 2px 3px; line-height: 1.2; }
+    .week-table td { min-height: 36px; height: 36px; }
+}
+
+@media (max-width: 400px) {
+    body { padding: 12px 10px; }
+    /* Header: body padding is 10px, so match negative margins */
+    .header { margin-left: -10px; margin-right: -10px; padding-left: calc(10px + env(safe-area-inset-left, 0)); padding-right: calc(10px + env(safe-area-inset-right, 0)); }
+    #mobileMenuBtn { right: calc(14px + env(safe-area-inset-right, 0)); }
+    .portal-card { padding: 18px 16px; }
+    .portal-card h3 { font-size: 1rem; }
+    .portal-btn { padding: 10px 14px; font-size: 0.8rem; }
+    .portal-course-list { padding: 10px 12px; }
+    /* Weekly schedule: even tighter on small phones */
+    .week-table { font-size: 0.65rem; }
+    .week-schedule-block { font-size: 0.55rem; padding: 2px; }
+    .week-table td { min-height: 32px; height: 32px; }
+}
+
 </style>
 </head>
 <body>
@@ -356,6 +433,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       </div>
     </div>
     <div class="header-actions">
+      <button type="button" id="mobileMenuBtn" aria-label="Open menu" aria-controls="mobileDrawerOverlay" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </button>
       <nav class="nav-links">
         <a id="navPortal" href="index.html" class="active">Portal</a>
         <a id="navPlanner" href="planner.html">Planner</a>
@@ -380,6 +464,39 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       </button>
     </div>
   </header>
+
+  <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" aria-hidden="true">
+    <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="mobile-drawer-header">
+        <div class="mobile-drawer-title">Menu</div>
+        <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close menu">×</button>
+      </div>
+      <div class="mobile-drawer-body">
+        <div class="mobile-drawer-section">
+          <div class="mobile-drawer-section-title">Pages</div>
+          <div class="mobile-drawer-list">
+            <a class="mobile-drawer-link" href="index.html">Portal</a>
+            <a class="mobile-drawer-link" href="planner.html">Planner</a>
+            <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+          </div>
+        </div>
+        <div class="mobile-drawer-section">
+          <div class="mobile-drawer-section-title">Settings</div>
+          <div class="mobile-drawer-list">
+            <div class="mobile-drawer-pill-row" aria-label="Language">
+              <button type="button" id="mobileLangTr" class="mobile-drawer-pill">Türkçe</button>
+              <button type="button" id="mobileLangEn" class="mobile-drawer-pill">English</button>
+            </div>
+            <button type="button" id="mobileContactBtn" class="mobile-drawer-btn">Contact</button>
+            <button type="button" id="mobileThemeBtn" class="mobile-drawer-btn">
+              <span>Theme</span>
+              <span id="mobileThemeLabel">Light theme</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
 
   <div class="portal-main-layout">
     <section class="portal-courses-section" id="portalWeeklySection">
@@ -516,6 +633,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     if (exportBtn) exportBtn.textContent = s.exportBtn;
     var themeLabel = document.getElementById('themeLabel');
     if (themeLabel) themeLabel.textContent = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark' ? s.lightTheme : s.darkTheme;
+    var mobileThemeLabel = document.getElementById('mobileThemeLabel');
+    if (mobileThemeLabel) mobileThemeLabel.textContent = (document.documentElement.getAttribute('data-theme') || 'dark') === 'dark' ? s.lightTheme : s.darkTheme;
     var weeklyEmpty = document.querySelector('#portalWeeklyList .portal-course-list--empty');
     if (weeklyEmpty) weeklyEmpty.textContent = s.noWeeklySaved;
     var coursesEmpty = document.querySelector('#portalCourseList .portal-course-list--empty');
@@ -942,11 +1061,15 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     localStorage.setItem('theme', next);
     var themeLabel = document.getElementById('themeLabel');
     if (themeLabel) themeLabel.textContent = next === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
+    var mobileThemeLabel = document.getElementById('mobileThemeLabel');
+    if (mobileThemeLabel) mobileThemeLabel.textContent = next === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
   }
 
   var theme = document.documentElement.getAttribute('data-theme') || 'dark';
   var themeLabel = document.getElementById('themeLabel');
   if (themeLabel) themeLabel.textContent = theme === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
+  var mobileThemeLabel = document.getElementById('mobileThemeLabel');
+  if (mobileThemeLabel) mobileThemeLabel.textContent = theme === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
   var themeToggle = document.getElementById('themeToggle');
   if (themeToggle) themeToggle.onclick = toggleTheme;
 
@@ -956,6 +1079,45 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   if (envelopeBtn && envelopeDialog) envelopeBtn.onclick = function() { envelopeDialog.showModal(); };
   if (envelopeModalClose && envelopeDialog) envelopeModalClose.onclick = function() { envelopeDialog.close(); };
   if (envelopeDialog) envelopeDialog.addEventListener('click', function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
+
+  // Mobile drawer (pages + settings)
+  var mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  var mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
+  var mobileDrawerClose = document.getElementById('mobileDrawerClose');
+  var mobileThemeBtn = document.getElementById('mobileThemeBtn');
+  var mobileContactBtn = document.getElementById('mobileContactBtn');
+  var mobileLangTr = document.getElementById('mobileLangTr');
+  var mobileLangEn = document.getElementById('mobileLangEn');
+
+  function setMobileLangActive(langCode) {
+    if (mobileLangTr) mobileLangTr.classList.toggle('is-active', langCode === 'tr');
+    if (mobileLangEn) mobileLangEn.classList.toggle('is-active', langCode !== 'tr');
+  }
+
+  function setDrawerOpen(open) {
+    if (!mobileDrawerOverlay || !mobileMenuBtn) return;
+    mobileDrawerOverlay.classList.toggle('is-open', !!open);
+    mobileDrawerOverlay.setAttribute('aria-hidden', open ? 'false' : 'true');
+    mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) {
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+    }
+  }
+
+  if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', function() { setDrawerOpen(true); });
+  if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', function() { setDrawerOpen(false); });
+  if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener('click', function(e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setDrawerOpen(false); });
+
+  if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', function() { toggleTheme(); });
+  if (mobileContactBtn) mobileContactBtn.addEventListener('click', function() {
+    setDrawerOpen(false);
+    if (envelopeDialog) envelopeDialog.showModal();
+  });
+  if (mobileLangTr) mobileLangTr.addEventListener('click', function() { setLanguage('tr'); setDrawerOpen(false); });
+  if (mobileLangEn) mobileLangEn.addEventListener('click', function() { setLanguage('en'); setDrawerOpen(false); });
 
   var lang = getPortalLang();
   var langButtonLabel = document.getElementById('langButtonLabel');
@@ -988,6 +1150,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       });
     }
   }
+  setMobileLangActive(lang);
   applyPortalTranslations(lang);
 })();
 </script>
@@ -996,7 +1159,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   target="_blank"
   rel="noopener"
   aria-label="Open update history"
-  style="position: fixed; right: 16px; bottom: 12px; left: auto; font-size: 12px; color: rgba(154, 160, 166, 0.95); z-index: 9999; text-decoration: none; cursor: pointer;"
->1.0.1</a>
+  style="position: fixed; right: 16px; bottom: 12px; top: auto; left: auto; font-size: 12px; color: rgba(154, 160, 166, 0.95); z-index: 9999; text-decoration: none; cursor: pointer;"
+>1.0.2</a>
 </body>
 </html>

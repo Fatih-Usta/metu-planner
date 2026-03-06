@@ -106,6 +106,12 @@ body {
   margin: 0 auto;
 }
 
+/* Tablet (iPad horizontal): prevent overflow on shared layout */
+@media (max-width: 1024px) {
+  html { overflow-x: hidden; }
+  .app-shell { overflow-x: hidden; }
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -357,6 +363,139 @@ dialog.envelope-dialog::backdrop {
   text-decoration: underline;
 }
 
+/* ----- Mobile side drawer (shared: Portal, Planner, Weekly) ----- */
+#mobileMenuBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+}
+#mobileMenuBtn:hover {
+  border-color: var(--metu-red);
+  background: var(--accent-soft);
+  color: var(--metu-red);
+}
+#mobileMenuBtn svg { width: 20px; height: 20px; }
+
+.mobile-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 99999;
+  display: none;
+}
+.mobile-drawer-overlay.is-open { display: block; }
+
+.mobile-drawer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: min(340px, 86vw);
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-lg);
+  transform: translateX(-102%);
+  transition: transform 0.22s ease;
+  display: flex;
+  flex-direction: column;
+}
+.mobile-drawer-overlay.is-open .mobile-drawer { transform: translateX(0); }
+
+.mobile-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 16px 12px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.mobile-drawer-title {
+  font-weight: 700;
+  margin: 0;
+  font-size: 1rem;
+}
+.mobile-drawer-close {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  cursor: pointer;
+}
+.mobile-drawer-close:hover { border-color: var(--metu-red); color: var(--metu-red); }
+
+.mobile-drawer-body {
+  padding: 14px 16px 18px 16px;
+  overflow: auto;
+}
+.mobile-drawer-section + .mobile-drawer-section { margin-top: 16px; }
+.mobile-drawer-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 10px 0;
+}
+.mobile-drawer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mobile-drawer-link,
+.mobile-drawer-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg);
+  color: var(--text-main);
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.mobile-drawer-link:hover,
+.mobile-drawer-btn:hover {
+  border-color: var(--metu-red);
+  background: var(--accent-soft);
+}
+.mobile-drawer-pill-row {
+  display: flex;
+  gap: 10px;
+}
+.mobile-drawer-pill {
+  flex: 1 1 0;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg);
+  color: var(--text-main);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.mobile-drawer-pill:hover { border-color: var(--metu-red); background: var(--accent-soft); }
+.mobile-drawer-pill.is-active {
+  border-color: var(--metu-red);
+  background: var(--metu-red-soft);
+  color: var(--metu-red);
+  font-weight: 700;
+}
+
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.95fr);
@@ -557,7 +696,9 @@ dialog.envelope-dialog::backdrop {
   top: 100%;
   margin-top: 4px;
   max-height: 220px;
+  max-width: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   background: var(--bg-elevated);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);

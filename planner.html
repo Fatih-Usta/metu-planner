@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="main-ui.css?v=2">
+<link rel="stylesheet" href="main-ui.css?v=3">
 <style>
 /* Hidden hints (kept in DOM, feedback: too much text) */
 .planner-hint-hidden { display: none !important; }
@@ -133,6 +133,7 @@ select:focus {
 .semester {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .pool {
@@ -231,6 +232,7 @@ select:focus {
 .semester-courses {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
 .semester-gpa {
@@ -245,21 +247,27 @@ select:focus {
 }
 
 .course {
+    position: relative;
     background: var(--accent-soft);
     border: 1px solid rgba(196, 30, 58, 0.25);
     padding: 8px 12px;
+    padding-right: 44px;
     margin: 5px 0;
     border-radius: var(--radius-sm);
     cursor: grab;
     font-size: 0.85rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     color: var(--text-main);
     user-select: none;
     min-height: 42px;
     text-align: left;
     flex-wrap: wrap;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
     transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
 }
 .course:hover {
@@ -287,8 +295,9 @@ select:focus {
     align-items: center;
     gap: 6px;
     min-width: 0;
-    flex: 1;
+    flex: 1 1 auto;
     text-align: left;
+    order: 0;
 }
 
 .course-code {
@@ -296,10 +305,10 @@ select:focus {
     letter-spacing: 0.02em;
     text-align: left;
     flex-shrink: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    max-width: 180px;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
 }
 
 .course-wrong-semester {
@@ -352,9 +361,12 @@ select:focus {
 .course-actions {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 4px;
     flex-shrink: 0;
     text-align: left;
+    order: 2;
+    flex-basis: 100%;
 }
 .course-btn {
     width: 28px;
@@ -374,6 +386,12 @@ select:focus {
 .course-btn:hover {
     color: var(--text-main);
     background: var(--border-subtle);
+}
+.course-btn.delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    margin: 0;
 }
 .course-btn.delete-btn:hover {
     color: #dc2626;
@@ -687,22 +705,93 @@ select:focus {
     border: none;
     background: transparent;
     box-shadow: none;
+    overflow: visible;
 }
 .add-course-dept .dept-right {
     flex-direction: column;
     gap: 10px;
+    overflow: visible;
+    width: 100%;
+    max-width: 100%;
+}
+.add-course-dept .dept-row-main {
+    overflow: visible;
 }
 .add-course-dept .dept-row-main.field-same-width__row {
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
     width: 100% !important;
-    max-width: none !important;
+    max-width: 100% !important;
 }
 .add-course-dept #departmentCombo,
 .add-course-dept #departmentButton,
 .add-course-dept #departmentList {
     width: 100%;
+}
+.add-course-dept .planner-combobox {
+    overflow: visible;
+    z-index: 1;
+}
+.add-course-dept .course-search-dropdown {
+    z-index: 100;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    right: auto;
+}
+
+/* Keep all elements max-width as their bubble – never overflow panel */
+.layout > .panel {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+.add-course-with-dept,
+.add-course-dept,
+.add-course-dept .dept-bar,
+.add-course-dept .dept-left,
+.add-course-dept .dept-right,
+.add-course-dept .dept-row-main,
+.add-course-dept .dept-row-plan,
+.add-course-dept .plan-slot-wrap {
+    min-width: 0;
+    max-width: 100%;
+}
+.add-course-dept .dept-row-main.field-same-width__row {
+    max-width: 100% !important;
+}
+.add-course-dept .planner-combobox {
+    max-width: 100%;
+}
+.add-course-dept .planner-select-trigger {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.add-course-dept .plan-slot-save-btn,
+.add-course-dept .plan-slot-load-btn,
+.add-course-dept .dept-row-plan .btn-primary {
+    min-width: 0;
+    max-width: 100%;
+}
+.dept-row-plan .planner-combobox {
+    min-width: 0;
+    max-width: 100%;
+}
+.dept-row-plan .planner-select-trigger {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.dept-row-plan .course-search-dropdown {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    right: auto;
 }
 .add-course-dept .dept-row-main .btn-primary {
     width: auto;
@@ -771,6 +860,7 @@ select:focus {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-width: 0;
 }
 
 .year-label {
@@ -816,6 +906,7 @@ select:focus {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 14px;
+    min-width: 0;
 }
 
 .year-summer-slot {
@@ -852,6 +943,7 @@ select:focus {
     border: 1px solid var(--border-subtle);
     background: var(--bg-elevated);
     box-shadow: var(--shadow);
+    overflow: visible;
 }
 
 .dept-left {
@@ -883,8 +975,12 @@ select:focus {
 .dept-row-plan {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
+}
+.dept-row-plan > .plan-slot-wrap {
+    min-width: 0;
+    flex: 0 1 auto;
 }
 
 .plan-tools-bar {
@@ -951,6 +1047,14 @@ select:focus {
     box-shadow: none;
 }
 
+/* Separate plan-slot controls from main Save/Load for clearer layout */
+.dept-row-plan {
+    row-gap: 12px;
+}
+.dept-row-plan > .btn-primary {
+    flex-shrink: 0;
+}
+
 .semester-weekly-btn {
     padding: 6px 10px;
     border-radius: var(--radius-full);
@@ -973,6 +1077,74 @@ select:focus {
 
 /* Department select is hidden; width controlled by .field-same-width__row + .dept-bar .dept-right */
 
+/* Tablet (iPad horizontal ~1024px): prevent overflow, single column so nothing falls out */
+@media (max-width: 1024px) {
+    html {
+        overflow-x: hidden;
+    }
+    body {
+        padding: 20px 16px;
+        overflow-x: hidden;
+    }
+    .layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .panel {
+        min-width: 0;
+        overflow-x: hidden;
+    }
+    .add-course-with-dept {
+        min-width: 0;
+    }
+    .add-course-dept {
+        min-width: 0;
+        max-width: 100%;
+    }
+    .add-course-content {
+        min-width: 0;
+    }
+    /* Constrain dropdowns to stay within panel */
+    .add-course-dept .planner-combobox {
+        max-width: 100%;
+    }
+    .add-course-dept .course-search-dropdown {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    .dept-bar {
+        min-width: 0;
+    }
+    .dept-right {
+        min-width: 0;
+    }
+    .dept-row-plan {
+        min-width: 0;
+    }
+    .plan-slot-wrap {
+        min-width: 0;
+    }
+    .year-grid {
+        min-width: 0;
+    }
+    .year-semesters {
+        min-width: 0;
+    }
+    /* Stack department above add-course on tablet for cleaner layout */
+    .add-course-with-dept {
+        flex-direction: column;
+    }
+    .add-course-dept {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Course bubbles: extra padding on tablet */
+    .course {
+        padding: 10px 12px;
+        padding-right: 44px;
+    }
+}
+
 @media (max-width: 900px) {
     body {
         padding: 20px 16px;
@@ -987,10 +1159,41 @@ select:focus {
         overflow-x: hidden;
     }
     body {
-        padding: 12px 14px;
+        padding: 14px 12px;
         overflow-x: hidden;
     }
-    /* .header, .header-actions, .title-block: main-ui.css */
+    /* Phone header: match index – full-bleed, hamburger fixed top-right */
+    .header {
+        width: auto;
+        min-width: 100%;
+        margin-left: -12px;
+        margin-right: -12px;
+        padding-left: calc(12px + env(safe-area-inset-left, 0));
+        padding-right: calc(12px + env(safe-area-inset-right, 0));
+        padding-top: 4px;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        box-sizing: border-box;
+    }
+    .branding { width: 100%; min-width: 0; }
+    .title-block { max-width: 100%; }
+    .title-block h1 { font-size: 1.55rem; line-height: 1.15; }
+    .title-block span { font-size: 0.8rem; line-height: 1.35; }
+    .header-actions { width: 100%; justify-content: flex-end; }
+    .header-actions .nav-links,
+    .header-actions #langCombo,
+    .header-actions #themeToggle,
+    .header-actions #envelopeBtn,
+    .header-actions #langSelect { display: none !important; }
+    #mobileMenuBtn {
+        display: inline-flex !important;
+        flex-shrink: 0;
+        position: fixed;
+        top: calc(14px + 6px + env(safe-area-inset-top, 0));
+        right: calc(16px + env(safe-area-inset-right, 0));
+        z-index: 100000;
+    }
 
     .dept-bar {
         flex-direction: column;
@@ -1012,9 +1215,14 @@ select:focus {
 
     .dept-right select,
     .dept-right button,
+    .dept-right .planner-combobox,
     .plan-slot-select {
         width: 100%;
         min-height: 44px;
+    }
+
+    .dept-right .planner-combobox .planner-select-trigger {
+        width: 100%;
     }
 
     #departmentSelect {
@@ -1054,6 +1262,7 @@ select:focus {
         align-items: flex-start;
         min-height: 44px;
         padding: 10px 12px;
+        padding-right: 44px;
     }
 
     .course::after {
@@ -1106,6 +1315,11 @@ select:focus {
     }
 }
 
+@media (max-width: 400px) {
+    body { padding: 12px 10px; }
+    .header { margin-left: -10px; margin-right: -10px; padding-left: calc(10px + env(safe-area-inset-left, 0)); padding-right: calc(10px + env(safe-area-inset-right, 0)); }
+    #mobileMenuBtn { right: calc(14px + env(safe-area-inset-right, 0)); }
+}
 @media (max-width: 380px) {
     .course-code {
         max-width: 100%;
@@ -1284,6 +1498,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       </div>
     </div>
     <div class="header-actions">
+      <button type="button" id="mobileMenuBtn" aria-label="Open menu" aria-controls="mobileDrawerOverlay" aria-expanded="false">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="4" y1="6" x2="20" y2="6"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="18" x2="20" y2="18"></line>
+        </svg>
+      </button>
       <nav class="nav-links">
         <a id="navPortal" href="index.html" data-i18n="navPortal">Portal</a>
         <a id="navPlanner" href="planner.html" class="active" data-i18n="navPlanner">Planner</a>
@@ -1308,6 +1529,39 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       </button>
     </div>
   </header>
+
+  <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" aria-hidden="true">
+    <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+      <div class="mobile-drawer-header">
+        <div class="mobile-drawer-title">Menu</div>
+        <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close menu">×</button>
+      </div>
+      <div class="mobile-drawer-body">
+        <div class="mobile-drawer-section">
+          <div class="mobile-drawer-section-title">Pages</div>
+          <div class="mobile-drawer-list">
+            <a class="mobile-drawer-link" href="index.html">Portal</a>
+            <a class="mobile-drawer-link" href="planner.html">Planner</a>
+            <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+          </div>
+        </div>
+        <div class="mobile-drawer-section">
+          <div class="mobile-drawer-section-title">Settings</div>
+          <div class="mobile-drawer-list">
+            <div class="mobile-drawer-pill-row" aria-label="Language">
+              <button type="button" id="mobileLangTr" class="mobile-drawer-pill">Türkçe</button>
+              <button type="button" id="mobileLangEn" class="mobile-drawer-pill">English</button>
+            </div>
+            <button type="button" id="mobileContactBtn" class="mobile-drawer-btn">Contact</button>
+            <button type="button" id="mobileThemeBtn" class="mobile-drawer-btn">
+              <span>Theme</span>
+              <span id="mobileThemeLabel">Light theme</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
 
   <div class="about-overlay" id="aboutOverlay" role="dialog" aria-labelledby="aboutTitle" aria-modal="true">
     <div class="about-modal">
@@ -3729,12 +3983,14 @@ recalculateGpas();
 
 function toggleTheme() {
     const html = document.documentElement;
-    const current = html.getAttribute('data-theme') || 'dark';
+    const current = html.getAttribute('data-theme') || 'light';
     const next = current === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     const label = document.getElementById('themeLabel');
     if (label) label.textContent = next === 'dark' ? t('themeLight') : t('themeDark');
+    const mobileLabel = document.getElementById('mobileThemeLabel');
+    if (mobileLabel) mobileLabel.textContent = next === 'dark' ? t('themeLight') : t('themeDark');
 }
 
 function openAbout() {
@@ -3812,6 +4068,42 @@ function setDismissedError(key, dismissed) {
     if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function() { envelopeDialog.showModal(); });
     if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function() { envelopeDialog.close(); });
     if (envelopeDialog) envelopeDialog.addEventListener("click", function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
+
+    var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    var mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
+    var mobileDrawerClose = document.getElementById("mobileDrawerClose");
+    var mobileThemeBtn = document.getElementById("mobileThemeBtn");
+    var mobileContactBtn = document.getElementById("mobileContactBtn");
+    var mobileLangTr = document.getElementById("mobileLangTr");
+    var mobileLangEn = document.getElementById("mobileLangEn");
+
+    function setDrawerOpen(open) {
+        if (!mobileDrawerOverlay || !mobileMenuBtn) return;
+        mobileDrawerOverlay.classList.toggle("is-open", !!open);
+        mobileDrawerOverlay.setAttribute("aria-hidden", open ? "false" : "true");
+        mobileMenuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) document.documentElement.style.overflow = "hidden";
+        else document.documentElement.style.overflow = "";
+    }
+
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", function() { setDrawerOpen(true); });
+    if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", function() { setDrawerOpen(false); });
+    if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener("click", function(e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
+    document.addEventListener("keydown", function(e) { if (e.key === "Escape") setDrawerOpen(false); });
+
+    if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", function() { toggleTheme(); });
+    if (mobileContactBtn) mobileContactBtn.addEventListener("click", function() {
+        setDrawerOpen(false);
+        if (envelopeDialog) envelopeDialog.showModal();
+    });
+    if (mobileLangTr) mobileLangTr.addEventListener("click", function() { setLanguage("tr"); setDrawerOpen(false); });
+    if (mobileLangEn) mobileLangEn.addEventListener("click", function() { setLanguage("en"); setDrawerOpen(false); });
+
+    var mobileThemeLabel = document.getElementById("mobileThemeLabel");
+    if (mobileThemeLabel) mobileThemeLabel.textContent = (document.documentElement.getAttribute("data-theme") || "light") === "dark" ? t("themeLight") : t("themeDark");
+    if (mobileLangTr) mobileLangTr.classList.toggle("is-active", currentLang === "tr");
+    if (mobileLangEn) mobileLangEn.classList.toggle("is-active", currentLang !== "tr");
+
     var aboutBtn = document.getElementById("aboutBtn");
     if (aboutBtn) aboutBtn.addEventListener("click", openAbout);
     var aboutClose = document.getElementById("aboutClose");

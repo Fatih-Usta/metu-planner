@@ -906,13 +906,77 @@
     cursor: not-allowed;
 }
 
-@media (max-width: 960px) {
+/* Tablet (iPad horizontal ~1024px): single column, prevent overflow */
+@media (max-width: 1024px) {
+    html { overflow-x: hidden; }
     body {
         padding: 18px 12px;
+        overflow-x: hidden;
     }
     .layout {
         grid-template-columns: minmax(0, 1fr);
     }
+    .panel { min-width: 0; overflow-x: hidden; }
+    /* Weekly schedule: hide hours column when narrow (match index) */
+    .week-shell { overflow: hidden; width: 100%; }
+    .week-time-header,
+    .week-time-label { display: none; }
+    .week-table { width: 100%; table-layout: fixed; font-size: 0.8rem; min-width: 0; }
+    .week-table th, .week-table td { padding: 5px 4px; }
+    .week-schedule-block { font-size: 0.7rem; padding: 3px 4px; line-height: 1.2; }
+    .week-table td { min-height: 40px; height: 40px; }
+}
+@media (max-width: 600px) {
+    html { overflow-x: hidden; }
+    body { padding: 14px 12px; overflow-x: hidden; }
+    .header {
+        width: auto;
+        min-width: 100%;
+        margin-left: -12px;
+        margin-right: -12px;
+        padding-left: calc(12px + env(safe-area-inset-left, 0));
+        padding-right: calc(12px + env(safe-area-inset-right, 0));
+        padding-top: 4px;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        box-sizing: border-box;
+    }
+    .branding { width: 100%; min-width: 0; }
+    .title-block { max-width: 100%; }
+    .title-block h1 { font-size: 1.55rem; line-height: 1.15; }
+    .title-block span { font-size: 0.8rem; line-height: 1.35; }
+    .header-actions { width: 100%; justify-content: flex-end; }
+    .header-actions .nav-links,
+    .header-actions #langCombo,
+    .header-actions #themeToggle,
+    .header-actions #envelopeBtn,
+    .header-actions #langSelect { display: none !important; }
+    #mobileMenuBtn {
+        display: inline-flex !important;
+        flex-shrink: 0;
+        position: fixed;
+        top: calc(14px + 6px + env(safe-area-inset-top, 0));
+        right: calc(16px + env(safe-area-inset-right, 0));
+        z-index: 100000;
+    }
+    /* Weekly schedule: tighter on phone (match index) */
+    .week-shell { overflow: hidden; width: 100%; }
+    .week-time-header,
+    .week-time-label { display: none; }
+    .week-table { width: 100%; table-layout: fixed; font-size: 0.72rem; min-width: 0; }
+    .week-table th, .week-table td { padding: 4px 2px; }
+    .week-schedule-block { font-size: 0.6rem; padding: 2px 3px; line-height: 1.2; }
+    .week-table td { min-height: 36px; height: 36px; }
+}
+@media (max-width: 400px) {
+    body { padding: 12px 10px; }
+    .header { margin-left: -10px; margin-right: -10px; padding-left: calc(10px + env(safe-area-inset-left, 0)); padding-right: calc(10px + env(safe-area-inset-right, 0)); }
+    #mobileMenuBtn { right: calc(14px + env(safe-area-inset-right, 0)); }
+    /* Weekly schedule: even tighter on small phones */
+    .week-table { font-size: 0.65rem; }
+    .week-schedule-block { font-size: 0.55rem; padding: 2px; }
+    .week-table td { min-height: 32px; height: 32px; }
 }
 </style>
 </head>
@@ -931,6 +995,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             </div>
         </div>
         <div class="header-actions">
+            <button type="button" id="mobileMenuBtn" aria-label="Open menu" aria-controls="mobileDrawerOverlay" aria-expanded="false">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+            </button>
             <nav class="nav-links">
                 <a id="navPortal" href="index.html">Portal</a>
                 <a id="navPlanner" href="planner.html">Planner</a>
@@ -955,6 +1026,39 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             </button>
         </div>
     </header>
+
+    <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" aria-hidden="true">
+        <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+            <div class="mobile-drawer-header">
+                <div class="mobile-drawer-title">Menu</div>
+                <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close menu">×</button>
+            </div>
+            <div class="mobile-drawer-body">
+                <div class="mobile-drawer-section">
+                    <div class="mobile-drawer-section-title">Pages</div>
+                    <div class="mobile-drawer-list">
+                        <a class="mobile-drawer-link" href="index.html">Portal</a>
+                        <a class="mobile-drawer-link" href="planner.html">Planner</a>
+                        <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+                    </div>
+                </div>
+                <div class="mobile-drawer-section">
+                    <div class="mobile-drawer-section-title">Settings</div>
+                    <div class="mobile-drawer-list">
+                        <div class="mobile-drawer-pill-row" aria-label="Language">
+                            <button type="button" id="mobileLangTr" class="mobile-drawer-pill">Türkçe</button>
+                            <button type="button" id="mobileLangEn" class="mobile-drawer-pill">English</button>
+                        </div>
+                        <button type="button" id="mobileContactBtn" class="mobile-drawer-btn">Contact</button>
+                        <button type="button" id="mobileThemeBtn" class="mobile-drawer-btn">
+                            <span>Theme</span>
+                            <span id="mobileThemeLabel">Light theme</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
 
     <main class="layout">
         <section class="panel">
@@ -1246,6 +1350,67 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function () { envelopeDialog.close(); });
     if (envelopeDialog) envelopeDialog.addEventListener("click", function (e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
 
+    var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    var mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
+    var mobileDrawerClose = document.getElementById("mobileDrawerClose");
+    var mobileThemeBtn = document.getElementById("mobileThemeBtn");
+    var mobileContactBtn = document.getElementById("mobileContactBtn");
+    var mobileLangTr = document.getElementById("mobileLangTr");
+    var mobileLangEn = document.getElementById("mobileLangEn");
+
+    function setDrawerOpen(open) {
+        if (!mobileDrawerOverlay || !mobileMenuBtn) return;
+        mobileDrawerOverlay.classList.toggle("is-open", !!open);
+        mobileDrawerOverlay.setAttribute("aria-hidden", open ? "false" : "true");
+        mobileMenuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) document.documentElement.style.overflow = "hidden";
+        else document.documentElement.style.overflow = "";
+    }
+
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", function () { setDrawerOpen(true); });
+    if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", function () { setDrawerOpen(false); });
+    if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener("click", function (e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setDrawerOpen(false); });
+
+    if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", function () {
+        var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+        var next = current === "light" ? "dark" : "light";
+        root.setAttribute("data-theme", next);
+        window.localStorage.setItem("theme", next);
+        var lang = localStorage.getItem("lang") === "tr" ? "tr" : "en";
+        applyWeeklyLanguage(lang);
+    });
+    if (mobileContactBtn) mobileContactBtn.addEventListener("click", function () {
+        setDrawerOpen(false);
+        if (envelopeDialog) envelopeDialog.showModal();
+    });
+    if (mobileLangTr) mobileLangTr.addEventListener("click", function () {
+        localStorage.setItem("lang", "tr");
+        document.documentElement.lang = "tr";
+        var sel = document.getElementById("langSelect");
+        if (sel) sel.value = "tr";
+        applyWeeklyLanguage("tr");
+        if (mobileLangTr) mobileLangTr.classList.add("is-active");
+        if (mobileLangEn) mobileLangEn.classList.remove("is-active");
+        setDrawerOpen(false);
+    });
+    if (mobileLangEn) mobileLangEn.addEventListener("click", function () {
+        localStorage.setItem("lang", "en");
+        document.documentElement.lang = "en";
+        var sel = document.getElementById("langSelect");
+        if (sel) sel.value = "en";
+        applyWeeklyLanguage("en");
+        if (mobileLangTr) mobileLangTr.classList.remove("is-active");
+        if (mobileLangEn) mobileLangEn.classList.add("is-active");
+        setDrawerOpen(false);
+    });
+
+    (function setMobileLangPills() {
+        var lang = localStorage.getItem("lang") === "tr" ? "tr" : "en";
+        if (mobileLangTr) mobileLangTr.classList.toggle("is-active", lang === "tr");
+        if (mobileLangEn) mobileLangEn.classList.toggle("is-active", lang !== "tr");
+    })();
+
     // Shared department selector (same storage key as planner)
     var METU_LAST_PROGRAM_CODE = "metu_last_program_code";
     var deptSelect = document.getElementById("weeklyDeptSelect");
@@ -1375,6 +1540,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = dict.navPlanner;
         el = document.getElementById("navWeekly");
         if (el) el.textContent = dict.navWeekly;
+        el = document.getElementById("langButtonLabel");
+        if (el) el.textContent = langCode === "tr" ? "Türkçe" : "English";
         el = document.getElementById("weeklyStudentTitle");
         if (el) el.textContent = dict.studentTitle;
         el = document.getElementById("weeklyStudentCaption");
@@ -1436,6 +1603,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (themeLabel) {
             var currentTheme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
             themeLabel.textContent = currentTheme === "dark" ? dict.themeLight : dict.themeDark;
+        }
+        var mobileThemeLabel = document.getElementById("mobileThemeLabel");
+        if (mobileThemeLabel) {
+            var currentTheme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+            mobileThemeLabel.textContent = currentTheme === "dark" ? dict.themeLight : dict.themeDark;
         }
     }
 
