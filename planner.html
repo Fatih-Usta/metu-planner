@@ -2777,14 +2777,8 @@ function setDepartment() {
                         return c && Number(c.credits) > 0;
                     });
                     if (hasCreditOption) creditCourseCount += 1;
-                    var oneOfCredits = 3;
-                    if (opts.length > 0) {
-                        var allZero = opts.every(function(o) {
-                            var c = by7[o.course_code_7digit] || byCode[o.code];
-                            return c && Number(c.credits) === 0;
-                        });
-                        if (allZero) oneOfCredits = 0;
-                    }
+                    // "Any one of" slot: show 0 credits until user picks a specific course (like history 0-credit branch).
+                    var oneOfCredits = 0;
                     var elecCode = "ELEC_S" + semNum + "_" + idx;
                     var optionCodes = [];
                     (item.options || []).forEach(function(o) {
