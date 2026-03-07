@@ -53,10 +53,62 @@
       background: var(--metu-red-hover);
       border-color: var(--metu-red-hover);
     }
-    @media (max-width: 560px) {
-      .tools-card {
-        width: 100%;
+    /* ---------- Tools responsive: tablet (900px) → phone (600px, 400px) ---------- */
+    @media (max-width: 1024px) {
+      html { overflow-x: hidden; }
+      .app-shell { overflow-x: hidden; }
+    }
+    @media (max-width: 900px) {
+      body { padding: 20px 16px; }
+      .header { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .header-actions { width: 100%; flex-wrap: wrap; }
+      .tools-main { gap: 20px; }
+      .panel { padding: 18px 20px; }
+    }
+    @media (max-width: 600px) {
+      html { overflow-x: hidden; }
+      body { padding: 14px 12px; overflow-x: hidden; }
+      .header {
+        width: auto;
+        min-width: 100%;
+        margin-left: -12px;
+        margin-right: -12px;
+        padding-left: calc(12px + env(safe-area-inset-left, 0));
+        padding-right: calc(12px + env(safe-area-inset-right, 0));
+        padding-top: 4px;
+        gap: 12px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        box-sizing: border-box;
       }
+      .branding { width: 100%; min-width: 0; }
+      .title-block { max-width: 100%; }
+      .title-block h1 { font-size: 1.25rem; line-height: 1.15; }
+      .title-block span { font-size: 0.8rem; line-height: 1.35; }
+      .header-actions { width: 100%; justify-content: flex-end; }
+      .header-actions .nav-links,
+      .header-actions #langCombo,
+      .header-actions #themeToggle,
+      .header-actions #envelopeBtn,
+      .header-actions #langSelect { display: none !important; }
+      #mobileMenuBtn {
+        display: inline-flex !important;
+        flex-shrink: 0;
+        position: fixed;
+        top: calc(14px + 6px + env(safe-area-inset-top, 0));
+        right: calc(16px + env(safe-area-inset-right, 0));
+        z-index: 100000;
+      }
+      .tools-main { gap: 16px; }
+      .panel { padding: 14px; }
+      .tools-card { width: 100%; }
+    }
+    @media (max-width: 400px) {
+      body { padding: 12px 10px; }
+      .header { margin-left: -10px; margin-right: -10px; padding-left: calc(10px + env(safe-area-inset-left, 0)); padding-right: calc(10px + env(safe-area-inset-right, 0)); }
+      #mobileMenuBtn { right: calc(14px + env(safe-area-inset-right, 0)); }
+      .panel { padding: 12px; }
+      .tools-card { padding: 12px; }
     }
   </style>
 </head>
