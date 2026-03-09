@@ -405,19 +405,20 @@
     pointer-events: none;
 }
 
-.weekly-course-card[data-accent="1"]::before { background: rgba(56, 189, 248, 0.12); }   /* soft cyan */
-.weekly-course-card[data-accent="2"]::before { background: rgba(59, 130, 246, 0.12); }   /* soft blue */
-.weekly-course-card[data-accent="3"]::before { background: rgba(129, 140, 248, 0.12); }  /* soft indigo */
-.weekly-course-card[data-accent="4"]::before { background: rgba(244, 114, 182, 0.12); }  /* soft pink */
-.weekly-course-card[data-accent="5"]::before { background: rgba(251, 191, 36, 0.12); }   /* soft amber */
-.weekly-course-card[data-accent="6"]::before { background: rgba(52, 211, 153, 0.12); }   /* soft emerald */
-.weekly-course-card[data-accent="7"]::before { background: rgba(96, 165, 250, 0.10); }   /* lighter blue */
-.weekly-course-card[data-accent="8"]::before { background: rgba(148, 163, 184, 0.10); }  /* neutral gray */
-.weekly-course-card[data-accent="9"]::before { background: rgba(45, 212, 191, 0.12); }   /* teal */
-.weekly-course-card[data-accent="10"]::before { background: rgba(244, 163, 84, 0.12); }  /* warm orange */
-.weekly-course-card[data-accent="11"]::before { background: rgba(196, 181, 253, 0.12); } /* soft violet */
-.weekly-course-card[data-accent="12"]::before { background: rgba(248, 180, 180, 0.12); } /* soft red */
-.weekly-course-card[data-accent="13"]::before { background: rgba(163, 230, 53, 0.12); }  /* soft lime */
+/* Dark mode: subtle accent tints (slightly more visible) */
+.weekly-course-card[data-accent="1"]::before { background: rgba(56, 189, 248, 0.16); }   /* soft cyan */
+.weekly-course-card[data-accent="2"]::before { background: rgba(59, 130, 246, 0.16); }   /* soft blue */
+.weekly-course-card[data-accent="3"]::before { background: rgba(129, 140, 248, 0.16); }  /* soft indigo */
+.weekly-course-card[data-accent="4"]::before { background: rgba(244, 114, 182, 0.16); }  /* soft pink */
+.weekly-course-card[data-accent="5"]::before { background: rgba(251, 191, 36, 0.16); }   /* soft amber */
+.weekly-course-card[data-accent="6"]::before { background: rgba(52, 211, 153, 0.16); }   /* soft emerald */
+.weekly-course-card[data-accent="7"]::before { background: rgba(96, 165, 250, 0.14); }   /* lighter blue */
+.weekly-course-card[data-accent="8"]::before { background: rgba(148, 163, 184, 0.14); }  /* neutral gray */
+.weekly-course-card[data-accent="9"]::before { background: rgba(45, 212, 191, 0.16); }   /* teal */
+.weekly-course-card[data-accent="10"]::before { background: rgba(244, 163, 84, 0.16); }  /* warm orange */
+.weekly-course-card[data-accent="11"]::before { background: rgba(196, 181, 253, 0.16); } /* soft violet */
+.weekly-course-card[data-accent="12"]::before { background: rgba(248, 180, 180, 0.16); } /* soft red */
+.weekly-course-card[data-accent="13"]::before { background: rgba(163, 230, 53, 0.16); }  /* soft lime */
 
 /* Light mode: stronger accent so course cards match week view blocks */
 [data-theme="light"] .weekly-course-card[data-accent="1"]::before { background: rgba(56, 189, 248, 0.32); }
@@ -934,19 +935,19 @@
 }
 
 /* Accent colors – match left-side course cards; color only the inner blocks */
-.week-schedule-block[data-accent="1"] { background: rgba(56, 189, 248, 0.12); }
-.week-schedule-block[data-accent="2"] { background: rgba(59, 130, 246, 0.12); }
-.week-schedule-block[data-accent="3"] { background: rgba(129, 140, 248, 0.12); }
-.week-schedule-block[data-accent="4"] { background: rgba(244, 114, 182, 0.12); }
-.week-schedule-block[data-accent="5"] { background: rgba(251, 191, 36, 0.12); }
-.week-schedule-block[data-accent="6"] { background: rgba(52, 211, 153, 0.12); }
-.week-schedule-block[data-accent="7"] { background: rgba(96, 165, 250, 0.10); }
-.week-schedule-block[data-accent="8"] { background: rgba(148, 163, 184, 0.10); }
-.week-schedule-block[data-accent="9"] { background: rgba(45, 212, 191, 0.12); }
-.week-schedule-block[data-accent="10"] { background: rgba(244, 163, 84, 0.12); }
-.week-schedule-block[data-accent="11"] { background: rgba(196, 181, 253, 0.12); }
-.week-schedule-block[data-accent="12"] { background: rgba(248, 180, 180, 0.12); }
-.week-schedule-block[data-accent="13"] { background: rgba(163, 230, 53, 0.12); }
+.week-schedule-block[data-accent="1"] { background: rgba(56, 189, 248, 0.16); }
+.week-schedule-block[data-accent="2"] { background: rgba(59, 130, 246, 0.16); }
+.week-schedule-block[data-accent="3"] { background: rgba(129, 140, 248, 0.16); }
+.week-schedule-block[data-accent="4"] { background: rgba(244, 114, 182, 0.16); }
+.week-schedule-block[data-accent="5"] { background: rgba(251, 191, 36, 0.16); }
+.week-schedule-block[data-accent="6"] { background: rgba(52, 211, 153, 0.16); }
+.week-schedule-block[data-accent="7"] { background: rgba(96, 165, 250, 0.14); }
+.week-schedule-block[data-accent="8"] { background: rgba(148, 163, 184, 0.14); }
+.week-schedule-block[data-accent="9"] { background: rgba(45, 212, 191, 0.16); }
+.week-schedule-block[data-accent="10"] { background: rgba(244, 163, 84, 0.16); }
+.week-schedule-block[data-accent="11"] { background: rgba(196, 181, 253, 0.16); }
+.week-schedule-block[data-accent="12"] { background: rgba(248, 180, 180, 0.16); }
+.week-schedule-block[data-accent="13"] { background: rgba(163, 230, 53, 0.16); }
 
 /* Light mode: stronger accent colors so blocks don't look white on light background */
 [data-theme="light"] .week-schedule-block[data-accent="1"] { background: rgba(56, 189, 248, 0.32); }
@@ -1649,6 +1650,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             nteResultsTitle: "NTE courses that fit your schedule",
             nteResultsEmpty: "No NTE courses fit. Run Schedule first, or check dept/surname rules.",
             nteResultsHint: "Shows NTEs with at least one section that does not conflict with your current schedule and passes department + surname rules.",
+            nteResultsSearchPlaceholder: "Search NTE courses…",
             nteChangePlaceholder: "Search to change…",
             nteClearSelection: "— Clear selection —",
             nteSearchAria: "Search NTE course",
@@ -1757,6 +1759,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             nteResultsTitle: "Programınıza uyan NTE dersleri",
             nteResultsEmpty: "Uygun NTE dersi yok. Önce Programla çalıştırın veya bölüm/soyad kurallarını kontrol edin.",
             nteResultsHint: "Mevcut programınızla çakışmayan ve bölüm + soyad kurallarına uyan en az bir şubesi olan NTE'leri gösterir.",
+            nteResultsSearchPlaceholder: "NTE derslerinde ara…",
             nteChangePlaceholder: "Değiştirmek için ara…",
             nteClearSelection: "— Seçimi kaldır —",
             nteSearchAria: "NTE dersi ara",
@@ -5282,9 +5285,25 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     var hint = document.createElement("p");
                     hint.className = "weekly-messages--info";
                     hint.style.fontSize = "0.9rem";
-                    hint.style.marginBottom = "16px";
+                    hint.style.marginBottom = "12px";
                     hint.textContent = wt("nteResultsHint");
                     nteResultsContent.appendChild(hint);
+                    var searchWrap = document.createElement("div");
+                    searchWrap.style.marginBottom = "12px";
+                    var searchInput = document.createElement("input");
+                    searchInput.type = "text";
+                    searchInput.className = "weekly-nte-results-search";
+                    searchInput.style.width = "100%";
+                    searchInput.style.padding = "10px 12px";
+                    searchInput.style.borderRadius = "var(--radius-md)";
+                    searchInput.style.border = "1px solid var(--border-subtle)";
+                    searchInput.style.background = "var(--bg-input)";
+                    searchInput.style.color = "var(--text-main)";
+                    searchInput.style.fontSize = "0.9rem";
+                    searchInput.placeholder = wt("nteResultsSearchPlaceholder");
+                    searchInput.setAttribute("aria-label", wt("nteResultsSearchPlaceholder"));
+                    searchWrap.appendChild(searchInput);
+                    nteResultsContent.appendChild(searchWrap);
                     var list = document.createElement("div");
                     list.style.display = "flex";
                     list.style.flexDirection = "column";
@@ -5293,6 +5312,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         var courseInfo = weeklyCoursesByCode && weeklyCoursesByCode[n.code];
                         var courseName = (courseInfo && fixEncoding(courseInfo.name)) || fixEncoding(n.name || "") || n.code;
                         var card = document.createElement("div");
+                        card.className = "weekly-nte-result-card";
+                        card.dataset.searchCode = (n.code || "").toLowerCase();
+                        card.dataset.searchName = (courseName || "").toLowerCase();
                         card.style.background = "var(--bg)";
                         card.style.border = "1px solid var(--border-subtle)";
                         card.style.borderRadius = "var(--radius-md)";
@@ -5342,6 +5364,15 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         list.appendChild(card);
                     });
                     nteResultsContent.appendChild(list);
+                    searchInput.addEventListener("input", function () {
+                        var q = (searchInput.value || "").trim().toLowerCase();
+                        list.querySelectorAll(".weekly-nte-result-card").forEach(function (c) {
+                            var code = (c.dataset.searchCode || "");
+                            var name = (c.dataset.searchName || "");
+                            var match = !q || code.indexOf(q) !== -1 || name.indexOf(q) !== -1;
+                            c.style.display = match ? "" : "none";
+                        });
+                    });
                 }
                 nteResultsOverlay.style.display = "flex";
             }).catch(function () {

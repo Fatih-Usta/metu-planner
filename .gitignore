@@ -21,7 +21,3 @@
 # Keep data folder (necessary JSONs)
 !/data/
 !/data/**
-
-# Keep unnecessary folder (local moves)
-!/unnecessary/
-!/unnecessary/**
