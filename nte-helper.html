@@ -1,0 +1,1462 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="pageTitle">NTE Helper</title>
+  <link rel="stylesheet" href="main-ui.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .nte-helper-main {
+      display: grid;
+      grid-template-columns: minmax(260px, 360px) minmax(0, 1fr) minmax(280px, 360px);
+      gap: 16px;
+      max-width: 1400px;
+    }
+    @media (max-width: 1200px) {
+      .nte-helper-main {
+        grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+        grid-template-areas: "form results" "sections sections";
+      }
+      .nte-helper-main > .panel:first-of-type { grid-area: form; }
+      .nte-helper-main .nte-helper-results-panel { grid-area: results; }
+      .nte-helper-main .nte-helper-sections-panel { grid-area: sections; }
+    }
+    @media (max-width: 1024px) {
+      .nte-helper-main {
+        grid-template-columns: 1fr;
+        grid-template-areas: "form" "results" "sections";
+      }
+    }
+    .nte-helper-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      padding: 8px 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      background: var(--bg-input);
+      font-weight: 600;
+      font-size: 0.82rem;
+      margin-bottom: 16px;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .nte-helper-back:hover {
+      border-color: var(--metu-red);
+      background: var(--accent-soft);
+    }
+    .nte-helper-caption {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin: 0 0 20px 0;
+    }
+    .nte-helper-main .details-card {
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      background: var(--bg-elevated);
+      box-shadow: var(--shadow);
+      padding: 14px;
+    }
+    .nte-helper-main .details-card-title {
+      margin: 0 0 8px 0;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .nte-helper-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--space-4, 12px) var(--space-5, 16px);
+      align-items: end;
+      margin-bottom: 20px;
+    }
+    .nte-helper-form .nte-helper-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .nte-helper-form .nte-helper-field label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .nte-helper-form .nte-helper-field select,
+    .nte-helper-form .nte-helper-field input {
+      width: 100%;
+      min-width: 0;
+      padding: 8px 10px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+    .nte-helper-form .nte-helper-btn-wrap {
+      grid-column: 1 / -1;
+    }
+    @media (min-width: 520px) {
+      .nte-helper-form .nte-helper-btn-wrap {
+        grid-column: auto;
+      }
+    }
+    .nte-helper-btn {
+      padding: 10px 18px;
+      background: var(--metu-red);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .nte-helper-btn:hover { opacity: 0.9; }
+    .nte-helper-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .nte-helper-status {
+      min-height: 24px;
+      margin-bottom: 0;
+      margin-top: 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .nte-helper-results-panel .details-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+    }
+    .nte-helper-sections-panel {
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .nte-helper-sections-panel .details-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 280px;
+      flex: 1;
+      min-height: 0;
+    }
+    .nte-helper-sections-body {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      padding: 4px 0;
+    }
+    .nte-helper-sections-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 240px;
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .nte-helper-card.is-selected {
+      border-color: var(--metu-red);
+      box-shadow: 0 0 0 2px var(--metu-red-soft);
+    }
+    .nte-helper-sections-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .nte-helper-search-row {
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+    .nte-helper-search-label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .nte-helper-search-wrap {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .nte-helper-search-input {
+      flex: 1;
+      min-width: 0;
+      padding: 8px 10px;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      background: var(--bg-input);
+      color: var(--text-main);
+      font-size: 0.9rem;
+    }
+    .nte-helper-search-input:focus {
+      outline: none;
+      border-color: var(--metu-red);
+      box-shadow: 0 0 0 2px var(--metu-red-soft);
+    }
+    .nte-helper-search-btn {
+      padding: 8px 14px;
+      background: var(--metu-red);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .nte-helper-search-btn:hover { opacity: 0.9; }
+    .nte-helper-search-row.is-hidden {
+      display: none;
+    }
+    .nte-helper-results-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 4px;
+      max-height: min(60vh, 480px);
+    }
+    .nte-helper-results-body.scroll-theme {
+      scrollbar-gutter: stable;
+    }
+    .nte-helper-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .nte-helper-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px 14px;
+      align-items: center;
+      padding: 10px 12px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .nte-helper-card:hover {
+      border-color: var(--metu-red);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .nte-helper-card-code {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--metu-red);
+      letter-spacing: 0.02em;
+    }
+    .nte-helper-card-name {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      line-height: 1.35;
+    }
+    .nte-helper-card-credits {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg-subtle, rgba(0,0,0,0.06));
+      padding: 4px 10px;
+      border-radius: var(--radius-full, 999px);
+    }
+    .nte-helper-card-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .nte-helper-card.is-clickable {
+      cursor: pointer;
+    }
+    .nte-helper-card.is-clickable:hover {
+      border-color: var(--metu-red);
+    }
+    .nte-helper-card-expand-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      grid-column: 1 / -1;
+    }
+    .nte-helper-card-sections {
+      display: none;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .nte-helper-card-sections.is-open {
+      display: block;
+    }
+    .nte-helper-sections-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin: 0 0 8px 0;
+    }
+    .nte-helper-section-item {
+      font-size: 0.82rem;
+      padding: 8px 10px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      margin-bottom: 6px;
+    }
+    .nte-helper-section-item:last-child {
+      margin-bottom: 0;
+    }
+    .nte-helper-section-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 12px;
+      margin-top: 4px;
+    }
+    .nte-helper-section-row:first-child {
+      margin-top: 0;
+    }
+    .nte-helper-section-num {
+      font-weight: 700;
+      color: var(--metu-red);
+    }
+    .nte-helper-section-instr {
+      color: var(--text-main);
+    }
+    .nte-helper-section-meetings,
+    .nte-helper-section-rules {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .nte-helper-right-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+    .nte-helper-right-empty-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+    .nte-helper-results {
+      margin-top: 0;
+    }
+    @media (max-width: 600px) {
+      html { overflow-x: hidden; }
+      body { padding: 14px 12px; overflow-x: hidden; }
+      .header { margin-left: -12px; margin-right: -12px; padding-left: calc(12px + env(safe-area-inset-left, 0)); padding-right: calc(12px + env(safe-area-inset-right, 0)); }
+      .header-actions .nav-links,
+      .header-actions #langCombo,
+      .header-actions #themeToggle,
+      .header-actions #envelopeBtn,
+      .header-actions #langSelect { display: none !important; }
+      #mobileMenuBtn { display: inline-flex !important; position: fixed; top: calc(14px + 6px + env(safe-area-inset-top, 0)); right: calc(16px + env(safe-area-inset-right, 0)); z-index: 100000; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <div class="branding">
+        <div class="branding-mark"></div>
+        <div class="title-block">
+          <h1 id="pageTitleHeading">NTE Helper</h1>
+          <span id="pageSubtitle">Find and explore non-technical elective courses.</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button type="button" id="mobileMenuBtn" aria-label="Open menu" aria-controls="mobileDrawerOverlay" aria-expanded="false" style="display: none;">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+        <nav class="nav-links">
+          <a id="navPortal" href="index.html">Portal</a>
+          <a id="navPlanner" href="planner.html">Planner</a>
+          <a id="navWeekly" href="weekly.html">Weekly schedule</a>
+          <a id="navTools" href="tools.html" class="active">Tools</a>
+        </nav>
+        <select id="langSelect" class="header-hidden-select" tabindex="-1" aria-hidden="true">
+          <option value="tr">Türkçe</option>
+          <option value="en">English</option>
+        </select>
+        <div class="header-lang" id="langCombo">
+          <button type="button" id="langButton" class="header-lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+            <span id="langButtonLabel">English</span>
+            <span class="header-lang-chevron" aria-hidden="true">▾</span>
+          </button>
+          <div id="langList" class="course-search-dropdown" role="listbox" aria-label="Language"></div>
+        </div>
+        <button type="button" id="envelopeBtn" class="envelope-btn" aria-label="Message" title="Message">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </button>
+        <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+          <span id="themeLabel">Light theme</span>
+        </button>
+      </div>
+    </header>
+
+    <div id="mobileDrawerOverlay" class="mobile-drawer-overlay" aria-hidden="true">
+      <aside class="mobile-drawer" role="dialog" aria-modal="true" aria-label="Menu">
+        <div class="mobile-drawer-header">
+          <div class="mobile-drawer-title">Menu</div>
+          <button type="button" id="mobileDrawerClose" class="mobile-drawer-close" aria-label="Close menu">×</button>
+        </div>
+        <div class="mobile-drawer-body">
+          <div class="mobile-drawer-section">
+            <div class="mobile-drawer-section-title">Pages</div>
+            <div class="mobile-drawer-list">
+              <a class="mobile-drawer-link" href="index.html">Portal</a>
+              <a class="mobile-drawer-link" href="planner.html">Planner</a>
+              <a class="mobile-drawer-link" href="weekly.html">Weekly schedule</a>
+              <a id="mobileNavTools" class="mobile-drawer-link" href="tools.html">Tools</a>
+            </div>
+          </div>
+          <div class="mobile-drawer-section">
+            <div class="mobile-drawer-section-title">Settings</div>
+            <div class="mobile-drawer-list">
+              <div class="mobile-drawer-pill-row" aria-label="Language">
+                <button type="button" id="mobileLangTr" class="mobile-drawer-pill">Türkçe</button>
+                <button type="button" id="mobileLangEn" class="mobile-drawer-pill">English</button>
+              </div>
+              <button type="button" id="mobileContactBtn" class="mobile-drawer-btn">Contact</button>
+              <button type="button" id="mobileThemeBtn" class="mobile-drawer-btn">
+                <span>Theme</span>
+                <span id="mobileThemeLabel">Light theme</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <main class="layout nte-helper-main">
+      <section class="panel">
+        <a href="tools.html" id="backToToolsBtn" class="nte-helper-back">← Tools</a>
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" id="nteHelperPanelTitle">NTE Helper</div>
+            <p id="nteHelperCaption" class="nte-helper-caption">Find non-technical elective courses you can take. Select your engineering department to see available NTE courses.</p>
+          </div>
+        </div>
+        <div class="details-card">
+          <h3 class="details-card-title" id="nteFiltersTitle">Data</h3>
+          <div id="nteHelperStatus" class="nte-helper-status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="panel nte-helper-results-panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" id="nteHelperResultsTitle">Available NTE</div>
+          </div>
+        </div>
+        <div class="details-card">
+          <div class="nte-helper-search-row" id="nteHelperSearchRow">
+            <label for="nteSearchInput" class="nte-helper-search-label" id="nteSearchLabel">Search</label>
+            <div class="nte-helper-search-wrap">
+              <input type="text" id="nteSearchInput" class="nte-helper-search-input" placeholder="Code or name..." autocomplete="off" aria-describedby="nteSearchLabel" />
+              <button type="button" id="nteSearchBtn" class="nte-helper-search-btn"><span id="nteSearchBtnText">Search</span></button>
+            </div>
+          </div>
+          <div id="nteHelperResults" class="nte-helper-results-body scroll-theme"></div>
+        </div>
+      </section>
+      <section class="panel nte-helper-sections-panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" id="nteHelperSectionsTitle">Sections</div>
+          </div>
+        </div>
+        <div class="details-card">
+          <div id="nteHelperSectionsBody" class="nte-helper-sections-body scroll-theme">
+            <div id="nteHelperSectionsPlaceholder" class="nte-helper-sections-placeholder">
+              <span id="nteHelperSectionsPlaceholderText">Click a course to see available sections</span>
+            </div>
+            <div id="nteHelperSectionsList" class="nte-helper-sections-list" style="display:none;"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="envelopeDialog" class="envelope-dialog">
+    <div class="envelope-modal">
+      <div class="envelope-modal-header">
+        <h3 id="envelopeModalTitle" class="envelope-modal-title">Contact information</h3>
+        <button type="button" id="envelopeModalClose" class="envelope-modal-close">Close</button>
+      </div>
+      <div id="envelopeModalContent" class="envelope-modal-body scroll-theme">
+        <a href="mailto:fatih.usta@metu.edu.tr">fatih.usta@metu.edu.tr</a>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+  (function() {
+    var root = document.documentElement;
+    var STRINGS = {
+      en: {
+        pageTitle: "NTE Helper",
+        pageSubtitle: "Find and explore non-technical elective courses.",
+        navPortal: "Portal",
+        navPlanner: "Planner",
+        navWeekly: "Weekly schedule",
+        navTools: "Tools",
+        nteHelperPanelTitle: "NTE Helper",
+        nteHelperCaption: "Shows courses that are NTE-allowed and offered in the current semester.",
+        filtersTitle: "Data",
+        statusSelectDept: "Loading NTE list and active courses…",
+        statusLoading: "Loading…",
+        statusNoCourses: "No NTE-allowed courses are offered this semester.",
+        statusError: "Could not load data. Try again.",
+        resultsTitle: "Allowed & Active NTE",
+        resultsEmpty: "No matches.",
+        searchLabel: "Search",
+        searchPlaceholder: "Code or name…",
+        searchBtn: "Search",
+        sectionsLabel: "Sections",
+        sectionNum: "Section",
+        instructor: "Instructor",
+        schedule: "Schedule",
+        rulesLabel: "Rules",
+        restrictedTo: "Restricted to",
+        openToAll: "Open to all",
+        surnameRange: "Surnames",
+        yearRange: "Years",
+        clickToExpand: "Click to see available sections",
+        sectionsPlaceholder: "Click a course to see available sections",
+        sectionsFor: "Sections for",
+        colCode: "Code",
+        colName: "Course name",
+        colCredits: "Credits",
+        backToToolsBtn: "← Tools",
+        themeLight: "Light theme",
+        themeDark: "Dark theme",
+        contactBtn: "Contact",
+        contactModalTitle: "Contact information",
+        closeBtn: "Close"
+      },
+      tr: {
+        pageTitle: "NTE Yardımcı",
+        pageSubtitle: "Non-teknik seçmeli dersleri bulun ve inceleyin.",
+        navPortal: "Portal",
+        navPlanner: "Planlayıcı",
+        navWeekly: "Haftalık program",
+        navTools: "Araçlar",
+        nteHelperPanelTitle: "NTE Yardımcı",
+        nteHelperCaption: "Bu dönem açılan ve NTE listesinde olan dersleri gösterir.",
+        filtersTitle: "Veri",
+        statusSelectDept: "NTE listesi ve aktif dersler yükleniyor…",
+        statusNoCourses: "Bu dönem açılan uygun NTE dersi yok.",
+        statusError: "Veri yüklenemedi. Tekrar deneyin.",
+        resultsTitle: "Uygun & Açık NTE",
+        resultsEmpty: "Eşleşme yok.",
+        searchLabel: "Ara",
+        searchPlaceholder: "Kod veya ad…",
+        searchBtn: "Ara",
+        sectionsLabel: "Şubeler",
+        sectionNum: "Şube",
+        instructor: "Öğretim üyesi",
+        schedule: "Program",
+        rulesLabel: "Kurallar",
+        restrictedTo: "Kısıtlı",
+        openToAll: "Herkese açık",
+        surnameRange: "Soyad",
+        yearRange: "Sınıf",
+        clickToExpand: "Uygun şubeleri görmek için tıklayın",
+        sectionsPlaceholder: "Şubeleri görmek için bir derse tıklayın",
+        sectionsFor: "Şubeler",
+        colCode: "Kod",
+        colName: "Ders adı",
+        colCredits: "Kredi",
+        backToToolsBtn: "← Araçlar",
+        themeLight: "Açık tema",
+        themeDark: "Koyu tema",
+        contactBtn: "İletişim",
+        contactModalTitle: "İletişim bilgileri",
+        closeBtn: "Kapat"
+      }
+    };
+
+    function setText(id, text) {
+      var el = document.getElementById(id);
+      if (el) el.textContent = text;
+    }
+
+    function getLang() {
+      return (localStorage.getItem("lang") || "en") === "tr" ? "tr" : "en";
+    }
+
+    function applyLanguage(lang) {
+      var s = STRINGS[lang] || STRINGS.en;
+      setText("pageTitle", s.pageTitle);
+      setText("pageTitleHeading", s.pageTitle);
+      setText("pageSubtitle", s.pageSubtitle);
+      setText("navPortal", s.navPortal);
+      setText("navPlanner", s.navPlanner);
+      setText("navWeekly", s.navWeekly);
+      setText("navTools", s.navTools);
+      setText("mobileNavTools", s.navTools);
+      setText("nteHelperPanelTitle", s.nteHelperPanelTitle);
+      setText("nteHelperCaption", s.nteHelperCaption);
+      setText("lblDept", s.lblDept);
+      setText("lblSurname", s.lblSurname);
+      setText("lblTerm", s.lblTerm);
+      setText("nteFindBtnText", s.nteFindBtnText);
+      setText("nteFiltersTitle", s.filtersTitle);
+      setText("nteSearchLabel", s.searchLabel);
+      setText("nteSearchBtnText", s.searchBtn);
+      setText("nteHelperSectionsPlaceholderText", s.sectionsPlaceholder || "Click a course to see available sections");
+      var searchInput = document.getElementById("nteSearchInput");
+      if (searchInput) searchInput.placeholder = s.searchPlaceholder || "Code or name…";
+      setText("backToToolsBtn", s.backToToolsBtn);
+      setText("mobileContactBtn", s.contactBtn);
+      setText("envelopeModalTitle", s.contactModalTitle);
+      setText("envelopeModalClose", s.closeBtn);
+      document.documentElement.lang = lang === "tr" ? "tr" : "en";
+
+      var currentTheme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+      setText("themeLabel", currentTheme === "dark" ? s.themeLight : s.themeDark);
+      setText("mobileThemeLabel", currentTheme === "dark" ? s.themeLight : s.themeDark);
+
+      var langSel = document.getElementById("langSelect");
+      if (langSel) langSel.value = lang;
+      var langButtonLabel = document.getElementById("langButtonLabel");
+      if (langButtonLabel) langButtonLabel.textContent = lang === "tr" ? "Türkçe" : "English";
+      localStorage.setItem("lang", lang);
+    }
+
+    function initLangCombo() {
+      var sel = document.getElementById("langSelect");
+      var btn = document.getElementById("langButton");
+      var list = document.getElementById("langList");
+      if (!sel || !btn || !list) return;
+      list.innerHTML = "";
+      for (var i = 0; i < sel.options.length; i++) {
+        var opt = sel.options[i];
+        var item = document.createElement("button");
+        item.type = "button";
+        item.className = "course-search-item";
+        item.setAttribute("role", "option");
+        item.textContent = opt.textContent;
+        (function(v) {
+          item.addEventListener("click", function() {
+            sel.value = v;
+            applyLanguage(v);
+            list.classList.remove("is-open");
+            btn.setAttribute("aria-expanded", "false");
+          });
+        })(opt.value);
+        list.appendChild(item);
+      }
+      btn.addEventListener("click", function() {
+        var isOpen = list.classList.contains("is-open");
+        list.classList.toggle("is-open", !isOpen);
+        btn.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+      });
+      document.addEventListener("click", function(ev) {
+        if (!list.classList.contains("is-open")) return;
+        if (!btn.contains(ev.target) && !list.contains(ev.target)) {
+          list.classList.remove("is-open");
+          btn.setAttribute("aria-expanded", "false");
+        }
+      });
+      sel.addEventListener("change", function() {
+        applyLanguage(sel.value === "tr" ? "tr" : "en");
+      });
+    }
+
+    function toggleTheme() {
+      var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+      var next = current === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+      applyLanguage(getLang());
+    }
+
+    function initDrawer() {
+      var mobileMenuBtn = document.getElementById("mobileMenuBtn");
+      var mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
+      var mobileDrawerClose = document.getElementById("mobileDrawerClose");
+      var mobileThemeBtn = document.getElementById("mobileThemeBtn");
+      var mobileContactBtn = document.getElementById("mobileContactBtn");
+      var mobileLangTr = document.getElementById("mobileLangTr");
+      var mobileLangEn = document.getElementById("mobileLangEn");
+      var envelopeDialog = document.getElementById("envelopeDialog");
+
+      function setDrawerOpen(open) {
+        if (!mobileDrawerOverlay || !mobileMenuBtn) return;
+        mobileDrawerOverlay.classList.toggle("is-open", !!open);
+        mobileDrawerOverlay.setAttribute("aria-hidden", open ? "false" : "true");
+        mobileMenuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        document.documentElement.style.overflow = open ? "hidden" : "";
+      }
+
+      if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", function() { setDrawerOpen(true); });
+      if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", function() { setDrawerOpen(false); });
+      if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener("click", function(e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
+      document.addEventListener("keydown", function(e) { if (e.key === "Escape") setDrawerOpen(false); });
+
+      if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", function() {
+        toggleTheme();
+        setDrawerOpen(false);
+      });
+      if (mobileContactBtn) mobileContactBtn.addEventListener("click", function() {
+        setDrawerOpen(false);
+        if (envelopeDialog) envelopeDialog.showModal();
+      });
+      if (mobileLangTr) mobileLangTr.addEventListener("click", function() {
+        applyLanguage("tr");
+        if (mobileLangTr) mobileLangTr.classList.add("is-active");
+        if (mobileLangEn) mobileLangEn.classList.remove("is-active");
+        setDrawerOpen(false);
+      });
+      if (mobileLangEn) mobileLangEn.addEventListener("click", function() {
+        applyLanguage("en");
+        if (mobileLangTr) mobileLangTr.classList.remove("is-active");
+        if (mobileLangEn) mobileLangEn.classList.add("is-active");
+        setDrawerOpen(false);
+      });
+
+      var lang = getLang();
+      if (mobileLangTr) mobileLangTr.classList.toggle("is-active", lang === "tr");
+      if (mobileLangEn) mobileLangEn.classList.toggle("is-active", lang !== "tr");
+    }
+
+    var savedTheme = localStorage.getItem("theme");
+    var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+    root.setAttribute("data-theme", initialTheme);
+
+    var envelopeBtn = document.getElementById("envelopeBtn");
+    var envelopeDialog = document.getElementById("envelopeDialog");
+    var envelopeModalClose = document.getElementById("envelopeModalClose");
+    if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function() { envelopeDialog.showModal(); });
+    if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function() { envelopeDialog.close(); });
+    if (envelopeDialog) envelopeDialog.addEventListener("click", function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
+
+    var themeToggle = document.getElementById("themeToggle");
+    if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
+
+    initLangCombo();
+    initDrawer();
+    applyLanguage(getLang());
+
+    // --- NTE Helper logic ---
+    var NTE_PREFIXES = [
+      "ARCH", "CP", "ID", "PHYS", "SOC", "PSY", "MATH", "HIST", "PHIL",
+      "ADM", "ECON", "BA", "IR", "SSME", "FLE", "PES", "EDS",
+      "ARAB", "FREN", "GERM", "JA", "ITAL", "RUS", "SPAN", "HEB", "GRE",
+      "CHN", "PERS", "ENG", "TURK", "THEA", "SLTP", "MUS", "INST",
+      "STPS", "ARME", "CEIT", "TKPR"
+    ];
+    function getCoursePrefix(code) {
+      if (!code || typeof code !== "string") return "";
+      var m = code.match(/^[A-Za-z]+/);
+      return m ? m[0].toUpperCase() : "";
+    }
+    function isCourseNTE(code) {
+      var prefix = getCoursePrefix(code);
+      return NTE_PREFIXES.indexOf(prefix) !== -1;
+    }
+    function courseAllowedAsNTE(code) {
+      if (!code || typeof code !== "string") return false;
+      var norm = (code || "").replace(/\s+/g, "").toUpperCase();
+      if (nteAllowanceSet && nteAllowanceSet.size > 0) return nteAllowanceSet.has(norm);
+      return isCourseNTE(code);
+    }
+    function isUndergraduateCourse(code) {
+      if (!code || typeof code !== "string") return true;
+      var m = code.match(/(\d+)$/);
+      if (!m) return true;
+      var num = parseInt(m[1], 10);
+      return num < 500;
+    }
+
+    var programsData = null;
+    var curriculumsData = null;
+    var coursesData = null;
+    var sectionsByTerm = {};
+    var lastNteResultList = null;
+    var programCodeToGivenDept = {};
+    /** Set of normalized course codes from scripts/nte-allowance-list.json (e.g. "ARCH324"). Null = use NTE_PREFIXES. */
+    var nteAllowanceSet = null;
+    /** Dept code (e.g. "863") -> abbrev (e.g. "ARME") from nte-allowance-list or scripts/department_codes.json. */
+    var nteCodeToAbbrev = {};
+    /** given_dept / value -> full name (e.g. "Archaeometry/Arkeometri") from sections or department_codes.json. */
+    var givenDeptToDeptText = {};
+    /** Loaded from scripts/department_codes.json so codes have names/abbrevs. */
+    var departmentCodesData = null;
+    /** Fallback dept code -> abbrev when nte-allowance-list.json is not loaded (so ARME etc. still display correctly). */
+    var NTE_DEPT_ABBREV_FALLBACK = { "120": "ARCH", "121": "CP", "125": "ID", "230": "PHYS", "232": "SOC", "233": "PSY", "236": "MATH", "240": "HIST", "241": "PHIL", "310": "ADM", "311": "ECON", "312": "BA", "314": "IR", "420": "SSME", "430": "CEIT", "450": "FLE", "453": "PES", "454": "EDS", "460": "MSE", "602": "ARAB", "603": "FREN", "604": "GERM", "605": "JA", "606": "ITAL", "607": "RUS", "608": "SPAN", "609": "HEB", "610": "GRE", "611": "CHN", "612": "PERS", "639": "ENG", "642": "TURK", "643": "THEA", "644": "SLTP", "651": "MUS", "682": "INST", "795": "TKPR", "831": "STPS", "863": "ARME" };
+
+    function getCourseDisplayCode(c) {
+      if (!c) return "";
+      var code7 = String(c.course_code_7digit || "").trim();
+      if (code7.length >= 6) {
+        var deptVal = code7.substring(0, 3);
+        var ab = nteCodeToAbbrev[deptVal] || NTE_DEPT_ABBREV_FALLBACK[deptVal];
+        if (ab) return ab + " " + code7.substring(code7.length - 3);
+      }
+      return (c.code && String(c.code).trim()) || "";
+    }
+
+    function buildMap7ToCode(courses) {
+      var map = {};
+      (courses || []).forEach(function(c) {
+        var k = c.course_code_7digit != null ? String(c.course_code_7digit).trim() : "";
+        var v = (c.code && String(c.code).trim()) || "";
+        if (k && v) map[k] = v;
+      });
+      return map;
+    }
+
+    function getCurriculumCourseCodesForProgram(programCode, curriculums, map7toCode) {
+      var set = {};
+      if (!programCode || !curriculums || !curriculums.curriculums) return set;
+      var curriculum = curriculums.curriculums[programCode];
+      if (!curriculum || !curriculum.semesters || !curriculum.semesters.length) return set;
+      curriculum.semesters.forEach(function(sem) {
+        var list = sem.courses || [];
+        list.forEach(function(item) {
+          if (item.type === "one_of" && item.options && item.options.length) {
+            item.options.forEach(function(o) {
+              if (!o) return;
+              var c = null;
+              if (o.course_code_7digit != null && map7toCode[String(o.course_code_7digit)]) c = map7toCode[String(o.course_code_7digit)];
+              if (!c && o.code) c = (o.code || "").trim();
+              if (c) set[c] = true;
+            });
+            return;
+          }
+          if (item.type === "elective") return;
+          var code = item.code ? String(item.code).trim() : "";
+          if (code) set[code] = true;
+        });
+      });
+      return set;
+    }
+
+    function sectionRuleAcceptsUser(rule, userGivenDept, surnameTwo) {
+      var dept = (rule.given_dept || "").trim().toUpperCase();
+      if (dept !== "ALL" && dept !== userGivenDept) return false;
+      var start = (rule.start_char || "AA").trim().toUpperCase();
+      var end = (rule.end_char || "ZZ").trim().toUpperCase();
+      var s = (surnameTwo || "AA").trim().toUpperCase();
+      if (s.length < 2) s = (s + "A").substring(0, 2);
+      return s >= start && s <= end;
+    }
+
+    function loadProgramsIntoDeptSelect() {
+      var sel = document.getElementById("nteDeptSelect");
+      if (!sel) return;
+      fetch("data/programs.json")
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          programsData = data;
+          sel.innerHTML = "";
+          var opt0 = document.createElement("option");
+          opt0.value = "";
+          opt0.textContent = "—";
+          sel.appendChild(opt0);
+          var faculties = data.faculties || {};
+          var engineeringOnly = "Faculty of Engineering";
+          if (faculties[engineeringOnly] && faculties[engineeringOnly].programs) {
+            var fac = faculties[engineeringOnly];
+            var group = document.createElement("optgroup");
+            group.label = fac.name || engineeringOnly;
+            fac.programs.forEach(function(p) {
+              var opt = document.createElement("option");
+              opt.value = p.code;
+              opt.textContent = p.name || p.code;
+              group.appendChild(opt);
+            });
+            sel.appendChild(group);
+          }
+        })
+        .catch(function() {});
+    }
+
+    function ensureTermOptions() {
+      var sel = document.getElementById("nteTermSelect");
+      if (!sel || sel.options.length > 1) return;
+      sel.innerHTML = "";
+      var terms = ["20252", "20251", "20242", "20241"];
+      terms.forEach(function(t) {
+        var opt = document.createElement("option");
+        opt.value = t;
+        opt.textContent = t;
+        sel.appendChild(opt);
+      });
+    }
+
+    function showSectionsInRightPane(course, s) {
+      var placeholder = document.getElementById("nteHelperSectionsPlaceholder");
+      var listEl = document.getElementById("nteHelperSectionsList");
+      var titleEl = document.getElementById("nteHelperSectionsTitle");
+      if (!placeholder || !listEl) return;
+      var secs = course.acceptingSections || [];
+      if (titleEl) titleEl.textContent = (course.code || "—") + " — " + (s.sectionsLabel || "Sections");
+      listEl.innerHTML = "";
+      if (secs.length === 0) {
+        placeholder.style.display = "flex";
+        listEl.style.display = "none";
+        return;
+      }
+      placeholder.style.display = "none";
+      listEl.style.display = "block";
+      secs.forEach(function(sec) {
+        var item = document.createElement("div");
+        item.className = "nte-helper-section-item";
+        var row1 = document.createElement("div");
+        row1.className = "nte-helper-section-row";
+        var numSpan = document.createElement("span");
+        numSpan.className = "nte-helper-section-num";
+        numSpan.textContent = (s.sectionNum || "Section") + " " + (sec.section || "—");
+        var instrText = [fixTurkishEncoding(sec.instr1), fixTurkishEncoding(sec.instr2)].filter(Boolean).join(" / ");
+        var instrSpan = document.createElement("span");
+        instrSpan.className = "nte-helper-section-instr";
+        instrSpan.textContent = (s.instructor || "Instructor") + ": " + (instrText || "—");
+        row1.appendChild(numSpan);
+        row1.appendChild(instrSpan);
+        item.appendChild(row1);
+        if (sec.meetings && sec.meetings.length) {
+          var row2 = document.createElement("div");
+          row2.className = "nte-helper-section-row nte-helper-section-meetings";
+          var parts = sec.meetings.map(function(m) {
+            return (m.day || "") + " " + (m.start || "") + "-" + (m.end || "") + (m.room ? " (" + m.room + ")" : "");
+          }).filter(Boolean);
+          row2.textContent = (s.schedule || "Schedule") + ": " + (parts.join("; ") || "—");
+          item.appendChild(row2);
+        }
+        var rules = sec.rules || [];
+        if (rules.length > 0) {
+          var row3 = document.createElement("div");
+          row3.className = "nte-helper-section-row nte-helper-section-rules";
+          var ruleParts = rules.map(function(r) {
+            var gd = (r.given_dept || "").trim().toUpperCase();
+            var startChar = (r.start_char || "AA").trim().toUpperCase();
+            var endChar = (r.end_char || "ZZ").trim().toUpperCase();
+            var minYear = (r.min_year || "").toString().trim();
+            var maxYear = (r.max_year || "").toString().trim();
+            var parts = [];
+            if (gd && gd !== "ALL") parts.push((s.restrictedTo || "Restricted to") + " " + gd);
+            else parts.push(s.openToAll || "Open to all");
+            if (startChar !== "AA" || endChar !== "ZZ") parts.push((s.surnameRange || "Surnames") + " " + startChar + "-" + endChar);
+            if (minYear && maxYear && (minYear !== "0" || maxYear !== "95")) parts.push((s.yearRange || "Years") + " " + minYear + "-" + maxYear);
+            return parts.join("; ");
+          });
+          row3.textContent = (s.rulesLabel || "Rules") + ": " + ruleParts.join(" | ");
+          item.appendChild(row3);
+        }
+        listEl.appendChild(item);
+      });
+    }
+
+    function renderNteList(listToShow, s) {
+      var resultsEl = document.getElementById("nteHelperResults");
+      var titleEl = document.getElementById("nteHelperResultsTitle");
+      if (!resultsEl) return;
+      resultsEl.innerHTML = "";
+      document.querySelectorAll(".nte-helper-card.is-selected").forEach(function(el) { el.classList.remove("is-selected"); });
+      var placeholder = document.getElementById("nteHelperSectionsPlaceholder");
+      var listEl = document.getElementById("nteHelperSectionsList");
+      var sectionsTitleEl = document.getElementById("nteHelperSectionsTitle");
+      if (placeholder) placeholder.style.display = "flex";
+      if (listEl) { listEl.style.display = "none"; listEl.innerHTML = ""; }
+      if (sectionsTitleEl) sectionsTitleEl.textContent = (s.sectionsLabel || "Sections");
+      var total = lastNteResultList ? lastNteResultList.length : listToShow.length;
+      if (titleEl) {
+        if (listToShow.length === total)
+          titleEl.textContent = (s.resultsTitle || "Available NTE") + " (" + listToShow.length + ")";
+        else
+          titleEl.textContent = (s.resultsTitle || "Available NTE") + " (" + listToShow.length + " / " + total + ")";
+      }
+      var listWrap = document.createElement("div");
+      listWrap.className = "nte-helper-list";
+      listWrap.setAttribute("role", "list");
+      listToShow.forEach(function(c) {
+        var wrap = document.createElement("div");
+        wrap.className = "nte-helper-card-wrap";
+        var card = document.createElement("div");
+        card.className = "nte-helper-card" + (c.acceptingSections && c.acceptingSections.length ? " is-clickable" : "");
+        card.setAttribute("role", "listitem");
+        var codeSpan = document.createElement("span");
+        codeSpan.className = "nte-helper-card-code";
+        codeSpan.textContent = c.code || "—";
+        var nameSpan = document.createElement("span");
+        nameSpan.className = "nte-helper-card-name";
+        nameSpan.textContent = (c.name || "").trim() || "—";
+        var credSpan = document.createElement("span");
+        credSpan.className = "nte-helper-card-credits";
+        credSpan.textContent = (c.credits != null ? c.credits : "—") + " cr";
+        card.appendChild(codeSpan);
+        card.appendChild(nameSpan);
+        card.appendChild(credSpan);
+        if (c.acceptingSections && c.acceptingSections.length) {
+          var hint = document.createElement("div");
+          hint.className = "nte-helper-card-expand-hint";
+          hint.textContent = (s.clickToExpand || "Click to see available sections");
+          hint.setAttribute("aria-hidden", "true");
+          card.appendChild(hint);
+        }
+        wrap.appendChild(card);
+        if (c.acceptingSections && c.acceptingSections.length) {
+          card.addEventListener("click", function() {
+            document.querySelectorAll(".nte-helper-card.is-selected").forEach(function(el) { el.classList.remove("is-selected"); });
+            card.classList.add("is-selected");
+            showSectionsInRightPane(c, s);
+          });
+          card.setAttribute("aria-expanded", "false");
+        }
+        listWrap.appendChild(wrap);
+      });
+      resultsEl.appendChild(listWrap);
+    }
+
+    function runSearch() {
+      if (!lastNteResultList || !lastNteResultList.length) return;
+      var searchInput = document.getElementById("nteSearchInput");
+      var query = (searchInput && searchInput.value) ? String(searchInput.value).trim() : "";
+      var s = (getLang() === "tr" ? STRINGS.tr : STRINGS.en);
+      var filtered = query === "" ? lastNteResultList : lastNteResultList.filter(function(c) {
+        var q = query.toUpperCase();
+        var code = (c.code || "").toUpperCase();
+        var name = (c.name || "").toUpperCase();
+        var code7 = (c.course_code_7digit || "").toString();
+        return code.indexOf(q) !== -1 || name.indexOf(q) !== -1 || code7.indexOf(q) !== -1;
+      });
+      renderNteList(filtered, s);
+    }
+
+    function normalizeCourseCode(x) {
+      return String(x || "").replace(/\s+/g, "").toUpperCase();
+    }
+
+    /** Fix UTF-8 misinterpreted as Latin-1: each char's code point = byte, decode as UTF-8. */
+    function fixTurkishEncoding(s) {
+      if (!s || typeof s !== "string") return s;
+      for (var i = 0; i < s.length; i++) {
+        if (s.charCodeAt(i) > 255) return s;
+      }
+      try {
+        var bytes = new Uint8Array(s.length);
+        for (var i = 0; i < s.length; i++) bytes[i] = s.charCodeAt(i);
+        return new TextDecoder("utf-8").decode(bytes);
+      } catch (e) {
+        return s;
+      }
+    }
+
+    function extractEnglishName(rawName) {
+      var s = String(rawName || "").trim();
+      if (!s) return "";
+      var idx = s.indexOf(" (");
+      if (idx === -1) idx = s.indexOf("(");
+      if (idx > 0) return s.substring(0, idx).trim();
+      return s;
+    }
+
+    function buildAllowedActiveList(nteData, offeringsData, coursesData) {
+      var allowed = new Set((nteData && nteData.courseCodesNormalized) ? nteData.courseCodesNormalized.map(normalizeCourseCode) : []);
+      if (!allowed.size && nteData && Array.isArray(nteData.courseCodes)) {
+        nteData.courseCodes.forEach(function(cc) { allowed.add(normalizeCourseCode(cc)); });
+      }
+
+      var code7ToCredits = {};
+      if (coursesData && Array.isArray(coursesData.courses)) {
+        coursesData.courses.forEach(function(c) {
+          var code7 = (c && c.course_code_7digit != null) ? String(c.course_code_7digit).trim() : "";
+          var cr = (c && c.credits != null) ? Number(c.credits) : null;
+          if (code7 && cr != null && !isNaN(cr)) code7ToCredits[code7] = cr;
+        });
+      }
+
+      var deptCodeToAbbrev = {};
+      (nteData && Array.isArray(nteData.departments) ? nteData.departments : []).forEach(function(d) {
+        var code = (d && d.code != null) ? String(d.code).trim() : "";
+        var ab = (d && d.abbrev) ? String(d.abbrev).trim().toUpperCase() : "";
+        if (code && ab) deptCodeToAbbrev[code] = ab;
+      });
+
+      var out = [];
+      var deps = (offeringsData && Array.isArray(offeringsData.departments)) ? offeringsData.departments : [];
+      deps.forEach(function(dep) {
+        var courses = Array.isArray(dep.courses) ? dep.courses : [];
+        courses.forEach(function(c) {
+          var code7 = String((c && (c.internal_code || c.code)) || "").trim();
+          if (!code7 || code7.length < 6) return;
+          var deptVal = code7.substring(0, 3);
+          var ab = deptCodeToAbbrev[deptVal] || "";
+          if (!ab) return;
+          var num3 = code7.substring(code7.length - 3);
+          var displayCode = ab + " " + num3;
+          var norm = normalizeCourseCode(displayCode);
+          if (!allowed.has(norm)) return;
+
+          var rawName = (c && c.name) ? String(c.name).trim() : "";
+          var item = {
+            code: displayCode,
+            name: extractEnglishName(rawName) || rawName || displayCode,
+            credits: (code7ToCredits[code7] != null ? code7ToCredits[code7] : null),
+            course_code_7digit: code7
+          };
+          out.push(item);
+        });
+      });
+
+      out.sort(function(a, b) { return (a.code || "").localeCompare(b.code || ""); });
+      return { allowedCount: allowed.size, items: out };
+    }
+
+    function loadAllowedActiveAndRender() {
+      var statusEl = document.getElementById("nteHelperStatus");
+      var titleEl = document.getElementById("nteHelperResultsTitle");
+      var searchRow = document.getElementById("nteHelperSearchRow");
+      var s = (getLang() === "tr" ? STRINGS.tr : STRINGS.en);
+
+      if (statusEl) statusEl.textContent = s.statusSelectDept || "Loading…";
+      if (searchRow) searchRow.classList.remove("is-hidden");
+
+      function fetchJson(url) {
+        return fetch(url).then(function(r) { if (!r.ok) throw new Error(url); return r.json(); });
+      }
+
+      Promise.all([
+        fetchJson("data/nte-allowance-list.json"),
+        fetchJson("data/oibs_offerings_all_20252.json"),
+        fetchJson("data/courses.json"),
+        fetchJson("data/oibs_sections_all_20252_full.json").catch(function() { return null; })
+      ]).then(function(results) {
+        var nteData = results[0] || {};
+        var offeringsData = results[1] || {};
+        var coursesData = results[2] || {};
+        var sectionsData = results[3] || null;
+        var built = buildAllowedActiveList(nteData, offeringsData, coursesData);
+
+        var code7ToSections = {};
+        if (sectionsData && Array.isArray(sectionsData.departments)) {
+          (sectionsData.departments || []).forEach(function(dept) {
+            (dept.courses || []).forEach(function(course) {
+              var code7 = String((course.internal_code || course.code) || "").trim();
+              if (!code7) return;
+              if (!code7ToSections[code7]) code7ToSections[code7] = [];
+              (course.sections || []).forEach(function(sec) {
+                var sn = sec.section;
+                if (sn == null) return;
+                code7ToSections[code7].push({
+                  section: String(typeof sn === "object" ? (sn.section || sn) : sn),
+                  instr1: String(sec.instr1 || "").trim(),
+                  instr2: String(sec.instr2 || "").trim(),
+                  meetings: sec.meetings || [],
+                  rules: sec.rules || []
+                });
+              });
+            });
+          });
+        }
+        built.items.forEach(function(item) {
+          var code7 = (item.course_code_7digit != null) ? String(item.course_code_7digit).trim() : "";
+          var secs = (code7 && code7ToSections[code7]) ? code7ToSections[code7] : [];
+          item.acceptingSections = secs;
+        });
+
+        lastNteResultList = built.items;
+
+        if (titleEl) titleEl.textContent = (s.resultsTitle || "Allowed & Active NTE") + " (" + built.items.length + ")";
+
+        if (statusEl) {
+          var sem = (offeringsData && offeringsData.semester) ? String(offeringsData.semester) : "—";
+          statusEl.textContent = "Semester " + sem + ". Allowed list: " + built.allowedCount + " codes. Active & allowed: " + built.items.length + ".";
+        }
+
+        renderNteList(built.items, s);
+      }).catch(function() {
+        lastNteResultList = null;
+        if (titleEl) titleEl.textContent = s.resultsTitle || "Allowed & Active NTE";
+        if (statusEl) statusEl.textContent = s.statusError || "Could not load data.";
+        renderNteList([], s);
+      });
+    }
+
+    function runNTEHelper() {
+      var deptSelect = document.getElementById("nteDeptSelect");
+      var surnameInput = document.getElementById("nteSurname");
+      var termSelect = document.getElementById("nteTermSelect");
+      var statusEl = document.getElementById("nteHelperStatus");
+      var resultsEl = document.getElementById("nteHelperResults");
+      var btn = document.getElementById("nteFindBtn");
+      var lang = getLang();
+      var s = (lang === "tr" ? STRINGS.tr : STRINGS.en);
+
+      var programCode = deptSelect ? deptSelect.value : "";
+      if (!programCode) {
+        if (statusEl) statusEl.textContent = s.statusSelectDept || "Select department and click Find.";
+        if (resultsEl) resultsEl.innerHTML = "";
+        return;
+      }
+
+      var surname = (surnameInput && surnameInput.value) ? String(surnameInput.value).trim() : "";
+      var surnameTwo = surname.length >= 2 ? (surname.substring(0, 2)).toUpperCase() : "AA";
+      var termCode = (termSelect && termSelect.value) ? termSelect.value : "20252";
+
+      if (statusEl) statusEl.textContent = s.statusLoading || "Loading…";
+      if (resultsEl) resultsEl.innerHTML = "";
+      if (btn) btn.disabled = true;
+
+      function done(err, list) {
+        if (btn) btn.disabled = false;
+        if (err) {
+          if (statusEl) statusEl.textContent = s.statusError || "Could not load data.";
+          if (resultsEl) {
+            resultsEl.innerHTML = "";
+            lastNteResultList = null;
+            var searchRow = document.getElementById("nteHelperSearchRow");
+            if (searchRow) searchRow.classList.add("is-hidden");
+            var titleEl = document.getElementById("nteHelperResultsTitle");
+            if (titleEl) titleEl.textContent = s.resultsTitle || "Available NTE";
+            var empty = document.createElement("div");
+            empty.className = "nte-helper-right-empty";
+            empty.setAttribute("role", "status");
+            var p = document.createElement("p");
+            p.textContent = s.resultsEmpty || "Select your department and click Find to see available courses.";
+            empty.appendChild(p);
+            resultsEl.appendChild(empty);
+          }
+          return;
+        }
+        if (statusEl) statusEl.textContent = "";
+        if (!list || !list.length) {
+          if (statusEl) statusEl.textContent = s.statusNoCourses || "No available NTE courses for your department and surname this semester.";
+        }
+        if (!resultsEl) return;
+        var searchRow = document.getElementById("nteHelperSearchRow");
+        if (list && list.length) {
+          lastNteResultList = list;
+          if (searchRow) searchRow.classList.remove("is-hidden");
+          var searchInput = document.getElementById("nteSearchInput");
+          if (searchInput) searchInput.value = "";
+        } else {
+          lastNteResultList = null;
+          if (searchRow) searchRow.classList.add("is-hidden");
+        }
+        resultsEl.innerHTML = "";
+        var titleEl = document.getElementById("nteHelperResultsTitle");
+        if (titleEl) titleEl.textContent = (s.resultsTitle || "Available NTE") + (list && list.length ? " (" + list.length + ")" : "");
+        if (!list || !list.length) {
+          var empty = document.createElement("div");
+          empty.className = "nte-helper-right-empty";
+          empty.setAttribute("role", "status");
+          empty.innerHTML = "<svg class=\"nte-helper-right-empty-icon\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 19.5A2.5 2.5 0 0 1 6.5 17H20\"/><path d=\"M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z\"/><line x1=\"8\" y1=\"7\" x2=\"16\" y2=\"7\"/><line x1=\"8\" y1=\"11\" x2=\"16\" y2=\"11\"/></svg>";
+          var p = document.createElement("p");
+          p.textContent = s.resultsEmpty || "Select your department and click Find to see available courses.";
+          empty.appendChild(p);
+          resultsEl.appendChild(empty);
+          return;
+        }
+        renderNteList(list, s);
+      }
+
+      var steps = [];
+      if (!curriculumsData) steps.push({ name: "curriculums", url: "data/curriculums.json" });
+      if (!coursesData) steps.push({ name: "courses", url: "data/courses.json" });
+      if (!sectionsByTerm[termCode]) steps.push({ name: "sections", url: "data/oibs_sections_all_" + termCode + "_full.json" });
+      if (!nteAllowanceSet) steps.push({ name: "nteAllowance", url: "scripts/nte-allowance-list.json", optional: true });
+      if (!departmentCodesData) steps.push({ name: "departmentCodes", url: "scripts/department_codes.json", optional: true });
+
+      if (steps.length === 0) {
+        computeAndShow(programCode, surnameTwo, termCode, done);
+        return;
+      }
+
+      var loaded = 0;
+      function onStepDone() {
+        loaded++;
+        if (loaded === steps.length) computeAndShow(programCode, surnameTwo, termCode, done);
+      }
+      steps.forEach(function(step) {
+        fetch(step.url)
+          .then(function(r) { if (!r.ok && step.optional) throw new Error("optional"); return r.json(); })
+          .then(function(data) {
+            if (step.name === "curriculums") curriculumsData = data;
+            else if (step.name === "courses") coursesData = data;
+            else if (step.name === "sections") sectionsByTerm[termCode] = data;
+            else if (step.name === "nteAllowance" && data) {
+              var arr = data.courseCodesNormalized || data.courseCodes || [];
+              nteAllowanceSet = new Set(arr.map(function(x) { return (String(x || "").replace(/\s+/g, "").toUpperCase()); }));
+              (data.departments || []).forEach(function(d) {
+                var code = d.code != null ? String(d.code).trim() : "";
+                var abbrev = (d.abbrev && String(d.abbrev).trim()) || "";
+                if (code && abbrev) nteCodeToAbbrev[code] = abbrev;
+              });
+            }
+            else if (step.name === "departmentCodes" && data) {
+              departmentCodesData = data;
+              (data.departments || []).forEach(function(d) {
+                var v = (d.value != null) ? String(d.value).trim() : "";
+                var a = (d.abbrev && String(d.abbrev).trim()) || "";
+                if (v && a) nteCodeToAbbrev[v] = a;
+              });
+            }
+            onStepDone();
+          })
+          .catch(function() {
+            if (step.optional) onStepDone();
+            else done(true);
+          });
+      });
+    }
+
+    function computeAndShow(programCode, surnameTwo, termCode, done) {
+      try {
+        var sectionsData = sectionsByTerm[termCode];
+        if (!sectionsData || !coursesData || !coursesData.courses) {
+          done(true);
+          return;
+        }
+        var map7toCode = buildMap7ToCode(coursesData.courses);
+        var inCurriculum = getCurriculumCourseCodesForProgram(programCode, curriculumsData, map7toCode);
+
+        var courseBy7 = {};
+        (coursesData.courses || []).forEach(function(c) {
+          var k = c.course_code_7digit != null ? String(c.course_code_7digit).trim() : "";
+          if (!k || !courseAllowedAsNTE(c.code) || !isUndergraduateCourse(c.code)) return;
+          var cred = c.credits != null ? Number(c.credits) : 0;
+          if (cred <= 0) return;
+          courseBy7[k] = c;
+        });
+
+        givenDeptToDeptText = {};
+        if (departmentCodesData && departmentCodesData.departments) {
+          departmentCodesData.departments.forEach(function(d) {
+            var val = (d.value != null) ? String(d.value).trim() : "";
+            var text = (d.text && String(d.text).trim()) || "";
+            var abbrev = (d.abbrev && String(d.abbrev).trim()) || "";
+            if (val && text) {
+              givenDeptToDeptText[val] = text;
+              if (abbrev) givenDeptToDeptText[abbrev] = text;
+            }
+          });
+        }
+        (sectionsData.departments || []).forEach(function(dept) {
+          var val = (dept.value != null) ? String(dept.value) : "";
+          var text = (dept.text && String(dept.text).trim()) || "";
+          if (val && text) {
+            givenDeptToDeptText[val] = text;
+            var abbrev = nteCodeToAbbrev[val] || NTE_DEPT_ABBREV_FALLBACK[val];
+            if (abbrev) givenDeptToDeptText[abbrev] = text;
+          }
+        });
+
+        var programCodeToGivenDeptLocal = {};
+        var code7ToSections = {};
+        (sectionsData.departments || []).forEach(function(dept) {
+          var val = (dept.value != null) ? String(dept.value) : "";
+          (dept.courses || []).forEach(function(course) {
+            var code7 = String((course.internal_code || course.code) || "").trim();
+            if (!code7) return;
+            if (!code7ToSections[code7]) code7ToSections[code7] = { sections: [], departmentValue: val, courseName: (course.name && String(course.name).trim()) || "" };
+            (course.sections || []).forEach(function(sec) {
+              var rules = sec.rules || [];
+              if (rules.length && val && !programCodeToGivenDeptLocal[val])
+                programCodeToGivenDeptLocal[val] = (rules[0].given_dept || "").trim().toUpperCase();
+              code7ToSections[code7].sections.push({ section: sec, rules: rules });
+            });
+          });
+        });
+        programCodeToGivenDept = programCodeToGivenDeptLocal;
+
+        function deptCodeToAbbrev(deptCode) { return nteCodeToAbbrev[deptCode] || NTE_DEPT_ABBREV_FALLBACK[deptCode] || ""; }
+        for (var code7 in code7ToSections) {
+          if (courseBy7[code7]) continue;
+          var info = code7ToSections[code7];
+          var deptCode = code7.length >= 3 ? code7.substring(0, 3) : "";
+          var courseNum = code7.length >= 3 ? code7.substring(code7.length - 3) : code7;
+          var abbrev = deptCodeToAbbrev(deptCode);
+          if (!abbrev) continue;
+          var derivedCode = abbrev + " " + courseNum;
+          var derivedNorm = (derivedCode || "").replace(/\s+/g, "").toUpperCase();
+          if (!nteAllowanceSet || !nteAllowanceSet.size || !nteAllowanceSet.has(derivedNorm)) continue;
+          if (!isUndergraduateCourse(derivedCode)) continue;
+          courseBy7[code7] = { code: derivedCode, name: info.courseName || ("Course " + code7), credits: 3, course_code_7digit: code7 };
+        }
+
+        var available = [];
+        Object.keys(courseBy7).forEach(function(code7) {
+          var catalogCourse = courseBy7[code7];
+          if (inCurriculum[catalogCourse.code]) return;
+          var sectionInfo = code7ToSections[code7];
+          if (!sectionInfo || !sectionInfo.sections.length) return;
+          var anySectionRestricted = false;
+          sectionInfo.sections.forEach(function(sec) {
+            (sec.rules || []).forEach(function(rule) {
+              var gd = (rule.given_dept || "").trim().toUpperCase();
+              if (gd && gd !== "ALL") anySectionRestricted = true;
+            });
+          });
+          if (anySectionRestricted) return;
+          var acceptingSections = [];
+          sectionInfo.sections.forEach(function(sec) {
+            var rules = sec.rules || [];
+            var sectionIsOpen = true;
+            if (rules.length > 0) {
+              rules.forEach(function(rule) {
+                var gd = (rule.given_dept || "").trim().toUpperCase();
+                if (gd && gd !== "ALL") sectionIsOpen = false;
+              });
+            }
+            if (sectionIsOpen && sec.section) {
+              var raw = sec.section;
+              acceptingSections.push({
+                section: String(raw.section || ""),
+                instr1: String(raw.instr1 || "").trim(),
+                instr2: String(raw.instr2 || "").trim(),
+                meetings: raw.meetings || []
+              });
+            }
+          });
+          if (acceptingSections.length) {
+            var code7Str = String(catalogCourse.course_code_7digit || "").trim();
+            var displayCode = getCourseDisplayCode(catalogCourse);
+            var rawName = (catalogCourse.name && String(catalogCourse.name).trim()) || "";
+            var displayName = rawName;
+            if (displayCode && code7Str.length >= 6 && (!rawName || /^\d{6,7}$/.test(rawName))) {
+              var courseNum3 = code7Str.substring(code7Str.length - 3);
+              var abbrevForDisplay = (nteCodeToAbbrev[code7Str.substring(0, 3)] || NTE_DEPT_ABBREV_FALLBACK[code7Str.substring(0, 3)]) || "";
+              if (abbrevForDisplay) displayName = (givenDeptToDeptText[abbrevForDisplay] || abbrevForDisplay) + " " + courseNum3;
+            }
+            var item = { code: displayCode, name: displayName, credits: catalogCourse.credits, acceptingSections: acceptingSections, course_code_7digit: code7Str || null };
+            available.push(item);
+          }
+        });
+        available.sort(function(a, b) { return (a.code || "").localeCompare(b.code || ""); });
+        done(null, available);
+      } catch (e) {
+        done(true);
+      }
+    }
+
+    // New flow: load allowed list and offerings immediately.
+    loadAllowedActiveAndRender();
+
+    var searchBtn = document.getElementById("nteSearchBtn");
+    var searchInput = document.getElementById("nteSearchInput");
+    if (searchBtn) searchBtn.addEventListener("click", runSearch);
+    if (searchInput) searchInput.addEventListener("input", runSearch);
+    if (searchInput) searchInput.addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        runSearch();
+      }
+    });
+
+    var titleEl = document.getElementById("nteHelperResultsTitle");
+    if (titleEl) titleEl.textContent = (getLang() === "tr" ? STRINGS.tr : STRINGS.en).resultsTitle || "Allowed & Active NTE";
+  })();
+  </script>
+</body>
+</html>

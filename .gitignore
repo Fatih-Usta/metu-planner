@@ -6,9 +6,6 @@
 !/course-details.html
 !/.gitignore
 !/.gitattributes
-!/.editorconfig
-!/.vscode
-!/.vscode/settings.json
 !/index.html
 !/planner.html
 !/weekly.html
@@ -17,6 +14,7 @@
 !/oibs_sections_20252.json
 !/schedule_worker.js
 !/changelog.html
+!/nte-helper.html
 
 # Keep data folder (necessary JSONs)
 !/data/
