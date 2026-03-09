@@ -809,7 +809,7 @@ select:focus {
     max-width: 100% !important;
 }
 .add-course-dept #departmentCombo,
-.add-course-dept #departmentButton,
+.add-course-dept #departmentInput,
 .add-course-dept #departmentList {
     width: 100%;
 }
@@ -819,6 +819,37 @@ select:focus {
 .add-course-dept .planner-combobox {
     overflow: visible;
     z-index: 1;
+}
+.planner-dept-combobox--searchable {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-input);
+    transition: border-color var(--transition);
+}
+.planner-dept-combobox--searchable:focus-within {
+    border-color: var(--metu-red);
+}
+.planner-dept-combobox--searchable #departmentInput {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--text-main);
+    outline: none;
+}
+.planner-dept-combobox--searchable #departmentInput::placeholder {
+    color: var(--text-muted);
+}
+.planner-dept-combobox--searchable .planner-dept-chevron {
+    flex-shrink: 0;
+    padding-right: 10px;
+    color: var(--text-muted);
+    pointer-events: none;
 }
 .add-course-dept .course-search-dropdown {
     z-index: 100;
@@ -1680,15 +1711,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             </div>
             <div class="dept-right">
               <div class="dept-row-main field-same-width__row">
-                <select id="departmentSelect" class="planner-hidden-select">
+                <select id="departmentSelect" class="planner-hidden-select" tabindex="-1" aria-hidden="true">
                   <option value="" data-i18n-opt="deptPlaceholder">Bölüm seç...</option>
                 </select>
-                <div class="planner-combobox" id="departmentCombo">
-                  <button type="button" id="departmentButton" class="planner-select-trigger" aria-haspopup="listbox" aria-expanded="false">
-                    <span id="departmentButtonLabel">Bölüm seç...</span>
-                    <span class="planner-select-chevron" aria-hidden="true">▾</span>
-                  </button>
-                  <div id="departmentList" class="course-search-dropdown" role="listbox" aria-labelledby="departmentButtonLabel"></div>
+                <div class="planner-combobox planner-dept-combobox--searchable" id="departmentCombo">
+                  <input id="departmentInput" type="text" autocomplete="off" aria-haspopup="listbox" aria-expanded="false" aria-autocomplete="list">
+                  <span class="planner-select-chevron planner-dept-chevron" aria-hidden="true">▾</span>
+                  <div id="departmentList" class="course-search-dropdown" role="listbox" aria-label="Department"></div>
                 </div>
                 <button type="button" class="btn-primary" onclick="setDepartment()">
                   <span class="dot"></span>
@@ -2118,6 +2147,93 @@ function initPlannerCombobox(config) {
   }
 }
 
+function initPlannerDeptCombobox() {
+  var selectEl = document.getElementById("departmentSelect");
+  var inputEl = document.getElementById("departmentInput");
+  var listEl = document.getElementById("departmentList");
+  if (!selectEl || !inputEl || !listEl) return;
+
+  function getDeptOptions() {
+    var opts = [];
+    for (var i = 0; i < selectEl.options.length; i++) {
+      var opt = selectEl.options[i];
+      if (!opt.value) continue;
+      opts.push({ value: opt.value, label: opt.textContent || opt.value });
+    }
+    return opts;
+  }
+
+  function filterDeptOptions(query) {
+    query = (query || "").trim().toLowerCase();
+    var opts = getDeptOptions();
+    if (!query) return opts;
+    return opts.filter(function (o) {
+      return (o.label || "").toLowerCase().indexOf(query) !== -1;
+    });
+  }
+
+  function syncInputFromSelect() {
+    var opt = selectEl.options[selectEl.selectedIndex] || null;
+    inputEl.value = opt && opt.textContent ? opt.textContent.trim() : "";
+    inputEl.placeholder = opt && opt.value ? "" : (t("deptPlaceholder") || t("deptSearchPlaceholder"));
+  }
+
+  function renderDeptList(items) {
+    listEl.innerHTML = "";
+    items.slice(0, 50).forEach(function (o) {
+      var item = document.createElement("button");
+      item.type = "button";
+      item.className = "course-search-item";
+      item.setAttribute("role", "option");
+      item.textContent = o.label;
+      item.addEventListener("click", function () {
+        selectEl.value = o.value;
+        var evt;
+        try {
+          evt = new Event("change", { bubbles: true });
+        } catch (e) {
+          evt = document.createEvent("Event");
+          evt.initEvent("change", true, true);
+        }
+        selectEl.dispatchEvent(evt);
+        inputEl.value = o.label;
+        inputEl.placeholder = "";
+        listEl.classList.remove("is-open");
+        inputEl.setAttribute("aria-expanded", "false");
+      });
+      listEl.appendChild(item);
+    });
+    listEl.classList.toggle("is-open", items.length > 0);
+    inputEl.setAttribute("aria-expanded", items.length > 0 ? "true" : "false");
+  }
+
+  function openAndFilter() {
+    var items = filterDeptOptions(inputEl.value);
+    renderDeptList(items);
+  }
+
+  syncInputFromSelect();
+
+  inputEl.addEventListener("input", openAndFilter);
+  inputEl.addEventListener("focus", openAndFilter);
+  inputEl.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      listEl.classList.remove("is-open");
+      inputEl.setAttribute("aria-expanded", "false");
+      syncInputFromSelect();
+    }
+  });
+
+  var comboEl = document.getElementById("departmentCombo");
+  document.addEventListener("click", function (ev) {
+    if (!listEl.classList.contains("is-open")) return;
+    if (comboEl && comboEl.contains(ev.target)) return;
+    listEl.classList.remove("is-open");
+    inputEl.setAttribute("aria-expanded", "false");
+    syncInputFromSelect();
+  });
+}
+
 function showToast(message, type) {
     type = type || "success";
     var container = document.getElementById("toastContainer");
@@ -2146,6 +2262,8 @@ function setLanguage(lang) {
   const sel = document.getElementById("langSelect");
   if (sel) sel.value = lang;
   applyLanguage();
+  var deptInput = document.getElementById("departmentInput");
+  if (deptInput) deptInput.placeholder = t("deptPlaceholder");
   // Rebuild any comboboxes whose option labels are language‑dependent
   initPlannerCombobox({
     selectId: "semesterType",
@@ -2674,6 +2792,17 @@ function loadProgramsIntoSelect() {
             sel.appendChild(opt0);
             var faculties = data.faculties || {};
             var skipFaculty = "School of Foreign Languages";
+            var nameToFaculties = {};
+            Object.keys(faculties).forEach(function(facName) {
+                if (facName === skipFaculty) return;
+                var progs = (faculties[facName].programs || []);
+                progs.forEach(function(p) {
+                    var n = (p.name || p.code || "").trim();
+                    if (!n) return;
+                    if (!nameToFaculties[n]) nameToFaculties[n] = [];
+                    if (nameToFaculties[n].indexOf(facName) === -1) nameToFaculties[n].push(facName);
+                });
+            });
             Object.keys(faculties).forEach(function(facName) {
                 if (facName === skipFaculty) return;
                 var fac = faculties[facName];
@@ -2684,7 +2813,9 @@ function loadProgramsIntoSelect() {
                 progs.forEach(function(p) {
                     var opt = document.createElement("option");
                     opt.value = p.code;
-                    opt.textContent = p.name || p.code;
+                    var baseName = p.name || p.code;
+                    var facs = nameToFaculties[baseName];
+                    opt.textContent = (facs && facs.length > 1) ? baseName + " (" + facName + ")" : baseName;
                     group.appendChild(opt);
                 });
                 sel.appendChild(group);
@@ -2696,14 +2827,8 @@ function loadProgramsIntoSelect() {
                 var last = localStorage.getItem(METU_LAST_PROGRAM_CODE) || "";
                 if (last) sel.value = last;
             }
-            // Build / refresh the custom combobox UI for department select
-            initPlannerCombobox({
-                selectId: "departmentSelect",
-                buttonId: "departmentButton",
-                labelId: "departmentButtonLabel",
-                listId: "departmentList",
-                placeholder: t("deptPlaceholder")
-            });
+            // Build / refresh the custom searchable combobox UI for department select
+            initPlannerDeptCombobox();
             restoreFromPortalState();
         })
         .catch(function() {
@@ -2714,6 +2839,7 @@ function loadProgramsIntoSelect() {
                 opt.textContent = t("deptPlaceholder");
                 sel.appendChild(opt);
             }
+            initPlannerDeptCombobox();
         });
 }
 

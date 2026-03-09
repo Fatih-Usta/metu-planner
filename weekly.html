@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="main-ui.css?v=2">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="ics-export.js"></script>
 <style>
 /* Hidden hints (kept in DOM, feedback: too much text) */
 .weekly-hint-hidden { display: none !important; }
@@ -1262,11 +1263,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     <button type="button" id="weeklySaveBtn" class="weekly-btn">Save</button>
                     <button type="button" id="weeklyLoadBtn" class="weekly-btn">Load</button>
                     <button type="button" id="weeklySaveToPortalBtn" class="weekly-btn">Save to portal</button>
+                    <button type="button" id="weeklyShareLinkBtn" class="weekly-btn" title="Copy shareable link for this schedule">Share link</button>
                     <div class="weekly-export-dropdown">
                         <button type="button" id="weeklyExportToggle" class="weekly-btn">Export ▾</button>
                         <div id="weeklyExportMenu" class="weekly-export-menu" aria-label="Export format" aria-hidden="true">
                             <button type="button" id="weeklyExportPng" class="weekly-export-item">PNG</button>
                             <button type="button" id="weeklyExportPdf" class="weekly-export-item">PDF</button>
+                            <button type="button" id="weeklyExportIcs" class="weekly-export-item">Calendar (.ics)</button>
                         </div>
                     </div>
                 </div>
@@ -1630,6 +1633,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             msgNoCoursesInList: "No courses in the list. Use 'Add must courses' first.",
             msgNothingToSave: "Nothing to save: no courses in the weekly list.",
             msgClearedList: "Cleared all courses from the list.",
+            shareLinkBtn: "Share link",
+            shareLinkCopied: "Link copied to clipboard.",
+            shareLinkNoSchedule: "No schedule to share. Run Schedule first.",
             selectDepartment: "Select department",
             deptSearchPlaceholder: "Select or search department…",
             requiredCourse: "Required course",
@@ -1739,6 +1745,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             msgNoCoursesInList: "Listede ders yok. Önce 'Zorunlu dersleri ekle' kullanın.",
             msgNothingToSave: "Kaydedilecek bir şey yok: haftalık listede ders bulunmuyor.",
             msgClearedList: "Listedeki tüm dersler temizlendi.",
+            shareLinkBtn: "Linki paylaş",
+            shareLinkCopied: "Link panoya kopyalandı.",
+            shareLinkNoSchedule: "Paylaşılacak program yok. Önce Programla çalıştırın.",
             selectDepartment: "Bölüm seç",
             deptSearchPlaceholder: "Bölüm seç veya ara…",
             requiredCourse: "Zorunlu ders",
@@ -1865,6 +1874,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = (langCode === "tr" ? "Yükle" : "Load");
         el = document.getElementById("weeklySaveToPortalBtn");
         if (el) el.textContent = (langCode === "tr" ? "Portala kaydet" : "Save to portal");
+        el = document.getElementById("weeklyShareLinkBtn");
+        if (el) el.textContent = dict.shareLinkBtn || "Share link";
         el = document.getElementById("weeklyExportToggle");
         if (el) el.textContent = dict.exportBtn || "Export ▾";
         el = document.getElementById("weeklyAddCourseLabel");
@@ -2025,10 +2036,44 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     }
 
     loadWeeklyPrefs();
-    // If there is a saved weekly preview for the portal, also use it to restore
-    // the weekly page so that a refresh does not lose the last saved schedule.
-    // BUT: when coming from Planner with a prefill, skip restoring from portal.
-    if (!weeklyHasPlannerPrefill) {
+
+    var sharedStateFromUrl = null;
+    try {
+        var hash = window.location.hash || "";
+        var match = /^#s=(.+)$/.exec(hash);
+        if (match && match[1]) {
+            var decoded = decodeURIComponent(escape(atob(match[1])));
+            var parsed = JSON.parse(decoded);
+            if (parsed && Array.isArray(parsed.schedule) && parsed.schedule.length) {
+                var codes = parsed.schedule.map(function (x) { return x.code; }).filter(Boolean);
+                var sectionPrefs = {};
+                parsed.schedule.forEach(function (x) {
+                    if (x.code && x.sectionNum != null) sectionPrefs[x.code] = String(x.sectionNum);
+                });
+                sharedStateFromUrl = {
+                    version: 2,
+                    codes: codes,
+                    schedules: [parsed.schedule],
+                    selectedIndex: 0,
+                    semester: typeof parsed.semester === "number" ? parsed.semester : weeklySemester,
+                    failed: [],
+                    busySlots: {},
+                    rules: { checkDept: true, checkSurname: true, checkCollision: true },
+                    plannedCodes: codes.slice(),
+                    surname: "",
+                    sectionPrefs: sectionPrefs,
+                    courseRuleOverrides: {}
+                };
+                history.replaceState(null, "", window.location.pathname + window.location.search);
+            }
+        }
+    } catch (e) {
+        sharedStateFromUrl = null;
+    }
+
+    if (sharedStateFromUrl) {
+        applyWeeklyState(sharedStateFromUrl);
+    } else if (!weeklyHasPlannerPrefill) {
         try {
             var portalPreviewRaw = localStorage.getItem(weeklyPortalPreviewKey);
             if (portalPreviewRaw) {
@@ -2570,6 +2615,24 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         }).catch(function() {
             showToast("Could not export PDF.", "error");
         });
+    }
+
+    function exportWeekAsIcs() {
+        if (typeof window.METU_ICS_exportSchedule !== "function") {
+            showToast("Calendar export not available.", "error");
+            return;
+        }
+        var schedule = currentSchedulesList && currentSchedulesList[currentScheduleIndex || 0] || currentSchedulesList[0] || [];
+        if (!schedule || !schedule.length) {
+            showToast("No schedule to export. Run Schedule first.", "error");
+            return;
+        }
+        try {
+            window.METU_ICS_exportSchedule(schedule, weeklySemester, "metu-weekly-schedule.ics");
+            showToast("Calendar (.ics) exported.", "success");
+        } catch (e) {
+            showToast("Could not export calendar.", "error");
+        }
     }
 
     function ensureDataLoaded() {
@@ -5523,6 +5586,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             codes: courses,
             schedules: currentSchedulesList || [],
             selectedIndex: currentScheduleIndex || 0,
+            semester: weeklySemester,
             failed: currentScheduleFailed || [],
             busySlots: weeklyBusySlots || {},
             rules: {
@@ -5567,6 +5631,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (!isV1) {
             currentSchedulesList = Array.isArray(state.schedules) ? state.schedules.slice() : [];
             currentScheduleIndex = typeof state.selectedIndex === "number" ? state.selectedIndex : 0;
+            if (typeof state.semester === "number") {
+                weeklySemester = state.semester;
+                var semSelectEl = document.getElementById("weeklySemesterSelect");
+                if (semSelectEl) {
+                    semSelectEl.value = String(state.semester);
+                }
+            }
             currentScheduleFailed = Array.isArray(state.failed) ? state.failed.slice() : [];
             currentPlannedCodes = Array.isArray(state.plannedCodes) ? state.plannedCodes.slice() : codes.slice();
             // Restore any per-course rule overrides (dept/surname/collision flags)
@@ -5701,6 +5772,34 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         });
     }
 
+    var weeklyShareLinkBtn = document.getElementById("weeklyShareLinkBtn");
+    if (weeklyShareLinkBtn) {
+        weeklyShareLinkBtn.addEventListener("click", function () {
+            var schedule = currentSchedulesList && currentSchedulesList[currentScheduleIndex || 0] || currentSchedulesList[0] || [];
+            if (!schedule || !schedule.length) {
+                showToast(wt("shareLinkNoSchedule"), "error");
+                return;
+            }
+            try {
+                var payload = { schedule: schedule, semester: weeklySemester };
+                var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+                var baseUrl = window.location.origin + window.location.pathname;
+                var shareUrl = baseUrl + "#s=" + encoded;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(shareUrl).then(function () {
+                        showToast(wt("shareLinkCopied"), "success");
+                    }).catch(function () {
+                        window.prompt(wt("shareLinkCopied") + " Copy manually:", shareUrl);
+                    });
+                } else {
+                    window.prompt(wt("shareLinkCopied") + " Copy manually:", shareUrl);
+                }
+            } catch (e) {
+                showToast("Could not create share link.", "error");
+            }
+        });
+    }
+
     var weeklyExportToggle = document.getElementById("weeklyExportToggle");
     var weeklyExportMenu = document.getElementById("weeklyExportMenu");
     if (weeklyExportToggle && weeklyExportMenu) {
@@ -5723,6 +5822,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 weeklyExportMenu.classList.remove("is-open");
                 weeklyExportMenu.setAttribute("aria-hidden", "true");
                 exportWeekAsPdf();
+            });
+        }
+        var exportIcsItem = document.getElementById("weeklyExportIcs");
+        if (exportIcsItem) {
+            exportIcsItem.addEventListener("click", function () {
+                weeklyExportMenu.classList.remove("is-open");
+                weeklyExportMenu.setAttribute("aria-hidden", "true");
+                exportWeekAsIcs();
             });
         }
         document.addEventListener("click", function (e) {

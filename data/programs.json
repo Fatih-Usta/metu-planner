@@ -623,7 +623,7 @@
       "programs": [
         {
           "code": "359",
-          "name": "School of Foreign Languages"
+          "name": "[NCC] School of Foreign Languages"
         }
       ]
     },
@@ -632,35 +632,35 @@
       "programs": [
         {
           "code": "353",
-          "name": "Business Administration"
+          "name": "[NCC] Business Administration"
         },
         {
           "code": "351",
-          "name": "Business Administration (METU NCC-SUNY Dual Diploma Program)"
+          "name": "[NCC] Business Administration (METU NCC-SUNY Dual Diploma Program)"
         },
         {
           "code": "376",
-          "name": "Computer Education and Instructional Technology"
+          "name": "[NCC] Computer Education and Instructional Technology"
         },
         {
           "code": "352",
-          "name": "Economics"
+          "name": "[NCC] Economics"
         },
         {
           "code": "378",
-          "name": "Guidance and Psychological Counseling"
+          "name": "[NCC] Guidance and Psychological Counseling"
         },
         {
           "code": "354",
-          "name": "Political Science and International Relations"
+          "name": "[NCC] Political Science and International Relations"
         },
         {
           "code": "371",
-          "name": "Psychology"
+          "name": "[NCC] Psychology"
         },
         {
           "code": "366",
-          "name": "Teaching English as a Foreign Language"
+          "name": "[NCC] Teaching English as a Foreign Language"
         }
       ]
     },
@@ -669,43 +669,43 @@
       "programs": [
         {
           "code": "384",
-          "name": "Aerospace Engineering"
+          "name": "[NCC] Aerospace Engineering"
         },
         {
           "code": "367",
-          "name": "Chemical Engineering"
+          "name": "[NCC] Chemical Engineering"
         },
         {
           "code": "364",
-          "name": "Civil Engineering"
+          "name": "[NCC] Civil Engineering"
         },
         {
           "code": "355",
-          "name": "Computer Engineering"
+          "name": "[NCC] Computer Engineering"
         },
         {
           "code": "392",
-          "name": "Cybersecurity Engineering"
+          "name": "[NCC] Cybersecurity Engineering"
         },
         {
           "code": "356",
-          "name": "Electrical and Electronics Engineering"
+          "name": "[NCC] Electrical and Electronics Engineering"
         },
         {
           "code": "388",
-          "name": "Industrial Engineering"
+          "name": "[NCC] Industrial Engineering"
         },
         {
           "code": "365",
-          "name": "Mechanical Engineering"
+          "name": "[NCC] Mechanical Engineering"
         },
         {
           "code": "374",
-          "name": "Petroleum and Natural Gas Engineering"
+          "name": "[NCC] Petroleum and Natural Gas Engineering"
         },
         {
           "code": "389",
-          "name": "Software Engineering"
+          "name": "[NCC] Software Engineering"
         }
       ]
     },
@@ -714,15 +714,15 @@
       "programs": [
         {
           "code": "393",
-          "name": "Artificial Intelligence Engineering"
+          "name": "[NCC] Artificial Intelligence Engineering"
         },
         {
           "code": "391",
-          "name": "English Language Teaching"
+          "name": "[NCC] English Language Teaching"
         },
         {
           "code": "390",
-          "name": "Sustainable Environment and Energy Systems"
+          "name": "[NCC] Sustainable Environment and Energy Systems"
         }
       ]
     }
@@ -1558,133 +1558,133 @@
     },
     {
       "faculty": "[NCC] School of Foreign Languages",
-      "program": "School of Foreign Languages",
+      "program": "[NCC] School of Foreign Languages",
       "program_code": "359",
       "program_param": "fac_prog"
     },
     {
       "faculty": "[NCC] NCC Social Sciences Programs",
-      "program": "Business Administration",
+      "program": "[NCC] Business Administration",
       "program_code": "353",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Social Sciences Programs",
-      "program": "Business Administration (METU NCC-SUNY Dual Diploma Program)",
+      "program": "[NCC] Business Administration (METU NCC-SUNY Dual Diploma Program)",
       "program_code": "351",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Social Sciences Programs",
-      "program": "Computer Education and Instructional Technology",
+      "program": "[NCC] Computer Education and Instructional Technology",
       "program_code": "376",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Social Sciences Programs",
-      "program": "Economics",
+      "program": "[NCC] Economics",
       "program_code": "352",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Social Sciences Programs",
-      "program": "Guidance and Psychological Counseling",
+      "program": "[NCC] Guidance and Psychological Counseling",
       "program_code": "378",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Social Sciences Programs",
-      "program": "Political Science and International Relations",
+      "program": "[NCC] Political Science and International Relations",
       "program_code": "354",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Social Sciences Programs",
-      "program": "Psychology",
+      "program": "[NCC] Psychology",
       "program_code": "371",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Social Sciences Programs",
-      "program": "Teaching English as a Foreign Language",
+      "program": "[NCC] Teaching English as a Foreign Language",
       "program_code": "366",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Aerospace Engineering",
+      "program": "[NCC] Aerospace Engineering",
       "program_code": "384",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Chemical Engineering",
+      "program": "[NCC] Chemical Engineering",
       "program_code": "367",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Civil Engineering",
+      "program": "[NCC] Civil Engineering",
       "program_code": "364",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Computer Engineering",
+      "program": "[NCC] Computer Engineering",
       "program_code": "355",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Cybersecurity Engineering",
+      "program": "[NCC] Cybersecurity Engineering",
       "program_code": "392",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Electrical and Electronics Engineering",
+      "program": "[NCC] Electrical and Electronics Engineering",
       "program_code": "356",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Industrial Engineering",
+      "program": "[NCC] Industrial Engineering",
       "program_code": "388",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Mechanical Engineering",
+      "program": "[NCC] Mechanical Engineering",
       "program_code": "365",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Petroleum and Natural Gas Engineering",
+      "program": "[NCC] Petroleum and Natural Gas Engineering",
       "program_code": "374",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Engineering Programs",
-      "program": "Software Engineering",
+      "program": "[NCC] Software Engineering",
       "program_code": "389",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Graduate Programs",
-      "program": "Artificial Intelligence Engineering",
+      "program": "[NCC] Artificial Intelligence Engineering",
       "program_code": "393",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Graduate Programs",
-      "program": "English Language Teaching",
+      "program": "[NCC] English Language Teaching",
       "program_code": "391",
       "program_param": "inst_prog"
     },
     {
       "faculty": "[NCC] NCC Graduate Programs",
-      "program": "Sustainable Environment and Energy Systems",
+      "program": "[NCC] Sustainable Environment and Energy Systems",
       "program_code": "390",
       "program_param": "inst_prog"
     }

@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="main-ui.css?v=2">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="ics-export.js"></script>
 <style>
 /* Page-specific: portal cards and content; header/layout from main-ui.css */
 
@@ -85,6 +86,30 @@
 
 .portal-courses-section {
     margin-bottom: 28px;
+}
+
+.portal-progress-wrap {
+    margin-bottom: 16px;
+}
+.portal-progress-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+.portal-progress-bar {
+    height: 8px;
+    background: var(--bg);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+.portal-progress-fill {
+    height: 100%;
+    background: var(--metu-red);
+    border-radius: var(--radius-full);
+    transition: width 0.3s ease;
 }
 
 .portal-main-layout {
@@ -510,6 +535,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             <div id="portalWeeklyExportMenu" class="portal-export-menu" aria-label="Export weekly schedule" aria-hidden="true">
               <button type="button" id="portalWeeklyExportPng" class="portal-export-item">PNG</button>
               <button type="button" id="portalWeeklyExportPdf" class="portal-export-item">PDF</button>
+              <button type="button" id="portalWeeklyExportIcs" class="portal-export-item">Calendar (.ics)</button>
             </div>
           </div>
           <a id="portalOpenWeeklyLink" href="weekly.html" class="portal-btn portal-btn--primary">Open weekly</a>
@@ -520,7 +546,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       </div>
     </section>
 
-    <section class="portal-courses-section" id="portalCoursesSection" style="display: none;">
+    <section class="portal-courses-section" id="portalCoursesSection">
+      <div class="portal-progress-wrap" id="portalProgressWrap">
+        <div class="portal-progress-label">
+          <span id="portalProgressLabelText">Degree progress</span>
+          <span id="portalProgressPercent">0%</span>
+        </div>
+        <div class="portal-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div class="portal-progress-fill" id="portalProgressFill" style="width: 0%"></div>
+        </div>
+      </div>
       <div class="portal-courses-header">
         <h2 id="portalCoursesSectionTitle" class="portal-courses-title">This semester's courses</h2>
         <div class="portal-courses-actions">
@@ -585,7 +620,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       contactModalTitle: 'Contact information',
       closeBtn: 'Close',
       semesterLabel: 'Semester',
-      summerLabel: 'Summer'
+      summerLabel: 'Summer',
+      degreeProgress: 'Degree progress',
+      noPlanYet: 'Open the planner to create a plan and see your progress.'
     },
     tr: {
       pageTitle: 'METU Portal',
@@ -610,7 +647,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       contactModalTitle: 'İletişim bilgileri',
       closeBtn: 'Kapat',
       semesterLabel: 'Dönem',
-      summerLabel: 'Yaz'
+      summerLabel: 'Yaz',
+      degreeProgress: 'Program ilerlemesi',
+      noPlanYet: 'İlerlemenizi görmek için planlayıcıyı açıp bir plan oluşturun.'
     }
   };
 
@@ -654,6 +693,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     if (weeklyEmpty) weeklyEmpty.textContent = s.noWeeklySaved;
     var coursesEmpty = document.querySelector('#portalCourseList .portal-course-list--empty');
     if (coursesEmpty) coursesEmpty.textContent = s.noCourses;
+    var progressLabel = document.getElementById('portalProgressLabelText');
+    if (progressLabel) progressLabel.textContent = s.degreeProgress;
   }
 
   // Shared helpers for weekly preview grid (match Weekly page logic, read-only here)
@@ -811,17 +852,60 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     el.style.display = 'block';
   }
 
+  var PORTAL_FAILING_GRADES = { 'FF': true, 'FD': true, 'F': true };
+
+  function isPassingGrade(grade) {
+    if (!grade || String(grade).trim().length === 0) return false;
+    var g = String(grade).trim().toUpperCase();
+    return !PORTAL_FAILING_GRADES[g];
+  }
+
+  function updateProgressBar(state) {
+    var wrap = document.getElementById('portalProgressWrap');
+    var fill = document.getElementById('portalProgressFill');
+    var percentEl = document.getElementById('portalProgressPercent');
+    var bar = wrap && wrap.querySelector('[role="progressbar"]');
+    if (!wrap || !fill || !percentEl) return;
+
+    var total = 0;
+    var completed = 0;
+    if (state && state.semesters && state.semesters.length) {
+      state.semesters.forEach(function(sem) {
+        var courses = sem.courses || [];
+        courses.forEach(function(c) {
+          total += 1;
+          if (isPassingGrade(c.grade)) completed += 1;
+        });
+      });
+    }
+
+    var pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+    fill.style.width = pct + '%';
+    percentEl.textContent = pct + '%';
+    if (bar) {
+      bar.setAttribute('aria-valuenow', pct);
+    }
+    wrap.style.display = total === 0 ? 'none' : '';
+  }
+
   function renderCoursesSection() {
     var state = getPlanState();
     var section = document.getElementById('portalCoursesSection');
     var listEl = document.getElementById('portalCourseList');
     var selectEl = document.getElementById('portalSemesterSelect');
     if (!section || !listEl || !selectEl) return;
+
+    section.style.display = 'block';
+    updateProgressBar(state);
+
     if (!state || !state.programCode || !state.semesters || !state.semesters.length) {
-      section.style.display = 'none';
+      listEl.innerHTML = '';
+      listEl.classList.add('portal-course-list--empty');
+      listEl.textContent = getPortalStrings().noPlanYet;
+      selectEl.innerHTML = '';
       return;
     }
-    section.style.display = 'block';
+
     var str = getPortalStrings();
     selectEl.innerHTML = '';
     state.semesters.forEach(function(s) {
@@ -930,6 +1014,27 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     }).catch(function() {
       alert('Could not export PNG.');
     });
+  }
+
+  function exportPortalWeeklyAsIcs() {
+    if (typeof window.METU_ICS_exportSchedule !== 'function') {
+      alert('Calendar export not available.');
+      return;
+    }
+    var state = getWeeklyPreviewState();
+    var schedules = Array.isArray(state && state.schedules) ? state.schedules : [];
+    var idx = state && typeof state.selectedIndex === 'number' ? state.selectedIndex : 0;
+    var schedule = schedules[idx] || schedules[0] || [];
+    if (!schedule.length) {
+      alert('No weekly schedule saved to export.');
+      return;
+    }
+    var semester = (state && state.semester != null) ? state.semester : (window.localStorage.getItem('metu_current_semester') || '20252');
+    try {
+      window.METU_ICS_exportSchedule(schedule, semester, 'metu-weekly-schedule.ics');
+    } catch (e) {
+      alert('Could not export calendar.');
+    }
   }
 
   function exportPortalWeeklyAsPdf() {
@@ -1041,6 +1146,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         portalWeeklyExportMenu.classList.remove('is-open');
         portalWeeklyExportMenu.setAttribute('aria-hidden', 'true');
         exportPortalWeeklyAsPdf();
+      });
+    }
+    var exportIcsBtn = document.getElementById('portalWeeklyExportIcs');
+    if (exportIcsBtn) {
+      exportIcsBtn.addEventListener('click', function () {
+        portalWeeklyExportMenu.classList.remove('is-open');
+        portalWeeklyExportMenu.setAttribute('aria-hidden', 'true');
+        exportPortalWeeklyAsIcs();
       });
     }
     document.addEventListener('click', function (e) {
