@@ -1,0 +1,1692 @@
+{
+  "source": "METU Catalog (all units)",
+  "scraped_at": "2026-03-09 11:46:40",
+  "faculties": {
+    "Departments Reporting to President's Office": {
+      "name": "Departments Reporting to President's Office",
+      "programs": [
+        {
+          "code": "651",
+          "name": "Music and Fine Arts"
+        },
+        {
+          "code": "642",
+          "name": "Turkish Language"
+        }
+      ]
+    },
+    "Faculty of Architecture": {
+      "name": "Faculty of Architecture",
+      "programs": [
+        {
+          "code": "120",
+          "name": "Architecture"
+        },
+        {
+          "code": "121",
+          "name": "City and Regional Planning"
+        },
+        {
+          "code": "125",
+          "name": "Industrial Design"
+        }
+      ]
+    },
+    "Faculty of Arts and Sciences": {
+      "name": "Faculty of Arts and Sciences",
+      "programs": [
+        {
+          "code": "238",
+          "name": "Biology"
+        },
+        {
+          "code": "219",
+          "name": "Molecular Biology and Genetics"
+        },
+        {
+          "code": "234",
+          "name": "Chemistry"
+        },
+        {
+          "code": "240",
+          "name": "History"
+        },
+        {
+          "code": "236",
+          "name": "Mathematics"
+        },
+        {
+          "code": "241",
+          "name": "Philosophy"
+        },
+        {
+          "code": "230",
+          "name": "Physics"
+        },
+        {
+          "code": "233",
+          "name": "Psychology"
+        },
+        {
+          "code": "232",
+          "name": "Sociology"
+        },
+        {
+          "code": "246",
+          "name": "Statistics"
+        }
+      ]
+    },
+    "Faculty of Economic and Administrative Sciences": {
+      "name": "Faculty of Economic and Administrative Sciences",
+      "programs": [
+        {
+          "code": "312",
+          "name": "Business Administration"
+        },
+        {
+          "code": "316",
+          "name": "Business Administration (METU-SUNY International Joint Program)"
+        },
+        {
+          "code": "311",
+          "name": "Economics"
+        },
+        {
+          "code": "315",
+          "name": "Global and International Affairs (METU-SUNY International Joint Program)"
+        },
+        {
+          "code": "314",
+          "name": "International Relations"
+        },
+        {
+          "code": "310",
+          "name": "Political Science and Public Administration"
+        }
+      ]
+    },
+    "Faculty of Education": {
+      "name": "Faculty of Education",
+      "programs": [
+        {
+          "code": "411",
+          "name": "Early Childhood Education"
+        },
+        {
+          "code": "412",
+          "name": "Elementary Science Education"
+        },
+        {
+          "code": "413",
+          "name": "Elementary Mathematics Education"
+        },
+        {
+          "code": "421",
+          "name": "Physics Education"
+        },
+        {
+          "code": "422",
+          "name": "Chemistry Education"
+        },
+        {
+          "code": "423",
+          "name": "Mathematics Education"
+        },
+        {
+          "code": "450",
+          "name": "Foreign Language Education"
+        },
+        {
+          "code": "451",
+          "name": "English Language Teaching (METU-SUNY International Joint Program)"
+        },
+        {
+          "code": "430",
+          "name": "Computer Education and Instructional Technology"
+        },
+        {
+          "code": "454",
+          "name": "Educational Sciences"
+        },
+        {
+          "code": "453",
+          "name": "Physical Education and Sports"
+        },
+        {
+          "code": "460",
+          "name": "Mathematics and Science Education"
+        }
+      ]
+    },
+    "Faculty of Engineering": {
+      "name": "Faculty of Engineering",
+      "programs": [
+        {
+          "code": "572",
+          "name": "Aerospace Engineering"
+        },
+        {
+          "code": "563",
+          "name": "Chemical Engineering"
+        },
+        {
+          "code": "562",
+          "name": "Civil Engineering"
+        },
+        {
+          "code": "571",
+          "name": "Computer Engineering"
+        },
+        {
+          "code": "575",
+          "name": "Computer Engineering (Türkiye-Azerbaijan University TAU)"
+        },
+        {
+          "code": "567",
+          "name": "Electrical and Electronics Engineering"
+        },
+        {
+          "code": "561",
+          "name": "Engineering Sciences"
+        },
+        {
+          "code": "560",
+          "name": "Environmental Engineering"
+        },
+        {
+          "code": "573",
+          "name": "Food Engineering"
+        },
+        {
+          "code": "564",
+          "name": "Geological Engineering"
+        },
+        {
+          "code": "568",
+          "name": "Industrial Engineering"
+        },
+        {
+          "code": "569",
+          "name": "Mechanical Engineering"
+        },
+        {
+          "code": "570",
+          "name": "Metallurgical and Materials Engineering"
+        },
+        {
+          "code": "565",
+          "name": "Mining Engineering"
+        },
+        {
+          "code": "566",
+          "name": "Petroleum and Natural Gas Engineering"
+        }
+      ]
+    },
+    "School of Foreign Languages": {
+      "name": "School of Foreign Languages",
+      "programs": [
+        {
+          "code": "611",
+          "name": "MODERN LANGUAGES DEPARTMENT (CHINESE)"
+        },
+        {
+          "code": "639",
+          "name": "MODERN LANGUAGES DEPARTMENT (ENGLISH)"
+        },
+        {
+          "code": "603",
+          "name": "MODERN LANGUAGES DEPARTMENT (FRENCH)"
+        },
+        {
+          "code": "604",
+          "name": "MODERN LANGUAGES DEPARTMENT (GERMAN)"
+        },
+        {
+          "code": "610",
+          "name": "MODERN LANGUAGES DEPARTMENT (GREEK)"
+        },
+        {
+          "code": "609",
+          "name": "MODERN LANGUAGES DEPARTMENT (HEBREW)"
+        },
+        {
+          "code": "606",
+          "name": "MODERN LANGUAGES DEPARTMENT (ITALIAN)"
+        },
+        {
+          "code": "605",
+          "name": "MODERN LANGUAGES DEPARTMENT (JAPANESE)"
+        },
+        {
+          "code": "613",
+          "name": "MODERN LANGUAGES DEPARTMENT (KOREAN)"
+        },
+        {
+          "code": "612",
+          "name": "MODERN LANGUAGES DEPARTMENT (PERSIAN)"
+        },
+        {
+          "code": "607",
+          "name": "MODERN LANGUAGES DEPARTMENT (RUSSIAN)"
+        },
+        {
+          "code": "608",
+          "name": "MODERN LANGUAGES DEPARTMENT (SPANISH)"
+        }
+      ]
+    },
+    "Graduate School of Social Sciences": {
+      "name": "Graduate School of Social Sciences",
+      "programs": [
+        {
+          "code": "836",
+          "name": "Applied Ethics"
+        },
+        {
+          "code": "815",
+          "name": "Area Studies"
+        },
+        {
+          "code": "842",
+          "name": "Asian Studies"
+        },
+        {
+          "code": "844",
+          "name": "Clinical Psychology"
+        },
+        {
+          "code": "825",
+          "name": "Curriculum and Instruction"
+        },
+        {
+          "code": "824",
+          "name": "Educational Administration and Planning"
+        },
+        {
+          "code": "410",
+          "name": "Elementary Education"
+        },
+        {
+          "code": "822",
+          "name": "Elementary Science and Mathematics Education"
+        },
+        {
+          "code": "401",
+          "name": "Elementary and Early Childhood Education"
+        },
+        {
+          "code": "820",
+          "name": "English Language Teaching"
+        },
+        {
+          "code": "821",
+          "name": "English Literature"
+        },
+        {
+          "code": "835",
+          "name": "Eurasian Studies"
+        },
+        {
+          "code": "833",
+          "name": "European Studies"
+        },
+        {
+          "code": "837",
+          "name": "Executive Master of Business Administration"
+        },
+        {
+          "code": "817",
+          "name": "Family Psychology"
+        },
+        {
+          "code": "810",
+          "name": "Gender and Women`s Studies"
+        },
+        {
+          "code": "823",
+          "name": "Guidance and Psychological Counseling"
+        },
+        {
+          "code": "801",
+          "name": "History of Architecture"
+        },
+        {
+          "code": "834",
+          "name": "Human Resources Development In Education"
+        },
+        {
+          "code": "830",
+          "name": "Industrial and Organizational Psychology"
+        },
+        {
+          "code": "843",
+          "name": "Latin and North American Studies"
+        },
+        {
+          "code": "816",
+          "name": "Media and Cultural Studies"
+        },
+        {
+          "code": "832",
+          "name": "Middle East Studies"
+        },
+        {
+          "code": "831",
+          "name": "Science and Technology Policy Studies"
+        },
+        {
+          "code": "814",
+          "name": "Settlement Archaeology"
+        },
+        {
+          "code": "840",
+          "name": "Social Antrophology"
+        },
+        {
+          "code": "839",
+          "name": "Social Policy"
+        },
+        {
+          "code": "841",
+          "name": "Social Sciences (Turkish- German) (International Joint Program)"
+        },
+        {
+          "code": "811",
+          "name": "Urban Policy Planning and Local Governments"
+        }
+      ]
+    },
+    "Graduate School of Natural and Applied Sciences": {
+      "name": "Graduate School of Natural and Applied Sciences",
+      "programs": [
+        {
+          "code": "863",
+          "name": "Archaeometry"
+        },
+        {
+          "code": "887",
+          "name": "Artificial Intelligence Engineering"
+        },
+        {
+          "code": "860",
+          "name": "Biochemistry"
+        },
+        {
+          "code": "872",
+          "name": "Biomedical Engineering"
+        },
+        {
+          "code": "861",
+          "name": "Biotechnology"
+        },
+        {
+          "code": "854",
+          "name": "Building Science"
+        },
+        {
+          "code": "870",
+          "name": "Cement Engineering"
+        },
+        {
+          "code": "853",
+          "name": "City Planning"
+        },
+        {
+          "code": "858",
+          "name": "Computational Design and Fabrication Techn. in Arch."
+        },
+        {
+          "code": "856",
+          "name": "Conservation of Cultural Heritage"
+        },
+        {
+          "code": "886",
+          "name": "Data and Decision Sciences"
+        },
+        {
+          "code": "857",
+          "name": "Design Research for Interaction"
+        },
+        {
+          "code": "874",
+          "name": "Earth System Science"
+        },
+        {
+          "code": "873",
+          "name": "Earthquake Studies"
+        },
+        {
+          "code": "866",
+          "name": "Engineering Management"
+        },
+        {
+          "code": "865",
+          "name": "Geodetic and Geographical Information Technologies"
+        },
+        {
+          "code": "869",
+          "name": "Hydrosystems Engineering"
+        },
+        {
+          "code": "875",
+          "name": "Masters In Earthquake Engineering and Engineering Sismology (Dual Mas"
+        },
+        {
+          "code": "826",
+          "name": "Mathematics Education"
+        },
+        {
+          "code": "460",
+          "name": "Mathematics and Science Education"
+        },
+        {
+          "code": "876",
+          "name": "Mechanical Design and Manufacturing"
+        },
+        {
+          "code": "871",
+          "name": "Micro and Nanotechnology"
+        },
+        {
+          "code": "878",
+          "name": "Neuroscience and Neurotechnology"
+        },
+        {
+          "code": "877",
+          "name": "Occupational Health and Safety"
+        },
+        {
+          "code": "880",
+          "name": "Operational Research"
+        },
+        {
+          "code": "862",
+          "name": "Polymer Science and Technology"
+        },
+        {
+          "code": "852",
+          "name": "Regional Planning"
+        },
+        {
+          "code": "885",
+          "name": "Robotics"
+        },
+        {
+          "code": "827",
+          "name": "Science Education"
+        },
+        {
+          "code": "867",
+          "name": "Software Engineering"
+        },
+        {
+          "code": "868",
+          "name": "Structural Mechanics"
+        },
+        {
+          "code": "855",
+          "name": "Urban Design"
+        }
+      ]
+    },
+    "Graduate School of Marine Sciences": {
+      "name": "Graduate School of Marine Sciences",
+      "programs": [
+        {
+          "code": "950",
+          "name": "Graduate School of Marine Sciences"
+        },
+        {
+          "code": "954",
+          "name": "Marine Biology and Fisheries"
+        },
+        {
+          "code": "953",
+          "name": "Marine Geology and Geophysics"
+        },
+        {
+          "code": "956",
+          "name": "Oceanography"
+        }
+      ]
+    },
+    "Graduate School of Informatics": {
+      "name": "Graduate School of Informatics",
+      "programs": [
+        {
+          "code": "908",
+          "name": "Bioinformatics"
+        },
+        {
+          "code": "902",
+          "name": "Cognitive Sciences"
+        },
+        {
+          "code": "910",
+          "name": "Cyber Security"
+        },
+        {
+          "code": "911",
+          "name": "Data Informatics"
+        },
+        {
+          "code": "904",
+          "name": "Informatics Online"
+        },
+        {
+          "code": "901",
+          "name": "Information Systems"
+        },
+        {
+          "code": "906",
+          "name": "Medical Informatics"
+        },
+        {
+          "code": "903",
+          "name": "Modelling And Simulation"
+        },
+        {
+          "code": "909",
+          "name": "Multimedia Informatics"
+        },
+        {
+          "code": "905",
+          "name": "Software Management"
+        }
+      ]
+    },
+    "Graduate School of Applied Mathematics": {
+      "name": "Graduate School of Applied Mathematics",
+      "programs": [
+        {
+          "code": "976",
+          "name": "Actuarial Science"
+        },
+        {
+          "code": "971",
+          "name": "Cryptography"
+        },
+        {
+          "code": "973",
+          "name": "Financial Mathematics"
+        },
+        {
+          "code": "972",
+          "name": "Scientific Computing Program"
+        }
+      ]
+    },
+    "[NCC] School of Foreign Languages": {
+      "name": "[NCC] School of Foreign Languages",
+      "programs": [
+        {
+          "code": "359",
+          "name": "School of Foreign Languages"
+        }
+      ]
+    },
+    "[NCC] NCC Social Sciences Programs": {
+      "name": "[NCC] NCC Social Sciences Programs",
+      "programs": [
+        {
+          "code": "353",
+          "name": "Business Administration"
+        },
+        {
+          "code": "351",
+          "name": "Business Administration (METU NCC-SUNY Dual Diploma Program)"
+        },
+        {
+          "code": "376",
+          "name": "Computer Education and Instructional Technology"
+        },
+        {
+          "code": "352",
+          "name": "Economics"
+        },
+        {
+          "code": "378",
+          "name": "Guidance and Psychological Counseling"
+        },
+        {
+          "code": "354",
+          "name": "Political Science and International Relations"
+        },
+        {
+          "code": "371",
+          "name": "Psychology"
+        },
+        {
+          "code": "366",
+          "name": "Teaching English as a Foreign Language"
+        }
+      ]
+    },
+    "[NCC] NCC Engineering Programs": {
+      "name": "[NCC] NCC Engineering Programs",
+      "programs": [
+        {
+          "code": "384",
+          "name": "Aerospace Engineering"
+        },
+        {
+          "code": "367",
+          "name": "Chemical Engineering"
+        },
+        {
+          "code": "364",
+          "name": "Civil Engineering"
+        },
+        {
+          "code": "355",
+          "name": "Computer Engineering"
+        },
+        {
+          "code": "392",
+          "name": "Cybersecurity Engineering"
+        },
+        {
+          "code": "356",
+          "name": "Electrical and Electronics Engineering"
+        },
+        {
+          "code": "388",
+          "name": "Industrial Engineering"
+        },
+        {
+          "code": "365",
+          "name": "Mechanical Engineering"
+        },
+        {
+          "code": "374",
+          "name": "Petroleum and Natural Gas Engineering"
+        },
+        {
+          "code": "389",
+          "name": "Software Engineering"
+        }
+      ]
+    },
+    "[NCC] NCC Graduate Programs": {
+      "name": "[NCC] NCC Graduate Programs",
+      "programs": [
+        {
+          "code": "393",
+          "name": "Artificial Intelligence Engineering"
+        },
+        {
+          "code": "391",
+          "name": "English Language Teaching"
+        },
+        {
+          "code": "390",
+          "name": "Sustainable Environment and Energy Systems"
+        }
+      ]
+    }
+  },
+  "programs": [
+    {
+      "faculty": "Departments Reporting to President's Office",
+      "program": "Music and Fine Arts",
+      "program_code": "651",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Departments Reporting to President's Office",
+      "program": "Turkish Language",
+      "program_code": "642",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Architecture",
+      "program": "Architecture",
+      "program_code": "120",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Architecture",
+      "program": "City and Regional Planning",
+      "program_code": "121",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Architecture",
+      "program": "Industrial Design",
+      "program_code": "125",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Biology",
+      "program_code": "238",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Molecular Biology and Genetics",
+      "program_code": "219",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Chemistry",
+      "program_code": "234",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "History",
+      "program_code": "240",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Mathematics",
+      "program_code": "236",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Philosophy",
+      "program_code": "241",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Physics",
+      "program_code": "230",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Psychology",
+      "program_code": "233",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Sociology",
+      "program_code": "232",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Arts and Sciences",
+      "program": "Statistics",
+      "program_code": "246",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Economic and Administrative Sciences",
+      "program": "Business Administration",
+      "program_code": "312",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Economic and Administrative Sciences",
+      "program": "Business Administration (METU-SUNY International Joint Program)",
+      "program_code": "316",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Economic and Administrative Sciences",
+      "program": "Economics",
+      "program_code": "311",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Economic and Administrative Sciences",
+      "program": "Global and International Affairs (METU-SUNY International Joint Program)",
+      "program_code": "315",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Economic and Administrative Sciences",
+      "program": "International Relations",
+      "program_code": "314",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Economic and Administrative Sciences",
+      "program": "Political Science and Public Administration",
+      "program_code": "310",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Early Childhood Education",
+      "program_code": "411",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Elementary Science Education",
+      "program_code": "412",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Elementary Mathematics Education",
+      "program_code": "413",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Physics Education",
+      "program_code": "421",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Chemistry Education",
+      "program_code": "422",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Mathematics Education",
+      "program_code": "423",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Foreign Language Education",
+      "program_code": "450",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "English Language Teaching (METU-SUNY International Joint Program)",
+      "program_code": "451",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Computer Education and Instructional Technology",
+      "program_code": "430",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Educational Sciences",
+      "program_code": "454",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Education",
+      "program": "Physical Education and Sports",
+      "program_code": "453",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Aerospace Engineering",
+      "program_code": "572",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Chemical Engineering",
+      "program_code": "563",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Civil Engineering",
+      "program_code": "562",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Computer Engineering",
+      "program_code": "571",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Computer Engineering (Türkiye-Azerbaijan University TAU)",
+      "program_code": "575",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Electrical and Electronics Engineering",
+      "program_code": "567",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Engineering Sciences",
+      "program_code": "561",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Environmental Engineering",
+      "program_code": "560",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Food Engineering",
+      "program_code": "573",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Geological Engineering",
+      "program_code": "564",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Industrial Engineering",
+      "program_code": "568",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Mechanical Engineering",
+      "program_code": "569",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Metallurgical and Materials Engineering",
+      "program_code": "570",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Mining Engineering",
+      "program_code": "565",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Faculty of Engineering",
+      "program": "Petroleum and Natural Gas Engineering",
+      "program_code": "566",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (CHINESE)",
+      "program_code": "611",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (ENGLISH)",
+      "program_code": "639",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (FRENCH)",
+      "program_code": "603",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (GERMAN)",
+      "program_code": "604",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (GREEK)",
+      "program_code": "610",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (HEBREW)",
+      "program_code": "609",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (ITALIAN)",
+      "program_code": "606",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (JAPANESE)",
+      "program_code": "605",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (KOREAN)",
+      "program_code": "613",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (PERSIAN)",
+      "program_code": "612",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (RUSSIAN)",
+      "program_code": "607",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "School of Foreign Languages",
+      "program": "MODERN LANGUAGES DEPARTMENT (SPANISH)",
+      "program_code": "608",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Applied Ethics",
+      "program_code": "836",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Area Studies",
+      "program_code": "815",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Asian Studies",
+      "program_code": "842",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Clinical Psychology",
+      "program_code": "844",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Curriculum and Instruction",
+      "program_code": "825",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Educational Administration and Planning",
+      "program_code": "824",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Elementary Education",
+      "program_code": "410",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Elementary Science and Mathematics Education",
+      "program_code": "822",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Elementary and Early Childhood Education",
+      "program_code": "401",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "English Language Teaching",
+      "program_code": "820",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "English Literature",
+      "program_code": "821",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Eurasian Studies",
+      "program_code": "835",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "European Studies",
+      "program_code": "833",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Executive Master of Business Administration",
+      "program_code": "837",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Family Psychology",
+      "program_code": "817",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Gender and Women`s Studies",
+      "program_code": "810",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Guidance and Psychological Counseling",
+      "program_code": "823",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "History of Architecture",
+      "program_code": "801",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Human Resources Development In Education",
+      "program_code": "834",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Industrial and Organizational Psychology",
+      "program_code": "830",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Latin and North American Studies",
+      "program_code": "843",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Media and Cultural Studies",
+      "program_code": "816",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Middle East Studies",
+      "program_code": "832",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Science and Technology Policy Studies",
+      "program_code": "831",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Settlement Archaeology",
+      "program_code": "814",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Social Antrophology",
+      "program_code": "840",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Social Policy",
+      "program_code": "839",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Social Sciences (Turkish- German) (International Joint Program)",
+      "program_code": "841",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Social Sciences",
+      "program": "Urban Policy Planning and Local Governments",
+      "program_code": "811",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Archaeometry",
+      "program_code": "863",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Artificial Intelligence Engineering",
+      "program_code": "887",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Biochemistry",
+      "program_code": "860",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Biomedical Engineering",
+      "program_code": "872",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Biotechnology",
+      "program_code": "861",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Building Science",
+      "program_code": "854",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Cement Engineering",
+      "program_code": "870",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "City Planning",
+      "program_code": "853",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Computational Design and Fabrication Techn. in Arch.",
+      "program_code": "858",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Conservation of Cultural Heritage",
+      "program_code": "856",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Data and Decision Sciences",
+      "program_code": "886",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Design Research for Interaction",
+      "program_code": "857",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Earth System Science",
+      "program_code": "874",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Earthquake Studies",
+      "program_code": "873",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Engineering Management",
+      "program_code": "866",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Geodetic and Geographical Information Technologies",
+      "program_code": "865",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Hydrosystems Engineering",
+      "program_code": "869",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Masters In Earthquake Engineering and Engineering Sismology (Dual Mas",
+      "program_code": "875",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Mathematics Education",
+      "program_code": "826",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Mathematics and Science Education",
+      "program_code": "460",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Mechanical Design and Manufacturing",
+      "program_code": "876",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Micro and Nanotechnology",
+      "program_code": "871",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Neuroscience and Neurotechnology",
+      "program_code": "878",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Occupational Health and Safety",
+      "program_code": "877",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Operational Research",
+      "program_code": "880",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Polymer Science and Technology",
+      "program_code": "862",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Regional Planning",
+      "program_code": "852",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Robotics",
+      "program_code": "885",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Science Education",
+      "program_code": "827",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Software Engineering",
+      "program_code": "867",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Structural Mechanics",
+      "program_code": "868",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Natural and Applied Sciences",
+      "program": "Urban Design",
+      "program_code": "855",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Marine Sciences",
+      "program": "Graduate School of Marine Sciences",
+      "program_code": "950",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Marine Sciences",
+      "program": "Marine Biology and Fisheries",
+      "program_code": "954",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Marine Sciences",
+      "program": "Marine Geology and Geophysics",
+      "program_code": "953",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Marine Sciences",
+      "program": "Oceanography",
+      "program_code": "956",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Bioinformatics",
+      "program_code": "908",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Cognitive Sciences",
+      "program_code": "902",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Cyber Security",
+      "program_code": "910",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Data Informatics",
+      "program_code": "911",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Informatics Online",
+      "program_code": "904",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Information Systems",
+      "program_code": "901",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Medical Informatics",
+      "program_code": "906",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Modelling And Simulation",
+      "program_code": "903",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Multimedia Informatics",
+      "program_code": "909",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Informatics",
+      "program": "Software Management",
+      "program_code": "905",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Applied Mathematics",
+      "program": "Actuarial Science",
+      "program_code": "976",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Applied Mathematics",
+      "program": "Cryptography",
+      "program_code": "971",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Applied Mathematics",
+      "program": "Financial Mathematics",
+      "program_code": "973",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "Graduate School of Applied Mathematics",
+      "program": "Scientific Computing Program",
+      "program_code": "972",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] School of Foreign Languages",
+      "program": "School of Foreign Languages",
+      "program_code": "359",
+      "program_param": "fac_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Social Sciences Programs",
+      "program": "Business Administration",
+      "program_code": "353",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Social Sciences Programs",
+      "program": "Business Administration (METU NCC-SUNY Dual Diploma Program)",
+      "program_code": "351",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Social Sciences Programs",
+      "program": "Computer Education and Instructional Technology",
+      "program_code": "376",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Social Sciences Programs",
+      "program": "Economics",
+      "program_code": "352",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Social Sciences Programs",
+      "program": "Guidance and Psychological Counseling",
+      "program_code": "378",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Social Sciences Programs",
+      "program": "Political Science and International Relations",
+      "program_code": "354",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Social Sciences Programs",
+      "program": "Psychology",
+      "program_code": "371",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Social Sciences Programs",
+      "program": "Teaching English as a Foreign Language",
+      "program_code": "366",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Aerospace Engineering",
+      "program_code": "384",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Chemical Engineering",
+      "program_code": "367",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Civil Engineering",
+      "program_code": "364",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Computer Engineering",
+      "program_code": "355",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Cybersecurity Engineering",
+      "program_code": "392",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Electrical and Electronics Engineering",
+      "program_code": "356",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Industrial Engineering",
+      "program_code": "388",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Mechanical Engineering",
+      "program_code": "365",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Petroleum and Natural Gas Engineering",
+      "program_code": "374",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Engineering Programs",
+      "program": "Software Engineering",
+      "program_code": "389",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Graduate Programs",
+      "program": "Artificial Intelligence Engineering",
+      "program_code": "393",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Graduate Programs",
+      "program": "English Language Teaching",
+      "program_code": "391",
+      "program_param": "inst_prog"
+    },
+    {
+      "faculty": "[NCC] NCC Graduate Programs",
+      "program": "Sustainable Environment and Energy Systems",
+      "program_code": "390",
+      "program_param": "inst_prog"
+    }
+  ]
+}

@@ -11,15 +11,17 @@
 !/.vscode/settings.json
 !/index.html
 !/planner.html
-!/programs.json
-!/curriculums.json
-!/courses.json
 !/weekly.html
 !/main-ui.css
-!/oibs_sections_all_20252_full.json
-!/oibs_sections_all_20252.json
-!/oibs_offerings_all_20252.json
 !/oibs_offerings_20252.json
 !/oibs_sections_20252.json
 !/schedule_worker.js
 !/changelog.html
+
+# Keep data folder (necessary JSONs)
+!/data/
+!/data/**
+
+# Keep unnecessary folder (local moves)
+!/unnecessary/
+!/unnecessary/**

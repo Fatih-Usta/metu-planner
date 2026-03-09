@@ -431,6 +431,90 @@ select:focus {
 .course.elective-placeholder {
     border-style: dashed;
 }
+.course.nte-slot {
+    overflow: visible;
+}
+.course.nte-slot .course-main {
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+}
+.course.nte-slot .course-main .course-code {
+    order: 0;
+    flex: 0 1 auto;
+}
+.course.nte-slot .nte-picker-wrap {
+    position: relative;
+    order: 1;
+    flex: 1 1 140px;
+    min-width: 140px;
+}
+.course.nte-slot .nte-picker-input {
+    width: 100%;
+    max-width: 100%;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-sm);
+    background: var(--bg-input);
+    color: var(--text-main);
+    outline: none;
+    transition: border-color var(--transition);
+}
+.course.nte-slot .nte-picker-input::placeholder {
+    color: var(--text-muted);
+}
+.course.nte-slot .nte-picker-input:focus {
+    border-color: var(--metu-red);
+}
+.course.nte-slot .nte-picker-dropdown {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    margin-top: 4px;
+    max-height: 220px;
+    overflow-y: auto;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    z-index: 100;
+    display: none;
+    text-align: left;
+}
+.course.nte-slot .nte-picker-dropdown.is-open {
+    display: block;
+}
+.course.nte-slot .nte-picker-item {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: transparent;
+    color: var(--text-main);
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: background var(--transition);
+}
+.course.nte-slot .nte-picker-item:hover,
+.course.nte-slot .nte-picker-item:focus {
+    background: var(--accent-soft);
+}
+.course.nte-slot .nte-picker-item code {
+    font-weight: 600;
+}
+.course.nte-slot .nte-picker-item span {
+    color: var(--text-muted);
+    font-size: 0.78rem;
+}
 .course-prereq-violation {
     border-color: #dc2626 !important;
     background: rgba(220, 38, 38, 0.12);
@@ -728,6 +812,9 @@ select:focus {
 .add-course-dept #departmentButton,
 .add-course-dept #departmentList {
     width: 100%;
+}
+.add-course-dept #departmentCombo {
+    z-index: 10;
 }
 .add-course-dept .planner-combobox {
     overflow: visible;
@@ -2162,11 +2249,13 @@ function ensureDeptDataLoaded() {
         return deptDataPromise;
     }
     deptDataPromise = Promise.all([
-        fetch("curriculums.json?v=" + Date.now()).then(function(r) { return r.json(); }),
-        fetch("courses.json?v=" + Date.now()).then(function(r) { return r.json(); })
+        fetch("data/curriculums.json?v=" + Date.now()).then(function(r) { return r.json(); }),
+        fetch("data/courses.json?v=" + Date.now()).then(function(r) { return r.json(); }),
+        fetch("data/nte-allowance-list.json?v=" + Date.now()).then(function(r) { return r.json(); }).catch(function() { return null; })
     ]).then(function(results) {
         curriculumsData = results[0];
         var coursesList = (results[1] && results[1].courses) ? results[1].courses : [];
+        nteAllowanceData = results[2] || null;
         var by7 = {};
         var byCode = {};
         coursesList.forEach(function(c) {
@@ -2244,8 +2333,7 @@ function restoreFromPortalState() {
         if (state && state.version === 1 && state.programCode) {
             didRestorePlan = true;
             localStorage.setItem(METU_LAST_PROGRAM_CODE, state.programCode);
-            loadPlan(state);
-            ensureDeptDataLoaded().then(function() { updateGraduationStatus(); });
+            ensureDeptDataLoaded().then(function() { loadPlan(state); updateGraduationStatus(); });
         }
     } catch (e) {}
 }
@@ -2466,7 +2554,38 @@ function openWeeklyForSemester(semNumber) {
     var codesSet = {};
     courseEls.forEach(function (el) {
         var code = el.dataset.courseCode;
-        if (code) codesSet[code] = true;
+        if (!code) return;
+        var info = courses[code];
+
+        // 1) NTE slots: send special marker so weekly shows NTE card (not ELEC_Sx_x)
+        if (el.classList.contains("nte-slot")) {
+            codesSet["__NTE_SLOT__"] = true;
+            return;
+        }
+
+        // Compute visible label once (used for one-of handling)
+        var labelSpan = el.querySelector(".course-code");
+        var labelText = labelSpan && labelSpan.textContent ? labelSpan.textContent : "";
+
+        // 2) One-of groups from curriculum (has explicit options). Prefer the
+        //    human-readable label if available; otherwise join the option codes.
+        if (info && Array.isArray(info.oneOfOptions) && info.oneOfOptions.length) {
+            var groupLabel = (labelText && labelText.indexOf(",") !== -1)
+                ? labelText
+                : info.oneOfOptions.join(", ");
+            codesSet[groupLabel] = true;
+            return;
+        }
+
+        // 3) Fallback: if the visible label looks like multiple course codes
+        //    (e.g. "HIST2202, HIST2206"), treat it as a one-of group too.
+        if (labelText && labelText.indexOf(",") !== -1) {
+            codesSet[labelText] = true;
+            return;
+        }
+
+        // 4) Normal courses: send their code directly
+        codesSet[code] = true;
     });
     var codes = Object.keys(codesSet);
     try {
@@ -2488,8 +2607,17 @@ let curriculumsData = null;
 let coursesDataBy7 = null;  // course_code_7digit -> course object
 let coursesDataByCode = null;  // code -> course object
 let allCoursesDataset = null;  // full list from courses.json for search
+let nteAllowanceData = null;  // NTE course list from nte-allowance-list.json
 // When curriculum is loaded: courseCode -> expected semester number (for "wrong semester" warning)
 let curriculumPlacement = {};
+
+function nteCode7ToCatalogCode7(code7) {
+    var n = typeof code7 === "string" ? parseInt(code7, 10) : code7;
+    if (isNaN(n)) return "";
+    if (n >= 1000000) return String(n);
+    if (n >= 100000) return String(Math.floor(n / 1000) * 10000 + (n % 1000));
+    return String(n);
+}
 
 function offeredToSemesterType(offered) {
     if (!offered) return "both";
@@ -2532,7 +2660,7 @@ function prereqOneOfToCodes(oneOf, map7toCode) {
 }
 
 function loadProgramsIntoSelect() {
-    fetch("programs.json")
+    fetch("data/programs.json")
         .then(function(r) { return r.json(); })
         .then(function(data) {
             programsData = data;
@@ -2591,7 +2719,7 @@ function loadProgramsIntoSelect() {
 
 function loadCoursesDataset() {
     if (allCoursesDataset) return Promise.resolve();
-    return fetch("courses.json?v=" + Date.now())
+    return fetch("data/courses.json?v=" + Date.now())
         .then(function(r) { return r.json(); })
         .then(function(data) {
             allCoursesDataset = data.courses || [];
@@ -2713,11 +2841,13 @@ function setDepartment() {
         return;
     }
     Promise.all([
-        fetch("curriculums.json?v=" + Date.now()).then(function(r) { return r.json(); }),
-        fetch("courses.json?v=" + Date.now()).then(function(r) { return r.json(); })
+        fetch("data/curriculums.json?v=" + Date.now()).then(function(r) { return r.json(); }),
+        fetch("data/courses.json?v=" + Date.now()).then(function(r) { return r.json(); }),
+        fetch("data/nte-allowance-list.json?v=" + Date.now()).then(function(r) { return r.json(); }).catch(function() { return null; })
     ]).then(function(results) {
         var curriculums = results[0].curriculums || {};
         var coursesList = results[1].courses || [];
+        nteAllowanceData = results[2] || null;
         curriculumsData = results[0];
         var by7 = {};
         var byCode = {};
@@ -2812,15 +2942,17 @@ function setDepartment() {
                     var elecCode = "ELEC_S" + semNum + "_" + idx;
                     var bucketId = (item.name || "").trim() || "Elective";
                     var elecName = item.name || (currentLang === "tr" ? "Seçmeli" : "Elective");
+                    var isNte = /NON[- ]?TECHNICAL/i.test(bucketId);
                     courses[elecCode] = {
                         prereqs: [],
                         semesterType: "both",
                         grade: "",
-                        credits: 3,
-                        electiveBucket: bucketId
+                        credits: isNte ? 0 : 3,
+                        electiveBucket: bucketId,
+                        isNteSlot: isNte
                     };
                     curriculumPlacement[elecCode] = semNum;
-                    var el = createCourseElement(elecCode, null, elecName, true);
+                    var el = createCourseElement(elecCode, null, elecName, true, { electiveBucket: bucketId, isNteSlot: isNte });
                     box.appendChild(el);
                     return;
                 }
@@ -2887,9 +3019,16 @@ function getPlanState() {
             var code = el.dataset.courseCode;
             var code7 = el.dataset.courseCode7 || null;
             var displayLabel = null;
+            var nteChosenCode = undefined;
+            var nteChosenCode7 = undefined;
             if (el.classList.contains("elective-placeholder")) {
                 var codeSpan = el.querySelector(".course-code");
                 displayLabel = codeSpan ? codeSpan.textContent : null;
+            }
+            var info = courses[code];
+            if (info && (info.nteChosenCode || info.nteChosenCode7)) {
+                nteChosenCode = info.nteChosenCode;
+                nteChosenCode7 = info.nteChosenCode7;
             }
             var gradeEl = el.querySelector(".course-grade");
             var grade = gradeEl ? gradeEl.value : "";
@@ -2897,11 +3036,14 @@ function getPlanState() {
             var note = noteEl ? noteEl.value.trim() : "";
             var entry = {
                 code: code,
-                code7: code7 || undefined,
+                code7: code7 || nteChosenCode7 || undefined,
                 displayLabel: displayLabel || undefined,
                 isElective: el.classList.contains("elective-placeholder"),
+                isNteSlot: el.classList.contains("nte-slot"),
                 grade: grade || undefined
             };
+            if (nteChosenCode) entry.nteChosenCode = nteChosenCode;
+            if (nteChosenCode7) entry.nteChosenCode7 = nteChosenCode7;
             if (note) entry.note = note;
             courseList.push(entry);
         });
@@ -2914,9 +3056,16 @@ function getPlanState() {
         var code = el.dataset.courseCode;
         var code7 = el.dataset.courseCode7 || null;
         var displayLabel = null;
+        var nteChosenCode = undefined;
+        var nteChosenCode7 = undefined;
         if (el.classList.contains("elective-placeholder")) {
             var codeSpan = el.querySelector(".course-code");
             displayLabel = codeSpan ? codeSpan.textContent : null;
+        }
+        var info = courses[code];
+        if (info && (info.nteChosenCode || info.nteChosenCode7)) {
+            nteChosenCode = info.nteChosenCode;
+            nteChosenCode7 = info.nteChosenCode7;
         }
         var gradeEl = el.querySelector(".course-grade");
         var grade = gradeEl ? gradeEl.value : "";
@@ -2924,11 +3073,14 @@ function getPlanState() {
         var note = noteEl ? noteEl.value.trim() : "";
         var entry = {
             code: code,
-            code7: code7 || undefined,
+            code7: code7 || nteChosenCode7 || undefined,
             displayLabel: displayLabel || undefined,
             isElective: el.classList.contains("elective-placeholder"),
+            isNteSlot: el.classList.contains("nte-slot"),
             grade: grade || undefined
         };
+        if (nteChosenCode) entry.nteChosenCode = nteChosenCode;
+        if (nteChosenCode7) entry.nteChosenCode7 = nteChosenCode7;
         if (note) entry.note = note;
         poolList.push(entry);
     });
@@ -3030,7 +3182,12 @@ function loadPlan(state) {
         var maxInput = semEl.querySelector(".semester-max-input");
         if (maxInput) maxInput.value = Math.max(1, semState.maxCredits || 5);
         (semState.courses || []).forEach(function(c) {
-            var el = createCourseElement(c.code, c.code7 || null, c.displayLabel || null, !!c.isElective);
+            var opts = {};
+            if (c.isNteSlot) {
+                opts.isNteSlot = true;
+                opts.electiveBucket = c.displayLabel || "NONTECHNICAL ELECTIVE";
+            }
+            var el = createCourseElement(c.code, c.code7 || null, c.displayLabel || null, !!c.isElective, opts);
             if (c.grade && el) {
                 var gs = el.querySelector(".course-grade");
                 if (gs) gs.value = c.grade;
@@ -3051,7 +3208,12 @@ function loadPlan(state) {
     });
 
     poolList.forEach(function(c) {
-        var el = createCourseElement(c.code, c.code7 || null, c.displayLabel || null, !!c.isElective);
+        var opts = {};
+        if (c.isNteSlot) {
+            opts.isNteSlot = true;
+            opts.electiveBucket = c.displayLabel || "NONTECHNICAL ELECTIVE";
+        }
+        var el = createCourseElement(c.code, c.code7 || null, c.displayLabel || null, !!c.isElective, opts);
         if (c.grade && el && courses[c.code]) courses[c.code].grade = c.grade;
         if (c.note && el) {
             var noteEl = el.querySelector(".course-note");
@@ -3078,7 +3240,7 @@ function onLoadPlanFileChosen(e) {
     reader.onload = function(ev) {
         try {
             var state = JSON.parse(ev.target.result);
-            loadPlan(state);
+            ensureDeptDataLoaded().then(function() { loadPlan(state); });
         } catch (err) {
             showToast(currentLang === "tr" ? "Dosya okunamadı veya geçersiz JSON." : "Could not read file or invalid JSON.", "error");
         }
@@ -3087,11 +3249,14 @@ function onLoadPlanFileChosen(e) {
     reader.readAsText(file, "UTF-8");
 }
 
-function createCourseElement(name, code7, displayLabel, isElective) {
+function createCourseElement(name, code7, displayLabel, isElective, opts) {
+    opts = opts || {};
+    var isNteSlot = opts.isNteSlot || false;
     const uniqueId = name + "-" + (++courseInstanceCounter);
     const div = document.createElement("div");
     div.className = "course";
     if (isElective) div.classList.add("elective-placeholder");
+    if (isNteSlot) div.classList.add("nte-slot");
     div.id = uniqueId;
     div.dataset.courseCode = name;
     if (code7) div.dataset.courseCode7 = code7;
@@ -3106,7 +3271,137 @@ function createCourseElement(name, code7, displayLabel, isElective) {
     codeSpan.className = "course-code";
     codeSpan.textContent = (displayLabel !== undefined && displayLabel !== null && displayLabel !== "") ? displayLabel : name;
 
-    main.appendChild(codeSpan);
+    if (isNteSlot && nteAllowanceData && nteAllowanceData.courses && nteAllowanceData.courses.length) {
+        var ntePickerWrap = document.createElement("div");
+        ntePickerWrap.className = "nte-picker-wrap";
+        var nteInput = document.createElement("input");
+        nteInput.type = "text";
+        nteInput.className = "nte-picker-input";
+        nteInput.setAttribute("autocomplete", "off");
+        nteInput.setAttribute("aria-label", currentLang === "tr" ? "NTE dersi ara" : "Search NTE course");
+        nteInput.placeholder = currentLang === "tr" ? "NTE ara…" : "Search NTE…";
+        var nteDropdown = document.createElement("div");
+        nteDropdown.className = "nte-picker-dropdown scroll-theme";
+        nteDropdown.setAttribute("role", "listbox");
+        nteDropdown.setAttribute("aria-hidden", "true");
+        var saved = courses[name] && (courses[name].nteChosenCode7 || courses[name].nteChosenCode);
+        if (saved) {
+            codeSpan.textContent = courses[name].nteChosenCode || "NTE";
+        } else {
+            codeSpan.textContent = "NTE";
+        }
+        function applyNteChoice(parts) {
+            if (!parts || !parts.length) {
+                codeSpan.textContent = "NTE";
+                if (courses[name]) {
+                    courses[name].credits = 0;
+                    courses[name].nteChosenCode = undefined;
+                    courses[name].nteChosenCode7 = undefined;
+                }
+                div.removeAttribute("data-course-code7");
+            } else {
+                codeSpan.textContent = parts[0];
+                if (courses[name]) {
+                    courses[name].credits = parseInt(parts[2], 10) || 3;
+                    courses[name].nteChosenCode = parts[0];
+                    courses[name].nteChosenCode7 = parts[1];
+                }
+                div.dataset.courseCode7 = parts[1];
+                var credInput = div.querySelector(".course-credits-input");
+                if (credInput) credInput.value = parts[2];
+                var gs = div.querySelector(".course-grade");
+                if (gs) setGradeSelectOptionsByCredits(gs, name);
+            }
+            recalculateGpas();
+            persistPlannerState();
+        }
+        function populateNteDropdown(query) {
+            query = (query || "").trim().toLowerCase();
+            nteDropdown.innerHTML = "";
+            nteDropdown.classList.remove("is-open");
+            var list = query
+                ? nteAllowanceData.courses.filter(function(nte) {
+                    var code = (nte.courseCode || "").toLowerCase();
+                    var nteName = (nte.name || "").toLowerCase();
+                    return code.indexOf(query) !== -1 || nteName.indexOf(query) !== -1;
+                })
+                : nteAllowanceData.courses.slice(0);
+            list = list.slice(0, 30);
+            var hasSelection = courses[name] && (courses[name].nteChosenCode || courses[name].nteChosenCode7);
+            if (hasSelection) {
+                var clearBtn = document.createElement("button");
+                clearBtn.type = "button";
+                clearBtn.className = "nte-picker-item";
+                clearBtn.setAttribute("role", "option");
+                clearBtn.textContent = currentLang === "tr" ? "— Seçimi kaldır —" : "— Clear selection —";
+                clearBtn.style.color = "var(--text-muted)";
+                clearBtn.addEventListener("click", function() {
+                    applyNteChoice(null);
+                    nteInput.value = "";
+                    nteDropdown.classList.remove("is-open");
+                    nteDropdown.innerHTML = "";
+                    nteDropdown.setAttribute("aria-hidden", "true");
+                });
+                nteDropdown.appendChild(clearBtn);
+            }
+            if (!list.length && !hasSelection) return;
+            list.forEach(function(nte) {
+                var code7str = nteCode7ToCatalogCode7(nte.code7);
+                var cr = 3;
+                if (coursesDataBy7 && code7str) {
+                    var c = coursesDataBy7[code7str] || coursesDataBy7[nte.code7];
+                    if (c && c.credits != null) cr = Number(c.credits);
+                }
+                var val = (nte.courseCode || "") + "|" + code7str + "|" + cr;
+                var btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "nte-picker-item";
+                btn.setAttribute("role", "option");
+                btn.innerHTML = "<code>" + (nte.courseCode || "") + "</code><span>" + (nte.name || "").substring(0, 50) + (nte.name && nte.name.length > 50 ? "…" : "") + " · " + cr + " cr</span>";
+                (function(v) {
+                    btn.addEventListener("click", function() {
+                        var p = v.split("|");
+                        applyNteChoice(p);
+                        nteInput.value = "";
+                        nteDropdown.classList.remove("is-open");
+                        nteDropdown.innerHTML = "";
+                        nteDropdown.setAttribute("aria-hidden", "true");
+                    });
+                })(val);
+                nteDropdown.appendChild(btn);
+            });
+            nteDropdown.classList.add("is-open");
+            nteDropdown.setAttribute("aria-hidden", "false");
+        }
+        nteInput.addEventListener("input", function() { populateNteDropdown(nteInput.value); });
+        nteInput.addEventListener("focus", function() {
+            populateNteDropdown(nteInput.value.trim());
+        });
+        nteInput.addEventListener("keydown", function(e) {
+            if (e.key === "Escape") {
+                nteDropdown.classList.remove("is-open");
+                nteInput.blur();
+            }
+        });
+        if (!document.body.dataset.ntePickerClickInit) {
+            document.body.dataset.ntePickerClickInit = "1";
+            document.addEventListener("click", function(ev) {
+                document.querySelectorAll(".nte-picker-dropdown.is-open").forEach(function(dd) {
+                    var wrap = dd.closest(".nte-picker-wrap");
+                    if (wrap && !wrap.contains(ev.target)) {
+                        dd.classList.remove("is-open");
+                        dd.setAttribute("aria-hidden", "true");
+                    }
+                });
+            });
+        }
+        ntePickerWrap.appendChild(nteInput);
+        ntePickerWrap.appendChild(nteDropdown);
+        main.appendChild(codeSpan);
+        main.appendChild(ntePickerWrap);
+    } else {
+        main.appendChild(codeSpan);
+    }
 
     const gradeSelect = document.createElement("select");
     gradeSelect.className = "course-grade";
@@ -3279,12 +3574,18 @@ function createCourseElement(name, code7, displayLabel, isElective) {
         var code7 = el.dataset.courseCode7 || null;
         if (!code || !courses[code]) return;
         var isElective = el.classList.contains("elective-placeholder");
+        var isNteSlot = el.classList.contains("nte-slot");
         var displayLabel = null;
         if (isElective) {
             var codeSpan = el.querySelector(".course-code");
             displayLabel = codeSpan ? codeSpan.textContent : null;
         }
-        var clone = createCourseElement(code, code7, displayLabel, isElective);
+        var opts = {};
+        if (isNteSlot && courses[code]) {
+            opts.isNteSlot = true;
+            opts.electiveBucket = courses[code].electiveBucket || "NONTECHNICAL ELECTIVE";
+        }
+        var clone = createCourseElement(code, code7, displayLabel, isElective, opts);
         var pool = document.getElementById("coursePool");
         if (pool) pool.appendChild(clone);
         recalculateGpas();

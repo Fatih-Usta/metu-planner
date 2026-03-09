@@ -1234,16 +1234,16 @@
 
     function initDataAndExplorer() {
       Promise.all([
-        fetch("programs.json").then(function(r) { return r.json(); }),
-        fetch("courses.json").then(function(r) { return r.json(); }),
+        fetch("data/programs.json").then(function(r) { return r.json(); }),
+        fetch("data/courses.json").then(function(r) { return r.json(); }),
         Promise.all(OIBS_TERM_CODES.map(function(termCode) {
-          return fetch("oibs_offerings_all_" + termCode + ".json").then(function(r) {
+          return fetch("data/oibs_offerings_all_" + termCode + ".json").then(function(r) {
             if (!r.ok) return null;
             return r.json().then(function(j) { return { code: termCode, data: j }; });
           }).catch(function() { return null; });
         })),
         Promise.all(OIBS_TERM_CODES.map(function(termCode) {
-          return fetch("oibs_sections_all_" + termCode + "_full.json").then(function(r) {
+          return fetch("data/oibs_sections_all_" + termCode + "_full.json").then(function(r) {
             if (!r.ok) return null;
             return r.json().then(function(j) { return { code: termCode, data: j }; });
           }).catch(function() { return null; });

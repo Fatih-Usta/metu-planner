@@ -158,6 +158,62 @@
     font-size: 0.78rem;
 }
 
+.weekly-nte-picker-wrap {
+    position: relative;
+    margin-top: 6px;
+}
+.weekly-nte-picker-input {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 0.88rem;
+    font-family: inherit;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-input);
+    color: var(--text-main);
+    outline: none;
+    box-sizing: border-box;
+}
+.weekly-nte-picker-input::placeholder {
+    color: var(--text-muted);
+}
+.weekly-nte-picker-input:focus {
+    border-color: var(--metu-red);
+}
+
+/* Searchable department combobox */
+.weekly-dept-combobox--searchable {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--bg-input);
+    transition: border-color var(--transition);
+}
+.weekly-dept-combobox--searchable:focus-within {
+    border-color: var(--metu-red);
+}
+.weekly-dept-combobox--searchable #weeklyDeptInput {
+    flex: 1;
+    min-width: 0;
+    border: none;
+    background: transparent;
+    padding: 8px 10px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--text-main);
+    outline: none;
+}
+.weekly-dept-combobox--searchable #weeklyDeptInput::placeholder {
+    color: var(--text-muted);
+}
+.weekly-dept-combobox--searchable .weekly-dept-chevron {
+    flex-shrink: 0;
+    padding-right: 10px;
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
 .weekly-course-rule-flags {
     margin-top: 6px;
     display: flex;
@@ -422,6 +478,53 @@
     margin-top: 4px;
     font-size: 0.75rem;
     color: var(--text-muted);
+}
+
+.weekly-color-trigger {
+    position: relative;
+    display: inline-flex;
+}
+.weekly-color-btn {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    background: var(--bg-input);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-left: 4px;
+}
+.weekly-color-btn:hover {
+    border-color: var(--text-muted);
+}
+.weekly-color-btn .weekly-color-btn-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+.weekly-color-dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 4px;
+    padding: 8px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    z-index: 100;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: 180px;
+}
+.weekly-color-dropdown.is-open {
+    display: flex;
 }
 
 .weekly-select {
@@ -978,6 +1081,9 @@
     .week-schedule-block { font-size: 0.55rem; padding: 2px; }
     .week-table td { min-height: 32px; height: 32px; }
 }
+
+/* Extra bottom space so users can scroll down more */
+body { padding-bottom: 120px; }
 </style>
 </head>
 <body>
@@ -1072,16 +1178,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             </div>
 
             <div class="field weekly-field-same-width">
-                <label for="weeklyDeptButton" id="weeklyDeptLabel">Department</label>
+                <label for="weeklyDeptInput" id="weeklyDeptLabel">Department</label>
                 <div class="weekly-field-same-width__row">
                     <select id="weeklyDeptSelect" class="weekly-hidden-select" tabindex="-1" aria-hidden="true">
                         <option value="">Select department</option>
                     </select>
-                    <div class="weekly-dept-combobox" id="weeklyDeptCombo">
-                        <button type="button" id="weeklyDeptButton" class="weekly-select-trigger" aria-haspopup="listbox" aria-expanded="false">
-                            <span id="weeklyDeptButtonLabel">Select department</span>
-                            <span class="weekly-select-chevron" aria-hidden="true">▾</span>
-                        </button>
+                    <div class="weekly-dept-combobox weekly-dept-combobox--searchable" id="weeklyDeptCombo">
+                        <input id="weeklyDeptInput" type="text" autocomplete="off" aria-haspopup="listbox" aria-expanded="false" aria-autocomplete="list">
+                        <span class="weekly-select-chevron weekly-dept-chevron" aria-hidden="true">▾</span>
                         <div id="weeklyDeptList" class="weekly-suggest-dropdown" role="listbox" aria-labelledby="weeklyDeptLabel"></div>
                     </div>
                     <span class="weekly-field-same-width__spacer" aria-hidden="true"></span>
@@ -1137,7 +1241,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         <input id="weeklyAddCourseInput" type="text" placeholder="e.g. CENG223, MATH120" autocomplete="off">
                         <div id="weeklyAddCourseSuggestions" class="weekly-suggest-dropdown" aria-hidden="true"></div>
                     </div>
-                    <button type="button" id="weeklyAddCourseBtn" class="weekly-btn">Add</button>
+                    <button type="button" id="weeklyAddCourseBtn" class="weekly-btn" data-i18n="addBtn">Add</button>
                 </div>
                 <span class="weekly-hint-text weekly-hint-hidden" id="weeklyAddCourseHint">Adds a single course using this semester&apos;s OIBS offerings. Start typing to see suggestions.</span>
             </div>
@@ -1153,6 +1257,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     <div class="panel-title" id="weeklyWeekViewTitle">Week View</div>
                 </div>
                 <div class="weekly-weekview-actions">
+                    <button type="button" id="weeklyGetNteBtn" class="weekly-btn" title="Show NTE courses that fit your current schedule (time, dept, surname rules)">Get NTE</button>
                     <button type="button" id="weeklySaveBtn" class="weekly-btn">Save</button>
                     <button type="button" id="weeklyLoadBtn" class="weekly-btn">Load</button>
                     <button type="button" id="weeklySaveToPortalBtn" class="weekly-btn">Save to portal</button>
@@ -1267,6 +1372,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 </div>
 
 <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<div id="weeklyNteResultsOverlay" class="weekly-section-details-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="weeklyNteResultsTitle">
+  <div class="weekly-section-details-modal" style="max-width: 520px; max-height: 88vh;">
+    <div class="weekly-section-details-header">
+      <h3 id="weeklyNteResultsTitle" class="weekly-section-details-title">NTE courses that fit your schedule</h3>
+      <button type="button" id="weeklyNteResultsClose" class="weekly-section-details-close">Close</button>
+    </div>
+    <div id="weeklyNteResultsContent" class="weekly-section-details-body scroll-theme"></div>
+  </div>
+</div>
 
 <div id="weeklySectionDetailsOverlay" class="weekly-section-details-overlay" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="weeklySectionDetailsTitle">
   <div class="weekly-section-details-modal">
@@ -1440,6 +1555,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var currentPlannedCodes = []; // codes of courses currently in the list when schedules were built
     var weeklySectionsBy7 = null;
     var weeklyCoursesByCode = null;
+    var weeklyNteAllowanceData = null;
+    var weeklyDeptCodeToAbbrev = {}; // program/department code -> abbrev (e.g. "572" -> "AEE")
+    var weeklyDeptCodeLoadPromise = null; // avoid duplicate fetches
     var weeklyAccentByCode = {};
     var weeklySectionPrefs = {};
     var weeklyAccentPool = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
@@ -1512,11 +1630,28 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             msgNothingToSave: "Nothing to save: no courses in the weekly list.",
             msgClearedList: "Cleared all courses from the list.",
             selectDepartment: "Select department",
+            deptSearchPlaceholder: "Select or search department…",
             requiredCourse: "Required course",
             ignoredCourseTag: "This course (OHS / IS100) is not checked against OIBS here.",
+            nteSlotTag: "NTE slot",
+            plannerOnlyTag: "Planner-only",
+            nteSlotTitle: "Nontechnical elective slot",
+            plannerOnlyTitle: "Planner course (no OIBS data)",
+            nteSlotDesc: "Choose a nontechnical elective; this slot is not checked against OIBS here.",
+            plannerOnlyDesc: "This course is from Planner and is not checked against OIBS here.",
             addedManually: "Added manually",
             electiveSlotTag: "Elective slot from curriculum",
             chooseCourse: "Choose course",
+            nteChoosePlaceholder: "Choose NTE…",
+            nteNoThisSemester: "No NTE this semester",
+            nteSearchPlaceholder: "Search NTE…",
+            getNteBtn: "Get NTE",
+            nteResultsTitle: "NTE courses that fit your schedule",
+            nteResultsEmpty: "No NTE courses fit. Run Schedule first, or check dept/surname rules.",
+            nteResultsHint: "Shows NTEs with at least one section that does not conflict with your current schedule and passes department + surname rules.",
+            nteChangePlaceholder: "Search to change…",
+            nteClearSelection: "— Clear selection —",
+            nteSearchAria: "Search NTE course",
             addSelectedCourse: "Add selected course",
             chosenFromOneOfGroup: "Chosen from one-of group",
             anyLabel: "any",
@@ -1528,7 +1663,15 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             yearRange: "Year",
             gradeRestriction: "Grade",
             deptRule: "Department",
-            closeBtn: "Close"
+            closeBtn: "Close",
+            secPrefix: "Sec",
+            addBtn: "Add",
+            msgNoTimeInfo: "These course(s) are in your list and have a section selected, but their section data doesn't contain time information, so we couldn't draw them on the Week View: {courses}. Because we don't know their exact hours, they might still conflict with other courses in your real timetable. You can still open their section page for details.",
+            msgNoConflictingTimes: "These course(s) are in your list, but we couldn't place them into this schedule because we couldn't find non-conflicting section times: {courses}",
+            msgElectiveSlotsNote: "These elective slot(s) are in your list, but we don't add them automatically. You need to choose the exact course/section first: {courses}",
+            msgOneOfGroupsNote: "These \"one of\" choice groups are in your list; pick one course from each group so it can be scheduled: {courses}",
+            electiveSlotFallback: "Elective slot",
+            oneOfGroupFallback: "one-of group"
         },
         tr: {
             title: "Haftalık Program",
@@ -1595,11 +1738,28 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             msgNothingToSave: "Kaydedilecek bir şey yok: haftalık listede ders bulunmuyor.",
             msgClearedList: "Listedeki tüm dersler temizlendi.",
             selectDepartment: "Bölüm seç",
+            deptSearchPlaceholder: "Bölüm seç veya ara…",
             requiredCourse: "Zorunlu ders",
             ignoredCourseTag: "Bu ders (OHS / IS100) burada OİBS'ye karşı kontrol edilmiyor.",
+            nteSlotTag: "NTE slotu",
+            plannerOnlyTag: "Sadece Planlayıcı",
+            nteSlotTitle: "Teknik olmayan seçmeli slotu",
+            plannerOnlyTitle: "Planlayıcı dersi (OİBS verisi yok)",
+            nteSlotDesc: "Teknik olmayan bir seçmeli seç. Bu slot burada OİBS'ye karşı kontrol edilmiyor.",
+            plannerOnlyDesc: "Bu ders Planlayıcı'dan geliyor ve burada OİBS'ye karşı kontrol edilmiyor.",
             addedManually: "Elle eklendi",
             electiveSlotTag: "Müfredattan seçmeli slotu",
             chooseCourse: "Ders seç",
+            nteChoosePlaceholder: "NTE seç…",
+            nteNoThisSemester: "Bu dönem NTE yok",
+            nteSearchPlaceholder: "NTE ara…",
+            getNteBtn: "NTE Al",
+            nteResultsTitle: "Programınıza uyan NTE dersleri",
+            nteResultsEmpty: "Uygun NTE dersi yok. Önce Programla çalıştırın veya bölüm/soyad kurallarını kontrol edin.",
+            nteResultsHint: "Mevcut programınızla çakışmayan ve bölüm + soyad kurallarına uyan en az bir şubesi olan NTE'leri gösterir.",
+            nteChangePlaceholder: "Değiştirmek için ara…",
+            nteClearSelection: "— Seçimi kaldır —",
+            nteSearchAria: "NTE dersi ara",
             addSelectedCourse: "Seçili dersi ekle",
             chosenFromOneOfGroup: "Bir seçenek grubundan seçildi",
             anyLabel: "herhangi",
@@ -1611,7 +1771,15 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             yearRange: "Yıl",
             gradeRestriction: "Not",
             deptRule: "Bölüm",
-            closeBtn: "Kapat"
+            closeBtn: "Kapat",
+            secPrefix: "Şub",
+            addBtn: "Ekle",
+            msgNoTimeInfo: "Bu ders(ler) listenizde ve bir şube seçilmiş, ancak şube verileri saat bilgisi içermiyor, bu yüzden Haftalık görünüme çizemedik: {courses}. Tam saatleri bilmediğimiz için gerçek programınızdaki diğer derslerle çakışabilir. Detaylar için şube sayfasını açabilirsiniz.",
+            msgNoConflictingTimes: "Bu ders(ler) listenizde, ancak çakışmayan şube saatleri bulamadığımız için bu programa yerleştiremedik: {courses}.",
+            msgElectiveSlotsNote: "Bu seçmeli slot(lar) listenizde, ancak otomatik eklemiyoruz. Önce tam dersi/şubeyi seçmeniz gerekiyor: {courses}",
+            msgOneOfGroupsNote: "Bu \"birinden bir\" seçim grupları listenizde; programa alınabilmeleri için her gruptan bir ders seçin: {courses}",
+            electiveSlotFallback: "Seçmeli slot",
+            oneOfGroupFallback: "birinden-bir grubu"
         }
     };
 
@@ -1686,6 +1854,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = dict.scheduleBtn;
         el = document.getElementById("weeklyClearCoursesBtn");
         if (el) el.textContent = dict.clearList;
+        el = document.getElementById("weeklyGetNteBtn");
+        if (el) el.textContent = dict.getNteBtn || "Get NTE";
         el = document.getElementById("weeklySaveBtn");
         if (el) el.textContent = (langCode === "tr" ? "Kaydet" : "Save");
         el = document.getElementById("weeklyLoadBtn");
@@ -1696,8 +1866,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = dict.exportBtn || "Export ▾";
         el = document.getElementById("weeklyAddCourseLabel");
         if (el) el.textContent = dict.addCourseLabel;
+        el = document.getElementById("weeklyAddCourseBtn");
+        if (el) el.textContent = dict.addBtn || "Add";
         var input = document.getElementById("weeklyAddCourseInput");
         if (input) input.placeholder = dict.addCoursePlaceholder;
+        var deptInput = document.getElementById("weeklyDeptInput");
+        if (deptInput && !deptInput.value) deptInput.placeholder = dict.deptSearchPlaceholder || dict.selectDepartment;
         el = document.getElementById("weeklyAddCourseHint");
         if (el) el.textContent = dict.addCourseHint;
         el = document.getElementById("weeklyWeekViewTitle");
@@ -1769,8 +1943,21 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var weeklyCheckCollisionGlobal = true;
     var weeklyAccentPool = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
     var weeklyAccentIndex = 0;
+    var weeklyAccentPrefs = {}; // code -> accent "1"-"13" (user-selected colors)
     var weeklySectionsPrefsKey = "metu_weekly_prefs_v1";
     var weeklyPortalPreviewKey = "metu_portal_weekly_preview";
+    var weeklyHasPlannerPrefill = false;
+    try {
+        var __plannerPrefillRaw = localStorage.getItem("metu_weekly_prefill_codes");
+        if (__plannerPrefillRaw) {
+            var __plannerPrefill = JSON.parse(__plannerPrefillRaw);
+            if (Array.isArray(__plannerPrefill) && __plannerPrefill.length) {
+                weeklyHasPlannerPrefill = true;
+            }
+        }
+    } catch (e) {
+        // ignore
+    }
 
     function saveWeeklyPrefs() {
         try {
@@ -1783,7 +1970,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     checkSurname: !!weeklyCheckSurnameGlobal,
                     checkCollision: !!weeklyCheckCollisionGlobal
                 },
-                sectionPrefs: weeklySectionPrefs || {}
+                sectionPrefs: weeklySectionPrefs || {},
+                accentPrefs: weeklyAccentPrefs || {}
             };
             localStorage.setItem(weeklySectionsPrefsKey, JSON.stringify(prefs));
         } catch (e) {
@@ -1803,6 +1991,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             }
             if (prefs && prefs.sectionPrefs && typeof prefs.sectionPrefs === "object") {
                 weeklySectionPrefs = prefs.sectionPrefs;
+            }
+            if (prefs && prefs.accentPrefs && typeof prefs.accentPrefs === "object") {
+                weeklyAccentPrefs = prefs.accentPrefs;
             }
             if (prefs && typeof prefs.surname === "string") {
                 var surnameInput = document.getElementById("weeklySurname");
@@ -1833,16 +2024,19 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     loadWeeklyPrefs();
     // If there is a saved weekly preview for the portal, also use it to restore
     // the weekly page so that a refresh does not lose the last saved schedule.
-    try {
-        var portalPreviewRaw = localStorage.getItem(weeklyPortalPreviewKey);
-        if (portalPreviewRaw) {
-            var portalPreviewState = JSON.parse(portalPreviewRaw);
-            if (portalPreviewState && Array.isArray(portalPreviewState.schedules)) {
-                applyWeeklyState(portalPreviewState);
+    // BUT: when coming from Planner with a prefill, skip restoring from portal.
+    if (!weeklyHasPlannerPrefill) {
+        try {
+            var portalPreviewRaw = localStorage.getItem(weeklyPortalPreviewKey);
+            if (portalPreviewRaw) {
+                var portalPreviewState = JSON.parse(portalPreviewRaw);
+                if (portalPreviewState && Array.isArray(portalPreviewState.schedules)) {
+                    applyWeeklyState(portalPreviewState);
+                }
             }
+        } catch (e) {
+            // ignore parse errors
         }
-    } catch (e) {
-        // ignore parse errors
     }
     initWeeklySemesterCombobox();
 
@@ -1854,6 +2048,109 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         var val = weeklyAccentPool[weeklyAccentIndex];
         weeklyAccentIndex += 1;
         return val;
+    }
+
+    function getAccentForCode(code) {
+        if (weeklyAccentPrefs && code && weeklyAccentPrefs[code]) {
+            var a = String(weeklyAccentPrefs[code]);
+            if (/^([1-9]|1[0-3])$/.test(a)) return a;
+        }
+        var val = weeklyNextAccent();
+        if (weeklyAccentPrefs && code) weeklyAccentPrefs[code] = val;
+        return val;
+    }
+
+    var WEEKLY_ACCENT_COLORS = [
+        "rgba(56, 189, 248, 0.6)", "rgba(59, 130, 246, 0.6)", "rgba(129, 140, 248, 0.6)", "rgba(244, 114, 182, 0.6)",
+        "rgba(251, 191, 36, 0.6)", "rgba(52, 211, 153, 0.6)", "rgba(96, 165, 250, 0.6)", "rgba(148, 163, 184, 0.6)",
+        "rgba(45, 212, 191, 0.6)", "rgba(244, 163, 84, 0.6)", "rgba(196, 181, 253, 0.6)", "rgba(248, 180, 180, 0.6)", "rgba(163, 230, 53, 0.6)"
+    ];
+
+    function attachColorPickerToCard(cardEl, code) {
+        if (!cardEl || !code) return;
+        var codeEl = cardEl.querySelector(".weekly-course-code");
+        if (!codeEl) return;
+        var header = cardEl.querySelector(".weekly-course-header");
+        if (!header) return;
+
+        var wrapper = document.createElement("div");
+        wrapper.className = "weekly-color-picker weekly-color-trigger";
+
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "weekly-color-btn";
+        btn.setAttribute("aria-label", "Change course color");
+        btn.title = "Change course color";
+        var dot = document.createElement("span");
+        dot.className = "weekly-color-btn-dot";
+        var acc = cardEl.dataset.accent || "1";
+        var idx = Math.max(0, parseInt(acc, 10) - 1);
+        dot.style.background = WEEKLY_ACCENT_COLORS[idx] || "rgba(128,128,128,0.6)";
+        btn.appendChild(dot);
+
+        var dropdown = document.createElement("div");
+        dropdown.className = "weekly-color-dropdown";
+        dropdown.addEventListener("click", function (e) { e.stopPropagation(); });
+
+        for (var i = 0; i < 13; i++) {
+            var swatch = document.createElement("button");
+            swatch.type = "button";
+            swatch.className = "weekly-color-swatch";
+            swatch.dataset.accent = String(i + 1);
+            swatch.style.width = "20px";
+            swatch.style.height = "20px";
+            swatch.style.borderRadius = "50%";
+            swatch.style.border = "2px solid transparent";
+            swatch.style.cursor = "pointer";
+            swatch.style.background = WEEKLY_ACCENT_COLORS[i] || "rgba(128,128,128,0.6)";
+            swatch.style.padding = "0";
+            swatch.style.flexShrink = "0";
+            swatch.title = "Color " + (i + 1);
+            (function (accVal) {
+                swatch.addEventListener("click", function () {
+                    if (!cardEl.parentNode) return;
+                    cardEl.dataset.accent = accVal;
+                    if (weeklyAccentByCode) weeklyAccentByCode[code] = accVal;
+                    if (weeklyAccentPrefs) weeklyAccentPrefs[code] = accVal;
+                    saveWeeklyPrefs();
+                    dot.style.background = WEEKLY_ACCENT_COLORS[parseInt(accVal, 10) - 1] || "rgba(128,128,128,0.6)";
+                    dropdown.querySelectorAll(".weekly-color-swatch").forEach(function (s) {
+                        s.style.borderColor = s.dataset.accent === accVal ? "var(--text-main)" : "transparent";
+                    });
+                    dropdown.classList.remove("is-open");
+                    if (currentSchedulesList && currentSchedulesList.length) {
+                        renderScheduleInGrid(currentSchedulesList[currentScheduleIndex || 0]);
+                    }
+                });
+            })(String(i + 1));
+            dropdown.appendChild(swatch);
+        }
+        var currentAccent = cardEl.dataset.accent || "1";
+        dropdown.querySelectorAll(".weekly-color-swatch").forEach(function (s) {
+            s.style.borderColor = s.dataset.accent === currentAccent ? "var(--text-main)" : "transparent";
+        });
+
+        btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            dropdown.classList.toggle("is-open");
+            if (!document.body.dataset.weeklyColorPickerClickInit) {
+                document.body.dataset.weeklyColorPickerClickInit = "1";
+                document.addEventListener("click", function closeHandler() {
+                    document.querySelectorAll(".weekly-color-dropdown.is-open").forEach(function (dd) {
+                        dd.classList.remove("is-open");
+                    });
+                });
+            }
+        });
+
+        wrapper.appendChild(btn);
+        wrapper.appendChild(dropdown);
+        var leftWrap = header.querySelector(".weekly-course-header-left");
+        if (leftWrap) {
+            leftWrap.insertBefore(wrapper, leftWrap.firstChild);
+        } else {
+            header.insertBefore(wrapper, header.firstChild);
+        }
     }
 
     function getCourseRuleFlags(code) {
@@ -1945,32 +2242,48 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         overlay.querySelector(".weekly-section-details-modal").onclick = function (e) { e.stopPropagation(); };
     }
 
-    // Custom themed combobox UI for department selection, backed by the hidden native <select>
+    // Custom themed combobox UI for department selection (searchable), backed by the hidden native <select>
     function initWeeklyDeptCombobox() {
         var selectEl = document.getElementById("weeklyDeptSelect");
-        var button = document.getElementById("weeklyDeptButton");
-        var labelEl = document.getElementById("weeklyDeptButtonLabel");
+        var inputEl = document.getElementById("weeklyDeptInput");
         var listEl = document.getElementById("weeklyDeptList");
-        if (!selectEl || !button || !labelEl || !listEl) return;
+        if (!selectEl || !inputEl || !listEl) return;
 
-        function syncLabelFromSelect() {
-            var opt = selectEl.options[selectEl.selectedIndex] || null;
-            labelEl.textContent = opt && opt.textContent ? opt.textContent : wt("selectDepartment");
+        function getDeptOptions() {
+            var opts = [];
+            for (var i = 0; i < selectEl.options.length; i++) {
+                var opt = selectEl.options[i];
+                if (!opt.value) continue;
+                opts.push({ value: opt.value, label: opt.textContent || opt.value });
+            }
+            return opts;
         }
 
-        // Build the custom list from the current <select> options (flat list, no grouping)
-        listEl.innerHTML = "";
-        for (var i = 0; i < selectEl.options.length; i++) {
-            var opt = selectEl.options[i];
-            if (!opt.value) continue; // skip placeholder
-            var item = document.createElement("button");
-            item.type = "button";
-            item.className = "weekly-suggest-item";
-            item.setAttribute("role", "option");
-            item.textContent = opt.textContent || opt.value;
-            (function (value) {
+        function filterDeptOptions(query) {
+            query = (query || "").trim().toLowerCase();
+            var opts = getDeptOptions();
+            if (!query) return opts;
+            return opts.filter(function (o) {
+                return (o.label || "").toLowerCase().indexOf(query) !== -1;
+            });
+        }
+
+        function syncInputFromSelect() {
+            var opt = selectEl.options[selectEl.selectedIndex] || null;
+            inputEl.value = opt && opt.textContent ? opt.textContent.trim() : "";
+            inputEl.placeholder = opt && opt.value ? "" : (wt("deptSearchPlaceholder") || wt("selectDepartment"));
+        }
+
+        function renderDeptList(items) {
+            listEl.innerHTML = "";
+            items.slice(0, 50).forEach(function (o) {
+                var item = document.createElement("button");
+                item.type = "button";
+                item.className = "weekly-suggest-item";
+                item.setAttribute("role", "option");
+                item.textContent = o.label;
                 item.addEventListener("click", function () {
-                    selectEl.value = value;
+                    selectEl.value = o.value;
                     var evt;
                     try {
                         evt = new Event("change", { bubbles: true });
@@ -1979,27 +2292,40 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         evt.initEvent("change", true, true);
                     }
                     selectEl.dispatchEvent(evt);
-                    syncLabelFromSelect();
+                    inputEl.value = o.label;
+                    inputEl.placeholder = "";
                     listEl.classList.remove("is-open");
-                    button.setAttribute("aria-expanded", "false");
+                    inputEl.setAttribute("aria-expanded", "false");
                 });
-            })(opt.value);
-            listEl.appendChild(item);
+                listEl.appendChild(item);
+            });
+            listEl.classList.toggle("is-open", items.length > 0);
+            inputEl.setAttribute("aria-expanded", items.length > 0 ? "true" : "false");
         }
 
-        syncLabelFromSelect();
+        function openAndFilter() {
+            var items = filterDeptOptions(inputEl.value);
+            renderDeptList(items);
+        }
 
-        button.addEventListener("click", function () {
-            var isOpen = listEl.classList.contains("is-open");
-            listEl.classList.toggle("is-open", !isOpen);
-            button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+        syncInputFromSelect();
+
+        inputEl.addEventListener("input", openAndFilter);
+        inputEl.addEventListener("focus", openAndFilter);
+        inputEl.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                listEl.classList.remove("is-open");
+                inputEl.setAttribute("aria-expanded", "false");
+                syncInputFromSelect();
+            }
         });
 
         document.addEventListener("click", function (ev) {
             if (!listEl.classList.contains("is-open")) return;
-            if (!button.contains(ev.target) && !listEl.contains(ev.target)) {
+            if (!inputEl.contains(ev.target) && !listEl.contains(ev.target)) {
                 listEl.classList.remove("is-open");
-                button.setAttribute("aria-expanded", "false");
+                inputEl.setAttribute("aria-expanded", "false");
+                syncInputFromSelect();
             }
         });
     }
@@ -2118,13 +2444,18 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         });
     }
 
-    // Infer student's department short code (CENG, EEE, etc.) from a course that belongs to their program
-    // (7-digit code starts with program code), so we get CENG for 571, not PHYS from PHYS106
+    // Infer student's department short code (CENG, EEE, AEE, etc.) for section rule matching.
+    // Uses department_codes.json (authoritative abbrev) first, then curriculum-based inference.
     function getStudentDeptShort(programCode) {
-        if (!weeklyCurriculums || !programCode) return "";
-        var curr = weeklyCurriculums[programCode];
+        if (!programCode) return "";
+        var codeStr = String(programCode).trim();
+        if (weeklyDeptCodeToAbbrev && weeklyDeptCodeToAbbrev[codeStr]) {
+            return weeklyDeptCodeToAbbrev[codeStr];
+        }
+        if (!weeklyCurriculums) return "";
+        var curr = weeklyCurriculums[codeStr];
         if (!curr || !Array.isArray(curr.semesters)) return "";
-        var programPrefix = String(programCode);
+        var programPrefix = codeStr;
         for (var i = 0; i < curr.semesters.length; i++) {
             var sem = curr.semesters[i];
             var items = sem.courses || [];
@@ -2132,7 +2463,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 var item = items[j];
                 var code = (item.code || "").toUpperCase();
                 var code7 = item.course_code_7digit != null ? String(item.course_code_7digit) : "";
-                // Allow 2–4 letter department prefixes (e.g. ID, CE, CENG)
                 var m = /^([A-Z]{2,4})\d+/.exec(code);
                 if (m && code7.indexOf(programPrefix) === 0) return m[1];
             }
@@ -2142,7 +2472,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             var items = sem.courses || [];
             for (var j = 0; j < items.length; j++) {
                 var code = (items[j].code || "").toUpperCase();
-                // Fallback: still allow 2–4 letter prefixes
                 var m = /^([A-Z]{2,4})\d+/.exec(code);
                 if (m) return m[1];
             }
@@ -2244,18 +2573,18 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         var tasks = [];
         if (!weeklyCurriculums) {
             tasks.push(
-                fetch("curriculums.json").then(function (r) { return r.json(); }).then(function (data) {
+                fetch("data/curriculums.json").then(function (r) { return r.json(); }).then(function (data) {
                     weeklyCurriculums = data.curriculums || {};
                 })
             );
         }
         if (!weeklyOfferings || !weeklyOfferedBy7) {
             tasks.push(
-                fetch("oibs_offerings_20252.json")
+                fetch("data/oibs_offerings_20252.json")
                     .then(function (r) {
                         if (r.ok) return r;
                         // Fallback to root all-offerings file if main copy missing
-                        return fetch("oibs_offerings_all_20252.json");
+                        return fetch("data/oibs_offerings_all_20252.json");
                     })
                     .then(function (r) { return r.json(); })
                     .then(function (data) {
@@ -2272,10 +2601,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         }
         if (!weeklySectionsBy7) {
             tasks.push(
-                fetch("oibs_sections_20252.json")
+                fetch("data/oibs_sections_20252.json")
                     .then(function (r) {
                         if (r.ok) return r;
-                        return fetch("oibs_sections_all_20252_full.json");
+                        return fetch("data/oibs_sections_all_20252_full.json");
                     })
                     .then(function (r) {
                         if (!r.ok) return null;
@@ -2286,7 +2615,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         if (data && data.departments) {
                             data.departments.forEach(function (d) {
                                 (d.courses || []).forEach(function (c) {
-                                    var key = c.internal_code;
+                                    var key = c.internal_code || c.code;
                                     if (!key || !Array.isArray(c.sections)) return;
                                     weeklySectionsBy7[String(key)] = c.sections;
                                 });
@@ -2300,7 +2629,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         }
         if (!weeklyCoursesByCode) {
             tasks.push(
-                fetch("courses.json")
+                fetch("data/courses.json")
                     .then(function (r) { return r.json(); })
                     .then(function (data) {
                         weeklyCoursesByCode = {};
@@ -2309,6 +2638,39 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         });
                     })
             );
+        }
+        if (!weeklyNteAllowanceData) {
+            tasks.push(
+                fetch("data/nte-allowance-list.json?v=" + Date.now())
+                    .then(function (r) { return r.json(); })
+                    .then(function (data) { weeklyNteAllowanceData = data; })
+                    .catch(function () { weeklyNteAllowanceData = { courses: [] }; })
+            );
+        }
+        if (!Object.keys(weeklyDeptCodeToAbbrev).length) {
+            if (!weeklyDeptCodeLoadPromise) {
+                weeklyDeptCodeLoadPromise = fetch("data/department_codes.json")
+                    .then(function (r) {
+                        if (!r.ok) return null;
+                        return r.json();
+                    })
+                    .then(function (data) {
+                        weeklyDeptCodeToAbbrev = {};
+                        if (data && Array.isArray(data.departments)) {
+                            data.departments.forEach(function (d) {
+                                var val = d.value != null ? String(d.value) : "";
+                                var abbrev = (d.abbrev || "").toUpperCase().trim();
+                                if (val && abbrev) weeklyDeptCodeToAbbrev[val] = abbrev;
+                            });
+                        }
+                        return weeklyDeptCodeToAbbrev;
+                    })
+                    .catch(function () {
+                        weeklyDeptCodeToAbbrev = {};
+                        return weeklyDeptCodeToAbbrev;
+                    });
+            }
+            tasks.push(weeklyDeptCodeLoadPromise);
         }
         if (!tasks.length) return Promise.resolve();
         return Promise.all(tasks);
@@ -2393,7 +2755,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (!listEl) return;
         var card = document.createElement("div");
         card.className = "weekly-course-card";
-        card.dataset.accent = weeklyNextAccent();
+        card.dataset.accent = getAccentForCode(code);
         weeklyAccentByCode[code] = card.dataset.accent;
 
         var header = document.createElement("div");
@@ -2462,15 +2824,592 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         flagsRow2.appendChild(surLabel2);
         flagsRow2.appendChild(collLabel2);
         card.appendChild(flagsRow2);
+        attachColorPickerToCard(card, code);
 
         listEl.appendChild(card);
         setMessage(wtf("msgAddedToList", { code: code }), false);
     }
 
-    function addCourseCardByCode(rawCode) {
+    function addPlannerPlaceholderCourseCard(listEl, code) {
+        if (!listEl) return;
+        var card = document.createElement("div");
+        card.className = "weekly-course-card";
+        card.dataset.accent = getAccentForCode(code);
+        weeklyAccentByCode[code] = card.dataset.accent;
+
+        var header = document.createElement("div");
+        header.className = "weekly-course-header";
+        var leftWrap = document.createElement("div");
+        leftWrap.className = "weekly-course-header-left";
+        var codeEl = document.createElement("div");
+        codeEl.className = "weekly-course-code";
+        codeEl.textContent = code;
+        var pill = document.createElement("div");
+        pill.className = "weekly-course-pill";
+        var isNteSlot = code === "NTE" || /^ELEC_S\d+_\d+$/i.test(code);
+        pill.textContent = isNteSlot ? wt("nteSlotTag") : wt("plannerOnlyTag");
+        leftWrap.appendChild(codeEl);
+        leftWrap.appendChild(pill);
+        header.appendChild(leftWrap);
+        (function addRemoveButton(headerEl, cardEl) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = "×";
+            btn.style.border = "none";
+            btn.style.background = "transparent";
+            btn.style.color = "var(--text-muted)";
+            btn.style.cursor = "pointer";
+            btn.style.fontSize = "14px";
+            btn.style.marginLeft = "8px";
+            btn.addEventListener("click", function () { cardEl.remove(); });
+            headerEl.appendChild(btn);
+        })(header, card);
+
+        var nameEl = document.createElement("div");
+        nameEl.className = "weekly-course-name";
+        nameEl.textContent = isNteSlot ? wt("nteSlotTitle") : wt("plannerOnlyTitle");
+
+        var desc = document.createElement("div");
+        desc.className = "weekly-course-tag";
+        desc.textContent = isNteSlot ? wt("nteSlotDesc") : wt("plannerOnlyDesc");
+
+        card.appendChild(header);
+        card.appendChild(nameEl);
+        card.appendChild(desc);
+        attachColorPickerToCard(card, code);
+
+        listEl.appendChild(card);
+        setMessage(wtf("msgAddedToList", { code: code }), false);
+    }
+
+    function nteCode7ToCatalogCode7(code7) {
+        var n = typeof code7 === "string" ? parseInt(code7, 10) : code7;
+        if (isNaN(n)) return "";
+        if (n >= 1000000) return String(n);
+        if (n >= 100000) return String(Math.floor(n / 1000) * 10000 + (n % 1000));
+        return String(n);
+    }
+
+    function attachSectionsToggleToContainer(containerEl, code7) {
+        if (!code7 || !weeklySectionsBy7) return;
+        var sections = weeklySectionsBy7[code7];
+        if (!sections || !sections.length) return;
+        var courseCodeNode = containerEl.closest(".weekly-course-card");
+        courseCodeNode = courseCodeNode ? courseCodeNode.querySelector(".weekly-course-code") : null;
+        var courseCode = courseCodeNode && courseCodeNode.textContent ? courseCodeNode.textContent.trim() : "";
+        var existingPrefs = (weeklySectionPrefs && courseCode) ? weeklySectionPrefs[courseCode] : null;
+
+        var toggle = document.createElement("button");
+        toggle.type = "button";
+        toggle.className = "weekly-section-toggle";
+        toggle.textContent = wt("sectionToggleShow");
+        var details = document.createElement("div");
+        details.className = "weekly-sections";
+        details.style.display = "none";
+
+        var choices = document.createElement("div");
+        choices.className = "weekly-section-choices";
+        var choicesHeader = document.createElement("div");
+        choicesHeader.className = "weekly-section-choices-header";
+        var choicesLabel = document.createElement("span");
+        choicesLabel.textContent = wt("availableSections");
+        var toggleAllBtn = document.createElement("button");
+        toggleAllBtn.type = "button";
+        toggleAllBtn.className = "weekly-section-toggleall";
+        toggleAllBtn.textContent = wt("toggleAllSections");
+        choicesHeader.appendChild(choicesLabel);
+        choicesHeader.appendChild(toggleAllBtn);
+        choices.appendChild(choicesHeader);
+        var choicesList = document.createElement("div");
+        choicesList.className = "weekly-section-choices-list";
+        var checkboxes = [];
+        details.appendChild(choices);
+
+        sections.forEach(function (s) {
+            var secNum = (s.section != null ? String(s.section) : "").trim();
+            if (secNum) {
+                var item = document.createElement("label");
+                item.className = "weekly-section-choice-item";
+                var cb = document.createElement("input");
+                cb.type = "checkbox";
+                cb.value = secNum;
+                var defaultChecked = !existingPrefs || !existingPrefs.length || existingPrefs.indexOf(secNum) !== -1;
+                cb.checked = defaultChecked;
+                item.appendChild(cb);
+                item.appendChild(document.createTextNode(" " + secNum));
+                choicesList.appendChild(item);
+                checkboxes.push(cb);
+            }
+            var block = document.createElement("div");
+            block.className = "weekly-section-block";
+            var headerRow = document.createElement("div");
+            headerRow.className = "weekly-section-header";
+            var label = document.createElement("span");
+            label.className = "weekly-section-label";
+            label.textContent = wt("sectionLabelPrefix") + " " + (s.section || "?") + " -";
+            headerRow.appendChild(label);
+            if (s.instr1) {
+                var instr = document.createElement("span");
+                var instrText = " " + fixEncoding(s.instr1);
+                if (s.instr2) instrText += " / " + fixEncoding(s.instr2);
+                instr.textContent = instrText;
+                headerRow.appendChild(instr);
+            }
+            var detailsBtn = document.createElement("button");
+            detailsBtn.type = "button";
+            detailsBtn.className = "weekly-section-details-btn";
+            detailsBtn.textContent = (document.documentElement.lang === "tr" ? weeklyTranslations.tr.detailsBtn : weeklyTranslations.en.detailsBtn) || "Details";
+            detailsBtn.style.marginLeft = "auto";
+            var courseNameVal = containerEl.closest(".weekly-course-card");
+            courseNameVal = courseNameVal ? (courseNameVal.querySelector(".weekly-course-name") ? courseNameVal.querySelector(".weekly-course-name").textContent.trim() : "") : "";
+            detailsBtn.addEventListener("click", function () { showSectionDetails(courseCode, courseNameVal, s); });
+            headerRow.appendChild(detailsBtn);
+            block.appendChild(headerRow);
+
+            var rules = Array.isArray(s.rules) ? s.rules : [];
+            if (rules.length) {
+                var ruleLine = document.createElement("div");
+                ruleLine.className = "weekly-section-rule";
+                var parts = rules.map(function (r) {
+                    var dept = (r.given_dept || "ALL").trim();
+                    var sc = fixEncoding(r.start_char || "").trim();
+                    var ec = fixEncoding(r.end_char || "").trim();
+                    var range = (sc || ec) ? (sc + "\u2013" + ec) : wt("anyLabel");
+                    return wt("deptRule") + ": " + dept + "  " + wt("surnameRange") + ": " + range;
+                });
+                ruleLine.textContent = parts.join(" | ");
+                block.appendChild(ruleLine);
+            }
+            if (Array.isArray(s.meetings)) {
+                s.meetings.forEach(function (m) {
+                    var row = document.createElement("div");
+                    row.className = "weekly-section-row";
+                    var chip = document.createElement("span");
+                    chip.className = "weekly-section-meeting";
+                    var txt = (localizeMeetingDay(m.day || "") + " " + (m.start || "") + (m.end ? "\u2013" + m.end : "")).trim();
+                    chip.textContent = txt.trim();
+                    row.appendChild(chip);
+                    var roomInput = document.createElement("input");
+                    roomInput.type = "text";
+                    roomInput.className = "weekly-section-room-input";
+                    roomInput.value = m.room ? fixEncoding(m.room) : "";
+                    roomInput.placeholder = "Room";
+                    roomInput.title = "Edit room / place";
+                    roomInput.addEventListener("change", function () { m.room = roomInput.value.trim(); });
+                    row.appendChild(roomInput);
+                    block.appendChild(row);
+                });
+            }
+            details.appendChild(block);
+        });
+        choices.appendChild(choicesList);
+
+        function syncSectionPrefs() {
+            if (!courseCode) return;
+            var selected = [];
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) selected.push(checkboxes[i].value);
+            }
+            if (!weeklySectionPrefs) weeklySectionPrefs = {};
+            if (!selected.length || selected.length === checkboxes.length) {
+                delete weeklySectionPrefs[courseCode];
+            } else {
+                weeklySectionPrefs[courseCode] = selected;
+            }
+            saveWeeklyPrefs();
+        }
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].addEventListener("change", syncSectionPrefs);
+        }
+        toggleAllBtn.addEventListener("click", function () {
+            if (!checkboxes.length) return;
+            var allChecked = true;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (!checkboxes[i].checked) { allChecked = false; break; }
+            }
+            var newState = !allChecked;
+            for (var j = 0; j < checkboxes.length; j++) checkboxes[j].checked = newState;
+            syncSectionPrefs();
+        });
+        syncSectionPrefs();
+
+        toggle.addEventListener("click", function () {
+            var visible = details.style.display === "block";
+            details.style.display = visible ? "none" : "block";
+            toggle.textContent = visible ? wt("sectionToggleShow") : wt("sectionToggleHide");
+        });
+        var footer = document.createElement("div");
+        footer.className = "weekly-course-footer";
+        footer.appendChild(toggle);
+        containerEl.appendChild(footer);
+        containerEl.appendChild(details);
+    }
+
+    function addNteSlotCard(listEl) {
+        if (!listEl) return;
+        var card = document.createElement("div");
+        card.className = "weekly-course-card";
+        card.dataset.accent = weeklyNextAccent();
+        card.dataset.nteSlot = "true";
+
+        var header = document.createElement("div");
+        header.className = "weekly-course-header";
+        var leftWrap = document.createElement("div");
+        leftWrap.className = "weekly-course-header-left";
+        var codeEl = document.createElement("div");
+        codeEl.className = "weekly-course-code";
+        codeEl.textContent = "NTE";
+        var pill = document.createElement("div");
+        pill.className = "weekly-course-pill";
+        pill.textContent = "NTE";
+        leftWrap.appendChild(codeEl);
+        leftWrap.appendChild(pill);
+        header.appendChild(leftWrap);
+        (function addRemoveBtn(h, c) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = "\u00D7";
+            btn.style.border = "none";
+            btn.style.background = "transparent";
+            btn.style.color = "var(--text-muted)";
+            btn.style.cursor = "pointer";
+            btn.style.fontSize = "14px";
+            btn.style.marginLeft = "8px";
+            btn.addEventListener("click", function () {
+                var codeNode = c.querySelector(".weekly-course-code");
+                var codeText = codeNode && codeNode.textContent ? codeNode.textContent.trim() : "";
+                if (codeText && codeText !== "NTE" && weeklySectionPrefs && weeklySectionPrefs.hasOwnProperty(codeText)) {
+                    delete weeklySectionPrefs[codeText];
+                }
+                c.remove();
+            });
+            h.appendChild(btn);
+        })(header, card);
+
+        // Build list: allowed NTE courses that are offered this semester
+        var nteAvailable = [];
+        if (weeklyNteAllowanceData && weeklyNteAllowanceData.courses && weeklyOfferedBy7) {
+            weeklyNteAllowanceData.courses.forEach(function (nte) {
+                var code7str = nteCode7ToCatalogCode7(nte.code7);
+                if (!code7str || !weeklyOfferedBy7[code7str]) return;
+                var code = (nte.courseCodeNormalized || nte.courseCode || "").replace(/\s/g, "");
+                if (!code) return;
+                nteAvailable.push({
+                    code: code,
+                    code7: code7str,
+                    name: nte.name || code
+                });
+            });
+        }
+
+        function applyNteChoice(nte) {
+            var existing = card.querySelector(".weekly-nte-details");
+            if (existing) existing.remove();
+            var oldPicker = card.querySelector(".weekly-color-picker");
+            if (oldPicker) oldPicker.remove();
+
+            if (!nte) {
+                codeEl.textContent = "NTE";
+                pill.textContent = "NTE";
+                card.removeAttribute("data-nte-code");
+                card.removeAttribute("data-nte-code7");
+                nteInput.placeholder = wt("nteSearchPlaceholder");
+                return;
+            }
+            codeEl.textContent = nte.code;
+            pill.textContent = nte.code7;
+            card.dataset.nteCode = nte.code;
+            card.dataset.nteCode7 = nte.code7;
+            card.dataset.accent = getAccentForCode(nte.code);
+            if (weeklyAccentByCode) weeklyAccentByCode[nte.code] = card.dataset.accent;
+            nteInput.value = "";
+            nteInput.placeholder = wt("nteChangePlaceholder");
+
+            var detailsWrap = document.createElement("div");
+            detailsWrap.className = "weekly-nte-details";
+
+            var courseName = (weeklyCoursesByCode && weeklyCoursesByCode[nte.code] && weeklyCoursesByCode[nte.code].name)
+                ? fixEncoding(weeklyCoursesByCode[nte.code].name) : (nte.name || nte.code);
+
+            var nameEl2 = document.createElement("div");
+            nameEl2.className = "weekly-course-name";
+            nameEl2.textContent = courseName;
+            detailsWrap.appendChild(nameEl2);
+
+            var tagEl = document.createElement("div");
+            tagEl.className = "weekly-course-tag";
+            tagEl.textContent = wt("offeredThisSemester");
+            detailsWrap.appendChild(tagEl);
+
+            var flagsRow = document.createElement("div");
+            flagsRow.className = "weekly-course-rule-flags";
+            var deptLabel = document.createElement("label");
+            var deptChk = document.createElement("input");
+            deptChk.type = "checkbox";
+            deptChk.className = "weekly-course-toggle-dept";
+            deptChk.checked = weeklyCheckDeptGlobal;
+            deptLabel.appendChild(deptChk);
+            deptLabel.appendChild(document.createTextNode(" " + wt("checkDepartmentSingle")));
+            var surLabel = document.createElement("label");
+            var surChk = document.createElement("input");
+            surChk.type = "checkbox";
+            surChk.className = "weekly-course-toggle-surname";
+            surChk.checked = weeklyCheckSurnameGlobal;
+            surLabel.appendChild(surChk);
+            surLabel.appendChild(document.createTextNode(" " + wt("checkSurnameSingle")));
+            var collLabel = document.createElement("label");
+            var collChk = document.createElement("input");
+            collChk.type = "checkbox";
+            collChk.className = "weekly-course-toggle-collision";
+            collChk.checked = weeklyCheckCollisionGlobal;
+            collLabel.appendChild(collChk);
+            collLabel.appendChild(document.createTextNode(" " + wt("checkTimeCollisions")));
+            flagsRow.appendChild(deptLabel);
+            flagsRow.appendChild(surLabel);
+            flagsRow.appendChild(collLabel);
+            detailsWrap.appendChild(flagsRow);
+
+            attachSectionsToggleToContainer(detailsWrap, nte.code7);
+            attachColorPickerToCard(card, nte.code);
+
+            card.insertBefore(detailsWrap, pickerWrap);
+        }
+
+        var pickerWrap = document.createElement("div");
+        pickerWrap.className = "weekly-nte-picker-wrap";
+
+        var nteInput = document.createElement("input");
+        nteInput.type = "text";
+        nteInput.className = "weekly-nte-picker-input";
+        nteInput.setAttribute("autocomplete", "off");
+        nteInput.setAttribute("aria-label", wt("nteSearchAria"));
+        nteInput.placeholder = wt("nteSearchPlaceholder");
+
+        var list = document.createElement("div");
+        list.className = "weekly-suggest-dropdown";
+        list.setAttribute("role", "listbox");
+        list.setAttribute("aria-hidden", "true");
+
+        function populateNteDropdown(query) {
+            query = (query || "").trim().toLowerCase();
+            list.innerHTML = "";
+            list.classList.remove("is-open");
+            var chosen = card.dataset.nteCode;
+            if (chosen) {
+                var clearBtn = document.createElement("button");
+                clearBtn.type = "button";
+                clearBtn.className = "weekly-suggest-item";
+                clearBtn.setAttribute("role", "option");
+                clearBtn.style.color = "var(--text-muted)";
+                clearBtn.textContent = wt("nteClearSelection");
+                clearBtn.addEventListener("click", function () {
+                    applyNteChoice(null);
+                    nteInput.value = "";
+                    list.classList.remove("is-open");
+                    list.setAttribute("aria-hidden", "true");
+                });
+                list.appendChild(clearBtn);
+            }
+            var filtered = !query
+                ? nteAvailable.slice(0, 30)
+                : nteAvailable.filter(function (nte) {
+                    var code = (nte.code || "").toLowerCase();
+                    var name = (nte.name || "").toLowerCase();
+                    return code.indexOf(query) !== -1 || name.indexOf(query) !== -1;
+                }).slice(0, 30);
+            filtered.forEach(function (nte) {
+                var item = document.createElement("button");
+                item.type = "button";
+                item.className = "weekly-suggest-item";
+                item.setAttribute("role", "option");
+                item.innerHTML = "<code>" + nte.code + "</code><span>" + (nte.name ? (nte.name.length > 50 ? nte.name.substring(0, 50) + "…" : nte.name) : "") + "</span>";
+                item.addEventListener("click", function () {
+                    applyNteChoice(nte);
+                    nteInput.value = "";
+                    list.classList.remove("is-open");
+                    list.setAttribute("aria-hidden", "true");
+                });
+                list.appendChild(item);
+            });
+            if (filtered.length || chosen) {
+                list.classList.add("is-open");
+                list.setAttribute("aria-hidden", "false");
+            }
+        }
+
+        nteInput.addEventListener("input", function () { populateNteDropdown(nteInput.value); });
+        nteInput.addEventListener("focus", function () { populateNteDropdown(nteInput.value); });
+        nteInput.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") {
+                list.classList.remove("is-open");
+                list.setAttribute("aria-hidden", "true");
+                nteInput.blur();
+            }
+        });
+
+        if (!document.body.dataset.weeklyNtePickerClickInit) {
+            document.body.dataset.weeklyNtePickerClickInit = "1";
+            document.addEventListener("click", function (ev) {
+                document.querySelectorAll(".weekly-nte-picker-wrap .weekly-suggest-dropdown.is-open").forEach(function (dd) {
+                    var wrap = dd.closest(".weekly-nte-picker-wrap");
+                    if (wrap && !wrap.contains(ev.target)) {
+                        dd.classList.remove("is-open");
+                        dd.setAttribute("aria-hidden", "true");
+                    }
+                });
+            });
+        }
+
+        pickerWrap.appendChild(nteInput);
+        pickerWrap.appendChild(list);
+
+        card.appendChild(header);
+        card.appendChild(pickerWrap);
+        listEl.appendChild(card);
+        setMessage(wtf("msgAddedToList", { code: "NTE" }), false);
+    }
+
+    function addPlannerOneOfChoiceCard(listEl, raw) {
+        if (!listEl) return;
+        var parts;
+        if (Array.isArray(raw)) {
+            parts = raw.map(function (s) { return String(s || "").trim().toUpperCase(); }).filter(Boolean);
+        } else {
+            parts = String(raw || "").split(",").map(function (s) { return s.trim().toUpperCase(); }).filter(Boolean);
+        }
+        if (!parts.length) return;
+        var labelText = "You should choose one from: " + parts.join(", ");
+
+        // Avoid duplicate one-of card with same label
+        var exists = false;
+        listEl.querySelectorAll(".weekly-course-card").forEach(function (card) {
+            var codeEl = card.querySelector(".weekly-course-code");
+            var nameEl = card.querySelector(".weekly-course-name");
+            var codeText = codeEl && codeEl.textContent ? codeEl.textContent.trim() : "";
+            var nameText = nameEl && nameEl.textContent ? nameEl.textContent.trim() : "";
+            if (codeText === "One of:" && nameText === labelText) exists = true;
+        });
+        if (exists) return;
+
+        var card = document.createElement("div");
+        card.className = "weekly-course-card";
+        card.dataset.accent = weeklyNextAccent();
+
+        var header = document.createElement("div");
+        header.className = "weekly-course-header";
+        var leftWrap = document.createElement("div");
+        leftWrap.className = "weekly-course-header-left";
+        var codeEl = document.createElement("div");
+        codeEl.className = "weekly-course-code";
+        codeEl.textContent = "One of:";
+        var pill = document.createElement("div");
+        pill.className = "weekly-course-pill";
+        pill.textContent = "CHOICE";
+        leftWrap.appendChild(codeEl);
+        leftWrap.appendChild(pill);
+        header.appendChild(leftWrap);
+        (function addRemoveBtn(h, c) {
+            var btn = document.createElement("button");
+            btn.type = "button";
+            btn.textContent = "\u00D7";
+            btn.style.border = "none";
+            btn.style.background = "transparent";
+            btn.style.color = "var(--text-muted)";
+            btn.style.cursor = "pointer";
+            btn.style.fontSize = "14px";
+            btn.style.marginLeft = "8px";
+            btn.addEventListener("click", function () { c.remove(); });
+            h.appendChild(btn);
+        })(header, card);
+
+        var nameEl = document.createElement("div");
+        nameEl.className = "weekly-course-name";
+        nameEl.textContent = labelText;
+
+        // Custom combobox-style dropdown, matching department/semester UI
+        var combo = document.createElement("div");
+        combo.className = "weekly-dept-combobox";
+
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "weekly-select-trigger";
+        button.setAttribute("aria-haspopup", "listbox");
+        button.setAttribute("aria-expanded", "false");
+
+        var buttonLabel = document.createElement("span");
+        buttonLabel.textContent = wt("chooseCourse");
+        var chevron = document.createElement("span");
+        chevron.className = "weekly-select-chevron";
+        chevron.setAttribute("aria-hidden", "true");
+        chevron.textContent = "▾";
+        button.appendChild(buttonLabel);
+        button.appendChild(chevron);
+
+        var list = document.createElement("div");
+        list.className = "weekly-suggest-dropdown";
+        list.setAttribute("role", "listbox");
+
+        parts.forEach(function (c) {
+            var item = document.createElement("button");
+            item.type = "button";
+            item.className = "weekly-suggest-item";
+            item.setAttribute("role", "option");
+            item.textContent = c;
+            item.addEventListener("click", function () {
+                // Add the chosen real course card and remove this one-of card
+                addCourseCardByCode(c, { fromPrefill: false });
+                card.remove();
+            });
+            list.appendChild(item);
+        });
+
+        button.addEventListener("click", function () {
+            var isOpen = list.classList.contains("is-open");
+            list.classList.toggle("is-open", !isOpen);
+            button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
+        });
+
+        document.addEventListener("click", function (ev) {
+            if (!list.classList.contains("is-open")) return;
+            if (!button.contains(ev.target) && !list.contains(ev.target)) {
+                list.classList.remove("is-open");
+                button.setAttribute("aria-expanded", "false");
+            }
+        });
+
+        combo.appendChild(button);
+        combo.appendChild(list);
+
+        card.appendChild(header);
+        card.appendChild(nameEl);
+        card.appendChild(combo);
+
+        listEl.appendChild(card);
+        setMessage(wtf("msgAddedToList", { code: Array.isArray(raw) ? raw.join(", ") : String(raw) }), false);
+    }
+
+    function addCourseCardByCode(rawCode, opts) {
+        opts = opts || {};
+        var fromPrefill = !!opts.fromPrefill;
         var listEl = document.getElementById("weeklyCoursesList");
         if (!listEl) return;
-        var code = (rawCode || "").toUpperCase().trim();
+
+        var rawStr = String(rawCode || "");
+
+        // Planner prefill: NTE slots from planner -> show NTE card
+        if (fromPrefill && rawStr === "__NTE_SLOT__") {
+            addNteSlotCard(listEl);
+            return;
+        }
+
+        // Planner prefill: if this looks like a comma-separated list of codes
+        // (e.g. "HIST2202, HIST2206"), build a one-of chooser card.
+        if (fromPrefill && rawStr.indexOf(",") !== -1) {
+            addPlannerOneOfChoiceCard(listEl, rawStr.split(","));
+            return;
+        }
+
+        var code = rawStr.toUpperCase().trim();
         if (!code) {
             setMessage("Please enter a course code.", true);
             return;
@@ -2483,9 +3422,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             return;
         }
         if (!weeklyCoursesByCode || !weeklyOfferedBy7) {
-            // lazily load data if needed
             ensureDataLoaded()
-                .then(function () { addCourseCardByCode(code); })
+                .then(function () { addCourseCardByCode(code, opts); })
                 .catch(function () {
                     setMessage("Could not load course data. Try again.", true);
                 });
@@ -2502,9 +3440,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         }
         var courseInfo = weeklyCoursesByCode[code] || null;
         if (!courseInfo) {
+            if (code === "NTE") {
+                addNteSlotCard(listEl);
+                return;
+            }
             if (ignoredForDatasets) {
-                // If it's an ignored course (IS100 / OHS*), add it as a placeholder card.
                 addIgnoredPlaceholderCourseCard(listEl, code);
+                return;
+            }
+            if (fromPrefill) {
+                addPlannerPlaceholderCourseCard(listEl, code);
                 return;
             }
             setMessage("Course " + code + " was not found in OIBS datasets.", true);
@@ -2519,7 +3464,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
         var card = document.createElement("div");
         card.className = "weekly-course-card";
-        card.dataset.accent = weeklyNextAccent();
+        card.dataset.accent = getAccentForCode(code);
         weeklyAccentByCode[code] = card.dataset.accent;
 
         var header = document.createElement("div");
@@ -2595,6 +3540,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             flagsRow2.appendChild(surLabel2);
             flagsRow2.appendChild(collLabel2);
             card.appendChild(flagsRow2);
+        attachColorPickerToCard(card, code);
         // show sections if we have them
         var code7ForToggle = code7;
         (function attachSectionsToggle(cardEl, code7Val) {
@@ -2793,7 +3739,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (schedule && schedule.length) {
             schedule.forEach(function (item) {
                 var meetings = item.meetings || [];
-                var baseLabel = item.code + " Sec " + (item.sectionNum || "?");
+                var baseLabel = item.code + " " + wt("secPrefix") + " " + (item.sectionNum || "?");
                 var accent = (item.accent || (weeklyAccentByCode && weeklyAccentByCode[item.code])) || "1";
 
                 meetings.forEach(function (m) {
@@ -3046,8 +3992,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             });
             notes.push(
                 "<div class=\"weekly-messages--info\" style=\"margin-top:10px\">" +
-                "These course(s) are in your list, but we couldn't place them into this schedule because we couldn't find non-conflicting section times: <strong>" +
-                parts.join(", ") + "</strong>.</div>"
+                wtf("msgNoConflictingTimes", { courses: "<strong>" + parts.join(", ") + "</strong>." }) + "</div>"
             );
         }
 
@@ -3080,7 +4025,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (noTimeItemsFiltered.length > 0) {
             var parts2 = noTimeItemsFiltered.map(function (item) {
                 var code = item.code;
-                var secLabel = item.sectionNum ? (" Sec " + item.sectionNum) : "";
+                var secLabel = item.sectionNum ? (" " + wt("secPrefix") + " " + item.sectionNum) : "";
                 var info = weeklyCoursesByCode && weeklyCoursesByCode[code];
                 var nameOnly = info && fixEncoding(info.name);
                 var base = code + secLabel;
@@ -3088,8 +4033,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             });
             notes.push(
                 "<div class=\"weekly-messages--info\" style=\"margin-top:6px\">" +
-                "These course(s) are in your list and have a section selected, but their section data doesn't contain time information, so we couldn't draw them on the Week View: <strong>" +
-                parts2.join(", ") + "</strong>. Because we don't know their exact hours, they might still conflict with other courses in your real timetable. You can still open their section page for details.</div>"
+                wtf("msgNoTimeInfo", { courses: "<strong>" + parts2.join(", ") + "</strong>" }) + "</div>"
             );
         }
 
@@ -3107,23 +4051,21 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 var pillText = pillEl && pillEl.textContent ? pillEl.textContent.trim() : "";
                 var nameText = nameEl && nameEl.textContent ? nameEl.textContent.trim() : "";
                 if (pillText === "ELECTIVE") {
-                    electiveNames.push(nameText || codeText || "Elective slot");
+                    electiveNames.push(nameText || codeText || wt("electiveSlotFallback"));
                 } else if (codeText === "One of:") {
-                    choiceNames.push(nameText || "one-of group");
+                    choiceNames.push(nameText || wt("oneOfGroupFallback"));
                 }
             });
             if (electiveNames.length > 0) {
                 notes.push(
                     "<div class=\"weekly-messages--info\" style=\"margin-top:6px\">" +
-                    "These elective slot(s) are in your list, but we don't add them automatically. You need to choose the exact course/section first: <strong>" +
-                    electiveNames.join(", ") + "</strong>.</div>"
+                    wtf("msgElectiveSlotsNote", { courses: "<strong>" + electiveNames.join(", ") + "</strong>." }) + "</div>"
                 );
             }
             if (choiceNames.length > 0) {
                 notes.push(
                     "<div class=\"weekly-messages--info\" style=\"margin-top:6px\">" +
-                    "These \"one of\" choice groups are in your list; pick one course from each group so it can be scheduled: <strong>" +
-                    choiceNames.join(", ") + "</strong>.</div>"
+                    wtf("msgOneOfGroupsNote", { courses: "<strong>" + choiceNames.join(", ") + "</strong>." }) + "</div>"
                 );
             }
         }
@@ -3382,7 +4324,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             }
             var card = document.createElement("div");
             card.className = "weekly-course-card";
-            card.dataset.accent = weeklyNextAccent();
+            card.dataset.accent = getAccentForCode(code);
             weeklyAccentByCode[code] = card.dataset.accent;
 
             var header = document.createElement("div");
@@ -3443,11 +4385,22 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             flagsRow.appendChild(collLabel);
             card.appendChild(flagsRow);
             attachSectionsToggle(card, code7);
+            attachColorPickerToCard(card, code);
             listEl.appendChild(card);
         });
 
         electiveSlots.forEach(function (slot) {
-            var label = slot.name || "Elective";
+            var label = (slot.name || "Elective").trim();
+            var isNte = /NON[- ]?TECHNICAL\s*ELECTIVE/i.test(label);
+            if (isNte) {
+                var nteExists = false;
+                listEl.querySelectorAll(".weekly-course-card").forEach(function (card) {
+                    var ce = card.querySelector(".weekly-course-code");
+                    if (ce && ce.textContent.trim() === "NTE") nteExists = true;
+                });
+                if (!nteExists) addNteSlotCard(listEl);
+                return;
+            }
             // Skip if an elective slot with same label already exists
             var exists = false;
             listEl.querySelectorAll(".weekly-course-card").forEach(function (card) {
@@ -3458,7 +4411,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             var card = document.createElement("div");
             card.className = "weekly-course-card";
-            card.dataset.accent = weeklyNextAccent();
+            card.dataset.accent = getAccentForCode(label);
+            weeklyAccentByCode[label] = card.dataset.accent;
 
             var header = document.createElement("div");
             header.className = "weekly-course-header";
@@ -3486,6 +4440,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             card.appendChild(header);
             card.appendChild(nameEl);
             card.appendChild(tag);
+            attachColorPickerToCard(card, label);
             listEl.appendChild(card);
         });
 
@@ -3564,7 +4519,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                 var addedCard = document.createElement("div");
                 addedCard.className = "weekly-course-card";
-                addedCard.dataset.accent = weeklyNextAccent();
+                addedCard.dataset.accent = getAccentForCode(code);
                 weeklyAccentByCode[code] = addedCard.dataset.accent;
 
                 var h = document.createElement("div");
@@ -3622,6 +4577,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 addedCard.appendChild(flagsRow);
 
                 attachSectionsToggle(addedCard, code7);
+                attachColorPickerToCard(addedCard, code);
                 listEl.appendChild(addedCard);
 
                 // Remove this one-of chooser card after a selection is added
@@ -3649,7 +4605,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
     // Load departments into select and sync with planner's last program
     if (deptSelect) {
-        fetch("programs.json")
+        fetch("data/programs.json")
             .then(function (r) { return r.json(); })
             .then(function (data) {
                 var faculties = data.faculties || {};
@@ -3808,6 +4764,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     var surnameKey = surname.toUpperCase().slice(0, 2) || "AA";
                     var studentDeptShort = getStudentDeptShort(programCode);
 
+                    if (console && console.group) {
+                        console.group("[Schedule] Department rules");
+                        console.log("User department (program " + programCode + "): " + (studentDeptShort || "(none – check department_codes.json)"));
+                        console.log("Surname key: " + surnameKey + " | Flags: dept=" + weeklyCheckDeptGlobal + " surname=" + weeklyCheckSurnameGlobal);
+                        console.groupEnd();
+                    }
+
                     function canPlaceMeetings(meetings, placed, courseCode) {
                         meetings = meetings || [];
                         var flags = getCourseRuleFlags(courseCode || "");
@@ -3855,13 +4818,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             if (Array.isArray(prefs) && prefs.length) {
                                 var secNum = (section.section != null ? String(section.section) : "").trim();
                                 if (!secNum || prefs.indexOf(secNum) === -1) {
+                                    if (console && console.log) console.log("[Schedule] " + courseCode + " section " + secNum + ": filtered (not in prefs)");
                                     return false;
                                 }
                             }
                         }
 
                         var rules = Array.isArray(section.rules) ? section.rules : [];
-                        if (!rules.length) return true;
+                        if (!rules.length) {
+                            if (console && console.log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": no rules → ALLOWED");
+                            return true;
+                        }
                         var flags = getCourseRuleFlags(courseCode);
                         var checkDept = !!flags.checkDept;
                         var checkSurname = !!flags.checkSurname;
@@ -3873,10 +4840,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             var r = rules[i];
                             var ruleDept = (r.given_dept || "").toUpperCase().trim();
                             if (checkDept && ruleDept && ruleDept !== "ALL") {
-                                var deptMatches = ruleDept === studentDeptShort || ruleDept === courseDeptShort;
-                                if (!deptMatches) {
-                                    continue;
-                                }
+                                var deptMatches = ruleDept === studentDeptShort;
+                                if (console && console.log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": section dept=" + ruleDept + " | user dept=" + (studentDeptShort || "(none)") + " → " + (deptMatches ? "MATCH" : "NO MATCH (user must be " + ruleDept + ")"));
+                                if (!deptMatches) continue;
+                            } else if (ruleDept === "ALL" && console && console.log) {
+                                console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": section dept=ALL | user dept=" + (studentDeptShort || "(none)") + " | course dept=" + courseDeptShort + " → MATCH (ALL)");
                             }
                             // If we are not checking surname, any matching dept rule is enough
                             if (!checkSurname) {
@@ -3886,11 +4854,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             var sc = normalizeForSurnameRange(fixEncoding(r.start_char || ""));
                             var ec = normalizeForSurnameRange(fixEncoding(r.end_char || ""));
                             if (!sc && !ec) {
-                                // Dept matches (or is empty) and no surname restriction → allowed
                                 anyMatch = true;
                                 break;
                             }
-                            // Special case: AA–AA (or any X–X) means "all surnames accepted"
                             if (sc && ec && sc === ec) {
                                 anyMatch = true;
                                 break;
@@ -3902,7 +4868,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                                 break;
                             }
                         }
-                        // If checking dept only and we had no matching rule, allow by default
+                        if (!anyMatch && console && console.log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": no matching rule → FILTERED");
                         if (!checkSurname) return anyMatch || !checkDept;
                         return anyMatch;
                     }
@@ -3971,6 +4937,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             }
                         }
                         allowedByCourse.push({ pc: pc, sections: list });
+                        if (console && console.log) {
+                            var total = (sections && sections.length) || 0;
+                            var allowed = (list && list.length) || 0;
+                            var hasData = !!(sections && sections.length);
+                            console.log("[Schedule] " + pc.code + " (code7=" + pc.code7 + "): " + allowed + "/" + total + " sections allowed" + (!hasData ? " [NO SECTION DATA - code7 not in oibs_sections?]" : "") + " (dept+surname rules)");
+                        }
                     }
 
                     var failed = [];
@@ -3999,18 +4971,27 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             var sections = weeklySectionsBy7 && weeklySectionsBy7[pc.code7];
                             if (!sections || !sections.length) {
                                 failed.push(pc.code + " (no sections data)");
+                                if (console && console.log) console.log("[Schedule] " + pc.code + " FAILED: no sections data");
                                 return;
                             }
+                            var ruleOkCount = 0;
                             var placedThis = false;
                             for (var i = 0; i < sections.length; i++) {
                                 var s = sections[i];
                                 if (!sectionAllowedForSurname(s, pc.code)) continue;
-                                if (!canPlaceMeetings(s.meetings, placed, pc.code)) continue;
+                                ruleOkCount++;
+                                if (!canPlaceMeetings(s.meetings, placed, pc.code)) {
+                                    if (console && console.log) console.log("[Schedule] " + pc.code + " section " + (s.section != null ? s.section : "?") + ": TIME CONFLICT with already placed");
+                                    continue;
+                                }
                                 placeMeetings(placed, pc.code, s.meetings);
                                 placedThis = true;
                                 break;
                             }
-                            if (!placedThis) failed.push(pc.code);
+                            if (!placedThis) {
+                                failed.push(pc.code);
+                                if (console && console.log) console.log("[Schedule] " + pc.code + " FAILED: " + (ruleOkCount === 0 ? "all sections filtered by dept/surname rules" : ruleOkCount + " section(s) pass rules but all have time conflicts") + " (total sections: " + sections.length + ")");
+                            }
                         });
                     })();
 
@@ -4086,7 +5067,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             var noSectionsData = failed.length && failed.every(function (f) { return f.indexOf("(no sections data)") !== -1; });
                             var html = "";
                             if (noSectionsData && (!weeklySectionsBy7 || !Object.keys(weeklySectionsBy7).length)) {
-                                html += "<div class=\"weekly-messages--error\"><strong>Sections data not loaded.</strong> Put <code>oibs_sections_20252.json</code> in the same folder (run <code>update_oibs.bat</code>).</div><br>";
+                                html += "<div class=\"weekly-messages--error\"><strong>Sections data not loaded.</strong> Put <code>data/oibs_sections_20252.json</code> in the same folder (run <code>bat/update_oibs.bat</code>).</div><br>";
                             }
                             if (noSectionsData && failed.length) {
                                 // Friendlier message when some courses simply have no section data
@@ -4153,12 +5134,228 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 .catch(function (err) {
                     var msg = "Could not load data to build schedule.";
                     if (err && err.message) msg += " " + err.message;
-                    else msg += " Make sure oibs_sections_20252.json exists and run update_oibs.bat if needed.";
+                    else msg += " Make sure data/oibs_sections_20252.json exists and run bat/update_oibs.bat if needed.";
                     setScheduleSummary("<span class=\"weekly-messages--error\">" + msg + "</span>");
                     document.getElementById("weeklyScheduleNav").style.display = "none";
                     clearWeekGrid();
                 });
         });
+    }
+
+    // Get NTE button: show NTE courses that fit current schedule (time, dept, surname rules)
+    var getNteBtn = document.getElementById("weeklyGetNteBtn");
+    var nteResultsOverlay = document.getElementById("weeklyNteResultsOverlay");
+    var nteResultsContent = document.getElementById("weeklyNteResultsContent");
+    var nteResultsClose = document.getElementById("weeklyNteResultsClose");
+    if (getNteBtn && nteResultsOverlay && nteResultsContent) {
+        getNteBtn.addEventListener("click", function () {
+            var programCode = deptSelect ? deptSelect.value : "";
+            var surnameInputEl = document.getElementById("weeklySurname");
+            var surname = (surnameInputEl && surnameInputEl.value || "").trim();
+            if (!programCode || !surname) {
+                showToast(programCode ? "Please enter your surname." : "Please select a department first.", "error");
+                return;
+            }
+            if (!currentSchedulesList || !currentSchedulesList.length) {
+                showToast("Run Schedule first to build your timetable.", "error");
+                return;
+            }
+            ensureDataLoaded().then(function () {
+                var scheduleNow = currentSchedulesList[currentScheduleIndex || 0] || currentSchedulesList[0] || [];
+                var surnameKey = surname.toUpperCase().slice(0, 2) || "AA";
+                var studentDeptShort = getStudentDeptShort(programCode);
+
+                var BUSY_DAY_MAP = { mon: "monday", tue: "tuesday", wed: "wednesday", thu: "thursday", fri: "friday" };
+                var placed = {};
+                scheduleNow.forEach(function (item) {
+                    var meetings = item.meetings || [];
+                    meetings.forEach(function (m) {
+                        var day = (fixEncoding(m.day || "") || "").toLowerCase();
+                        if (!day) return;
+                        var start = parseTimeToMinutes(m.start);
+                        var end = parseTimeToMinutes(m.end);
+                        if (start == null || end == null) return;
+                        if (!placed[day]) placed[day] = [];
+                        placed[day].push({ start: start, end: end, checkCollision: true });
+                    });
+                });
+                if (weeklyBusySlots) {
+                    for (var dk in weeklyBusySlots) {
+                        if (!weeklyBusySlots.hasOwnProperty(dk)) continue;
+                        var dayKey = BUSY_DAY_MAP[dk] || dk;
+                        var rows = weeklyBusySlots[dk] || [];
+                        rows.forEach(function (rowIdx) {
+                            var start = WEEK_FIRST_SLOT_START + rowIdx * WEEK_SLOT_MINUTES;
+                            var end = start + WEEK_SLOT_MINUTES;
+                            if (!placed[dayKey]) placed[dayKey] = [];
+                            placed[dayKey].push({ start: start, end: end, checkCollision: true });
+                        });
+                    }
+                }
+
+                function isNteSectionAllowed(section, courseCode) {
+                    var rules = Array.isArray(section.rules) ? section.rules : [];
+                    if (!rules.length) return true;
+                    var flags = getCourseRuleFlags(courseCode);
+                    var checkDept = !!flags.checkDept;
+                    var checkSurname = !!flags.checkSurname;
+                    if (!checkDept && !checkSurname) return true;
+                    var key = normalizeForSurnameRange(surnameKey);
+                    var anyMatch = false;
+                    for (var i = 0; i < rules.length; i++) {
+                        var r = rules[i];
+                        var ruleDept = (r.given_dept || "").toUpperCase().trim();
+                        if (checkDept && ruleDept && ruleDept !== "ALL") {
+                            if (ruleDept !== studentDeptShort) continue;
+                        }
+                        if (!checkSurname) { anyMatch = true; break; }
+                        var sc = normalizeForSurnameRange(fixEncoding(r.start_char || ""));
+                        var ec = normalizeForSurnameRange(fixEncoding(r.end_char || ""));
+                        if (!sc && !ec) { anyMatch = true; break; }
+                        if (sc && ec && sc === ec) { anyMatch = true; break; }
+                        var startKey = sc || "AA";
+                        var endKey = ec || "ZZ";
+                        if (key >= startKey && key <= endKey) { anyMatch = true; break; }
+                    }
+                    return anyMatch || (!checkSurname && !checkDept);
+                }
+
+                function meetingsConflict(meetings, placed) {
+                    meetings = meetings || [];
+                    for (var i = 0; i < meetings.length; i++) {
+                        var m = meetings[i];
+                        var day = (fixEncoding(m.day || "") || "").toLowerCase();
+                        if (!day) continue;
+                        var start = parseTimeToMinutes(m.start);
+                        var end = parseTimeToMinutes(m.end);
+                        if (start == null || end == null) continue;
+                        var slots = placed[day] || [];
+                        for (var j = 0; j < slots.length; j++) {
+                            var s2 = slots[j];
+                            if (!s2.checkCollision) continue;
+                            if (start < s2.end && end > s2.start) return true;
+                        }
+                    }
+                    return false;
+                }
+
+                var compatibleByCourse = {};
+                if (weeklyNteAllowanceData && weeklyNteAllowanceData.courses && weeklyOfferedBy7 && weeklySectionsBy7) {
+                    weeklyNteAllowanceData.courses.forEach(function (nte) {
+                        var code7str = nteCode7ToCatalogCode7(nte.code7);
+                        if (!code7str || !weeklyOfferedBy7[code7str]) return;
+                        var code = (nte.courseCodeNormalized || nte.courseCode || "").replace(/\s/g, "");
+                        if (!code) return;
+                        var sections = weeklySectionsBy7[code7str];
+                        if (!sections || !sections.length) return;
+                        var fittingSections = [];
+                        for (var i = 0; i < sections.length; i++) {
+                            var s = sections[i];
+                            if (!isNteSectionAllowed(s, code)) continue;
+                            if (meetingsConflict(s.meetings || [], placed)) continue;
+                            fittingSections.push(s);
+                        }
+                        if (fittingSections.length) {
+                            compatibleByCourse[code] = {
+                                code: code,
+                                code7: code7str,
+                                name: nte.name || code,
+                                sections: fittingSections
+                            };
+                        }
+                    });
+                }
+                var compatibleList = Object.keys(compatibleByCourse).map(function (k) { return compatibleByCourse[k]; });
+
+                function fmtMeeting(m) {
+                    var day = localizeMeetingDay(m.day || "");
+                    return day + " " + (m.start || "") + "-" + (m.end || "") + (m.room ? " " + fixEncoding(m.room || "") : "");
+                }
+
+                document.getElementById("weeklyNteResultsTitle").textContent = wt("nteResultsTitle");
+                nteResultsContent.innerHTML = "";
+                if (!compatibleList.length) {
+                    nteResultsContent.innerHTML = "<p class=\"weekly-messages--info\">" + wt("nteResultsEmpty") + "</p>";
+                    nteResultsContent.innerHTML += "<p class=\"weekly-messages--info\" style=\"font-size: 0.9rem; margin-top: 12px;\">" + wt("nteResultsHint") + "</p>";
+                } else {
+                    var esc = function (s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
+                    var hint = document.createElement("p");
+                    hint.className = "weekly-messages--info";
+                    hint.style.fontSize = "0.9rem";
+                    hint.style.marginBottom = "16px";
+                    hint.textContent = wt("nteResultsHint");
+                    nteResultsContent.appendChild(hint);
+                    var list = document.createElement("div");
+                    list.style.display = "flex";
+                    list.style.flexDirection = "column";
+                    list.style.gap = "12px";
+                    compatibleList.forEach(function (n) {
+                        var courseInfo = weeklyCoursesByCode && weeklyCoursesByCode[n.code];
+                        var courseName = (courseInfo && fixEncoding(courseInfo.name)) || fixEncoding(n.name || "") || n.code;
+                        var card = document.createElement("div");
+                        card.style.background = "var(--bg)";
+                        card.style.border = "1px solid var(--border-subtle)";
+                        card.style.borderRadius = "var(--radius-md)";
+                        card.style.overflow = "hidden";
+                        var header = document.createElement("div");
+                        header.style.padding = "12px 14px";
+                        header.style.borderBottom = "1px solid var(--border-subtle)";
+                        header.innerHTML = "<strong><code>" + esc(n.code) + "</code></strong> &middot; <span style=\"color: var(--text-muted); font-size: 0.9rem;\">" + esc(courseName) + "</span>";
+                        card.appendChild(header);
+                        var sectionsWrap = document.createElement("div");
+                        sectionsWrap.style.padding = "8px 0";
+                        n.sections.forEach(function (s, secIdx) {
+                            var secNum = (s.section != null ? String(s.section) : "?").trim();
+                            var meetings = s.meetings || [];
+                            var timeStr = meetings.map(fmtMeeting).join("; ") || "—";
+                            var instr = fixEncoding((s.instr1 || "").trim());
+                            if ((s.instr2 || "").trim() && (s.instr2 || "").trim() !== "STAFF") instr += " / " + fixEncoding((s.instr2 || "").trim());
+                            var roomStr = meetings.map(function (m) { return fixEncoding(m.room || ""); }).filter(Boolean).join(", ");
+                            if (!roomStr) roomStr = "—";
+                            var row = document.createElement("div");
+                            row.style.padding = "12px 14px";
+                            row.style.cursor = "pointer";
+                            row.style.transition = "background 0.15s";
+                            if (secIdx < n.sections.length - 1) row.style.borderBottom = "1px solid var(--border-subtle)";
+                            row.style.display = "flex";
+                            row.style.flexDirection = "column";
+                            row.style.gap = "4px";
+                            row.className = "weekly-nte-section-row";
+                            row.innerHTML = "<div style=\"display: flex; align-items: center; gap: 8px;\"><span style=\"font-weight: 600; color: var(--metu-red); min-width: 48px;\">" + esc(wt("secPrefix")) + " " + esc(secNum) + "</span><span style=\"font-size: 0.88rem;\">" + esc(timeStr) + "</span></div>" +
+                                "<div style=\"font-size: 0.82rem; color: var(--text-muted); padding-left: 56px;\">" + (instr ? esc(instr) : "—") + (roomStr && roomStr !== "—" ? " &middot; " + esc(roomStr) : "") + "</div>";
+                            row.addEventListener("mouseenter", function () { row.style.background = "var(--accent-soft)"; });
+                            row.addEventListener("mouseleave", function () { row.style.background = "transparent"; });
+                            row.addEventListener("click", function () {
+                                if (weeklySectionPrefs) weeklySectionPrefs[n.code] = [secNum];
+                                saveWeeklyPrefs();
+                                addCourseCardByCode(n.code);
+                                nteResultsOverlay.style.display = "none";
+                                var listEl = document.getElementById("weeklyCoursesList");
+                                if (listEl) {
+                                    var emptyNte = listEl.querySelector(".weekly-course-card[data-nte-slot=\"true\"]:not([data-nte-code])");
+                                    if (emptyNte) emptyNte.remove();
+                                }
+                            });
+                            sectionsWrap.appendChild(row);
+                        });
+                        card.appendChild(sectionsWrap);
+                        list.appendChild(card);
+                    });
+                    nteResultsContent.appendChild(list);
+                }
+                nteResultsOverlay.style.display = "flex";
+            }).catch(function () {
+                showToast("Could not load data for NTE lookup.", "error");
+            });
+        });
+        if (nteResultsClose && nteResultsOverlay) {
+            nteResultsClose.addEventListener("click", function () { nteResultsOverlay.style.display = "none"; });
+        }
+        if (nteResultsOverlay) {
+            nteResultsOverlay.addEventListener("click", function (e) {
+                if (e.target === nteResultsOverlay) nteResultsOverlay.style.display = "none";
+            });
+        }
     }
 
     // Manual add by code in Weekly view
@@ -4244,7 +5441,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             if (Array.isArray(prefillCodes) && prefillCodes.length) {
                 ensureDataLoaded().then(function () {
                     prefillCodes.forEach(function (c) {
-                        addCourseCardByCode(c);
+                        addCourseCardByCode(c, { fromPrefill: true });
                     });
                     // clear after use so it doesn't re-add next time
                     localStorage.removeItem("metu_weekly_prefill_codes");
@@ -4632,7 +5829,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             var r = rules[i];
                             var ruleDept = (r.given_dept || "").toUpperCase().trim();
                             if (flags.checkDept && ruleDept && ruleDept !== "ALL") {
-                                var deptMatches = ruleDept === studentDeptShort || ruleDept === courseDeptShort;
+                                var deptMatches = ruleDept === studentDeptShort;
                                 if (!deptMatches) continue;
                             }
                             if (!flags.checkSurname) {

@@ -1,0 +1,1047 @@
+{
+  "departments": [
+    {
+      "value": "976",
+      "text": "Actuarial Science/AktÃ¼erya Bilimleri",
+      "abbrev": "ACT"
+    },
+    {
+      "value": "572",
+      "text": "Aerospace Engineering/HavacÄ±lÄ±k ve Uzay MÃ¼hendisliÄi",
+      "abbrev": "AEE"
+    },
+    {
+      "value": "384",
+      "text": "Aerospace Engineering/HavacÄ±lÄ±k ve Uzay MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "836",
+      "text": "Applied Ethics/UygulamalÄ± Etik",
+      "abbrev": "AET"
+    },
+    {
+      "value": "863",
+      "text": "Archaeometry/Arkeometri",
+      "abbrev": "ARME"
+    },
+    {
+      "value": "120",
+      "text": "Architecture/MimarlÄ±k",
+      "abbrev": "ARCH"
+    },
+    {
+      "value": "379",
+      "text": "Architecture/MimarlÄ±k(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "815",
+      "text": "Area Studies/BÃ¶lge ÃalÄ±ÅmalarÄ±",
+      "abbrev": "ARS"
+    },
+    {
+      "value": "375",
+      "text": "Art/Sanat(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "887",
+      "text": "Artificial Intelligence Engineering/Yapay Zeka MÃ¼hendisliÄi",
+      "abbrev": "AIE"
+    },
+    {
+      "value": "393",
+      "text": "Artificial IntelligenceÂ Engineering/Yapay Zeka MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "842",
+      "text": "Asian Studies/Asya ÃalÄ±ÅmalarÄ±",
+      "abbrev": "ASN"
+    },
+    {
+      "value": "864",
+      "text": "Astrophysics/Astrofizik",
+      "abbrev": "ASTR"
+    },
+    {
+      "value": "860",
+      "text": "Biochemistry/Biyokimya",
+      "abbrev": "BCH"
+    },
+    {
+      "value": "908",
+      "text": "Bioinformatics/Biyoenformatik",
+      "abbrev": "BINF"
+    },
+    {
+      "value": "459",
+      "text": "Biology Education/Biyoloji ÃÄretmenliÄi",
+      "abbrev": "BED"
+    },
+    {
+      "value": "238",
+      "text": "Biology/Biyoloji",
+      "abbrev": "BIOL"
+    },
+    {
+      "value": "373",
+      "text": "Biology/Biyoloji(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "872",
+      "text": "Biomedical Engineering/Biyomedikal MÃ¼hendisliÄi",
+      "abbrev": "BME"
+    },
+    {
+      "value": "861",
+      "text": "Biotechnology/Biyoteknoloji",
+      "abbrev": "BIOT"
+    },
+    {
+      "value": "854",
+      "text": "Building Science/YapÄ± Bilimleri",
+      "abbrev": "BS"
+    },
+    {
+      "value": "316",
+      "text": "Business Administration (International Joint Program)/Ä°Åletme (UluslararasÄ± Ortak Program)"
+    },
+    {
+      "value": "351",
+      "text": "Business Administration (International Joint Program)/Ä°Åletme (UluslararasÄ± Ortak Program)(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "312",
+      "text": "Business Administration/Ä°Åletme",
+      "abbrev": "BA"
+    },
+    {
+      "value": "353",
+      "text": "Business Administration/Ä°Åletme(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "870",
+      "text": "Cement Engineering/Ãimento MÃ¼hendisliÄi",
+      "abbrev": "CEME"
+    },
+    {
+      "value": "563",
+      "text": "Chemical Engineering/Kimya MÃ¼hendisliÄi",
+      "abbrev": "CHE"
+    },
+    {
+      "value": "367",
+      "text": "Chemical Engineering/Kimya MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "952",
+      "text": "Chemical Oceanography/Kimyasal OÅinografi",
+      "abbrev": "CHEMO"
+    },
+    {
+      "value": "422",
+      "text": "Chemistry Education/Kimya ÃÄretmenliÄi",
+      "abbrev": "CHEME"
+    },
+    {
+      "value": "234",
+      "text": "Chemistry/Kimya",
+      "abbrev": "CHEM"
+    },
+    {
+      "value": "360",
+      "text": "Chemistry/Kimya(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "121",
+      "text": "City and Regional Planning/Åehir ve BÃ¶lge Planlama",
+      "abbrev": "CP"
+    },
+    {
+      "value": "853",
+      "text": "City Planning/Åehir Planlama",
+      "abbrev": "CPLAN"
+    },
+    {
+      "value": "562",
+      "text": "Civil Engineering/Ä°nÅaat MÃ¼hendisliÄi",
+      "abbrev": "CE"
+    },
+    {
+      "value": "364",
+      "text": "Civil Engineering/Ä°nÅaat MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "844",
+      "text": "Clinical Psychology/Klinik Psikoloji",
+      "abbrev": "CLPSY"
+    },
+    {
+      "value": "902",
+      "text": "Cognitive Sciences/BiliÅsel Bilimler",
+      "abbrev": "COGS"
+    },
+    {
+      "value": "858",
+      "text": "Computational Design and Fabrication Technologies in Architecture (International Joint Program)/MimarlÄ±kta SayÄ±sal TasarÄ±m ve Ãretim Teknolojileri (UluslararasÄ± Ortak Program)",
+      "abbrev": "CDF"
+    },
+    {
+      "value": "430",
+      "text": "Computer Education and Instructional Technology/Bilgisayar ve ÃÄretim Teknolojileri EÄitimi",
+      "abbrev": "CEIT"
+    },
+    {
+      "value": "376",
+      "text": "Computer Education and Instructional Technology/Bilgisayar ve ÃÄretim Teknolojileri ÃÄretmenliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "575",
+      "text": "Computer Engineering (TÃ¼rkiye-Azerbaijan University TAU)/Bilgisayar MÃ¼hendisliÄi (TÃ¼rkiye-Azerbaycan Ãniversitesi TAU)",
+      "abbrev": "CENGTAU"
+    },
+    {
+      "value": "571",
+      "text": "Computer Engineering/Bilgisayar MÃ¼hendisliÄi",
+      "abbrev": "CENG"
+    },
+    {
+      "value": "355",
+      "text": "Computer Engineering/Bilgisayar MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "971",
+      "text": "Cryptography/Kriptografi",
+      "abbrev": "CRYPTO"
+    },
+    {
+      "value": "825",
+      "text": "Curriculum and Instruction/EÄitim ProgramlarÄ± ve ÃÄretim",
+      "abbrev": "CURR"
+    },
+    {
+      "value": "910",
+      "text": "Cyber Security/Siber GÃ¼venlik",
+      "abbrev": "CYBER"
+    },
+    {
+      "value": "392",
+      "text": "Cybersecurity Engineering/Siber GÃ¼venlik MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "886",
+      "text": "Data and Decision Sciences/Veri ve Karar Bilimleri",
+      "abbrev": "DDS"
+    },
+    {
+      "value": "911",
+      "text": "Data Informatics/Veri BiliÅimi",
+      "abbrev": "DI"
+    },
+    {
+      "value": "857",
+      "text": "Design Research for Interaction (International Joint Program)/EtkileÅim iÃ§in TasarÄ±m (UluslararasÄ± Ortak Program)",
+      "abbrev": "DRI"
+    },
+    {
+      "value": "411",
+      "text": "Early Childhood Education/Okul Ãncesi ÃÄretmenliÄi",
+      "abbrev": "ECE"
+    },
+    {
+      "value": "874",
+      "text": "Earth System Science/Yer Sistem Bilimleri",
+      "abbrev": "ESS"
+    },
+    {
+      "value": "875",
+      "text": "Earthquake Engineering and Engineering Seismology (International Joint Program)/Deprem MÃ¼hendisliÄi ve MÃ¼hendislik Sismolojisi (UluslararasÄ± Ortak Program)",
+      "abbrev": "EEEES"
+    },
+    {
+      "value": "873",
+      "text": "Earthquake Studies/Deprem ÃalÄ±ÅmalarÄ±",
+      "abbrev": "EQS"
+    },
+    {
+      "value": "311",
+      "text": "Economics/Ä°ktisat",
+      "abbrev": "ECON"
+    },
+    {
+      "value": "352",
+      "text": "Economics/Ä°ktisat(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "824",
+      "text": "Educational Administration and Planning/EÄitim YÃ¶netimi ve PlanlamasÄ±",
+      "abbrev": "EAP"
+    },
+    {
+      "value": "454",
+      "text": "Educational Sciences/EÄitim Bilimleri",
+      "abbrev": "EDS"
+    },
+    {
+      "value": "368",
+      "text": "Educational Sciences/EÄitim Bilimleri(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "567",
+      "text": "Electrical and Electronics Engineering/Elektrik ve Elektronik MÃ¼hendisliÄi",
+      "abbrev": "EEE"
+    },
+    {
+      "value": "356",
+      "text": "Electrical and Electronics Engineering/Elektrik ve Elektronik MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "797",
+      "text": "Elektrik/Elektrik",
+      "abbrev": "ELEK"
+    },
+    {
+      "value": "798",
+      "text": "Elektronik Teknolojisi/Elektronik Teknolojisi",
+      "abbrev": "ELEKT"
+    },
+    {
+      "value": "401",
+      "text": "Elementary and Early Childhood Education/Temel EÄitim",
+      "abbrev": "EECE"
+    },
+    {
+      "value": "410",
+      "text": "Elementary Education/Ä°lkÃ¶Äretim",
+      "abbrev": "ELEM"
+    },
+    {
+      "value": "413",
+      "text": "Elementary Mathematics Educ./Ä°lkÃ¶Äretim Matematik ÃÄretmenliÄi",
+      "abbrev": "ELEMMATH"
+    },
+    {
+      "value": "822",
+      "text": "Elementary Science and Math. E./Ä°lkÃ¶Äretim Fen ve Matematik EÄitimi",
+      "abbrev": "ESM"
+    },
+    {
+      "value": "412",
+      "text": "Elementary Science Education/Fen Bilgisi ÃÄretmenliÄi",
+      "abbrev": "ELEMSC"
+    },
+    {
+      "value": "799",
+      "text": "EndÃ¼striyel Otomasyon/EndÃ¼striyel Otomasyon",
+      "abbrev": "EO"
+    },
+    {
+      "value": "866",
+      "text": "Engineering Management/MÃ¼hendislik YÃ¶netimi",
+      "abbrev": "EM"
+    },
+    {
+      "value": "561",
+      "text": "Engineering Sciences/MÃ¼hendislik Bilimleri",
+      "abbrev": "ESCI"
+    },
+    {
+      "value": "383",
+      "text": "Engineering Sciences/MÃ¼hendislik Bilimleri(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "451",
+      "text": "English Language Teaching (International Joint Program)/Ä°ngilizce ÃÄretmenliÄi (UluslararasÄ± Ortak Program)",
+      "abbrev": "ELTIJP"
+    },
+    {
+      "value": "820",
+      "text": "English Language Teaching/Ä°ngiliz Dili ÃÄretimi",
+      "abbrev": "ELT"
+    },
+    {
+      "value": "391",
+      "text": "English Language Teaching/Ä°ngiliz Dili ÃÄretimi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "821",
+      "text": "English Literature/Ä°ngiliz EdebiyatÄ±",
+      "abbrev": "ENGL"
+    },
+    {
+      "value": "560",
+      "text": "Environmental Engineering/Ãevre MÃ¼hendisliÄi",
+      "abbrev": "ENVE"
+    },
+    {
+      "value": "382",
+      "text": "Environmental Engineering/Ãevre MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "884",
+      "text": "Environmental Management/Ãevre YÃ¶netimi",
+      "abbrev": "ENVM"
+    },
+    {
+      "value": "835",
+      "text": "Eurasian Studies/Avrasya ÃalÄ±ÅmalarÄ±",
+      "abbrev": "EURAS"
+    },
+    {
+      "value": "838",
+      "text": "European Integration/Avrupa BÃ¼tÃ¼nleÅmesi",
+      "abbrev": "EURINT"
+    },
+    {
+      "value": "833",
+      "text": "European Studies/Avrupa ÃalÄ±ÅmalarÄ±",
+      "abbrev": "EURST"
+    },
+    {
+      "value": "837",
+      "text": "Executive Master of Business  Administration/YÃ¶neticiler iÃ§in Ä°Åletme",
+      "abbrev": "EMBA"
+    },
+    {
+      "value": "817",
+      "text": "Family Psychology/Aile Psikolojisi",
+      "abbrev": "FPSY"
+    },
+    {
+      "value": "974",
+      "text": "Financial Mathematics: Life Insurance Option/Finansal Matematik: Hayat SigortasÄ± Opsiyonu",
+      "abbrev": "FMLI"
+    },
+    {
+      "value": "973",
+      "text": "Financial Mathematics/Finansal Matematik",
+      "abbrev": "FM"
+    },
+    {
+      "value": "381",
+      "text": "Fine Arts/GÃ¼zel Sanatlar(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "573",
+      "text": "Food Engineering/GÄ±da MÃ¼hendisliÄi",
+      "abbrev": "FE"
+    },
+    {
+      "value": "796",
+      "text": "Food Technology/GÄ±da Teknolojisi",
+      "abbrev": "FDT"
+    },
+    {
+      "value": "450",
+      "text": "Foreign Language Education/Ä°ngilizce ÃÄretmenliÄi",
+      "abbrev": "FLE"
+    },
+    {
+      "value": "810",
+      "text": "Gender&Women Studies/Toplumsal Cinsiyet ve KadÄ±n ÃalÄ±ÅmalarÄ±",
+      "abbrev": "GWS"
+    },
+    {
+      "value": "865",
+      "text": "Geodetic and Geographical Information Technologies/Jeodezi ve CoÄrafi Bilgi Teknolojileri",
+      "abbrev": "GGIT"
+    },
+    {
+      "value": "564",
+      "text": "Geological Engineering/Jeoloji MÃ¼hendisliÄi",
+      "abbrev": "GEOE"
+    },
+    {
+      "value": "315",
+      "text": "Global and International Affairs (International Joint Program)/KÃ¼resel Siyaset ve UluslararasÄ± Ä°liÅkiler (UluslararasÄ± Ortak Program)",
+      "abbrev": "GIA"
+    },
+    {
+      "value": "800",
+      "text": "Grad.Institute Social Sciences/Sosyal Bilimler EnstitÃ¼sÃ¼",
+      "abbrev": "GISS"
+    },
+    {
+      "value": "856",
+      "text": "Graduate Program in Conservation of Cultural Heritage/KÃ¼ltÃ¼rel MirasÄ± Koruma ProgramÄ±",
+      "abbrev": "GPCH"
+    },
+    {
+      "value": "950",
+      "text": "Graduate School of Marine Sciences/Deniz Bilimleri EnstitÃ¼sÃ¼",
+      "abbrev": "GSMS"
+    },
+    {
+      "value": "823",
+      "text": "Guidance and Psychological Counseling/Rehberlik ve Psikolojik DanÄ±ÅmanlÄ±k",
+      "abbrev": "GPC"
+    },
+    {
+      "value": "378",
+      "text": "Guidance and Psychological Counseling/Rehberlik ve Psikolojik DanÄ±ÅmanlÄ±k(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "801",
+      "text": "History of Architecture/MimarlÄ±k Tarihi",
+      "abbrev": "HARCH"
+    },
+    {
+      "value": "240",
+      "text": "History/Tarih",
+      "abbrev": "HIST"
+    },
+    {
+      "value": "362",
+      "text": "History/Tarih(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "834",
+      "text": "Human Resources Development In Education/EÄtimde Ä°nsan KaynaklarÄ±nÄ± GeliÅtirme",
+      "abbrev": "HRD"
+    },
+    {
+      "value": "869",
+      "text": "Hydrosystems Engineering/Hidrosistem MÃ¼hendisliÄi",
+      "abbrev": "HYDRO"
+    },
+    {
+      "value": "830",
+      "text": "Industrial and Organizational Psychology/EndÃ¼stri ve ÃrgÃ¼t Psikolojisi",
+      "abbrev": "IOP"
+    },
+    {
+      "value": "791",
+      "text": "Industrial Automation/EndÃ¼striyel Otomasyon",
+      "abbrev": "IA"
+    },
+    {
+      "value": "386",
+      "text": "Industrial Design/EndÃ¼stri ÃrÃ¼nleri TasarÄ±mÄ±(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "125",
+      "text": "Industrial Design/EndÃ¼striyel TasarÄ±m",
+      "abbrev": "ID"
+    },
+    {
+      "value": "568",
+      "text": "Industrial Engineering/EndÃ¼stri MÃ¼hendisliÄi",
+      "abbrev": "IE"
+    },
+    {
+      "value": "388",
+      "text": "Industrial Engineering/EndÃ¼stri MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "904",
+      "text": "Informatics Online/Internet Ãzerinden BiliÅim",
+      "abbrev": "INFO"
+    },
+    {
+      "value": "901",
+      "text": "Information Systems/BiliÅim Sistemleri",
+      "abbrev": "IS"
+    },
+    {
+      "value": "970",
+      "text": "Institute Of Applied Mathematics/UygulamalÄ± Matematik EnstitÃ¼sÃ¼",
+      "abbrev": "IAM"
+    },
+    {
+      "value": "314",
+      "text": "International Relations/UluslararasÄ± Ä°liÅkiler",
+      "abbrev": "IR"
+    },
+    {
+      "value": "843",
+      "text": "Latin and North American Studies/Latin ve Kuzey Amerika ÃalÄ±ÅmalarÄ±",
+      "abbrev": "LNAS"
+    },
+    {
+      "value": "954",
+      "text": "Marine Biology and Fisheries/Deniz Biyolojisi ve BalÄ±kÃ§Ä±lÄ±ÄÄ±",
+      "abbrev": "MBF"
+    },
+    {
+      "value": "953",
+      "text": "Marine Geology and Geophysics/Deniz Jeolojisi ve JeofiziÄi",
+      "abbrev": "MGGP"
+    },
+    {
+      "value": "460",
+      "text": "Mathematics and Science Education/Matematik ve Fen Bilimleri EÄitimi",
+      "abbrev": "MSE"
+    },
+    {
+      "value": "826",
+      "text": "Mathematics Education/Matematik EÄitimi",
+      "abbrev": "MATE"
+    },
+    {
+      "value": "423",
+      "text": "Mathematics Education/Matematik ÃÄretmenliÄi",
+      "abbrev": "MATEO"
+    },
+    {
+      "value": "236",
+      "text": "Mathematics/Matematik",
+      "abbrev": "MATH"
+    },
+    {
+      "value": "357",
+      "text": "Mathematics/Matematik(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "876",
+      "text": "Mechanical Design and Manufacturing/Mekanik TasarÄ±m ve Ä°malat",
+      "abbrev": "MDM"
+    },
+    {
+      "value": "569",
+      "text": "Mechanical Engineering/Makina MÃ¼hendisliÄi",
+      "abbrev": "ME"
+    },
+    {
+      "value": "365",
+      "text": "Mechanical Engineering/Makina MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "816",
+      "text": "Media and Cultural Studies/Medya ve KÃ¼ltÃ¼rel ÃalÄ±ÅmalarÄ±",
+      "abbrev": "MCS"
+    },
+    {
+      "value": "906",
+      "text": "Medical Informatics/TÄ±p BiliÅimi",
+      "abbrev": "MEDINF"
+    },
+    {
+      "value": "795",
+      "text": "Meslek YÃ¼ksekokulu/Meslek YÃ¼ksekokulu",
+      "abbrev": "TKPR"
+    },
+    {
+      "value": "570",
+      "text": "Metallurgical and Materials Engineering/Metalurji ve Malzeme MÃ¼hendisliÄi",
+      "abbrev": "MME"
+    },
+    {
+      "value": "871",
+      "text": "Micro and Nanotechnology/Mikro ve Nanoteknoloji",
+      "abbrev": "MNT"
+    },
+    {
+      "value": "832",
+      "text": "Middle East Studies/Orta DoÄu AraÅtÄ±rmalarÄ±",
+      "abbrev": "MES"
+    },
+    {
+      "value": "565",
+      "text": "Mining Engineering/Maden MÃ¼hendisliÄi",
+      "abbrev": "MNE"
+    },
+    {
+      "value": "903",
+      "text": "Modelling And Simulation/Modelleme Ve Simulasyon",
+      "abbrev": "MAS"
+    },
+    {
+      "value": "610",
+      "text": "Modern Language (Greek)/Modern Diller (Yunanca)",
+      "abbrev": "GRE"
+    },
+    {
+      "value": "602",
+      "text": "Modern Languages (Arabic)/Modern Diller (ArapÃ§a)",
+      "abbrev": "ARAB"
+    },
+    {
+      "value": "611",
+      "text": "Modern Languages (Chinese)/Modern Diller (Ãince)",
+      "abbrev": "CHN"
+    },
+    {
+      "value": "380",
+      "text": "Modern Languages (Chinese)/Modern Diller (Ãince)(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "639",
+      "text": "Modern Languages (English)/Modern Diller (Ä°ngilizce)",
+      "abbrev": "ENG"
+    },
+    {
+      "value": "359",
+      "text": "Modern Languages (English)/Modern Diller (Ä°ngilizce)(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "603",
+      "text": "Modern Languages (French)/Modern Diller (FransÄ±zca)",
+      "abbrev": "FREN"
+    },
+    {
+      "value": "370",
+      "text": "Modern Languages (French)/Modern Diller (FransÄ±zca)(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "604",
+      "text": "Modern Languages (German)/Modern Diller (Almanca)",
+      "abbrev": "GERM"
+    },
+    {
+      "value": "369",
+      "text": "Modern Languages (German)/Modern Diller (Almanca)(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "609",
+      "text": "Modern Languages (Hebrew)/Modern Diller (Ä°branice)",
+      "abbrev": "HEB"
+    },
+    {
+      "value": "606",
+      "text": "Modern Languages (Italian)/Modern Diller (Ä°talyanca)",
+      "abbrev": "ITAL"
+    },
+    {
+      "value": "605",
+      "text": "Modern Languages (Japanese)/Modern Diller (Japonca)",
+      "abbrev": "JA"
+    },
+    {
+      "value": "613",
+      "text": "Modern Languages (Korean)/Modern Diller (Korece)",
+      "abbrev": "KOREAN"
+    },
+    {
+      "value": "612",
+      "text": "Modern Languages (Persian)/Modern Diller (FarsÃ§a)",
+      "abbrev": "PERS"
+    },
+    {
+      "value": "607",
+      "text": "Modern Languages (Russian)/Modern Diller (RusÃ§a)",
+      "abbrev": "RUS"
+    },
+    {
+      "value": "608",
+      "text": "Modern Languages (Spanish)/Modern Diller (Ä°spanyolca)",
+      "abbrev": "SPAN"
+    },
+    {
+      "value": "385",
+      "text": "Modern Languages (Spanish)/Modern Diller (Ä°spanyolca)(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "629",
+      "text": "Modern Languages (Turkish as a Foreign Languages)/Modern Diller (YabancÄ±lar iÃ§in TÃ¼rk Dili)",
+      "abbrev": "TFL"
+    },
+    {
+      "value": "219",
+      "text": "Molecular Biology and Genetics/MolekÃ¼ler Biyoloji ve Genetik",
+      "abbrev": "MBG"
+    },
+    {
+      "value": "909",
+      "text": "Multimedia Informatics/Ãokluortam BiliÅimi",
+      "abbrev": "MMINF"
+    },
+    {
+      "value": "682",
+      "text": "Music and Fine Arts/MÃ¼zik ve GÃ¼zel Sanatlar",
+      "abbrev": "INST"
+    },
+    {
+      "value": "643",
+      "text": "Music and Fine Arts/MÃ¼zik ve GÃ¼zel Sanatlar",
+      "abbrev": "THEA"
+    },
+    {
+      "value": "644",
+      "text": "Music and Fine Arts/MÃ¼zik ve GÃ¼zel Sanatlar",
+      "abbrev": "SLTP"
+    },
+    {
+      "value": "651",
+      "text": "Music and Fine Arts/MÃ¼zik ve GÃ¼zel Sanatlar",
+      "abbrev": "MUS"
+    },
+    {
+      "value": "878",
+      "text": "Neuroscience and Neurotechnology/NÃ¶robilim ve NÃ¶roteknoloji",
+      "abbrev": "NNT"
+    },
+    {
+      "value": "877",
+      "text": "Occupational Health and Safety/Ä°Å SaÄlÄ±ÄÄ± ve GÃ¼venliÄi",
+      "abbrev": "OHS"
+    },
+    {
+      "value": "387",
+      "text": "Occupational Health and Safety/Ä°Å SaÄlÄ±ÄÄ± ve GÃ¼venliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "956",
+      "text": "Oceanography/Deniz Bilim (OÅinografi)",
+      "abbrev": "OCEAN"
+    },
+    {
+      "value": "880",
+      "text": "Operational Research/YÃ¶neylem  AraÅtÄ±rmasÄ±",
+      "abbrev": "OR"
+    },
+    {
+      "value": "566",
+      "text": "Petroleum and Natural Gas Engineering/Petrol ve DoÄal Gaz MÃ¼hendisliÄi",
+      "abbrev": "PNG"
+    },
+    {
+      "value": "374",
+      "text": "Petroleum and Natural Gas Engineering/Petrol ve DoÄal Gaz MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "241",
+      "text": "Philosophy/Felsefe",
+      "abbrev": "PHIL"
+    },
+    {
+      "value": "377",
+      "text": "Philosophy/Felsefe(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "951",
+      "text": "Phys. Oceanography/Fiziksel OÅinografi",
+      "abbrev": "PO"
+    },
+    {
+      "value": "453",
+      "text": "Physical Education and Sports/Beden EÄitimi ve Spor",
+      "abbrev": "PES"
+    },
+    {
+      "value": "421",
+      "text": "Physics Education/Fizik ÃÄretmenliÄi",
+      "abbrev": "PHYSE"
+    },
+    {
+      "value": "230",
+      "text": "Physics/Fizik",
+      "abbrev": "PHYS"
+    },
+    {
+      "value": "358",
+      "text": "Physics/Fizik(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "354",
+      "text": "Political Science and International Relations/Siyaset Bilimi ve UluslararasÄ± Ä°liÅkiler(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "310",
+      "text": "Political Science and Public Adm./Siyaset Bilimi ve Kamu YÃ¶netimi",
+      "abbrev": "ADM"
+    },
+    {
+      "value": "862",
+      "text": "Polymer Science and Technology/Polimer Bilim ve Teknolojisi",
+      "abbrev": "PST"
+    },
+    {
+      "value": "233",
+      "text": "Psychology/Psikoloji",
+      "abbrev": "PSY"
+    },
+    {
+      "value": "371",
+      "text": "Psychology/Psikoloji(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "852",
+      "text": "Regional Planning/BÃ¶lge Planlama",
+      "abbrev": "RP"
+    },
+    {
+      "value": "885",
+      "text": "Robotics/Robotik",
+      "abbrev": "ROB"
+    },
+    {
+      "value": "831",
+      "text": "Science and Technology Policy Studies/Bilim ve Teknoloji PolitikasÄ± ÃalÄ±ÅmalarÄ±",
+      "abbrev": "STPS"
+    },
+    {
+      "value": "827",
+      "text": "Science Education/Fen Bilimleri EÄitimi",
+      "abbrev": "SCE"
+    },
+    {
+      "value": "972",
+      "text": "Scientific Computing Program/Bilimsel Hesaplama",
+      "abbrev": "SCP"
+    },
+    {
+      "value": "420",
+      "text": "Secondary Science and Mathematics Educ./OrtaÃ¶Äretim Fen ve Matematik Alan.EÄitimi",
+      "abbrev": "SSME"
+    },
+    {
+      "value": "814",
+      "text": "Settlement Archaeology/YerleÅim Arkeolojisi",
+      "abbrev": "SARCH"
+    },
+    {
+      "value": "840",
+      "text": "Social Anthropology/Sosyal Antropoloji",
+      "abbrev": "SOCANT"
+    },
+    {
+      "value": "839",
+      "text": "Social Policy/Sosyal Politika",
+      "abbrev": "SOCPOL"
+    },
+    {
+      "value": "841",
+      "text": "Social Sciences (Turkish- German) (International Joint Program)/Sosyal Bilimler (TÃ¼rk-Alman) (UluslararasÄ± Ortak Program)",
+      "abbrev": "SSTG"
+    },
+    {
+      "value": "232",
+      "text": "Sociology/Sosyoloji",
+      "abbrev": "SOC"
+    },
+    {
+      "value": "372",
+      "text": "Sociology/Sosyoloji(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "867",
+      "text": "Software Engineering/YazÄ±lÄ±m MÃ¼hendisliÄi",
+      "abbrev": "SWE"
+    },
+    {
+      "value": "389",
+      "text": "Software Engineering/YazÄ±lÄ±m MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "905",
+      "text": "Software Management/YazÄ±lÄ±m YÃ¶netimi",
+      "abbrev": "SWM"
+    },
+    {
+      "value": "246",
+      "text": "Statistics/Ä°statistik",
+      "abbrev": "STAT"
+    },
+    {
+      "value": "363",
+      "text": "Statistics/Ä°statistik(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "868",
+      "text": "Structural Mechanics/YapÄ± MekaniÄi",
+      "abbrev": "SM"
+    },
+    {
+      "value": "390",
+      "text": "Sustainable Environment and Energy Systems/SÃ¼rdÃ¼rÃ¼lebilir Ãevre ve Enerji Sistemleri(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "366",
+      "text": "Teaching English as a Foreign Language/Ä°ngilizce ÃÄretmenliÄi(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "790",
+      "text": "Tech. Voc.School/Meslek YÃ¼ksekokulu",
+      "abbrev": "TVS"
+    },
+    {
+      "value": "642",
+      "text": "Turkish Language/TÃ¼rk Dili",
+      "abbrev": "TURK"
+    },
+    {
+      "value": "361",
+      "text": "Turkish Language/TÃ¼rk Dili(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
+      "value": "855",
+      "text": "Urban Design/Kentsel TasarÄ±m",
+      "abbrev": "UD"
+    },
+    {
+      "value": "811",
+      "text": "Urban Policy Planning and Local Governments/Kentsel Politika PlanlamasÄ± ve Yerel YÃ¶netimler",
+      "abbrev": "UPP"
+    },
+    {
+      "value": "792",
+      "text": "Welding Technology/Kaynak Teknolojisi",
+      "abbrev": "WELD"
+    },
+    {
+      "value": "907",
+      "text": "Work Based Learning Studies (International Joint Program)/Ä°Å YaÅamÄ± Temelli ÃÄrenme (UluslararasÄ± Ortak Program)",
+      "abbrev": "WBL"
+    }
+  ],
+  "semesters": [
+    {
+      "value": "20252",
+      "text": "2025-2026 Spring"
+    },
+    {
+      "value": "20251",
+      "text": "2025-2026 Fall"
+    },
+    {
+      "value": "20243",
+      "text": "2024-2025 Summer School"
+    },
+    {
+      "value": "20242",
+      "text": "2024-2025 Spring"
+    },
+    {
+      "value": "20241",
+      "text": "2024-2025 Fall"
+    },
+    {
+      "value": "20233",
+      "text": "2023-2024 Summer School"
+    },
+    {
+      "value": "20232",
+      "text": "2023-2024 Spring"
+    },
+    {
+      "value": "20231",
+      "text": "2023-2024 Fall"
+    },
+    {
+      "value": "20223",
+      "text": "2022-2023 Summer School"
+    },
+    {
+      "value": "20222",
+      "text": "2022-2023 Spring"
+    },
+    {
+      "value": "20221",
+      "text": "2022-2023 Fall"
+    },
+    {
+      "value": "20213",
+      "text": "2021-2022 Summer School"
+    },
+    {
+      "value": "20212",
+      "text": "2021-2022 Spring"
+    },
+    {
+      "value": "20211",
+      "text": "2021-2022 Fall"
+    },
+    {
+      "value": "20203",
+      "text": "2020-2021 Summer School"
+    }
+  ]
+}
