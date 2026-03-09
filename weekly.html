@@ -3495,15 +3495,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 });
             return;
         }
-        var existing = listEl.querySelector(".weekly-course-code");
-        var dup = false;
-        listEl.querySelectorAll(".weekly-course-code").forEach(function (el) {
-            if (el.textContent.trim().toUpperCase() === code) dup = true;
-        });
-        if (dup) {
-            setMessage(wt("msgAlreadyInList"), true);
-            return;
-        }
         var courseInfo = weeklyCoursesByCode[code] || null;
         if (!courseInfo) {
             if (code === "NTE") {
@@ -4575,13 +4566,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 var courseInfo = weeklyCoursesByCode && weeklyCoursesByCode[code] || null;
                 var code7 = courseInfo && courseInfo.course_code_7digit ? String(courseInfo.course_code_7digit) : "";
                 var isOffered = code7 && weeklyOfferedBy7 && weeklyOfferedBy7[code7];
-
-                // Avoid adding the same course twice
-                var exists = false;
-                listEl.querySelectorAll(".weekly-course-code").forEach(function (el) {
-                    if (el.textContent.trim().toUpperCase() === String(code).toUpperCase()) exists = true;
-                });
-                if (exists) return;
 
                 var addedCard = document.createElement("div");
                 addedCard.className = "weekly-course-card";
