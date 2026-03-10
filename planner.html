@@ -4470,6 +4470,9 @@ function setDismissedError(key, dismissed) {
 
 (function init() {
     window.addEventListener("beforeunload", function() { persistPlannerState(); });
+    document.addEventListener("visibilitychange", function() {
+        if (document.visibilityState === "hidden") persistPlannerState();
+    });
     var langSelectEl = document.getElementById('langSelect');
     if (langSelectEl) {
         langSelectEl.value = currentLang;

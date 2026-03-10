@@ -91,7 +91,69 @@
 
 .portal-progress-wrap {
     margin-bottom: 16px;
+    padding: 14px 18px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
 }
+.portal-progress-dept {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+}
+.portal-progress-dept:empty {
+    display: none;
+}
+.portal-progress-cgpa {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 8px;
+}
+.portal-progress-cgpa:empty {
+    display: none;
+}
+
+.portal-next-course-wrap {
+    margin-bottom: 16px;
+    padding: 14px 18px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    font-size: 0.9rem;
+    color: var(--text-main);
+}
+.portal-next-course-wrap:empty {
+    display: none;
+}
+.portal-next-course-wrap .portal-next-now {
+    font-weight: 600;
+}
+.portal-next-course-wrap .portal-next-now.portal-next-current {
+    color: var(--metu-red);
+}
+.portal-next-course-wrap .portal-next-time {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 4px;
+}
+.portal-next-course-wrap .portal-next-test-badge {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-subtle);
+}
+.portal-next-course-wrap .portal-next-test-exit {
+    color: var(--metu-red);
+    text-decoration: none;
+}
+.portal-next-course-wrap .portal-next-test-exit:hover {
+    text-decoration: underline;
+}
+
 .portal-progress-label {
     display: flex;
     justify-content: space-between;
@@ -117,8 +179,12 @@
     display: grid;
     grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
     gap: 24px;
-    align-items: flex-start;
+    align-items: start;
     margin-bottom: 32px;
+}
+
+#portalCoursesSection {
+    padding-top: 52px;
 }
 
 .portal-courses-header {
@@ -548,7 +614,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     </section>
 
     <section class="portal-courses-section" id="portalCoursesSection">
+      <div id="portalNextCourseWrap" class="portal-next-course-wrap" aria-live="polite"></div>
       <div class="portal-progress-wrap" id="portalProgressWrap">
+        <div id="portalProgressDepartment" class="portal-progress-dept" aria-hidden="true"></div>
         <div class="portal-progress-label">
           <span id="portalProgressLabelText">Degree progress</span>
           <span id="portalProgressPercent">0%</span>
@@ -556,6 +624,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         <div class="portal-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
           <div class="portal-progress-fill" id="portalProgressFill" style="width: 0%"></div>
         </div>
+        <div id="portalProgressCgpa" class="portal-progress-cgpa" aria-hidden="true"></div>
       </div>
       <div class="portal-courses-header">
         <h2 id="portalCoursesSectionTitle" class="portal-courses-title">This semester's courses</h2>
@@ -855,16 +924,86 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
   var PORTAL_FAILING_GRADES = { 'FF': true, 'FD': true, 'F': true };
 
+  function gradeToPoints(grade) {
+    if (!grade || String(grade).trim().length === 0) return null;
+    switch (String(grade).trim().toUpperCase()) {
+      case 'AA': return 4.0;
+      case 'BA': return 3.5;
+      case 'BB': return 3.0;
+      case 'CB': return 2.5;
+      case 'CC': return 2.0;
+      case 'DC': return 1.5;
+      case 'DD': return 1.0;
+      case 'FD': return 0.5;
+      case 'FF': return 0.0;
+      case 'S':
+      case 'F': return null;
+      default: return null;
+    }
+  }
+
+  function computeCgpaFromState(state) {
+    if (!state || !state.semesters || !state.semesters.length) return null;
+    var cgpaEntryByCode = {};
+    var latestSemForCode = {};
+    var grades = state.courseGradesBySemester || {};
+    var coursesInfo = state.courses || {};
+    state.semesters.forEach(function(sem) {
+      var semNum = parseFloat(sem.semNumber);
+      var courseList = sem.courses || [];
+      courseList.forEach(function(c) {
+        var code = c.code;
+        if (!code) return;
+        var grade = (grades[code] && grades[code][String(semNum)]) || c.grade || '';
+        var points = gradeToPoints(grade);
+        var credits = (coursesInfo[code] && coursesInfo[code].credits != null) ? Number(coursesInfo[code].credits) : 3;
+        if (points !== null && grade && String(grade).trim()) {
+          if (!cgpaEntryByCode[code] || semNum >= (latestSemForCode[code] || 0)) {
+            latestSemForCode[code] = semNum;
+            cgpaEntryByCode[code] = { grade: grade, credits: credits };
+          }
+        }
+      });
+    });
+    var totalPoints = 0, totalCredits = 0;
+    for (var k in cgpaEntryByCode) {
+      var e = cgpaEntryByCode[k];
+      var p = gradeToPoints(e.grade);
+      if (p !== null) {
+        totalCredits += e.credits;
+        totalPoints += p * e.credits;
+      }
+    }
+    if (totalCredits <= 0) return null;
+    return { cgpa: totalPoints / totalCredits, credits: totalCredits };
+  }
+
   function isPassingGrade(grade) {
     if (!grade || String(grade).trim().length === 0) return false;
     var g = String(grade).trim().toUpperCase();
     return !PORTAL_FAILING_GRADES[g];
   }
 
+  var programNameByCode = null;
+  function ensureProgramNamesLoaded() {
+    if (programNameByCode !== null) return Promise.resolve();
+    return fetch('data/programs.json').then(function(r) { return r.json(); }).then(function(data) {
+      programNameByCode = {};
+      var faculties = data.faculties || {};
+      Object.keys(faculties).forEach(function(facName) {
+        var progs = (faculties[facName].programs || []);
+        progs.forEach(function(p) {
+          if (p.code && p.name) programNameByCode[String(p.code)] = String(p.name).trim();
+        });
+      });
+    }).catch(function() { programNameByCode = {}; });
+  }
+
   function updateProgressBar(state) {
     var wrap = document.getElementById('portalProgressWrap');
     var fill = document.getElementById('portalProgressFill');
     var percentEl = document.getElementById('portalProgressPercent');
+    var deptEl = document.getElementById('portalProgressDepartment');
     var bar = wrap && wrap.querySelector('[role="progressbar"]');
     if (!wrap || !fill || !percentEl) return;
 
@@ -887,6 +1026,29 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       bar.setAttribute('aria-valuenow', pct);
     }
     wrap.style.display = total === 0 ? 'none' : '';
+
+    if (deptEl && state && state.programCode) {
+      ensureProgramNamesLoaded().then(function() {
+        var name = (programNameByCode && programNameByCode[state.programCode]) || state.programCode;
+        deptEl.textContent = name;
+        deptEl.setAttribute('aria-hidden', 'false');
+      });
+    } else if (deptEl) {
+      deptEl.textContent = '';
+      deptEl.setAttribute('aria-hidden', 'true');
+    }
+
+    var cgpaEl = document.getElementById('portalProgressCgpa');
+    if (cgpaEl) {
+      var cgpaResult = state ? computeCgpaFromState(state) : null;
+      if (cgpaResult && cgpaResult.cgpa != null) {
+        cgpaEl.textContent = 'CGPA: ' + cgpaResult.cgpa.toFixed(2) + ' · ' + cgpaResult.credits + ' cr';
+        cgpaEl.setAttribute('aria-hidden', 'false');
+      } else {
+        cgpaEl.textContent = '';
+        cgpaEl.setAttribute('aria-hidden', 'true');
+      }
+    }
   }
 
   function renderCoursesSection() {
@@ -997,6 +1159,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       // No saved schedules yet – render an empty week grid.
       renderWeeklyPreviewGrid(listEl, []);
     }
+    updatePortalNextCourses();
   }
 
   function exportPortalWeeklyAsPng() {
@@ -1097,6 +1260,163 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     });
   }
 
+  var ANKARA_TZ = 'Europe/Istanbul';
+  var PORTAL_NEXT_TEST_KEY = 'metu_portal_next_test';
+
+  function getTestMode() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('testNext') === '0' || params.get('testDisable') === '1') {
+        sessionStorage.removeItem(PORTAL_NEXT_TEST_KEY);
+        return null;
+      }
+      if (params.get('testNext') === '1' || params.get('testNext') === '') {
+        var day = (params.get('testDay') || 'mon').toLowerCase().slice(0, 3);
+        var time = params.get('testTime') || '09:40';
+        var cfg = { day: day, time: time };
+        sessionStorage.setItem(PORTAL_NEXT_TEST_KEY, JSON.stringify(cfg));
+        return cfg;
+      }
+      var saved = sessionStorage.getItem(PORTAL_NEXT_TEST_KEY);
+      return saved ? JSON.parse(saved) : null;
+    } catch (e) { return null; }
+  }
+
+  function getAnkaraParts() {
+    var test = getTestMode();
+    if (test) {
+      var t = parseTimeToMinutes(test.time);
+      return {
+        year: String(new Date().getFullYear()),
+        month: String(new Date().getMonth() + 1).padStart(2, '0'),
+        day: String(new Date().getDate()).padStart(2, '0'),
+        weekday: test.day,
+        hour: t != null ? Math.floor(t / 60) : 9,
+        minute: t != null ? t % 60 : 40
+      };
+    }
+    try {
+      var p = new Intl.DateTimeFormat('en-CA', {
+        timeZone: ANKARA_TZ,
+        year: 'numeric', month: '2-digit', day: '2-digit', weekday: 'short',
+        hour: 'numeric', minute: 'numeric', hour12: false
+      }).formatToParts(new Date());
+      var out = {};
+      p.forEach(function(x) {
+        if (x.type === 'year') out.year = x.value;
+        if (x.type === 'month') out.month = x.value;
+        if (x.type === 'day') out.day = x.value;
+        if (x.type === 'weekday') out.weekday = x.value.toLowerCase();
+        if (x.type === 'hour') out.hour = parseInt(x.value, 10);
+        if (x.type === 'minute') out.minute = parseInt(x.value, 10);
+      });
+      return out;
+    } catch (e) {
+      var d = new Date();
+      return {
+        year: String(d.getFullYear()),
+        month: String(d.getMonth() + 1).padStart(2, '0'),
+        day: String(d.getDate()).padStart(2, '0'),
+        weekday: ['sun','mon','tue','wed','thu','fri','sat'][d.getDay()],
+        hour: d.getHours(),
+        minute: d.getMinutes()
+      };
+    }
+  }
+
+  function parseTimeToMinutes(str) {
+    if (!str) return null;
+    var parts = String(str).split(':');
+    if (parts.length !== 2) return null;
+    var h = parseInt(parts[0], 10);
+    var m = parseInt(parts[1], 10);
+    if (isNaN(h) || isNaN(m)) return null;
+    return h * 60 + m;
+  }
+
+  function updatePortalNextCourses() {
+    var el = document.getElementById('portalNextCourseWrap');
+    if (!el) return;
+    var state = getWeeklyPreviewState();
+    var schedules = Array.isArray(state && state.schedules) ? state.schedules : [];
+    var idx = state && typeof state.selectedIndex === 'number' ? state.selectedIndex : 0;
+    var schedule = Array.isArray(schedules[idx] || schedules[0]) ? (schedules[idx] || schedules[0]) : [];
+    if (!schedule.length) {
+      el.innerHTML = '';
+      el.textContent = '';
+      return;
+    }
+    var ankaraParts = getAnkaraParts();
+    var todayKey = ankaraParts.weekday && ankaraParts.weekday.length >= 3 ? ankaraParts.weekday.toLowerCase().slice(0, 3) : null;
+    var weekdays = ['mon', 'tue', 'wed', 'thu', 'fri'];
+    if (!todayKey || weekdays.indexOf(todayKey) === -1) {
+      el.innerHTML = getPortalLang() === 'tr' ? 'Bugün ders yok (hafta sonu)' : 'No classes today (weekend)';
+      return;
+    }
+    var nowMinutes = (ankaraParts.hour || 0) * 60 + (ankaraParts.minute || 0);
+    var meetings = [];
+    schedule.forEach(function(item) {
+      if (!item || !item.code) return;
+      var meetingsList = item.meetings || [];
+      meetingsList.forEach(function(m) {
+        var day = String(m.day || '').toLowerCase().slice(0, 3);
+        if (day !== todayKey.slice(0, 3)) return;
+        var start = parseTimeToMinutes(m.start);
+        var end = parseTimeToMinutes(m.end);
+        if (start == null || end == null) return;
+        var codeLabel = item.code + (item.sectionNum ? ' Sec ' + item.sectionNum : '');
+        var room = (m.room || '').trim();
+        meetings.push({
+          label: codeLabel,
+          room: room,
+          start: start,
+          end: end,
+          startStr: m.start,
+          endStr: m.end
+        });
+      });
+    });
+    meetings.sort(function(a, b) { return a.start - b.start; });
+    var current = null;
+    var next = null;
+    for (var i = 0; i < meetings.length; i++) {
+      var m = meetings[i];
+      if (nowMinutes >= m.start && nowMinutes < m.end) {
+        current = m;
+        break;
+      }
+      if (nowMinutes < m.start) {
+        next = m;
+        break;
+      }
+    }
+    if (!current && next) next = next;
+    else if (current && !next && meetings.length) next = null;
+
+    var tr = getPortalLang() === 'tr';
+    var html = '';
+    if (current) {
+      var minLeft = current.end - nowMinutes;
+      var timeStr = minLeft <= 0 ? '' : (minLeft + (tr ? ' dk kaldı' : ' min left'));
+      var whereStr = current.room ? ' — ' + current.room : '';
+      html += '<div class="portal-next-now portal-next-current">' + (tr ? 'Şu an: ' : 'Now: ') + current.label + whereStr + '</div>';
+      if (timeStr) html += '<div class="portal-next-time">' + timeStr + ' • ' + current.startStr + '–' + current.endStr + '</div>';
+    } else if (next) {
+      var minUntil = next.start - nowMinutes;
+      var timeStr = minUntil <= 0 ? next.startStr : (minUntil + (tr ? ' dk sonra' : ' min from now'));
+      var whereStr = next.room ? ' — ' + next.room : '';
+      html += '<div class="portal-next-now">' + (tr ? 'Sırada: ' : 'Next: ') + next.label + whereStr + '</div>';
+      html += '<div class="portal-next-time">' + timeStr + ' • ' + next.startStr + '–' + next.endStr + '</div>';
+    } else {
+      html = tr ? 'Bugün başka ders yok' : 'No more classes today';
+    }
+    var test = getTestMode();
+    if (test) {
+      html = '<div class="portal-next-test-badge">' + (tr ? 'Test: ' : 'Test: ') + test.day + ' ' + (test.time || '') + ' · <a href="?testDisable=1" class="portal-next-test-exit">' + (tr ? 'Kapat' : 'Exit') + '</a></div>' + html;
+    }
+    el.innerHTML = html;
+  }
+
   function savePlanFromPortal() {
     var state = getPlanState();
     if (!state || !state.programCode) {
@@ -1111,15 +1431,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     URL.revokeObjectURL(a.href);
   }
 
+  setInterval(updatePortalNextCourses, 60000);
   setContinueHint();
   renderCoursesSection();
   renderWeeklyPreviewSection();
-  window.addEventListener('storage', function() { setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); });
+  window.addEventListener('storage', function() { setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); updatePortalNextCourses(); });
   document.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'visible') { setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); }
+    if (document.visibilityState === 'visible') { updatePortalNextCourses(); setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); }
   });
   window.addEventListener('pageshow', function(e) {
-    if (e.persisted) { setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); }
+    if (e.persisted) { updatePortalNextCourses(); setContinueHint(); renderCoursesSection(); renderWeeklyPreviewSection(); }
   });
 
   var saveBtn = document.getElementById('portalSaveBtn');
