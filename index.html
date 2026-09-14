@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="ics-export.js"></script>
+<script src="terms.js"></script>
 <style>
 /* Page-specific: portal cards and content; header/layout from main-ui.css */
 
@@ -1193,12 +1194,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       alert('No weekly schedule saved to export.');
       return;
     }
-    var semester = (state && state.semester != null) ? state.semester : (window.localStorage.getItem('metu_current_semester') || '20252');
-    try {
-      window.METU_ICS_exportSchedule(schedule, semester, 'metu-weekly-schedule.ics');
-    } catch (e) {
-      alert('Could not export calendar.');
+    function exportWithTerm(term) {
+      try {
+        window.METU_ICS_exportSchedule(schedule, term, 'metu-weekly-schedule.ics');
+      } catch (e) {
+        alert('Could not export calendar.');
+      }
     }
+    // state.semester is the curriculum semester (1-8); the calendar needs the OIBS term code.
+    if (state && state.oibsTerm) exportWithTerm(state.oibsTerm);
+    else window.METU_TERMS_load().then(function(terms) { exportWithTerm(terms.current); });
   }
 
   function exportPortalWeeklyAsPdf() {
@@ -1610,6 +1615,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   rel="noopener"
   aria-label="Open update history"
   style="position: fixed; right: 16px; bottom: 12px; top: auto; left: auto; font-size: 12px; color: rgba(154, 160, 166, 0.95); z-index: 9999; text-decoration: none; cursor: pointer;"
->1.02.01</a>
+>01.02.03</a>
 </body>
 </html>

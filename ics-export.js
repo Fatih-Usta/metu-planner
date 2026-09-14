@@ -45,8 +45,9 @@
       if (term === 2) {
         return { start: new Date(year + 1, 1, 2), end: new Date(year + 1, 4, 25) };
       }
-      if (term === 5) {
-        return { start: new Date(year, 5, 15), end: new Date(year, 6, 25) };
+      if (term === 3) {
+        // Summer school of academic year YYYY-YYYY+1 runs in June/July of YYYY+1.
+        return { start: new Date(year + 1, 5, 15), end: new Date(year + 1, 6, 25) };
       }
     }
 
@@ -168,7 +169,8 @@
   }
 
   function exportScheduleToIcs(schedule, semesterCode, filename) {
-    var sem = semesterCode != null ? String(semesterCode) : "20252";
+    // Without an OIBS term code (YYYYT) the semester dates are guessed from the current month.
+    var sem = semesterCode != null ? String(semesterCode) : null;
     var ics = scheduleToIcs(schedule, sem);
     downloadIcs(ics, filename || "metu-weekly-schedule.ics");
   }

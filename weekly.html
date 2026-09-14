@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
 <script src="ics-export.js"></script>
+<script src="terms.js"></script>
 <style>
 /* Hidden hints (kept in DOM, feedback: too much text) */
 .weekly-hint-hidden { display: none !important; }
@@ -1611,7 +1612,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             toggleAllSections: "Toggle all",
             sectionLabelPrefix: "Section",
             offeredThisSemester: "Offered this semester",
-            notOfferedThisSemester: "Not in OIBS offerings for 20252",
+            notOfferedThisSemester: "Not in OIBS offerings this term",
             checkDepartmentSingle: "Check department",
             checkSurnameSingle: "Check surname",
             checkTimeCollisions: "Check time collisions",
@@ -1674,8 +1675,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             deptRule: "Department",
             closeBtn: "Close",
             secPrefix: "Sec",
+            possibleSectionsTitle: "Possible sections (department + surname rules):",
+            noSectionNoData: "none – no section data on OIBS",
+            noSectionPrefs: "none – none of the sections you picked",
+            noSectionDept: "none – no section is open to your department",
+            noSectionSurname: "none – no section accepts surnames starting with {surname}",
+            reasonTimeConflict: "every allowed section conflicts in time with other courses",
+            couldNotBuildSchedule: "Could not build a schedule.",
+            couldNotPlaceTitle: "Could not place:",
             addBtn: "Add",
-            msgNoTimeInfo: "These course(s) are in your list and have a section selected, but their section data doesn't contain time information, so we couldn't draw them on the Week View: {courses}. Because we don't know their exact hours, they might still conflict with other courses in your real timetable. You can still open their section page for details.",
+            msgNoTimeInfo: "The hours of these course(s) haven't been published on OIBS yet, so they couldn't be placed in the weekly schedule: {courses}. It will be announced once the hours are updated on the site.",
             msgNoConflictingTimes: "These course(s) are in your list, but we couldn't place them into this schedule because we couldn't find non-conflicting section times: {courses}",
             msgElectiveSlotsNote: "These elective slot(s) are in your list, but we don't add them automatically. You need to choose the exact course/section first: {courses}",
             msgOneOfGroupsNote: "These \"one of\" choice groups are in your list; pick one course from each group so it can be scheduled: {courses}",
@@ -1723,7 +1732,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             toggleAllSections: "Tümünü değiştir",
             sectionLabelPrefix: "Şube",
             offeredThisSemester: "Bu dönem açılıyor",
-            notOfferedThisSemester: "20252 için OİBS açılan derslerde yok",
+            notOfferedThisSemester: "Bu dönem OİBS açılan derslerde yok",
             checkDepartmentSingle: "Bölümü kontrol et",
             checkSurnameSingle: "Soyadı kontrol et",
             checkTimeCollisions: "Saat çakışmalarını kontrol et",
@@ -1786,8 +1795,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             deptRule: "Bölüm",
             closeBtn: "Kapat",
             secPrefix: "Şub",
+            possibleSectionsTitle: "Olası şubeler (bölüm + soyadı kuralları):",
+            noSectionNoData: "yok – OİBS'te şube verisi yok",
+            noSectionPrefs: "yok – seçtiğin şubelerin hiçbiri uygun değil",
+            noSectionDept: "yok – bölümüne açık şube yok",
+            noSectionSurname: "yok – soyadı {surname} ile başlayanları kabul eden şube yok",
+            reasonTimeConflict: "uygun şubelerin hepsi diğer derslerle çakışıyor",
+            couldNotBuildSchedule: "Program oluşturulamadı.",
+            couldNotPlaceTitle: "Yerleştirilemeyen dersler:",
             addBtn: "Ekle",
-            msgNoTimeInfo: "Bu ders(ler) listenizde ve bir şube seçilmiş, ancak şube verileri saat bilgisi içermiyor, bu yüzden Haftalık görünüme çizemedik: {courses}. Tam saatleri bilmediğimiz için gerçek programınızdaki diğer derslerle çakışabilir. Detaylar için şube sayfasını açabilirsiniz.",
+            msgNoTimeInfo: "Bu ders(ler)in saatleri OİBS'te henüz yayınlanmadığı için programa yerleştirilemedi: {courses}. Saatler sitede güncellendiğinde duyurulacaktır.",
             msgNoConflictingTimes: "Bu ders(ler) listenizde, ancak çakışmayan şube saatleri bulamadığımız için bu programa yerleştiremedik: {courses}.",
             msgElectiveSlotsNote: "Bu seçmeli slot(lar) listenizde, ancak otomatik eklemiyoruz. Önce tam dersi/şubeyi seçmeniz gerekiyor: {courses}",
             msgOneOfGroupsNote: "Bu \"birinden bir\" seçim grupları listenizde; programa alınabilmeleri için her gruptan bir ders seçin: {courses}",
@@ -2629,12 +2646,22 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             return;
         }
         try {
-            window.METU_ICS_exportSchedule(schedule, weeklySemester, "metu-weekly-schedule.ics");
+            window.METU_ICS_exportSchedule(schedule, weeklyOibsTerm, "metu-weekly-schedule.ics");
             showToast("Calendar (.ics) exported.", "success");
         } catch (e) {
             showToast("Could not export calendar.", "error");
         }
     }
+
+    // OIBS term (YYYYT) whose offerings/sections are loaded; comes from data/terms.json via terms.js.
+    var weeklyOibsTerm = null;
+    function loadWeeklyOibsTerm() {
+        return window.METU_TERMS_load().then(function (terms) {
+            weeklyOibsTerm = terms.current;
+            return weeklyOibsTerm;
+        });
+    }
+    loadWeeklyOibsTerm();
 
     function ensureDataLoaded() {
         var tasks = [];
@@ -2647,12 +2674,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         }
         if (!weeklyOfferings || !weeklyOfferedBy7) {
             tasks.push(
-                fetch("data/oibs_offerings_20252.json")
-                    .then(function (r) {
-                        if (r.ok) return r;
-                        // Fallback to root all-offerings file if main copy missing
-                        return fetch("data/oibs_offerings_all_20252.json");
-                    })
+                loadWeeklyOibsTerm()
+                    .then(function (term) { return fetch("data/oibs_offerings_all_" + term + ".json"); })
                     .then(function (r) { return r.json(); })
                     .then(function (data) {
                         weeklyOfferings = data;
@@ -2668,11 +2691,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         }
         if (!weeklySectionsBy7) {
             tasks.push(
-                fetch("data/oibs_sections_20252.json")
-                    .then(function (r) {
-                        if (r.ok) return r;
-                        return fetch("data/oibs_sections_all_20252_full.json");
-                    })
+                loadWeeklyOibsTerm()
+                    .then(function (term) { return fetch("data/oibs_sections_all_" + term + "_full.json"); })
                     .then(function (r) {
                         if (!r.ok) return null;
                         return r.json();
@@ -4083,11 +4103,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (noTimeItemsFiltered.length > 0) {
             var parts2 = noTimeItemsFiltered.map(function (item) {
                 var code = item.code;
-                var secLabel = item.sectionNum ? (" " + wt("secPrefix") + " " + item.sectionNum) : "";
                 var info = weeklyCoursesByCode && weeklyCoursesByCode[code];
                 var nameOnly = info && fixEncoding(info.name);
-                var base = code + secLabel;
-                return nameOnly ? (base + " – " + nameOnly) : base;
+                return nameOnly ? (code + " – " + nameOnly) : code;
             });
             notes.push(
                 "<div class=\"weekly-messages--info\" style=\"margin-top:6px\">" +
@@ -4862,66 +4880,76 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         }
                     }
 
-                    function sectionAllowedForSurname(section, courseCode) {
+                    // Why a section is filtered out by the rules: null = allowed, "prefs" = not one of the user's picked
+                    // sections, "dept" = no rule open to the student's department, "surname" = a rule is open to the
+                    // department but the surname is outside its range. silent skips the console logging.
+                    function sectionRuleRejection(section, courseCode, silent) {
+                        var log = !silent && console && console.log;
                         // Respect user‑selected section preferences per course (if any)
                         if (section && courseCode && weeklySectionPrefs) {
                             var prefs = weeklySectionPrefs[courseCode];
                             if (Array.isArray(prefs) && prefs.length) {
                                 var secNum = (section.section != null ? String(section.section) : "").trim();
                                 if (!secNum || prefs.indexOf(secNum) === -1) {
-                                    if (console && console.log) console.log("[Schedule] " + courseCode + " section " + secNum + ": filtered (not in prefs)");
-                                    return false;
+                                    if (log) console.log("[Schedule] " + courseCode + " section " + secNum + ": filtered (not in prefs)");
+                                    return "prefs";
                                 }
                             }
                         }
 
                         var rules = Array.isArray(section.rules) ? section.rules : [];
                         if (!rules.length) {
-                            if (console && console.log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": no rules → ALLOWED");
-                            return true;
+                            if (log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": no rules → ALLOWED");
+                            return null;
                         }
                         var flags = getCourseRuleFlags(courseCode);
                         var checkDept = !!flags.checkDept;
                         var checkSurname = !!flags.checkSurname;
-                        if (!checkDept && !checkSurname) return true;
+                        if (!checkDept && !checkSurname) return null;
                         var key = normalizeForSurnameRange(surnameKey);
                         var courseDeptShort = (/^([A-Z]{2,4})\d+/.exec((courseCode || "").toUpperCase()) || [])[1] || "";
-                        var anyMatch = false;
+                        var deptOkSeen = false;
                         for (var i = 0; i < rules.length; i++) {
                             var r = rules[i];
                             var ruleDept = (r.given_dept || "").toUpperCase().trim();
                             if (checkDept && ruleDept && ruleDept !== "ALL") {
                                 var deptMatches = ruleDept === studentDeptShort;
-                                if (console && console.log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": section dept=" + ruleDept + " | user dept=" + (studentDeptShort || "(none)") + " → " + (deptMatches ? "MATCH" : "NO MATCH (user must be " + ruleDept + ")"));
+                                if (log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": section dept=" + ruleDept + " | user dept=" + (studentDeptShort || "(none)") + " → " + (deptMatches ? "MATCH" : "NO MATCH (user must be " + ruleDept + ")"));
                                 if (!deptMatches) continue;
-                            } else if (ruleDept === "ALL" && console && console.log) {
+                            } else if (ruleDept === "ALL" && log) {
                                 console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": section dept=ALL | user dept=" + (studentDeptShort || "(none)") + " | course dept=" + courseDeptShort + " → MATCH (ALL)");
                             }
+                            deptOkSeen = true;
                             // If we are not checking surname, any matching dept rule is enough
-                            if (!checkSurname) {
-                                anyMatch = true;
-                                break;
-                            }
+                            if (!checkSurname) return null;
                             var sc = normalizeForSurnameRange(fixEncoding(r.start_char || ""));
                             var ec = normalizeForSurnameRange(fixEncoding(r.end_char || ""));
-                            if (!sc && !ec) {
-                                anyMatch = true;
-                                break;
-                            }
-                            if (sc && ec && sc === ec) {
-                                anyMatch = true;
-                                break;
-                            }
+                            if (!sc && !ec) return null;
+                            if (sc && ec && sc === ec) return null;
                             var startKey = sc || "AA";
                             var endKey = ec || "ZZ";
-                            if (key >= startKey && key <= endKey) {
-                                anyMatch = true;
-                                break;
-                            }
+                            if (key >= startKey && key <= endKey) return null;
                         }
-                        if (!anyMatch && console && console.log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": no matching rule → FILTERED");
-                        if (!checkSurname) return anyMatch || !checkDept;
-                        return anyMatch;
+                        if (log) console.log("[Schedule] " + courseCode + " section " + (section.section != null ? section.section : "?") + ": no matching rule → FILTERED");
+                        return checkSurname && deptOkSeen ? "surname" : "dept";
+                    }
+
+                    function sectionAllowedForSurname(section, courseCode) {
+                        return sectionRuleRejection(section, courseCode) === null;
+                    }
+
+                    // Localized reason why a course has no section that passes the rules.
+                    function noAllowedSectionText(pc) {
+                        var sections = weeklySectionsBy7 && weeklySectionsBy7[pc.code7];
+                        if (!sections || !sections.length) return wt("noSectionNoData");
+                        var seen = {};
+                        sections.forEach(function (s) {
+                            var rejection = sectionRuleRejection(s, pc.code, true);
+                            if (rejection) seen[rejection] = true;
+                        });
+                        if (seen.surname) return wtf("noSectionSurname", { surname: surnameKey });
+                        if (seen.dept) return wt("noSectionDept");
+                        return wt("noSectionPrefs");
                     }
 
                     function runGreedy(plannedOrder, shuffleSections) {
@@ -4998,6 +5026,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                     var failed = [];
                     var courseOptions = {};
+                    var courseNoOptionText = {};
 
                     // Collect all sections that satisfy department + surname rules,
                     // ignoring time collisions completely.
@@ -5013,7 +5042,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             }
                         }
                         courseOptions[pc.code] = opts;
+                        if (!opts.length) courseNoOptionText[pc.code] = noAllowedSectionText(pc);
                     });
+
+                    function possibleSectionsHtml() {
+                        var html = "<div><strong>" + wt("possibleSectionsTitle") + "</strong><br>";
+                        Object.keys(courseOptions).forEach(function (code) {
+                            var list = courseOptions[code];
+                            html += code + ": " + (list && list.length ? list.join(", ") : courseNoOptionText[code]) + "<br>";
+                        });
+                        return html + "</div>";
+                    }
 
                     // Separate pass to see which courses we fail to place when considering time collisions
                     (function () {
@@ -5040,31 +5079,38 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                                 break;
                             }
                             if (!placedThis) {
-                                failed.push(pc.code);
+                                failed.push(pc.code + " (" + (ruleOkCount === 0 ? noAllowedSectionText(pc) : wt("reasonTimeConflict")) + ")");
                                 if (console && console.log) console.log("[Schedule] " + pc.code + " FAILED: " + (ruleOkCount === 0 ? "all sections filtered by dept/surname rules" : ruleOkCount + " section(s) pass rules but all have time conflicts") + " (total sections: " + sections.length + ")");
                             }
                         });
                     })();
 
-                    // Serialize for worker: only pc + sections with normalized meeting times + collision flag
+                    // Serialize for worker: only pc + sections with normalized meeting times + collision flag.
+                    // Sections without meeting times can't collide with anything, so schedules that differ only in
+                    // such a section would look identical: they collapse into one placeholder (section null) per course.
                     var allowedByCourseSerial = allowedByCourse.map(function (item) {
                         var flags = getCourseRuleFlags(item.pc.code);
+                        var sectionsSerial = [];
+                        var hasTimelessSection = false;
+                        (item.sections || []).forEach(function (s) {
+                            var meetings = (s.meetings || []).filter(function (m) {
+                                return m && m.day && m.start && m.end;
+                            }).map(function (m) {
+                                return {
+                                    day: (fixEncoding(m.day) || "").toLowerCase(),
+                                    start: m.start,
+                                    end: m.end,
+                                    room: m.room
+                                };
+                            });
+                            if (meetings.length) sectionsSerial.push({ section: s.section, meetings: meetings });
+                            else hasTimelessSection = true;
+                        });
+                        if (hasTimelessSection) sectionsSerial.push({ section: null, meetings: [] });
                         return {
                             pc: { code: item.pc.code, code7: item.pc.code7 },
                             checkCollision: !!(flags && flags.checkCollision),
-                            sections: (item.sections || []).map(function (s) {
-                                return {
-                                    section: s.section,
-                                    meetings: (s.meetings || []).map(function (m) {
-                                        return {
-                                            day: (fixEncoding(m.day) || "").toLowerCase(),
-                                            start: m.start,
-                                            end: m.end,
-                                            room: m.room
-                                        };
-                                    })
-                                };
-                            })
+                            sections: sectionsSerial
                         };
                     });
 
@@ -5118,7 +5164,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             var noSectionsData = failed.length && failed.every(function (f) { return f.indexOf("(no sections data)") !== -1; });
                             var html = "";
                             if (noSectionsData && (!weeklySectionsBy7 || !Object.keys(weeklySectionsBy7).length)) {
-                                html += "<div class=\"weekly-messages--error\"><strong>Sections data not loaded.</strong> Put <code>data/oibs_sections_20252.json</code> in the same folder (run <code>bat/update_oibs.bat</code>).</div><br>";
+                                html += "<div class=\"weekly-messages--error\"><strong>Sections data not loaded.</strong> Missing <code>data/oibs_sections_all_" + weeklyOibsTerm + "_full.json</code> (run <code>bat/update_oibs.bat " + weeklyOibsTerm + "</code>).</div><br>";
                             }
                             if (noSectionsData && failed.length) {
                                 // Friendlier message when some courses simply have no section data
@@ -5133,20 +5179,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                                 html += "</div>";
                             } else {
                                 if (courseOptions && Object.keys(courseOptions).length) {
-                                    html += "<div><strong>Possible sections (dept + surname rules only):</strong><br>";
-                                    Object.keys(courseOptions).forEach(function (code) {
-                                        var list = courseOptions[code];
-                                        html += code + ": " + (!list || !list.length ? "none" : list.join(", ")) + "<br>";
-                                    });
-                                    html += "</div>";
+                                    html += possibleSectionsHtml();
                                 }
-                                html += "<div class=\"weekly-messages--error\"><strong>Could not build a schedule.</strong></div>";
+                                html += "<div class=\"weekly-messages--error\"><strong>" + wt("couldNotBuildSchedule") + "</strong></div>";
                                 if (failed.length) {
-                                    html += "<div class=\"weekly-messages--error\" style=\"margin-top:6px\"><strong>Could not place:</strong><br>";
+                                    html += "<div class=\"weekly-messages--error\" style=\"margin-top:6px\"><strong>" + wt("couldNotPlaceTitle") + "</strong><br>";
                                     failed.forEach(function (f) {
                                         var idx = f.indexOf(" (");
                                         var code = idx >= 0 ? f.slice(0, idx) : f;
-                                        var reason = idx >= 0 ? f.slice(idx + 2, -1) : "no available non‑conflicting section times";
+                                        var reason = idx >= 0 ? f.slice(idx + 2, -1) : wt("reasonTimeConflict");
+                                        if (reason === "no sections data") reason = wt("noSectionNoData");
                                         html += code + ": " + reason + "<br>";
                                     });
                                     html += "</div>";
@@ -5158,19 +5200,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             return;
                         }
 
+                        // Record the possible sections that were considered for this run, so users can see which
+                        // section numbers are compatible with their rules. Must run before showScheduleNav:
+                        // setScheduleSummary clears the summary box that showScheduleNav fills with notes.
+                        if (courseOptions && Object.keys(courseOptions).length) {
+                            setScheduleSummary(possibleSectionsHtml());
+                        }
                         renderScheduleInGrid(solutions[0]);
                         showScheduleNav(solutions.length, failed);
-                        // Also record the possible sections that were considered for this run,
-                        // so users can see which section numbers are compatible with their rules.
-                        if (courseOptions && Object.keys(courseOptions).length) {
-                            var htmlInfo = "<div><strong>Possible sections (dept + surname rules only):</strong><br>";
-                            Object.keys(courseOptions).forEach(function (code) {
-                                var list = courseOptions[code];
-                                htmlInfo += code + ": " + (!list || !list.length ? "none" : list.join(", ")) + "<br>";
-                            });
-                            htmlInfo += "</div>";
-                            setScheduleSummary(htmlInfo);
-                        }
                     };
 
                     worker.onerror = function (err) {
@@ -5185,7 +5222,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 .catch(function (err) {
                     var msg = "Could not load data to build schedule.";
                     if (err && err.message) msg += " " + err.message;
-                    else msg += " Make sure data/oibs_sections_20252.json exists and run bat/update_oibs.bat if needed.";
+                    else msg += " Make sure data/oibs_sections_all_" + weeklyOibsTerm + "_full.json exists and run bat/update_oibs.bat if needed.";
                     setScheduleSummary("<span class=\"weekly-messages--error\">" + msg + "</span>");
                     document.getElementById("weeklyScheduleNav").style.display = "none";
                     clearWeekGrid();
@@ -5572,6 +5609,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             schedules: currentSchedulesList || [],
             selectedIndex: currentScheduleIndex || 0,
             semester: weeklySemester,
+            oibsTerm: weeklyOibsTerm,
             failed: currentScheduleFailed || [],
             busySlots: weeklyBusySlots || {},
             rules: {

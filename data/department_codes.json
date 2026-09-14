@@ -175,6 +175,10 @@
       "abbrev": "CLPSY"
     },
     {
+      "value": "394",
+      "text": "Clinical Psychology/Klinik Psikoloji(Kuzey Kıbrıs Kampüsü)"
+    },
+    {
       "value": "902",
       "text": "Cognitive Sciences/BiliÅsel Bilimler",
       "abbrev": "COGS"
@@ -536,6 +540,10 @@
       "abbrev": "INFO"
     },
     {
+      "value": "912",
+      "text": "Information Systems and High Performance Computing  (International Joint Program)/BiliÅim Sistemleri ve YÃ¼ksek BaÅarÄ±mlÄ± Hesaplama  (UluslararasÄ± Ortak Program)"
+    },
+    {
       "value": "901",
       "text": "Information Systems/BiliÅim Sistemleri",
       "abbrev": "IS"
@@ -744,14 +752,9 @@
       "abbrev": "MMINF"
     },
     {
-      "value": "682",
+      "value": "651",
       "text": "Music and Fine Arts/MÃ¼zik ve GÃ¼zel Sanatlar",
-      "abbrev": "INST"
-    },
-    {
-      "value": "643",
-      "text": "Music and Fine Arts/MÃ¼zik ve GÃ¼zel Sanatlar",
-      "abbrev": "THEA"
+      "abbrev": "MUS"
     },
     {
       "value": "644",
@@ -759,9 +762,14 @@
       "abbrev": "SLTP"
     },
     {
-      "value": "651",
+      "value": "643",
       "text": "Music and Fine Arts/MÃ¼zik ve GÃ¼zel Sanatlar",
-      "abbrev": "MUS"
+      "abbrev": "THEA"
+    },
+    {
+      "value": "682",
+      "text": "Music and Fine Arts/MÃ¼zik ve GÃ¼zel Sanatlar",
+      "abbrev": "INST"
     },
     {
       "value": "878",
@@ -984,6 +992,14 @@
   ],
   "semesters": [
     {
+      "value": "20261",
+      "text": "2026-2027 Fall"
+    },
+    {
+      "value": "20253",
+      "text": "2025-2026 Summer School"
+    },
+    {
       "value": "20252",
       "text": "2025-2026 Spring"
     },
@@ -1034,14 +1050,6 @@
     {
       "value": "20212",
       "text": "2021-2022 Spring"
-    },
-    {
-      "value": "20211",
-      "text": "2021-2022 Fall"
-    },
-    {
-      "value": "20203",
-      "text": "2020-2021 Summer School"
     }
   ]
 }

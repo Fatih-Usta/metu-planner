@@ -1,11 +1,15 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Course Details</title>
+<script>
+document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') === 'dark' ? 'dark' : 'light');
+</script>
 <link rel="icon" href="Orta_Doğu_Teknik_Üniversitesi.png" type="image/png">
-<link rel="stylesheet" href="main-ui.css">
+<link rel="stylesheet" href="main-ui.css?v=3">
+<script src="terms.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -661,7 +665,7 @@
     };
 
     var METU_LAST_PROGRAM_CODE = "metu_last_program_code";
-    var OIBS_TERM_CODES = ["20252", "20251", "20242", "20241", "20232", "20231"];
+    var METU_OIBS_TERM_KEY = "metu_oibs_term";
     var allCourses = [];
     var coursesByCode = {};
     var codeBy7 = {};
@@ -723,7 +727,7 @@
     }
 
     function getCurrentTermCode() {
-      return String(els.semesterSelect && els.semesterSelect.value ? els.semesterSelect.value : "20252");
+      return String(els.semesterSelect && els.semesterSelect.value ? els.semesterSelect.value : window.METU_TERMS_FALLBACK);
     }
 
     function safeText(v) {
@@ -774,7 +778,7 @@
       if (!els.semesterSelect) return;
       els.semesterSelect.innerHTML = "";
       var terms = Object.keys(oibsOfferingsByTerm).sort().reverse();
-      if (!terms.length) terms = ["20252"];
+      if (!terms.length) terms = [window.METU_TERMS_FALLBACK];
       for (var i = 0; i < terms.length; i++) {
         var termCode = terms[i];
         var opt = document.createElement("option");
@@ -782,7 +786,7 @@
         opt.textContent = formatTermLabel(termCode);
         els.semesterSelect.appendChild(opt);
       }
-      var storedTerm = localStorage.getItem("metu_current_semester");
+      var storedTerm = localStorage.getItem(METU_OIBS_TERM_KEY);
       if (storedTerm && terms.indexOf(String(storedTerm)) !== -1) els.semesterSelect.value = String(storedTerm);
       else els.semesterSelect.value = terms[0];
     }
@@ -1203,7 +1207,7 @@
 
       if (els.semesterSelect) {
         els.semesterSelect.addEventListener("change", function() {
-          localStorage.setItem("metu_current_semester", String(getCurrentTermCode()));
+          localStorage.setItem(METU_OIBS_TERM_KEY, String(getCurrentTermCode()));
           if (selectedProgramCode) {
             var items = getTermDepartments(getCurrentTermCode());
             var stillExists = items.some(function(d) { return d.value === selectedProgramCode; });
@@ -1234,22 +1238,25 @@
     }
 
     function initDataAndExplorer() {
-      Promise.all([
+      window.METU_TERMS_load().then(function(terms) {
+        var termCodes = terms.available;
+        return Promise.all([
         fetch("data/programs.json").then(function(r) { return r.json(); }),
         fetch("data/courses.json").then(function(r) { return r.json(); }),
-        Promise.all(OIBS_TERM_CODES.map(function(termCode) {
+        Promise.all(termCodes.map(function(termCode) {
           return fetch("data/oibs_offerings_all_" + termCode + ".json").then(function(r) {
             if (!r.ok) return null;
             return r.json().then(function(j) { return { code: termCode, data: j }; });
           }).catch(function() { return null; });
         })),
-        Promise.all(OIBS_TERM_CODES.map(function(termCode) {
+        Promise.all(termCodes.map(function(termCode) {
           return fetch("data/oibs_sections_all_" + termCode + "_full.json").then(function(r) {
             if (!r.ok) return null;
             return r.json().then(function(j) { return { code: termCode, data: j }; });
           }).catch(function() { return null; });
         }))
-      ]).then(function(results) {
+        ]);
+      }).then(function(results) {
         var programsJson = results[0] || {};
         var coursesJson = results[1] || {};
         var offeringsList = results[2] || [];
@@ -1478,7 +1485,7 @@
     }
 
     var savedTheme = localStorage.getItem("theme");
-    var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+    var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "light";
     root.setAttribute("data-theme", initialTheme);
 
     var envelopeBtn = document.getElementById("envelopeBtn");

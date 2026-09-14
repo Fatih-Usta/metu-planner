@@ -1,11 +1,15 @@
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="pageTitle">NTE Helper</title>
+<script>
+document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') === 'dark' ? 'dark' : 'light');
+</script>
 <link rel="icon" href="Orta_Doğu_Teknik_Üniversitesi.png" type="image/png">
-<link rel="stylesheet" href="main-ui.css">
+<link rel="stylesheet" href="main-ui.css?v=3">
+<script src="terms.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -730,7 +734,7 @@
     }
 
     var savedTheme = localStorage.getItem("theme");
-    var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+    var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "light";
     root.setAttribute("data-theme", initialTheme);
 
     var envelopeBtn = document.getElementById("envelopeBtn");
@@ -784,13 +788,13 @@
     var sectionsByTerm = {};
     var lastNteResultList = null;
     var programCodeToGivenDept = {};
-    /** Set of normalized course codes from scripts/nte-allowance-list.json (e.g. "ARCH324"). Null = use NTE_PREFIXES. */
+    /** Set of normalized course codes from data/nte-allowance-list.json (e.g. "ARCH324"). Null = use NTE_PREFIXES. */
     var nteAllowanceSet = null;
-    /** Dept code (e.g. "863") -> abbrev (e.g. "ARME") from nte-allowance-list or scripts/department_codes.json. */
+    /** Dept code (e.g. "863") -> abbrev (e.g. "ARME") from nte-allowance-list or data/department_codes.json. */
     var nteCodeToAbbrev = {};
     /** given_dept / value -> full name (e.g. "Archaeometry/Arkeometri") from sections or department_codes.json. */
     var givenDeptToDeptText = {};
-    /** Loaded from scripts/department_codes.json so codes have names/abbrevs. */
+    /** Loaded from data/department_codes.json so codes have names/abbrevs. */
     var departmentCodesData = null;
     /** Fallback dept code -> abbrev when nte-allowance-list.json is not loaded (so ARME etc. still display correctly). */
     var NTE_DEPT_ABBREV_FALLBACK = { "120": "ARCH", "121": "CP", "125": "ID", "230": "PHYS", "232": "SOC", "233": "PSY", "236": "MATH", "240": "HIST", "241": "PHIL", "310": "ADM", "311": "ECON", "312": "BA", "314": "IR", "420": "SSME", "430": "CEIT", "450": "FLE", "453": "PES", "454": "EDS", "460": "MSE", "602": "ARAB", "603": "FREN", "604": "GERM", "605": "JA", "606": "ITAL", "607": "RUS", "608": "SPAN", "609": "HEB", "610": "GRE", "611": "CHN", "612": "PERS", "639": "ENG", "642": "TURK", "643": "THEA", "644": "SLTP", "651": "MUS", "682": "INST", "795": "TKPR", "831": "STPS", "863": "ARME" };
@@ -885,13 +889,15 @@
     function ensureTermOptions() {
       var sel = document.getElementById("nteTermSelect");
       if (!sel || sel.options.length > 1) return;
-      sel.innerHTML = "";
-      var terms = ["20252", "20251", "20242", "20241"];
-      terms.forEach(function(t) {
-        var opt = document.createElement("option");
-        opt.value = t;
-        opt.textContent = t;
-        sel.appendChild(opt);
+      window.METU_TERMS_load().then(function(terms) {
+        sel.innerHTML = "";
+        terms.available.forEach(function(t) {
+          var opt = document.createElement("option");
+          opt.value = t;
+          opt.textContent = window.METU_TERMS_label(t, getLang());
+          sel.appendChild(opt);
+        });
+        sel.value = terms.current;
       });
     }
 
@@ -1127,12 +1133,14 @@
         return fetch(url).then(function(r) { if (!r.ok) throw new Error(url); return r.json(); });
       }
 
-      Promise.all([
-        fetchJson("data/nte-allowance-list.json"),
-        fetchJson("data/oibs_offerings_all_20252.json"),
-        fetchJson("data/courses.json"),
-        fetchJson("data/oibs_sections_all_20252_full.json").catch(function() { return null; })
-      ]).then(function(results) {
+      window.METU_TERMS_load().then(function(terms) {
+        return Promise.all([
+          fetchJson("data/nte-allowance-list.json"),
+          fetchJson("data/oibs_offerings_all_" + terms.current + ".json"),
+          fetchJson("data/courses.json"),
+          fetchJson("data/oibs_sections_all_" + terms.current + "_full.json").catch(function() { return null; })
+        ]);
+      }).then(function(results) {
         var nteData = results[0] || {};
         var offeringsData = results[1] || {};
         var coursesData = results[2] || {};
@@ -1203,7 +1211,7 @@
 
       var surname = (surnameInput && surnameInput.value) ? String(surnameInput.value).trim() : "";
       var surnameTwo = surname.length >= 2 ? (surname.substring(0, 2)).toUpperCase() : "AA";
-      var termCode = (termSelect && termSelect.value) ? termSelect.value : "20252";
+      var termCode = (termSelect && termSelect.value) ? termSelect.value : window.METU_TERMS_FALLBACK;
 
       if (statusEl) statusEl.textContent = s.statusLoading || "Loading…";
       if (resultsEl) resultsEl.innerHTML = "";
@@ -1266,8 +1274,8 @@
       if (!curriculumsData) steps.push({ name: "curriculums", url: "data/curriculums.json" });
       if (!coursesData) steps.push({ name: "courses", url: "data/courses.json" });
       if (!sectionsByTerm[termCode]) steps.push({ name: "sections", url: "data/oibs_sections_all_" + termCode + "_full.json" });
-      if (!nteAllowanceSet) steps.push({ name: "nteAllowance", url: "scripts/nte-allowance-list.json", optional: true });
-      if (!departmentCodesData) steps.push({ name: "departmentCodes", url: "scripts/department_codes.json", optional: true });
+      if (!nteAllowanceSet) steps.push({ name: "nteAllowance", url: "data/nte-allowance-list.json", optional: true });
+      if (!departmentCodesData) steps.push({ name: "departmentCodes", url: "data/department_codes.json", optional: true });
 
       if (steps.length === 0) {
         computeAndShow(programCode, surnameTwo, termCode, done);
