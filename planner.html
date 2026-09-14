@@ -2946,6 +2946,48 @@ function addCourseFromDataset(courseFromJson) {
     persistPlannerState();
 }
 
+var DEFAULT_ELECTIVE_BUCKETS = ["TECHNICAL ELECTIVE", "RESTRICTED ELECTIVE", "NONTECHNICAL ELECTIVE", "FREE ELECTIVE", "DEPARTMENTAL ELECTIVE", "NONDEPARTMENTAL ELECTIVE"];
+var searchElectiveCounter = 0;
+
+// Elective buckets offered in course search: the selected program's curriculum buckets first (same names the
+// graduation status counts), then the common ones it does not use.
+function getElectiveSearchBuckets() {
+    var select = document.getElementById("departmentSelect");
+    var programCode = select ? select.value : "";
+    var cur = curriculumsData && curriculumsData.curriculums && programCode ? curriculumsData.curriculums[programCode] : null;
+    var buckets = [];
+    (cur && cur.semesters || []).forEach(function(sem) {
+        (sem.courses || []).forEach(function(item) {
+            var name = item && item.type === "elective" ? (item.name || "").trim() : "";
+            if (name && buckets.indexOf(name) === -1) buckets.push(name);
+        });
+    });
+    DEFAULT_ELECTIVE_BUCKETS.forEach(function(name) {
+        if (buckets.indexOf(name) === -1) buckets.push(name);
+    });
+    return buckets;
+}
+
+// Adds an elective placeholder to the pool, shaped like the ones created from the curriculum.
+function addElectiveFromSearch(bucketId) {
+    var isNte = /NON[- ]?TECHNICAL/i.test(bucketId);
+    var elecCode = "ELEC_ADD_" + Date.now() + "_" + (++searchElectiveCounter);
+    courses[elecCode] = {
+        prereqs: [],
+        semesterType: "both",
+        grade: "",
+        credits: isNte ? 0 : 3,
+        electiveBucket: bucketId,
+        isNteSlot: isNte
+    };
+    var el = createCourseElement(elecCode, null, bucketId, true, { electiveBucket: bucketId, isNteSlot: isNte });
+    var pool = document.getElementById("coursePool");
+    if (pool) pool.appendChild(el);
+    recalculateGpas();
+    updateWrongSemesterWarnings();
+    persistPlannerState();
+}
+
 function showCourseSearchDropdown(query) {
     var dropdown = document.getElementById("courseSearchDropdown");
     if (!dropdown) return;
@@ -2953,33 +2995,53 @@ function showCourseSearchDropdown(query) {
     dropdown.classList.remove("is-open");
     dropdown.innerHTML = "";
     dropdown.setAttribute("aria-hidden", "true");
-    if (!query || !allCoursesDataset || !allCoursesDataset.length) return;
-    var list = allCoursesDataset.filter(function(c) {
-        var code = (c.code || "").toLowerCase();
-        var name = (c.name || "").toLowerCase();
-        return code.indexOf(query) !== -1 || name.indexOf(query) !== -1;
-    });
-    list = list.slice(0, 25);
-    if (!list.length) return;
-    list.forEach(function(c) {
+    if (!query) return;
+
+    function closeAfterPick() {
+        var searchInput = document.getElementById("courseSearchInput");
+        if (searchInput) searchInput.value = "";
+        dropdown.classList.remove("is-open");
+        dropdown.innerHTML = "";
+        dropdown.setAttribute("aria-hidden", "true");
+    }
+
+    function addItem(label, name, onPick) {
         var btn = document.createElement("button");
         btn.type = "button";
         btn.className = "course-search-item";
         btn.setAttribute("role", "option");
-        btn.innerHTML = "<code>" + (c.code || "") + "</code><span>" + (c.name || "") + "</span>";
-        btn.dataset.code = c.code;
-        (function(course) {
-            btn.addEventListener("click", function() {
-                addCourseFromDataset(course);
-                var searchInput = document.getElementById("courseSearchInput");
-                if (searchInput) searchInput.value = "";
-                dropdown.classList.remove("is-open");
-                dropdown.innerHTML = "";
-                dropdown.setAttribute("aria-hidden", "true");
-            });
-        })(c);
+        var codeEl = document.createElement("code");
+        codeEl.textContent = label;
+        var nameEl = document.createElement("span");
+        nameEl.textContent = name;
+        btn.appendChild(codeEl);
+        btn.appendChild(nameEl);
+        btn.addEventListener("click", function() {
+            onPick();
+            closeAfterPick();
+        });
         dropdown.appendChild(btn);
+    }
+
+    var electiveLabel = currentLang === "tr" ? "Seçmeli" : "Elective";
+    getElectiveSearchBuckets().forEach(function(bucket) {
+        var isNte = /NON[- ]?TECHNICAL/i.test(bucket);
+        var aliases = isNte ? "nte non-technical teknik olmayan" : (/TECHNICAL/i.test(bucket) ? "teknik" : "");
+        var haystack = (bucket + " elective seçmeli secmeli " + aliases).toLowerCase();
+        if (haystack.indexOf(query) === -1) return;
+        addItem(electiveLabel, bucket, function() { addElectiveFromSearch(bucket); });
     });
+
+    var list = (allCoursesDataset || []).filter(function(c) {
+        var code = (c.code || "").toLowerCase();
+        var name = (c.name || "").toLowerCase();
+        return code.indexOf(query) !== -1 || name.indexOf(query) !== -1;
+    });
+    list.slice(0, 25).forEach(function(c) {
+        addItem(c.code || "", c.name || "", function() { addCourseFromDataset(c); });
+    });
+
+    if (!dropdown.children.length) return;
     dropdown.classList.add("is-open");
     dropdown.setAttribute("aria-hidden", "false");
 }
