@@ -596,24 +596,19 @@
       "text": "Area Studies/BÃ¶lge ÃalÄ±ÅmalarÄ±",
       "courses": [
         {
-          "internal_code": "8150600",
-          "code": "8150600",
-          "name": "DOCTORAL SEMINAR IN AREA STUDIES (BÃLGE ÃALIÅMALARI DOKTORA SEMÄ°NERÄ°)"
-        },
-        {
           "internal_code": "8150601",
           "code": "8150601",
           "name": "AREA STUDIES (BÃLGE ÃALIÅMALARI)"
         },
         {
-          "internal_code": "8150602",
-          "code": "8150602",
-          "name": "RESEARCH METHODS AND ETHICS IN AREA STUDIES (BÃLGE ÃALIÅMALARINDA ARAÅTIRMA YÃNTEMLERÄ° VE ETÄ°K)"
-        },
-        {
           "internal_code": "8150611",
           "code": "8150611",
           "name": "ENERGY AND ENVIRONMENTAL ISSUES IN ASIA (ASYA`DA ENERJÄ° VE ÃEVRE SORUNLARI)"
+        },
+        {
+          "internal_code": "8150650",
+          "code": "8150650",
+          "name": "INDEPENDENT STUDY; READINGS IN AREA STUDIES (BÄ°REYSEL ÃALIÅMA: BÃLGE ÃALIÅMALARI OKUMALARI)"
         },
         {
           "internal_code": "8150699",
@@ -670,11 +665,6 @@
           "name": "ASIA IN WORLD AFFAIRS (DÃNYA MESELELERÄ°NDE ASYA)"
         },
         {
-          "internal_code": "8420506",
-          "code": "8420506",
-          "name": "CONTEMPORARY SOUTHEAST ASIA: ISSUES, DEVELOPMENT, AND EVOLUTION (BUGÃNKÃ GÃNEYDOÄU ASYA: SORUNLAR, KALKINMA VE EVRÄ°M)"
-        },
-        {
           "internal_code": "8420509",
           "code": "8420509",
           "name": "CONTEMPORARY JAPANESE: SOCIO-CULTURAL CASE STUDIES (BUGÃNKÃ JAPONYA: SOSYO-KÃLTÃREL VAKA ÃALIÅMALARI)"
@@ -688,6 +678,11 @@
           "internal_code": "8420514",
           "code": "8420514",
           "name": "DIRECTED READINGS IN ASIAN STUDIES (ASYA ÃALIÅMALARINDA YÃNLENDÄ°RMELÄ° OKUMALAR)"
+        },
+        {
+          "internal_code": "8420543",
+          "code": "8420543",
+          "name": "POLITICAL ECONOMY OF GLOBAL SOUTH (KÃRESEL GÃNEY'Ä°N POLÄ°TÄ°K EKONOMÄ°SÄ°)"
         },
         {
           "internal_code": "8420561",
@@ -1440,6 +1435,11 @@
           "name": "FINANCIAL INSTITUTIONS AND MARKETS (Finansal Kurumlar ve Piyasalar)"
         },
         {
+          "internal_code": "3124829",
+          "code": "3124829",
+          "name": "VALUATION, MODELS AND APPLICATION (DeÄerleme Modelleri ve UygulamalarÄ±)"
+        },
+        {
           "internal_code": "3124834",
           "code": "3124834",
           "name": "FINANCIAL ISSUES IN CORPORATE GOVERNANCE (Kurumsal YÃ¶netiÅimde Finansal Konular)"
@@ -1515,9 +1515,19 @@
           "name": "Talent Management (Yetenek YÃ¶netimi)"
         },
         {
+          "internal_code": "3125416",
+          "code": "3125416",
+          "name": "MANAGERIAL ACCOUNTING (YÃ¶netim Muhasebesi)"
+        },
+        {
           "internal_code": "3125509",
           "code": "3125509",
           "name": "RESEARCH METHODS AND ETHICS (AraÅtÄ±rma YÃ¶ntemleri ve EtiÄi)"
+        },
+        {
+          "internal_code": "3125516",
+          "code": "3125516",
+          "name": "KNOWLEDGE MANAGEMENT AND ORGANIZATIONAL LEARNING (Bilgi YÃ¶netimi ve ÃrgÃ¼tsel ÃÄrenme)"
         },
         {
           "internal_code": "3125517",
@@ -1550,6 +1560,11 @@
           "name": "MARKETING STRATEGY (Pazarlama Stratejisi)"
         },
         {
+          "internal_code": "3125726",
+          "code": "3125726",
+          "name": "UNDERSTANDING CONSUMPTION IN CONTEXT (TÃ¼ketimi BaÄlamda Anlama)"
+        },
+        {
           "internal_code": "3125731",
           "code": "3125731",
           "name": "SOCIAL ENTREPRENEURSHIP (Sosyal GiriÅimcilik)"
@@ -1568,6 +1583,16 @@
           "internal_code": "3125814",
           "code": "3125814",
           "name": "INVESTMENT MANAGEMENT (YatÄ±rÄ±m YÃ¶netimi)"
+        },
+        {
+          "internal_code": "3125819",
+          "code": "3125819",
+          "name": "FINANCIAL INSTITUTIONS AND MARKETS (Finansal Kurumlar ve Piyasalar)"
+        },
+        {
+          "internal_code": "3125829",
+          "code": "3125829",
+          "name": "VALUATION MODELS AND APPLICATIONS (DeÄerleme Modelleri ve UygulamalarÄ±)"
         },
         {
           "internal_code": "3125834",
@@ -2150,11 +2175,6 @@
           "name": "POLYMER CHEMISTRY I (Polimer KimyasÄ± I)"
         },
         {
-          "internal_code": "2340469",
-          "code": "2340469",
-          "name": "INTRODUCTION TO MEDICINAL CHEMISTRY (TÄ±bbi Kimyaya GiriÅ)"
-        },
-        {
           "internal_code": "2340471",
           "code": "2340471",
           "name": "SPECTROSCOPIC METHODS IN ORGANIC CHEM. (Organik Kimyada Spektroskopik YÃ¶ntemler)"
@@ -2163,6 +2183,11 @@
           "internal_code": "2340481",
           "code": "2340481",
           "name": "INORGANIC CHEMISTRY III (Anorganik Kimya III)"
+        },
+        {
+          "internal_code": "2340495",
+          "code": "2340495",
+          "name": "CHEMISTRY IN POPULAR CULTURE (PopÃ¼ler KÃ¼ltÃ¼rde Kimya)"
         },
         {
           "internal_code": "2340499",
@@ -2228,6 +2253,11 @@
           "internal_code": "2340601",
           "code": "2340601",
           "name": "SEMINAR IN CHEMISTRY III (KIMYA SEMINERI III)"
+        },
+        {
+          "internal_code": "2345555",
+          "code": "2345555",
+          "name": "INTERNATIONAL STUDENT PRACTICE (ULUSLARARASI ÃÄRENCÄ° STAJI)"
         }
       ]
     },
@@ -2589,6 +2619,11 @@
           "name": "TRANSPORTATION SYSTEMS AND MODES (ULAÅTIRMA SÄ°STEMLERÄ° VE TÃRLERÄ°)"
         },
         {
+          "internal_code": "5620457",
+          "code": "5620457",
+          "name": "HIGHWAY DESIGN (KARAYOLU TASARIMI)"
+        },
+        {
           "internal_code": "5620458",
           "code": "5620458",
           "name": "DESIGN OF HYDRAULIC STRUCTURES (HÄ°DROLÄ°K YAPILARIN TASARIMI)"
@@ -2627,11 +2662,6 @@
           "internal_code": "5620484",
           "code": "5620484",
           "name": "PRESTRESSED CONCRETE (ÃNGERMELÄ° BETON)"
-        },
-        {
-          "internal_code": "5620486",
-          "code": "5620486",
-          "name": "DESIGN OF CONCRETE STRUCTURES (BETONARME YAPILARIN TASARIMI)"
         },
         {
           "internal_code": "5620490",
@@ -2924,7 +2954,23 @@
     {
       "value": "394",
       "text": "Clinical Psychology/Klinik Psikoloji(Kuzey Kıbrıs Kampüsü)",
-      "courses": []
+      "courses": [
+        {
+          "internal_code": "3943504",
+          "code": "3943504",
+          "name": "CLINICAL INTERVIEW SKILLS (Klinik GÃ¶rÃ¼Åme Becerileri)"
+        },
+        {
+          "internal_code": "3945101",
+          "code": "3945101",
+          "name": "STATISTICS, METHODS, AND ETHICS PSYCHOLOGICAL RESEARCH (Psikolojik AraÅtÄ±rmalarda Ä°statistik, YÃ¶ntem ve Etik)"
+        },
+        {
+          "internal_code": "3946302",
+          "code": "3946302",
+          "name": "DEVELOPMENTAL INTERVENTIONS WITH CHILDREN AND PARENTS (Ãocuklar ve Ebeveynlere YÃ¶nelik GeliÅimsel MÃ¼dahaleler)"
+        }
+      ]
     },
     {
       "value": "902",
@@ -3233,6 +3279,21 @@
           "internal_code": "5750223",
           "code": "5750223",
           "name": "DISCRETE COMPUTATIONAL STRUCTURES (KESÄ°KLÄ° HESAPLAMA YAPILARI)"
+        },
+        {
+          "internal_code": "5750315",
+          "code": "5750315",
+          "name": "ALGORITHMS (ALGORÄ°TMALAR)"
+        },
+        {
+          "internal_code": "5750331",
+          "code": "5750331",
+          "name": "COMPUTER ORGANIZATION (BÄ°LGÄ°SAYAR ORGANÄ°ZASYONU)"
+        },
+        {
+          "internal_code": "5750351",
+          "code": "5750351",
+          "name": "DATA MANAGEMENT AND FILE STRUCTURES (VERÄ° YÃNETÄ°MÄ° VE DOSYA YAPILARI)"
         }
       ]
     },
@@ -4226,6 +4287,11 @@
           "name": "MASTER'S THESIS (YÃKSEK LÄ°SANS TEZÄ°)"
         },
         {
+          "internal_code": "3110609",
+          "code": "3110609",
+          "name": "NEW ECONOMIC GEOGRAPHY (YENÄ° Ä°KTÄ°SADÄ° COÄRAFYA)"
+        },
+        {
           "internal_code": "3110651",
           "code": "3110651",
           "name": "ADVANCED INDUSTRIAL ORGANIZATION (Ä°LERÄ° SANAYÄ° ORGANÄ°ZASYONU)"
@@ -4803,6 +4869,11 @@
           "internal_code": "5670575",
           "code": "5670575",
           "name": "ADVANCED HIGH VOLTAGE TECHNIQUES (GELÄ°ÅMÄ°Å YÃKSEK GERÄ°LÄ°M TEKNÄ°KLERÄ°())"
+        },
+        {
+          "internal_code": "5670577",
+          "code": "5670577",
+          "name": "ADVANCED POWER SYSTEM PROTECTION ()"
         },
         {
           "internal_code": "5670583",
@@ -5627,6 +5698,11 @@
           "name": "TERM PROJECT (DÃ¶nem Projesi)"
         },
         {
+          "internal_code": "8375106",
+          "code": "8375106",
+          "name": "BUSINESS LAW (Ä°Å HUKUKU)"
+        },
+        {
           "internal_code": "8375201",
           "code": "8375201",
           "name": "ORGANIZATIONAL BEHAVIOR (ÃrgÃ¼tsel DavranÄ±Å)"
@@ -5635,6 +5711,11 @@
           "internal_code": "8375203",
           "code": "8375203",
           "name": "ORGANIZATIONAL THEORY (ÃrgÃ¼t Teorisi)"
+        },
+        {
+          "internal_code": "8375205",
+          "code": "8375205",
+          "name": "HUMAN RESOURCES MANAGEMENT (Ä°nsan KaynaklarÄ± YÃ¶netimi)"
         },
         {
           "internal_code": "8375311",
@@ -5650,16 +5731,6 @@
           "internal_code": "8375505",
           "code": "8375505",
           "name": "QUANTITATIVE METHODS FOR EXECUTIVES (YÃ¶neticiler iÃ§in SayÄ±sal YÃ¶ntemler)"
-        },
-        {
-          "internal_code": "8375701",
-          "code": "8375701",
-          "name": "MARKETING MANAGEMENT FOR EXECUTIVES (YÃ¶neticiler iÃ§in Pazarlama YÃ¶netimi)"
-        },
-        {
-          "internal_code": "8375725",
-          "code": "8375725",
-          "name": "BRAND MANAGEMENT (Marka YÃ¶netimi)"
         },
         {
           "internal_code": "8375801",
@@ -6400,9 +6471,9 @@
           "name": "M.S.RESEARCH AND THESIS (YÃKSEK LÄ°SANS ARAÅTIRMA VE TEZ)"
         },
         {
-          "internal_code": "9500507",
-          "code": "9500507",
-          "name": "PROGRAMMING IN R FOR MARINE SCIENCES (DENÄ°Z BÄ°LÄ°MLERÄ° Ä°ÃÄ°N R PROGRAMLAMA)"
+          "internal_code": "9500508",
+          "code": "9500508",
+          "name": "TROPHIC MODELLING WITH ECOPATH WITH ECOSIM AND QUANTIFICATION OF ECOSYSTEM HEALTH (ECOPATH WITH ECOSIM Ä°LE TROFÄ°K MODELLEME VE EKOSÄ°STEM SAÄLIÄININ NÄ°CELLEÅTÄ°RÄ°LMESÄ°)"
         },
         {
           "internal_code": "9500509",
@@ -6420,11 +6491,6 @@
           "name": "MARINE POLLUTION (DENÄ°Z KÄ°RLÄ°LÄ°ÄÄ°)"
         },
         {
-          "internal_code": "9500520",
-          "code": "9500520",
-          "name": "PROCESSES IN THE EUPHOTIC ZONE (ÃFOTÄ°K TABAKADA SÃREÃLER)"
-        },
-        {
           "internal_code": "9500530",
           "code": "9500530",
           "name": "INTRODUCTION TO PHYSICAL OCEANOGRAPHY (FÄ°ZÄ°KSEL OÅÄ°NOGRAFÄ°YE GÄ°RÄ°Å)"
@@ -6440,14 +6506,14 @@
           "name": "MODELING IN MARINE ENVIRONMENT II (DENÄ°ZEL ORTAM MODELLEMESÄ°- II)"
         },
         {
-          "internal_code": "9500550",
-          "code": "9500550",
-          "name": "SATELLITE OCEANOGRAPHY (UYDU OÅÄ°NOGRAFÄ°SÄ°)"
-        },
-        {
           "internal_code": "9500562",
           "code": "9500562",
           "name": "MARINE COASTAL EUTROPHICATION (DENÄ°ZEL KIYI ÃTROFÄ°KASYONU)"
+        },
+        {
+          "internal_code": "9500563",
+          "code": "9500563",
+          "name": "EXPERIMENTAL ECOLOGY (DENEYSEL EKOLOJÄ°)"
         },
         {
           "internal_code": "9500564",
@@ -6455,19 +6521,9 @@
           "name": "ECOLOGY IN THE MEDITERRANEAN CATCHMENTS (AKDENÄ°Z HAVZALARININ EKOLOJÄ°SÄ°)"
         },
         {
-          "internal_code": "9500570",
-          "code": "9500570",
-          "name": "BIOSTATISTIC (BÄ°YOÄ°STATÄ°STÄ°K)"
-        },
-        {
           "internal_code": "9500571",
           "code": "9500571",
           "name": "MARINE ECOLOGY (DENÄ°Z EKOLOJÄ°SÄ°)"
-        },
-        {
-          "internal_code": "9500575",
-          "code": "9500575",
-          "name": "DYNAMICS OF FISH POPULATION (BALIK POPÃLASYON DÄ°NAMÄ°KLERÄ°)"
         },
         {
           "internal_code": "9500577",
@@ -6488,6 +6544,16 @@
           "internal_code": "9500584",
           "code": "9500584",
           "name": "BATHYMETRIC MAPPING (BATÄ°METRÄ°K HARÄ°TALAMA)"
+        },
+        {
+          "internal_code": "9500596",
+          "code": "9500596",
+          "name": "SPECIAL TOPICS IN MARINE SCIENCES (DENÄ°Z BÄ°LÄ°MLERÄ°NDE ÃZEL TEMALAR)"
+        },
+        {
+          "internal_code": "9500597",
+          "code": "9500597",
+          "name": "SPECIAL TOPICS IN MARINE SCIENCES (DENÄ°Z BÄ°LÄ°MLERÄ°NDE ÃZEL TEMALAR)"
         },
         {
           "internal_code": "9500600",
@@ -6731,6 +6797,11 @@
           "internal_code": "2400407",
           "code": "2400407",
           "name": "CONTEMPORARY WORLD HISTORY I (ÃAÄDAÅ DÃNYA TARÄ°HÄ° I)"
+        },
+        {
+          "internal_code": "2400411",
+          "code": "2400411",
+          "name": "SONG OF RESISTANCE: MUSIC AND SOCIAL MOVEMENTS IN HISTORY (DÄ°RENÄ°Å ÅARKILARI: TARÄ°HTE MÃZÄ°K VE TOPLUMSAL HAREKETLER)"
         },
         {
           "internal_code": "2400417",
@@ -7154,6 +7225,11 @@
           "internal_code": "1250691",
           "code": "1250691",
           "name": "DOCTORAL SEMINARS IN INDUSTRIAL DESIGN (ENDUSTRIYEL TASARIMDA DOKTORA SEMINERLERI)"
+        },
+        {
+          "internal_code": "1250717",
+          "code": "1250717",
+          "name": "PRODUCT-SERVICE SYSTEMS FOR SUSTAINABLE SOLUTIONS (SURDURULEBILIR COZUMLER ICIN URUN-HIZMET SISTEMLERI)"
         }
       ]
     },
@@ -7388,9 +7464,19 @@
           "name": "SCHEDULING ()"
         },
         {
+          "internal_code": "3880425",
+          "code": "3880425",
+          "name": "PLANT LOCATION AND LAYOUT ()"
+        },
+        {
           "internal_code": "3880429",
           "code": "3880429",
           "name": "TOPICS IN PRODUCTION PLANNING ()"
+        },
+        {
+          "internal_code": "3880454",
+          "code": "3880454",
+          "name": "NETWORK FLOWS AND PROJECT MANAGEMENT ()"
         },
         {
           "internal_code": "3880489",
@@ -8629,6 +8715,11 @@
           "name": "PRINCIPLES OF PRODUCTION ENGINEERING (TEMEL ÃRETÄ°M MÃHENDÄ°SLÄ°ÄÄ°)"
         },
         {
+          "internal_code": "5690220",
+          "code": "5690220",
+          "name": "INTRODUCTION TO MECHATRONICS (MEKATRONÄ°ÄE GÄ°RÄ°Å)"
+        },
+        {
           "internal_code": "5690300",
           "code": "5690300",
           "name": "SUMMER PRACTICE I (YAZ STAJI I)"
@@ -9309,11 +9400,6 @@
           "name": "DIFFUSION (DÄ°FÃZYON)"
         },
         {
-          "internal_code": "5700534",
-          "code": "5700534",
-          "name": "PHASE TRANSFORM. IN METALLIC SYSTEMS (METALÄ°K SÄ°STEMLERDEKÄ° FAZ DÃNÃÅÃMLERÄ°)"
-        },
-        {
           "internal_code": "5700539",
           "code": "5700539",
           "name": "NEAR NET SHAPE PROCESSING (NETE YAKIN BÄ°ÃÄ°MLENDÄ°RME Ä°ÅLEMLERÄ°)"
@@ -9396,9 +9482,19 @@
           "name": "HISTORY OF THE MODERN MIDDLE EAST (MODERN ORTA DOÄU TARÄ°HÄ°)"
         },
         {
+          "internal_code": "8320505",
+          "code": "8320505",
+          "name": "GEOPOLITICAL READINGS ON THE MIDDLE EAST (ORTA DOÄU ÃZERÄ°NE JEOPOLÄ°TÄ°K OKUMALAR)"
+        },
+        {
           "internal_code": "8320508",
           "code": "8320508",
           "name": "MODERN IRAN: POLITICS IN THE TWENTIETH CENTURY (MODERN Ä°RAN: 20. YÃZYILÂDA SÄ°YASET)"
+        },
+        {
+          "internal_code": "8320510",
+          "code": "8320510",
+          "name": "WAR AND PEACE IN THE MIDDLE EAST (ORTA DOÄUÂDA SAVAÅ VE BARIÅ)"
         },
         {
           "internal_code": "8320550",
@@ -11008,6 +11104,11 @@
           "name": "PROTHESIS SEMINAR (TEZE HAZIRLIK SEMÄ°NERÄ°)"
         },
         {
+          "internal_code": "2410507",
+          "code": "2410507",
+          "name": "PHILOSOPHICAL LOGIC I (FELSEFÄ° MANTIK I)"
+        },
+        {
           "internal_code": "2410511",
           "code": "2410511",
           "name": "GRADUATE READINGS IN PHILOSOPHY I (FELSEFEDE LÄ°SANSÃSTÃ OKUMALARI I)"
@@ -11031,11 +11132,6 @@
           "internal_code": "2410526",
           "code": "2410526",
           "name": "PHILOSOPHY OF MICHEL FOUCAULT (MICHEL FOCAULT FELSEFESÄ°)"
-        },
-        {
-          "internal_code": "2410532",
-          "code": "2410532",
-          "name": "STUDIES IN GREEK PHILOSOPHY: PLATO (YUNAN FELSEFESÄ° ÃZERÄ°NE ÃALIÅMALAR:PLATO)"
         },
         {
           "internal_code": "2410548",
@@ -11068,9 +11164,9 @@
           "name": "PROTHESIS SEMINAR (TEZE HAZIRLIK SEMÄ°NERÄ°)"
         },
         {
-          "internal_code": "2410605",
-          "code": "2410605",
-          "name": "STUDIES IN GERMAN IDEALISM (ALMAN Ä°DÄ°ALÄ°ZMÄ° ÃZERÄ°NE ÃALIÅMALAR)"
+          "internal_code": "2410647",
+          "code": "2410647",
+          "name": "STUDIES IN THE HISTORY OF PHILOSOPHY I (FELSEFE TARÄ°HÄ° ARAÅTIRMALARI I)"
         },
         {
           "internal_code": "2410651",
@@ -11230,6 +11326,11 @@
           "name": "PHILOSOPHY OF PHYSICAL EDUCATION AND SPORT (BEDEN EÄÄ°TÄ°MÄ° VE SPOR FELSEFESÄ°)"
         },
         {
+          "internal_code": "4533660",
+          "code": "4533660",
+          "name": "SPORTS, NATION, AND POLITICS IN KOREA (KORE'DE SPOR, TOPLUM VE POLÄ°TÄ°KA)"
+        },
+        {
           "internal_code": "4533740",
           "code": "4533740",
           "name": "EDUCATIONAL GAMES (EÄÄ°TSEL OYUNLAR)"
@@ -11366,11 +11467,6 @@
           "name": "PHYSICS OF ENERGY (ENERJÄ° FÄ°ZÄ°ÄÄ°)"
         },
         {
-          "internal_code": "2300360",
-          "code": "2300360",
-          "name": "SCIENCE IN HISTORY (TARÄ°HTE BÄ°LÄ°M)"
-        },
-        {
           "internal_code": "2300400",
           "code": "2300400",
           "name": "SPECIAL PROBLEMS IN PHYSICS (FÄ°ZÄ°KTE ÃZEL PROBLEMLER)"
@@ -11379,11 +11475,6 @@
           "internal_code": "2300402",
           "code": "2300402",
           "name": "NUCLEAR PHYSICS I (NÃKLEER FÄ°ZÄ°K l)"
-        },
-        {
-          "internal_code": "2300404",
-          "code": "2300404",
-          "name": "NUCLEAR ELECTRONICS (NÃKLEER ELEKTRONÄ°K)"
         },
         {
           "internal_code": "2300407",
@@ -11511,19 +11602,14 @@
           "name": "QUANTUM MECHANICS I (KUANTUM MEKANÄ°ÄÄ° L)"
         },
         {
-          "internal_code": "2300527",
-          "code": "2300527",
-          "name": "OPTOELECTRONICS (OPTOELEKTRONÄ°K)"
+          "internal_code": "2300533",
+          "code": "2300533",
+          "name": "THEORY OF MANY-PARTICLE SYSTEMS I (ÃOKLU PARÃACIK SÄ°STEMLERÄ° KURAMI)"
         },
         {
           "internal_code": "2300539",
           "code": "2300539",
           "name": "OPTICAL PROPERTIES OF SEMICONDUCTORS (YARI Ä°LETKENLERÄ°N OPTÄ°K ÃZELLÄ°KLERÄ°)"
-        },
-        {
-          "internal_code": "2300540",
-          "code": "2300540",
-          "name": "SEL.TOPICS IN HIGH ENERGY PHYS. ()"
         },
         {
           "internal_code": "2300545",
@@ -11564,6 +11650,11 @@
           "internal_code": "2300691",
           "code": "2300691",
           "name": "SEMINAR IN PHYSICS II (FÄ°ZÄ°K SEMÄ°NERÄ°)"
+        },
+        {
+          "internal_code": "2300704",
+          "code": "2300704",
+          "name": "PHENOMENOLOGY OF QUARKS AND LEPTONS (KUARK VE LEPTON FENOMENOLOJÄ°SÄ°)"
         },
         {
           "internal_code": "2300710",
@@ -12432,9 +12523,9 @@
           "name": "EXP. PSYCHOLOGY I:LEARNING (DENEYSEL PSÄ°KOLOJÄ° I: ÃÄRENME)"
         },
         {
-          "internal_code": "3710322",
-          "code": "3710322",
-          "name": "Social Development (Sosyal GeliÅim)"
+          "internal_code": "3710313",
+          "code": "3710313",
+          "name": "Topics in Health Psychology (SaÄlÄ±k Psikolojisinde Konular)"
         },
         {
           "internal_code": "3710331",
@@ -12457,6 +12548,11 @@
           "name": "TOPICS IN CLINICAL PSYCHOLOGY (KLÄ°NÄ°K PSÄ°KOLOJÄ°DE KONULAR)"
         },
         {
+          "internal_code": "3710385",
+          "code": "3710385",
+          "name": "INTRODUCTION TO COGNITIVE SCIENCE (BÄ°LÄ°ÅSEL BÄ°LÄ°MLERE GÄ°RÄ°Å)"
+        },
+        {
           "internal_code": "3710400",
           "code": "3710400",
           "name": "SUMMER PRACTICE (YAZ STAJI)"
@@ -12465,16 +12561,6 @@
           "internal_code": "3710419",
           "code": "3710419",
           "name": "INTRODUCTION TO QUALITATIVE RESEARCH METHODS (NÄ°TEL ARAÅTIRMA YÃNTEMLERÄ°NE GÄ°RÄ°Å)"
-        },
-        {
-          "internal_code": "3710422",
-          "code": "3710422",
-          "name": "LANGUAGE ACQUISITION & DEVELOPMENT (DÄ°L EDÄ°NÄ°MÄ° & GELÄ°ÅÄ°MÄ°)"
-        },
-        {
-          "internal_code": "3710440",
-          "code": "3710440",
-          "name": "TOPICS IN CLINICAL PSYCHOLOGY (KLÄ°NÄ°K PSÄ°KOLOJÄ°DE KONULAR)"
         },
         {
           "internal_code": "3710442",
@@ -12497,9 +12583,9 @@
           "name": "TOPICS IN SOCIAL PSYCHOLOGY (SOSYAL PSÄ°KOLOJÄ°DE KONULAR)"
         },
         {
-          "internal_code": "3710470",
-          "code": "3710470",
-          "name": "APPLIED HEALTH PSYCHOLOGY (UYGULAMALI SAÄLIK PSÄ°KOLOJÄ°SÄ°)"
+          "internal_code": "3712102",
+          "code": "3712102",
+          "name": "STATISTICS FOR PSYCHOLOGY (PSÄ°KOLOJÄ° Ä°ÃÄ°N Ä°STATÄ°STÄ°K)"
         }
       ]
     },
