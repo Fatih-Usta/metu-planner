@@ -719,11 +719,6 @@
           "internal_code": "8640515",
           "code": "8640515",
           "name": "GALACTIC AND INTERGALACTIC ASTRONOMY (Galaktik ve GalaksilerarasÄ± Astronomi)"
-        },
-        {
-          "internal_code": "8640518",
-          "code": "8640518",
-          "name": "ASTROPHYSICAL DATA ANALYSIS (Astrofizikte Veri Analizi)"
         }
       ]
     },
@@ -2374,7 +2369,7 @@
         {
           "internal_code": "1210442",
           "code": "1210442",
-          "name": "ENVIRONMENTAL GOVERNANCE, MANAGEMENT AND POLICIY TOOLS (ÃEVRESEL YÃNETÄ°ÅÄ°M, YÃNETÄ°M VE SÄ°YASAL ARAÃLARI)"
+          "name": "ENVIRONMENTAL GOVERNANCE, MANAGEMENT AND POLICY TOOLS (ÃEVRESEL YÃNETÄ°ÅÄ°M, YÃNETÄ°M VE SÄ°YASAL ARAÃLARI)"
         },
         {
           "internal_code": "1210445",
@@ -7779,6 +7774,11 @@
           "name": "COMPARATIVE HISTORY OF CIVILIZATION (KARÅILAÅTIRMALI UYGARLIK TARÄ°HÄ°)"
         },
         {
+          "internal_code": "3140206",
+          "code": "3140206",
+          "name": "INTRODUCTION TO INTERNATIONAL RELATIONS (ULUSLARARASI Ä°LÄ°ÅKÄ°LERE GÄ°RÄ°Å)"
+        },
+        {
           "internal_code": "3140215",
           "code": "3140215",
           "name": "INTRODUCTION TO LAW FOR INTERNATIONAL RELATIONS (ULUSLARARASI Ä°LÄ°ÅKÄ°LER Ä°ÃÄ°N HUKUKA GÄ°RÄ°Å)"
@@ -7897,16 +7897,6 @@
           "internal_code": "3140459",
           "code": "3140459",
           "name": "INTERNATIONAL ENVIRONMENTAL LAW (ULUSLARARASI ÃEVRE HUKUKU)"
-        },
-        {
-          "internal_code": "3140463",
-          "code": "3140463",
-          "name": "RUSSIAN FOREIGN POLICY (RUS DIÅ POLÄ°TAKASI)"
-        },
-        {
-          "internal_code": "3140470",
-          "code": "3140470",
-          "name": "TURKEY AND THE EC/EU (TÃRKÄ°YE VE AVRUPA TOPLULUÄU/BÄ°RLÄ°ÄÄ°)"
         },
         {
           "internal_code": "3140472",
@@ -9360,6 +9350,11 @@
           "name": "POLYMER MATERIALS (POLÄ°MER MALZEMELER)"
         },
         {
+          "internal_code": "5700456",
+          "code": "5700456",
+          "name": "SURFACE PROCESSING OF MATERIALS (MALZEMELERÄ°N YÃZEY Ä°ÅLEMLERÄ°)"
+        },
+        {
           "internal_code": "5700470",
           "code": "5700470",
           "name": "COMPOSITE MATERIALS (KOMPOZÄ°T MALZEMELER)"
@@ -9454,6 +9449,11 @@
           "internal_code": "8710501",
           "code": "8710501",
           "name": "NANOSCIENCE AND ENGINEERING PRINCIPLES (NANOBÄ°LÄ°M VE NANOMÃHENDÄ°SLÄ°ÄÄ°N Ä°LKELERÄ°)"
+        },
+        {
+          "internal_code": "8710511",
+          "code": "8710511",
+          "name": "NANOPOROUS MATERIALS (NANOGÃZENEKLÄ° MALZEMELER)"
         },
         {
           "internal_code": "8710591",
