@@ -127,6 +127,42 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
       font-size: 0.9rem;
       color: var(--text-muted);
     }
+    .nte-helper-filter-card {
+      margin-top: 12px;
+    }
+    .nte-helper-filter-hint {
+      margin: 0 0 12px 0;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .nte-helper-filter-field {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+    .nte-helper-filter-field .nte-helper-search-input {
+      flex: none;
+      width: 100%;
+    }
+    .nte-helper-filter-clear {
+      padding: 7px 12px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      font: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+    .nte-helper-filter-clear:hover {
+      color: var(--text-main);
+      border-color: var(--text-muted);
+    }
+    .nte-helper-empty {
+      margin: 12px 4px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
     .nte-helper-results-panel .details-card {
       display: flex;
       flex-direction: column;
@@ -452,6 +488,20 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
           <h3 class="details-card-title" id="nteFiltersTitle">Data</h3>
           <div id="nteHelperStatus" class="nte-helper-status" aria-live="polite"></div>
         </div>
+        <div class="details-card nte-helper-filter-card">
+          <h3 class="details-card-title" id="nteFilterTitle">Filter</h3>
+          <p class="nte-helper-filter-hint" id="nteFilterHint">Pick your department and surname to see only the sections open to you.</p>
+          <div class="nte-helper-filter-field">
+            <label for="nteDeptSelect" class="nte-helper-search-label" id="lblDept">Department</label>
+            <select id="nteDeptSelect" class="nte-helper-search-input"></select>
+          </div>
+          <div class="nte-helper-filter-field">
+            <label for="nteSurname" class="nte-helper-search-label" id="lblSurname">Surname</label>
+            <input type="text" id="nteSurname" class="nte-helper-search-input" autocomplete="off" />
+          </div>
+          <button type="button" id="nteFilterClear" class="nte-helper-filter-clear">Clear</button>
+          <div id="nteFilterStatus" class="nte-helper-status" aria-live="polite"></div>
+        </div>
       </section>
 
       <section class="panel nte-helper-results-panel">
@@ -515,6 +565,15 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
         nteHelperPanelTitle: "NTE Helper",
         nteHelperCaption: "Shows courses that are NTE-allowed and offered in the current semester.",
         filtersTitle: "Data",
+        filterTitle: "Filter",
+        filterHint: "Pick your department and surname to see only the sections open to you (same rules as Weekly).",
+        lblDept: "Department",
+        lblSurname: "Surname",
+        deptAll: "— All departments —",
+        surnamePlaceholder: "e.g. Yılmaz",
+        filterClear: "Clear",
+        filterStatusNone: "Showing every section. Choose a department and surname to filter.",
+        filterStatus: "{n} of {total} NTE courses have a section open to you (department code {dept}, surname {surname}).",
         statusSelectDept: "Loading NTE list and active courses…",
         statusLoading: "Loading…",
         statusNoCourses: "No NTE-allowed courses are offered this semester.",
@@ -556,6 +615,15 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
         nteHelperPanelTitle: "NTE Yardımcı",
         nteHelperCaption: "Bu dönem açılan ve NTE listesinde olan dersleri gösterir.",
         filtersTitle: "Veri",
+        filterTitle: "Filtre",
+        filterHint: "Bölümünü ve soyadını seç; sadece sana açık şubeler görünsün (Haftalık program ile aynı kurallar).",
+        lblDept: "Bölüm",
+        lblSurname: "Soyadı",
+        deptAll: "— Tüm bölümler —",
+        surnamePlaceholder: "örn. Yılmaz",
+        filterClear: "Temizle",
+        filterStatusNone: "Tüm şubeler gösteriliyor. Filtrelemek için bölüm ve soyadı seç.",
+        filterStatus: "{total} NTE dersinden {n} tanesinde sana açık şube var (bölüm kodu {dept}, soyadı {surname}).",
         statusSelectDept: "NTE listesi ve aktif dersler yükleniyor…",
         statusNoCourses: "Bu dönem açılan uygun NTE dersi yok.",
         statusError: "Veri yüklenemedi. Tekrar deneyin.",
@@ -614,6 +682,14 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
       setText("lblTerm", s.lblTerm);
       setText("nteFindBtnText", s.nteFindBtnText);
       setText("nteFiltersTitle", s.filtersTitle);
+      setText("nteFilterTitle", s.filterTitle);
+      setText("nteFilterHint", s.filterHint);
+      setText("nteFilterClear", s.filterClear);
+      var surnameField = document.getElementById("nteSurname");
+      if (surnameField) surnameField.placeholder = s.surnamePlaceholder;
+      var deptAllOpt = document.querySelector('#nteDeptSelect option[value=""]');
+      if (deptAllOpt) deptAllOpt.textContent = s.deptAll;
+      if (allNteItems) applyNteFilter();
       setText("nteSearchLabel", s.searchLabel);
       setText("nteSearchBtnText", s.searchBtn);
       setText("nteHelperSectionsPlaceholderText", s.sectionsPlaceholder || "Click a course to see available sections");
@@ -858,15 +934,15 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
 
     function loadProgramsIntoDeptSelect() {
       var sel = document.getElementById("nteDeptSelect");
-      if (!sel) return;
-      fetch("data/programs.json")
+      if (!sel) return null;
+      return fetch("data/programs.json")
         .then(function(r) { return r.json(); })
         .then(function(data) {
           programsData = data;
           sel.innerHTML = "";
           var opt0 = document.createElement("option");
           opt0.value = "";
-          opt0.textContent = "—";
+          opt0.textContent = (STRINGS[getLang()] || STRINGS.en).deptAll;
           sel.appendChild(opt0);
           var faculties = data.faculties || {};
           var engineeringOnly = "Faculty of Engineering";
@@ -1023,6 +1099,12 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
         listWrap.appendChild(wrap);
       });
       resultsEl.appendChild(listWrap);
+      if (!listToShow.length) {
+        var emptyMsg = document.createElement("p");
+        emptyMsg.className = "nte-helper-empty";
+        emptyMsg.textContent = s.resultsEmpty || "No matches.";
+        resultsEl.appendChild(emptyMsg);
+      }
     }
 
     function runSearch() {
@@ -1171,10 +1253,13 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
         built.items.forEach(function(item) {
           var code7 = (item.course_code_7digit != null) ? String(item.course_code_7digit).trim() : "";
           var secs = (code7 && code7ToSections[code7]) ? code7ToSections[code7] : [];
+          item.allSections = secs;
           item.acceptingSections = secs;
         });
 
         lastNteResultList = built.items;
+        allNteItems = built.items;
+        givenDeptByDept = buildGivenDeptByDept(sectionsData);
 
         if (titleEl) titleEl.textContent = (s.resultsTitle || "Allowed & Active NTE") + " (" + built.items.length + ")";
 
@@ -1183,7 +1268,7 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
           statusEl.textContent = "Semester " + sem + ". Allowed list: " + built.allowedCount + " codes. Active & allowed: " + built.items.length + ".";
         }
 
-        renderNteList(built.items, s);
+        applyNteFilter();
       }).catch(function() {
         lastNteResultList = null;
         if (titleEl) titleEl.textContent = s.resultsTitle || "Allowed & Active NTE";
@@ -1449,8 +1534,131 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
       }
     }
 
+    // ---- Department + surname filter (same section rules as Weekly) ----
+    var NTE_FILTER_KEY = "metu_nte_helper_filter";
+    var allNteItems = null;
+    /** OIBS department value (e.g. "567") -> code its students have in section rules (e.g. "EE"). */
+    var givenDeptByDept = {};
+
+    // Section rules name students by OIBS codes that can differ from course prefixes and department_codes.json
+    // (EE, METE, MINE, PETE, FDE, GENE…), so take the code used most often in the restricted sections of each
+    // department's own courses.
+    function buildGivenDeptByDept(sectionsData) {
+      var out = {};
+      ((sectionsData && sectionsData.departments) || []).forEach(function(dept) {
+        var counts = {};
+        (dept.courses || []).forEach(function(course) {
+          (course.sections || []).forEach(function(sec) {
+            (sec.rules || []).forEach(function(r) {
+              var gd = (r.given_dept || "").trim().toUpperCase();
+              if (gd && gd !== "ALL") counts[gd] = (counts[gd] || 0) + 1;
+            });
+          });
+        });
+        var best = "";
+        var bestCount = 0;
+        Object.keys(counts).forEach(function(k) {
+          if (counts[k] > bestCount) { best = k; bestCount = counts[k]; }
+        });
+        if (best) out[String(dept.value)] = best;
+      });
+      return out;
+    }
+
+    // Normalize for surname range comparison so Turkish İ/ı don't break AA–IZ (same as Weekly).
+    function normalizeForSurnameRange(str) {
+      if (!str || typeof str !== "string") return "";
+      return str.toUpperCase().trim().replace(/İ/g, "I").replace(/ı/g, "I");
+    }
+
+    // A section fits if one of its rules is open to the student's department (or ALL) and, when a surname is
+    // given, the surname is inside the rule's range. givenDept null = no department filter.
+    function sectionFitsStudent(sec, givenDept, surnameKey) {
+      var rules = sec.rules || [];
+      if (!rules.length) return true;
+      return rules.some(function(r) {
+        var gd = (r.given_dept || "").trim().toUpperCase();
+        if (givenDept !== null && gd && gd !== "ALL" && gd !== givenDept) return false;
+        if (!surnameKey) return true;
+        var sc = normalizeForSurnameRange(fixTurkishEncoding(r.start_char || ""));
+        var ec = normalizeForSurnameRange(fixTurkishEncoding(r.end_char || ""));
+        if (!sc && !ec) return true;
+        if (sc && ec && sc === ec) return true;
+        return surnameKey >= (sc || "AA") && surnameKey <= (ec || "ZZ");
+      });
+    }
+
+    // Own saved filter first, otherwise the department/surname last used in Weekly.
+    function readSavedFilter() {
+      try {
+        var own = JSON.parse(localStorage.getItem(NTE_FILTER_KEY) || "null");
+        if (own) return { dept: own.dept || "", surname: own.surname || "" };
+      } catch (e) {}
+      var fromWeekly = { dept: localStorage.getItem("metu_last_program_code") || "", surname: "" };
+      try {
+        var prefs = JSON.parse(localStorage.getItem("metu_weekly_prefs_v1") || "null");
+        if (prefs && typeof prefs.surname === "string") fromWeekly.surname = prefs.surname;
+      } catch (e) {}
+      return fromWeekly;
+    }
+
+    function applyNteFilter() {
+      var s = (getLang() === "tr" ? STRINGS.tr : STRINGS.en);
+      var deptSel = document.getElementById("nteDeptSelect");
+      var surnameInput = document.getElementById("nteSurname");
+      var statusEl = document.getElementById("nteFilterStatus");
+      var dept = deptSel ? deptSel.value : "";
+      var surname = surnameInput ? surnameInput.value.trim() : "";
+      if (!allNteItems) return;
+      try { localStorage.setItem(NTE_FILTER_KEY, JSON.stringify({ dept: dept, surname: surname })); } catch (e) {}
+      var givenDept = dept ? (givenDeptByDept[dept] || "") : null;
+      var surnameKey = surname ? normalizeForSurnameRange(surname).slice(0, 2) : "";
+      var list = allNteItems;
+      if (givenDept !== null || surnameKey) {
+        list = [];
+        allNteItems.forEach(function(item) {
+          var fitting = (item.allSections || []).filter(function(sec) {
+            return sectionFitsStudent(sec, givenDept, surnameKey);
+          });
+          if (fitting.length) list.push(Object.assign({}, item, { acceptingSections: fitting }));
+        });
+      }
+      lastNteResultList = list;
+      if (statusEl) {
+        statusEl.textContent = (givenDept === null && !surnameKey)
+          ? s.filterStatusNone
+          : s.filterStatus.replace("{n}", list.length).replace("{total}", allNteItems.length)
+              .replace("{dept}", givenDept === null ? "—" : (givenDept || "?")).replace("{surname}", surnameKey || "—");
+      }
+      if (list.length) runSearch();
+      else renderNteList([], s);
+    }
+
+    function initNteFilter() {
+      var deptSel = document.getElementById("nteDeptSelect");
+      var surnameInput = document.getElementById("nteSurname");
+      var clearBtn = document.getElementById("nteFilterClear");
+      var saved = readSavedFilter();
+      if (surnameInput) {
+        surnameInput.value = saved.surname;
+        surnameInput.addEventListener("input", applyNteFilter);
+      }
+      if (deptSel) deptSel.addEventListener("change", applyNteFilter);
+      if (clearBtn) clearBtn.addEventListener("click", function() {
+        if (deptSel) deptSel.value = "";
+        if (surnameInput) surnameInput.value = "";
+        applyNteFilter();
+      });
+      var loading = loadProgramsIntoDeptSelect();
+      if (loading) loading.then(function() {
+        if (deptSel && saved.dept && deptSel.querySelector('option[value="' + saved.dept + '"]')) deptSel.value = saved.dept;
+        applyNteFilter();
+      });
+    }
+
     // New flow: load allowed list and offerings immediately.
     loadAllowedActiveAndRender();
+    initNteFilter();
 
     var searchBtn = document.getElementById("nteSearchBtn");
     var searchInput = document.getElementById("nteSearchInput");

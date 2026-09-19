@@ -2515,6 +2515,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     function getStudentDeptShort(programCode) {
         if (!programCode) return "";
         var codeStr = String(programCode).trim();
+        if (weeklyGivenDeptByProgram[codeStr]) return weeklyGivenDeptByProgram[codeStr];
         if (weeklyDeptCodeToAbbrev && weeklyDeptCodeToAbbrev[codeStr]) {
             return weeklyDeptCodeToAbbrev[codeStr];
         }
@@ -2653,6 +2654,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         }
     }
 
+    // OIBS department value (e.g. "567") -> code its students have in section rules (e.g. "EE"). Section rules use
+    // OIBS codes (EE, METE, MINE, PETE, FDE, GENE…) that can differ from department_codes.json abbreviations.
+    var weeklyGivenDeptByProgram = {};
+
     // OIBS term (YYYYT) whose offerings/sections are loaded; comes from data/terms.json via terms.js.
     var weeklyOibsTerm = null;
     function loadWeeklyOibsTerm() {
@@ -2699,6 +2704,27 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     })
                     .then(function (data) {
                         weeklySectionsBy7 = {};
+                        // Most common restricted given_dept in each department's own sections = its students' code.
+                        weeklyGivenDeptByProgram = {};
+                        if (data && data.departments) {
+                            data.departments.forEach(function (d) {
+                                var counts = {};
+                                (d.courses || []).forEach(function (c) {
+                                    (c.sections || []).forEach(function (s) {
+                                        (s.rules || []).forEach(function (r) {
+                                            var gd = (r.given_dept || "").toUpperCase().trim();
+                                            if (gd && gd !== "ALL") counts[gd] = (counts[gd] || 0) + 1;
+                                        });
+                                    });
+                                });
+                                var best = "";
+                                var bestCount = 0;
+                                for (var k in counts) {
+                                    if (counts.hasOwnProperty(k) && counts[k] > bestCount) { best = k; bestCount = counts[k]; }
+                                }
+                                if (best) weeklyGivenDeptByProgram[String(d.value)] = best;
+                            });
+                        }
                         if (data && data.departments) {
                             data.departments.forEach(function (d) {
                                 (d.courses || []).forEach(function (c) {
