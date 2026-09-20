@@ -630,6 +630,12 @@
     margin-right: 4px;
 }
 
+/* Hours taken from a department page because OIBS has not published them yet */
+.weekly-section-meeting--dept {
+    border: 1px dashed var(--text-muted);
+    cursor: help;
+}
+
 .weekly-section-room {
     margin-left: 6px;
     opacity: 0.9;
@@ -1611,6 +1617,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             availableSections: "Available sections",
             toggleAllSections: "Toggle all",
             sectionLabelPrefix: "Section",
+            hoursFromDept: "Hours from the {source} department page; OIBS has not published them yet.",
+            deptHoursNote: "{n} section(s) use hours from department pages ({sources}) because OIBS has not published them yet.",
             offeredThisSemester: "Offered this semester",
             notOfferedThisSemester: "Not in OIBS offerings this term",
             checkDepartmentSingle: "Check department",
@@ -1731,6 +1739,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             availableSections: "Mevcut şubeler",
             toggleAllSections: "Tümünü değiştir",
             sectionLabelPrefix: "Şube",
+            hoursFromDept: "Saatler {source} bölüm sayfasından; OİBS'te henüz yayınlanmadı.",
+            deptHoursNote: "{n} şube için saatler bölüm sayfalarından alındı ({sources}); OİBS'te henüz yayınlanmadı.",
             offeredThisSemester: "Bu dönem açılıyor",
             notOfferedThisSemester: "Bu dönem OİBS açılan derslerde yok",
             checkDepartmentSingle: "Bölümü kontrol et",
@@ -2660,6 +2670,46 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
     // OIBS term (YYYYT) whose offerings/sections are loaded; comes from data/terms.json via terms.js.
     var weeklyOibsTerm = null;
+    // Some departments publish hours OIBS has not (scripts/scrape_dept_schedules.py collects them into
+    // data/dept_schedules_<term>.json). They fill in only sections that OIBS leaves without meetings.
+    var weeklyDeptHoursCount = 0;
+    var weeklyDeptHoursSources = [];
+    function loadWeeklyDeptHours() {
+        if (!weeklyOibsTerm || !weeklySectionsBy7) return Promise.resolve();
+        return fetch("data/dept_schedules_" + weeklyOibsTerm + ".json")
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .catch(function () { return null; })
+            .then(function (data) {
+                weeklyDeptHoursCount = 0;
+                weeklyDeptHoursSources = [];
+                if (!data || !data.sections) return;
+                Object.keys(data.sections).forEach(function (key) {
+                    var parts = key.split("|");
+                    var sections = weeklySectionsBy7[parts[0]];
+                    if (!sections) return;
+                    var entry = data.sections[key] || {};
+                    sections.forEach(function (s) {
+                        var num = String(s.section == null ? "" : s.section).trim().replace(/^0+/, "");
+                        if (num !== parts[1] || (s.meetings && s.meetings.length)) return;
+                        s.meetings = (entry.meetings || []).map(function (m) {
+                            return { day: m.day, start: m.start, end: m.end, room: m.room, source: entry.source };
+                        });
+                        s.hoursSource = entry.source;
+                        weeklyDeptHoursCount++;
+                        if (weeklyDeptHoursSources.indexOf(entry.source) === -1) weeklyDeptHoursSources.push(entry.source);
+                    });
+                });
+            });
+    }
+
+    // Logged when a schedule run starts: the log is cleared on every run, so it can't be written at load time.
+    function noteDeptHours() {
+        if (!weeklyDeptHoursCount) return;
+        setScheduleSummary("<div class=\"weekly-messages--info\">" + wt("deptHoursNote")
+            .replace("{n}", weeklyDeptHoursCount)
+            .replace("{sources}", weeklyDeptHoursSources.join(", ")) + "</div>");
+    }
+
     function loadWeeklyOibsTerm() {
         return window.METU_TERMS_load().then(function (terms) {
             weeklyOibsTerm = terms.current;
@@ -2734,6 +2784,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                                 });
                             });
                         }
+                        return loadWeeklyDeptHours();
                     })
                     .catch(function () {
                         weeklySectionsBy7 = {};
@@ -3099,6 +3150,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     row.className = "weekly-section-row";
                     var chip = document.createElement("span");
                     chip.className = "weekly-section-meeting";
+                    if (m.source) {
+                        chip.classList.add("weekly-section-meeting--dept");
+                        chip.title = wt("hoursFromDept").replace("{source}", m.source);
+                    }
                     var txt = (localizeMeetingDay(m.day || "") + " " + (m.start || "") + (m.end ? "\u2013" + m.end : "")).trim();
                     chip.textContent = txt.trim();
                     row.appendChild(chip);
@@ -3747,6 +3802,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         row.className = "weekly-section-row";
                         var chip = document.createElement("span");
                         chip.className = "weekly-section-meeting";
+                        if (m.source) {
+                            chip.classList.add("weekly-section-meeting--dept");
+                            chip.title = wt("hoursFromDept").replace("{source}", m.source);
+                        }
                         var txt = (localizeMeetingDay(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
                         chip.textContent = txt.trim();
                         row.appendChild(chip);
@@ -4336,6 +4395,10 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                         var chip = document.createElement("span");
                         chip.className = "weekly-section-meeting";
+                        if (m.source) {
+                            chip.classList.add("weekly-section-meeting--dept");
+                            chip.title = wt("hoursFromDept").replace("{source}", m.source);
+                        }
                         var txt = (localizeMeetingDay(m.day || "") + " " + (m.start || "") + (m.end ? "–" + m.end : "")).trim();
                         chip.textContent = txt.trim();
                         row.appendChild(chip);
@@ -5140,6 +5203,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                         };
                     });
 
+                    noteDeptHours();
                     setScheduleSummary("<span class=\"weekly-messages--info\">Finding all non-conflicting schedules…</span>");
                     clearWeekGrid();
                     document.getElementById("weeklyScheduleNav").style.display = "none";

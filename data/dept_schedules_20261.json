@@ -1,0 +1,679 @@
+{
+  "term": "20261",
+  "generated_at": "2026-09-20 14:43:00",
+  "sources": [
+    {
+      "dept": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": 68
+    }
+  ],
+  "sections": {
+    "5710315|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "08:40",
+          "end": "10:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Wednesday",
+          "start": "08:40",
+          "end": "10:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710223|2": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "10:40",
+          "end": "12:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Thursday",
+          "start": "12:40",
+          "end": "13:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710477|2": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "12:40",
+          "end": "13:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Wednesday",
+          "start": "13:40",
+          "end": "15:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710223|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "13:40",
+          "end": "15:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Thursday",
+          "start": "14:40",
+          "end": "15:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710213|2": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "15:40",
+          "end": "17:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Wednesday",
+          "start": "12:40",
+          "end": "13:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710587|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "09:40",
+          "end": "12:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710460|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "13:40",
+          "end": "15:30",
+          "room": "BMB 3"
+        },
+        {
+          "day": "Tuesday",
+          "start": "10:40",
+          "end": "11:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710463|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "15:40",
+          "end": "16:30",
+          "room": "BMB 3"
+        },
+        {
+          "day": "Wednesday",
+          "start": "11:40",
+          "end": "13:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710487|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "09:40",
+          "end": "10:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Thursday",
+          "start": "13:40",
+          "end": "15:30",
+          "room": "BMB 4"
+        }
+      ]
+    },
+    "5710466|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "10:40",
+          "end": "12:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Thursday",
+          "start": "10:40",
+          "end": "12:30",
+          "room": "BMB 4"
+        }
+      ]
+    },
+    "5710495|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "12:40",
+          "end": "13:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Tuesday",
+          "start": "11:40",
+          "end": "13:30",
+          "room": "BMB 4"
+        }
+      ]
+    },
+    "5710371|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "13:40",
+          "end": "15:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Tuesday",
+          "start": "10:40",
+          "end": "11:30",
+          "room": "BMB 4"
+        }
+      ]
+    },
+    "5717880|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "09:40",
+          "end": "12:30",
+          "room": "BMB 5"
+        }
+      ]
+    },
+    "5710514|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Monday",
+          "start": "13:40",
+          "end": "16:30",
+          "room": "BMB 5"
+        }
+      ]
+    },
+    "5710477|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "08:40",
+          "end": "09:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Thursday",
+          "start": "08:40",
+          "end": "10:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710111|2": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "09:40",
+          "end": "11:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Thursday",
+          "start": "10:40",
+          "end": "11:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710111|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "11:40",
+          "end": "13:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Thursday",
+          "start": "11:40",
+          "end": "12:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710351|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "15:40",
+          "end": "16:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Friday",
+          "start": "14:40",
+          "end": "16:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710567|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "09:40",
+          "end": "12:30",
+          "room": "BMB 2"
+        }
+      ]
+    },
+    "5710140|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "16:40",
+          "end": "17:30",
+          "room": "BMB 2"
+        },
+        {
+          "day": "Wednesday",
+          "start": "10:40",
+          "end": "12:30",
+          "room": "BMB 2"
+        }
+      ]
+    },
+    "5710713|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "12:40",
+          "end": "15:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710424|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "15:40",
+          "end": "17:30",
+          "room": "BMB 3"
+        },
+        {
+          "day": "Wednesday",
+          "start": "10:40",
+          "end": "11:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710315|2": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "08:40",
+          "end": "10:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Friday",
+          "start": "08:40",
+          "end": "10:30",
+          "room": "BMB 4"
+        }
+      ]
+    },
+    "5710351|2": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "13:40",
+          "end": "15:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Thursday",
+          "start": "09:40",
+          "end": "10:30",
+          "room": "BMB 4"
+        }
+      ]
+    },
+    "5710570|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "09:40",
+          "end": "12:30",
+          "room": "BMB 5"
+        }
+      ]
+    },
+    "5710501|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "12:40",
+          "end": "15:30",
+          "room": "BMB 5"
+        }
+      ]
+    },
+    "5710786|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Tuesday",
+          "start": "13:40",
+          "end": "15:30",
+          "room": "A 101"
+        },
+        {
+          "day": "Wednesday",
+          "start": "10:40",
+          "end": "12:30",
+          "room": "A 101"
+        }
+      ]
+    },
+    "5710213|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Wednesday",
+          "start": "10:40",
+          "end": "12:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Thursday",
+          "start": "10:40",
+          "end": "11:30",
+          "room": "BMB 5"
+        }
+      ]
+    },
+    "5710331|2": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Wednesday",
+          "start": "16:40",
+          "end": "17:30",
+          "room": "BMB 1"
+        },
+        {
+          "day": "Thursday",
+          "start": "15:40",
+          "end": "17:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710331|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Wednesday",
+          "start": "11:40",
+          "end": "12:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Friday",
+          "start": "10:40",
+          "end": "12:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710499|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Wednesday",
+          "start": "16:40",
+          "end": "17:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Thursday",
+          "start": "15:40",
+          "end": "17:30",
+          "room": "BMB 4"
+        }
+      ]
+    },
+    "5710519|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Wednesday",
+          "start": "09:40",
+          "end": "12:30",
+          "room": "BMB 5"
+        }
+      ]
+    },
+    "5710310|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Wednesday",
+          "start": "14:40",
+          "end": "17:30",
+          "room": "BMB 5"
+        }
+      ]
+    },
+    "5710301|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Thursday",
+          "start": "09:40",
+          "end": "12:30",
+          "room": "BMB 2"
+        }
+      ]
+    },
+    "5710590|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Thursday",
+          "start": "09:40",
+          "end": "12:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710778|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Thursday",
+          "start": "13:40",
+          "end": "16:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710435|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Thursday",
+          "start": "12:40",
+          "end": "13:30",
+          "room": "BMB 4"
+        },
+        {
+          "day": "Friday",
+          "start": "14:40",
+          "end": "17:30",
+          "room": "BMB 4"
+        }
+      ]
+    },
+    "5717811|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Thursday",
+          "start": "12:40",
+          "end": "15:30",
+          "room": "BMB 5"
+        }
+      ]
+    },
+    "5710100|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Friday",
+          "start": "08:40",
+          "end": "10:30",
+          "room": "BMB 1"
+        }
+      ]
+    },
+    "5710302|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Friday",
+          "start": "14:40",
+          "end": "17:30",
+          "room": "BMB 2"
+        }
+      ]
+    },
+    "5717822|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Friday",
+          "start": "08:40",
+          "end": "11:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710536|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Friday",
+          "start": "14:40",
+          "end": "17:30",
+          "room": "BMB 3"
+        }
+      ]
+    },
+    "5710453|1": {
+      "source": "CENG",
+      "url": "https://ceng.metu.edu.tr/en/course-schedule",
+      "meetings": [
+        {
+          "day": "Friday",
+          "start": "09:40",
+          "end": "12:30",
+          "room": "BMB 5"
+        }
+      ]
+    }
+  }
+}

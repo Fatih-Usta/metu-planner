@@ -19,7 +19,14 @@
               "section": "1",
               "instr1": "SEZER UZOL NÄ°LAY",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": ""
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -110,7 +117,20 @@
               "section": "1",
               "instr1": "KAHVECÄ° HARÄ°KA SENEM",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "AE025"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE025"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -129,7 +149,20 @@
               "section": "2",
               "instr1": "BAÅKAN PERÃÄ°N ÃZGE",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "AE026"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE026"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -155,7 +188,20 @@
               "section": "1",
               "instr1": "ÃÃKER DEMÄ°RKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE122"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": "AE122"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -174,7 +220,20 @@
               "section": "2",
               "instr1": "YALÃINKAYA TUNCAY",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE128"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": "AE128"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -226,7 +285,20 @@
               "section": "1",
               "instr1": "SEZER UZOL NÄ°LAY",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "10:30",
+                  "room": "AE122"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "14:40",
+                  "end": "16:30",
+                  "room": "AE122"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -245,7 +317,20 @@
               "section": "2",
               "instr1": "KARBAN UÄUR",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "10:30",
+                  "room": "AE128"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "14:40",
+                  "end": "16:30",
+                  "room": "AE128"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -271,7 +356,20 @@
               "section": "1",
               "instr1": "ÃZYÃRÃK YUSUF",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "AE122"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "11:40",
+                  "end": "12:30",
+                  "room": "AE122"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -290,7 +388,20 @@
               "section": "2",
               "instr1": "BAÅKAN PERÃÄ°N ÃZGE",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "AE128"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "11:40",
+                  "end": "12:30",
+                  "room": "AE128"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -316,7 +427,20 @@
               "section": "1",
               "instr1": "PERÃÄ°N MUSTAFA",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE122"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": "AE122"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -335,7 +459,20 @@
               "section": "2",
               "instr1": "UZOL OÄUZ",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE128"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": "AE128"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -361,7 +498,20 @@
               "section": "1",
               "instr1": "GÃRSES ERCAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "15:40",
+                  "end": "16:30",
+                  "room": "AE122"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "09:40",
+                  "end": "11:30",
+                  "room": "AE122"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -380,7 +530,20 @@
               "section": "2",
               "instr1": "ÃÃKER DEMÄ°RKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "15:40",
+                  "end": "16:30",
+                  "room": "AE128"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "09:40",
+                  "end": "11:30",
+                  "room": "AE128"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -406,7 +569,14 @@
               "section": "1",
               "instr1": "SÃKEN HALÄ°L ERSÄ°N",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE122"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -425,7 +595,14 @@
               "section": "2",
               "instr1": "YILDIRIM SÃLEYMAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE128"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -449,7 +626,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "YILDIRIM SÃLEYMAN",
+              "instr1": "KARBAN UÄUR",
               "instr2": "STAFF",
               "meetings": [],
               "rules": [
@@ -477,7 +654,14 @@
               "section": "1",
               "instr1": "STAFF",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": "AE126"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -496,7 +680,14 @@
               "section": "2",
               "instr1": "STAFF",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": ""
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -515,7 +706,14 @@
               "section": "3",
               "instr1": "STAFF",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": ""
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -541,7 +739,20 @@
               "section": "1",
               "instr1": "UZOL OÄUZ",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE124"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "14:40",
+                  "end": "15:30",
+                  "room": "AE124"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -560,7 +771,20 @@
               "section": "2",
               "instr1": "KARACA MEHMET",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE125"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "14:40",
+                  "end": "15:30",
+                  "room": "AE125"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -586,7 +810,14 @@
               "section": "1",
               "instr1": "EYÄ° SÄ°NAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "16:30",
+                  "room": "AE124"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -612,7 +843,20 @@
               "section": "1",
               "instr1": "KURTULUÅ DÄ°LEK FUNDA",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "AE124"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "AE124"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -631,7 +875,20 @@
               "section": "2",
               "instr1": "ÃZGEN SERKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "AE125"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "AE125"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -657,7 +914,14 @@
               "section": "1",
               "instr1": "KURTULUÅ DÄ°LEK FUNDA",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "10:40",
+                  "end": "13:30",
+                  "room": "AE125"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -683,7 +947,20 @@
               "section": "1",
               "instr1": "ÅAHÄ°N MELÄ°N",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "14:40",
+                  "end": "15:30",
+                  "room": "AE122"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE122"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -702,7 +979,20 @@
               "section": "2",
               "instr1": "GÃLOÄLU GÃRKEM EÄEMEN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "14:40",
+                  "end": "15:30",
+                  "room": "AE128"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE128"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -728,7 +1018,20 @@
               "section": "1",
               "instr1": "KAYRAN ALTAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "AE126"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "AE126"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -754,7 +1057,14 @@
               "section": "1",
               "instr1": "YAÄLIOÄLU BURAK",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "13:40",
+                  "end": "17:30",
+                  "room": "AE126"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -780,7 +1090,14 @@
               "section": "1",
               "instr1": "KAHVECÄ° HARÄ°KA SENEM",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE124"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -806,7 +1123,14 @@
               "section": "1",
               "instr1": "BOYACIOÄLU BURAK",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "13:40",
+                  "end": "17:30",
+                  "room": "AE124"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -832,7 +1156,14 @@
               "section": "1",
               "instr1": "SÃKEN HALÄ°L ERSÄ°N",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "08:40",
+                  "end": "11:30",
+                  "room": "AE124"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1264,7 +1595,14 @@
               "section": "1",
               "instr1": "KARBAN UÄUR",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "13:40",
+                  "end": "16:30",
+                  "room": "AE125"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1290,7 +1628,14 @@
               "section": "1",
               "instr1": "ÃZYÃRÃK YUSUF",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "AE125"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1316,7 +1661,14 @@
               "section": "1",
               "instr1": "GÃRSES ERCAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE026"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1342,7 +1694,14 @@
               "section": "1",
               "instr1": "ÅAHÄ°N MELÄ°N",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE026"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1368,7 +1727,14 @@
               "section": "1",
               "instr1": "KAYRAN ALTAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE025"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1394,7 +1760,14 @@
               "section": "1",
               "instr1": "ÃZGEN SERKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE126"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1821,7 +2194,14 @@
               "section": "1",
               "instr1": "YALÃINKAYA TUNCAY",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "AE128"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1847,7 +2227,14 @@
               "section": "1",
               "instr1": "PERÃÄ°N MUSTAFA",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE026"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1873,7 +2260,14 @@
               "section": "1",
               "instr1": "STAFF",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "14:40",
+                  "end": "16:30",
+                  "room": "AE124"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1899,7 +2293,14 @@
               "section": "1",
               "instr1": "YILDIRIM SÃLEYMAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE125"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -1925,7 +2326,14 @@
               "section": "1",
               "instr1": "GÃLOÄLU GÃRKEM EÄEMEN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "AE124"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "AEE",
@@ -7522,10 +7930,10 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Monday",
+                  "day": "Wednesday",
                   "start": "09:40",
                   "end": "12:30",
-                  "room": "II-05"
+                  "room": "II-06"
                 }
               ],
               "rules": [
@@ -7566,10 +7974,10 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Tuesday",
-                  "start": "09:40",
-                  "end": "12:30",
-                  "room": "ENF. LAB."
+                  "day": "Thursday",
+                  "start": "12:40",
+                  "end": "15:30",
+                  "room": "II-01"
                 }
               ],
               "rules": [
@@ -25301,6 +25709,20 @@
                   "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
                 }
               ]
+            },
+            {
+              "section": "3",
+              "instr1": "STAFF",
+              "instr2": "STAFF",
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "17:30",
+                  "room": ""
+                }
+              ],
+              "rules": []
             }
           ]
         },
@@ -25546,13 +25968,13 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Wednesday",
+                  "day": "Monday",
                   "start": "13:40",
                   "end": "17:30",
                   "room": ""
                 },
                 {
-                  "day": "Friday",
+                  "day": "Tuesday",
                   "start": "13:40",
                   "end": "17:30",
                   "room": ""
@@ -26052,36 +26474,41 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Wednesday",
+                  "day": "Monday",
                   "start": "13:40",
                   "end": "17:30",
                   "room": ""
                 }
               ],
-              "rules": [
+              "rules": []
+            },
+            {
+              "section": "2",
+              "instr1": "STAFF",
+              "instr2": "STAFF",
+              "meetings": [
                 {
-                  "given_dept": "CHED",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                },
-                {
-                  "given_dept": "CHEM",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                  "day": "Friday",
+                  "start": "08:40",
+                  "end": "12:30",
+                  "room": ""
                 }
-              ]
+              ],
+              "rules": []
+            },
+            {
+              "section": "3",
+              "instr1": "STAFF",
+              "instr2": "STAFF",
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "13:40",
+                  "end": "17:30",
+                  "room": ""
+                }
+              ],
+              "rules": []
             }
           ]
         },
@@ -27554,7 +27981,7 @@
               ],
               "rules": [
                 {
-                  "given_dept": "ALL",
+                  "given_dept": "PST",
                   "start_char": "AA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
@@ -27587,12 +28014,23 @@
               ],
               "rules": [
                 {
-                  "given_dept": "ALL",
+                  "given_dept": "CHED",
                   "start_char": "AA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "60",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "CHEM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
                   "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
@@ -27626,7 +28064,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
-                  "max_year": "4",
+                  "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 },
@@ -27637,7 +28075,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
-                  "max_year": "5",
+                  "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -27676,7 +28114,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
-                  "max_year": "4",
+                  "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 },
@@ -27687,7 +28125,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
-                  "max_year": "5",
+                  "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -27720,7 +28158,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
-                  "max_year": "5",
+                  "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 },
@@ -27731,7 +28169,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
-                  "max_year": "5",
+                  "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -27756,7 +28194,30 @@
                   "room": "K06"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "CHED",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "CHEM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -27791,7 +28252,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
-                  "max_year": "4",
+                  "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 },
@@ -29068,6 +29529,32 @@
                   "end_grade": "Herkes alabilir"
                 }
               ]
+            },
+            {
+              "section": "2",
+              "instr1": "ÃREY ÃZGÃR",
+              "instr2": "STAFF",
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "09:40",
+                  "end": "13:30",
+                  "room": ""
+                }
+              ],
+              "rules": [
+                {
+                  "given_dept": "CRP",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -29992,10 +30479,10 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Tuesday",
+                  "day": "Wednesday",
                   "start": "13:40",
                   "end": "17:30",
-                  "room": ""
+                  "room": "R47"
                 }
               ],
               "rules": [
@@ -30018,7 +30505,7 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Tuesday",
+                  "day": "Wednesday",
                   "start": "13:40",
                   "end": "17:30",
                   "room": ""
@@ -30044,7 +30531,7 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Tuesday",
+                  "day": "Wednesday",
                   "start": "13:40",
                   "end": "17:30",
                   "room": ""
@@ -30147,6 +30634,12 @@
                   "start": "09:40",
                   "end": "12:30",
                   "room": "R-45"
+                },
+                {
+                  "day": "Tuesday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "R89"
                 }
               ],
               "rules": [
@@ -33757,7 +34250,7 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Tuesday",
+                  "day": "Friday",
                   "start": "13:40",
                   "end": "16:30",
                   "room": "K4LBWRL"
@@ -33813,10 +34306,10 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Tuesday",
-                  "start": "13:40",
-                  "end": "16:30",
-                  "room": "TH2"
+                  "day": "Thursday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "CES23"
                 }
               ],
               "rules": []
@@ -33876,10 +34369,10 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Wednesday",
-                  "start": "13:40",
-                  "end": "16:30",
-                  "room": "TH1"
+                  "day": "Thursday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "TH7"
                 }
               ],
               "rules": []
@@ -35572,7 +36065,14 @@
               "section": "1",
               "instr1": "DALKIÃ MELEK GÃLÃÄ°N",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "TH2"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ALL",
@@ -38655,14 +39155,14 @@
               "meetings": [
                 {
                   "day": "Monday",
-                  "start": "13:40",
-                  "end": "15:30",
-                  "room": "EFC-111"
-                },
-                {
-                  "day": "Thursday",
                   "start": "11:40",
                   "end": "13:30",
+                  "room": "EFC-109"
+                },
+                {
+                  "day": "Monday",
+                  "start": "13:40",
+                  "end": "15:30",
                   "room": "EFC-LB1"
                 }
               ],
@@ -38735,7 +39235,7 @@
                   "day": "Tuesday",
                   "start": "09:40",
                   "end": "13:30",
-                  "room": "EFD-202"
+                  "room": "EFC-LB1"
                 }
               ],
               "rules": [
@@ -38761,7 +39261,7 @@
                   "day": "Wednesday",
                   "start": "09:40",
                   "end": "13:30",
-                  "room": "YP-B202"
+                  "room": "EFC-LB1"
                 }
               ],
               "rules": [
@@ -38787,7 +39287,7 @@
                   "day": "Thursday",
                   "start": "08:40",
                   "end": "12:30",
-                  "room": "EFD-202"
+                  "room": "EFC-LB1"
                 }
               ],
               "rules": [
@@ -39329,9 +39829,28 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "GÃNDOÄAN MÄ°HRAÃ BANU",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": "EFC-109"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "EFC-109"
+                },
+                {
+                  "day": "Friday",
+                  "start": "12:40",
+                  "end": "13:30",
+                  "room": ""
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "CEIT",
@@ -39345,6 +39864,32 @@
                   "end_grade": "Herkes alabilir"
                 }
               ]
+            },
+            {
+              "section": "2",
+              "instr1": "YILDIRIM Ä°BRAHÄ°M SONER",
+              "instr2": "STAFF",
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": ""
+                },
+                {
+                  "day": "Thursday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": ""
+                },
+                {
+                  "day": "Friday",
+                  "start": "12:40",
+                  "end": "13:30",
+                  "room": ""
+                }
+              ],
+              "rules": []
             }
           ]
         },
@@ -39359,15 +39904,15 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Thursday",
-                  "start": "13:40",
-                  "end": "15:30",
+                  "day": "Wednesday",
+                  "start": "09:40",
+                  "end": "11:30",
                   "room": "EFC104"
                 },
                 {
-                  "day": "Thursday",
-                  "start": "15:40",
-                  "end": "17:30",
+                  "day": "Wednesday",
+                  "start": "11:40",
+                  "end": "13:30",
                   "room": "EFC104"
                 }
               ],
@@ -49030,6 +49575,20 @@
               ]
             }
           ]
+        },
+        {
+          "internal_code": "3920461",
+          "code": "3920461",
+          "name": "INFORMATION SECURITY MANAGEMENT (IS) (BI?LGI? GÃVENLI?ÄI? YÃNETI?MI? (BG))",
+          "sections": [
+            {
+              "section": "1",
+              "instr1": "STAFF",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": []
+            }
+          ]
         }
       ]
     },
@@ -50561,7 +51120,7 @@
                   "day": "Monday",
                   "start": "13:40",
                   "end": "17:30",
-                  "room": ""
+                  "room": "EFD-10"
                 }
               ],
               "rules": [
@@ -52740,7 +53299,20 @@
               "section": "1",
               "instr1": "GÃRER EREN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "F.AUD"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "11:40",
+                  "end": "12:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -52759,7 +53331,20 @@
               "section": "2",
               "instr1": "TUNÃ GÃL Ä°PEK",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "F.AUD"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "F.AUD"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -52778,7 +53363,20 @@
               "section": "4",
               "instr1": "GENÃ HAKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": ""
+                },
+                {
+                  "day": "Friday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": ""
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "IR",
@@ -52797,7 +53395,20 @@
               "section": "5",
               "instr1": "GENÃ HAKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "09:40",
+                  "end": "11:30",
+                  "room": "F.AUD"
+                },
+                {
+                  "day": "Friday",
+                  "start": "09:40",
+                  "end": "11:30",
+                  "room": "F.AUD"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ADM",
@@ -52823,7 +53434,20 @@
               "section": "1",
               "instr1": "ERCAN HAKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "F.AUD"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ADM",
@@ -52871,7 +53495,14 @@
               "section": "1",
               "instr1": "PARMAKSIZ ÃMER KAÄAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "12:40",
+                  "end": "15:30",
+                  "room": "F.AUD"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -52890,7 +53521,14 @@
               "section": "2",
               "instr1": "PARMAKSIZ ÃMER KAÄAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "F.AUD"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -52916,7 +53554,14 @@
               "section": "1",
               "instr1": "ALPAN AYTEK SONER",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "F.AUD"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -52935,7 +53580,14 @@
               "section": "2",
               "instr1": "ALPAN AYTEK SONER",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "11:40",
+                  "end": "14:30",
+                  "room": "F.AUD"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -52961,7 +53613,20 @@
               "section": "1",
               "instr1": "KÃÃÃKÅENEL SERKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "FZ16"
+                },
+                {
+                  "day": "Friday",
+                  "start": "12:40",
+                  "end": "14:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -52980,7 +53645,20 @@
               "section": "2",
               "instr1": "BÃYÃKBOYACI HANAY MÃRÃVVET Ä°LK",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "FZ16"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53006,7 +53684,20 @@
               "section": "1",
               "instr1": "DERÄ°N GÃRE PINAR",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "08:40",
+                  "end": "10:30",
+                  "room": "FZ14"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "08:40",
+                  "end": "10:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53025,7 +53716,20 @@
               "section": "2",
               "instr1": "SARAÃOÄLU DÃRDANE ÅÄ°RÄ°N",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "FZ16"
+                },
+                {
+                  "day": "Friday",
+                  "start": "09:40",
+                  "end": "11:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53051,7 +53755,14 @@
               "section": "1",
               "instr1": "DALKIRAN NUH AYGÃN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "FZ14"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53070,7 +53781,14 @@
               "section": "2",
               "instr1": "ÅÄ°RÄ°KÃÄ° NÄ°L Ä°PEK",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53096,7 +53814,14 @@
               "section": "1",
               "instr1": "ERDÄ°L ERKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "FZ09"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53122,7 +53847,14 @@
               "section": "1",
               "instr1": "AÄIR YAÄCI MÃNÄ°S SEVEN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53502,7 +54234,20 @@
               "section": "1",
               "instr1": "YILDIRIM KASAP DÄ°LEM",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "12:40",
+                  "end": "14:30",
+                  "room": "FZ16"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "10:40",
+                  "end": "12:30",
+                  "room": "FZ14"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53521,7 +54266,20 @@
               "section": "2",
               "instr1": "AÅIK ERPEK GÃNEÅ ARKADAÅ",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "FZ16"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "15:30",
+                  "room": "FZ09"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53547,7 +54305,20 @@
               "section": "1",
               "instr1": "ERDÄ°L ERKAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "15:40",
+                  "end": "16:30",
+                  "room": "FZ14"
+                },
+                {
+                  "day": "Tuesday",
+                  "start": "08:40",
+                  "end": "11:30",
+                  "room": "FZ09"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53573,7 +54344,14 @@
               "section": "1",
               "instr1": "AKBOSTANCI ÃZKAZANÃ ELÄ°F",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "10:40",
+                  "end": "13:30",
+                  "room": "FZ14"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53599,7 +54377,14 @@
               "section": "1",
               "instr1": "AÅIK SERAP",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "FZ16"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53625,7 +54410,14 @@
               "section": "1",
               "instr1": "ÃZEN Ä°LHAN CAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "13:40",
+                  "end": "16:30",
+                  "room": "FZ15"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53643,6 +54435,39 @@
           ]
         },
         {
+          "internal_code": "3110351",
+          "code": "3110351",
+          "name": "GLOBAL ECONOMY AND ARTIFICIAL INTELLIGENCE (KÃRESEL EKONOMÄ° VE YAPAY ZEKA)",
+          "sections": [
+            {
+              "section": "1",
+              "instr1": "ÃZEN Ä°LHAN CAN",
+              "instr2": "STAFF",
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "08:40",
+                  "end": "11:30",
+                  "room": "FZ09"
+                }
+              ],
+              "rules": [
+                {
+                  "given_dept": "BA",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "3",
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya DD ve alti",
+                  "end_grade": "Hic almayanlar veya DD ve alti"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "internal_code": "3110361",
           "code": "3110361",
           "name": "HISTORY OF ECONOMIC THOUGHT I (Ä°KTÄ°SADÄ° DÃÅÃNCE TARÄ°HÄ° I)",
@@ -53651,7 +54476,14 @@
               "section": "1",
               "instr1": "AKDERE ÃINLA",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "11:40",
+                  "end": "14:30",
+                  "room": "F.AUD"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53677,7 +54509,14 @@
               "section": "1",
               "instr1": "AKDERE ÃINLA",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "FZ09"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53703,7 +54542,14 @@
               "section": "1",
               "instr1": "ATAK ALEV",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "FZ09"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53712,7 +54558,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
-                  "max_year": "3",
+                  "max_year": "4",
                   "start_grade": "Hic almayanlar veya DD ve alti",
                   "end_grade": "Hic almayanlar veya DD ve alti"
                 }
@@ -53788,7 +54634,14 @@
               "section": "1",
               "instr1": "PARMAKSIZ ÃMER KAÄAN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "FZ15"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53814,7 +54667,14 @@
               "section": "1",
               "instr1": "ÅÄ°RÄ°KÃÄ° NÄ°L Ä°PEK",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "08:40",
+                  "end": "11:30",
+                  "room": "FZ15"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53840,7 +54700,14 @@
               "section": "1",
               "instr1": "SARAÃOÄLU DÃRDANE ÅÄ°RÄ°N",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": ""
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53866,7 +54733,14 @@
               "section": "1",
               "instr1": "AÅIK SERAP",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "FZ15"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53892,7 +54766,14 @@
               "section": "1",
               "instr1": "DERÄ°N GÃRE PINAR",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "11:40",
+                  "end": "14:30",
+                  "room": "FZ15"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53918,7 +54799,14 @@
               "section": "1",
               "instr1": "ÃZMEN ERDAL",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "FZ09"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53944,7 +54832,14 @@
               "section": "1",
               "instr1": "DALKIRAN NUH AYGÃN",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "08:40",
+                  "end": "11:30",
+                  "room": "FZ14"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -53970,7 +54865,14 @@
               "section": "1",
               "instr1": "TUNÃ GÃL Ä°PEK",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Thursday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "F.AUD"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ECON",
@@ -57504,6 +58406,12 @@
                   "start": "08:40",
                   "end": "11:30",
                   "room": "EFD-13"
+                },
+                {
+                  "day": "Tuesday",
+                  "start": "11:40",
+                  "end": "13:30",
+                  "room": "EFA-20"
                 }
               ],
               "rules": [
@@ -62122,7 +63030,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "GÃ",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "2",
@@ -62133,7 +63041,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "GÃ",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
@@ -62169,7 +63077,7 @@
                 },
                 {
                   "given_dept": "IE",
-                  "start_char": "GP",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -62180,7 +63088,7 @@
                 },
                 {
                   "given_dept": "IE",
-                  "start_char": "GP",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -72905,7 +73813,7 @@
                   "day": "Monday",
                   "start": "11:40",
                   "end": "14:30",
-                  "room": "EFD-10"
+                  "room": "EFD-102"
                 }
               ],
               "rules": [
@@ -73417,7 +74325,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "GÃNDÃZ MÃGE",
               "instr2": "STAFF",
               "meetings": [],
               "rules": [
@@ -73715,8 +74623,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "95",
+                  "min_year": "72",
+                  "max_year": "72",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -73806,7 +74714,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "GÃNDÃZ MÃGE",
               "instr2": "STAFF",
               "meetings": [],
               "rules": [
@@ -73832,7 +74740,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "GÃNDÃZ MÃGE",
               "instr2": "STAFF",
               "meetings": [],
               "rules": [
@@ -74200,7 +75108,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "SARIKAYA ÅEN MERVE",
               "instr2": "STAFF",
               "meetings": [],
               "rules": [
@@ -74373,7 +75281,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "SARIKAYA ÅEN MERVE",
               "instr2": "STAFF",
               "meetings": [],
               "rules": [
@@ -74448,7 +75356,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "SARIKAYA ÅEN MERVE",
               "instr2": "STAFF",
               "meetings": [],
               "rules": []
@@ -74779,7 +75687,7 @@
                 {
                   "given_dept": "ENVE",
                   "start_char": "AA",
-                  "end_char": "KB",
+                  "end_char": "HA",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
@@ -74810,7 +75718,7 @@
               "rules": [
                 {
                   "given_dept": "ENVE",
-                  "start_char": "KB",
+                  "start_char": "HB",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -78656,7 +79564,7 @@
                 {
                   "given_dept": "FLE",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "GÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "2",
@@ -78692,7 +79600,7 @@
                 },
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
+                  "start_char": "GÃ",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -78758,24 +79666,13 @@
                 {
                   "given_dept": "FLE",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "GÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "2",
                   "max_year": "2",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
-                },
-                {
-                  "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "1",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
                 }
               ]
             },
@@ -78805,7 +79702,7 @@
                 },
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
+                  "start_char": "GÃ",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -78850,7 +79747,7 @@
                 {
                   "given_dept": "FLE",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "Ä°Å",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
@@ -78886,7 +79783,7 @@
                 },
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -78973,7 +79870,7 @@
                 {
                   "given_dept": "FLE",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "GÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "2",
@@ -79002,7 +79899,7 @@
                 },
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
+                  "start_char": "GÃ",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -79047,7 +79944,7 @@
                 {
                   "given_dept": "FLE",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "DE",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
@@ -79072,12 +79969,12 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "EL",
+                  "end_char": "ÃZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "4",
-                  "max_year": "4",
+                  "min_year": "3",
+                  "max_year": "3",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 },
@@ -79087,8 +79984,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "3",
-                  "max_year": "3",
+                  "min_year": "4",
+                  "max_year": "4",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 }
@@ -79109,12 +80006,12 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
+                  "start_char": "PO",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "4",
-                  "max_year": "4",
+                  "min_year": "3",
+                  "max_year": "3",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 },
@@ -79124,8 +80021,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "3",
-                  "max_year": "3",
+                  "min_year": "4",
+                  "max_year": "4",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 }
@@ -79166,8 +80063,8 @@
               "meetings": [
                 {
                   "day": "Wednesday",
-                  "start": "11:40",
-                  "end": "14:30",
+                  "start": "14:40",
+                  "end": "17:30",
                   "room": ""
                 }
               ],
@@ -79175,11 +80072,11 @@
                 {
                   "given_dept": "FLE",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "Ä°Å",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "4",
-                  "max_year": "4",
+                  "min_year": "3",
+                  "max_year": "3",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 },
@@ -79189,8 +80086,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "3",
-                  "max_year": "3",
+                  "min_year": "4",
+                  "max_year": "4",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 }
@@ -79222,7 +80119,7 @@
                 },
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -79252,7 +80149,30 @@
                   "room": "EFD-202"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "FLE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya CC ve alti",
+                  "end_grade": "Hic almayanlar veya CC ve alti"
+                },
+                {
+                  "given_dept": "FLE",
+                  "start_char": "AA",
+                  "end_char": "DE",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "3",
+                  "max_year": "3",
+                  "start_grade": "Hic almayanlar veya CC ve alti",
+                  "end_grade": "Hic almayanlar veya CC ve alti"
+                }
+              ]
             },
             {
               "section": "2",
@@ -79269,12 +80189,12 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "EL",
+                  "end_char": "ÃZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "4",
-                  "max_year": "4",
+                  "min_year": "3",
+                  "max_year": "3",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 },
@@ -79284,8 +80204,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "3",
-                  "max_year": "3",
+                  "min_year": "4",
+                  "max_year": "4",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 }
@@ -79306,12 +80226,12 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
+                  "start_char": "PO",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "4",
-                  "max_year": "4",
+                  "min_year": "3",
+                  "max_year": "3",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 },
@@ -79321,8 +80241,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "3",
-                  "max_year": "3",
+                  "min_year": "4",
+                  "max_year": "4",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 }
@@ -79350,8 +80270,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "AC",
+                  "end_char": "KA",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79376,8 +80296,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "KA",
+                  "end_char": "YÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79406,11 +80326,23 @@
                   "room": "EFB-19A"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "FLE",
+                  "start_char": "AA",
+                  "end_char": "BA",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "2",
+                  "max_year": "2",
+                  "start_grade": "Hic almayanlar veya CC ve alti",
+                  "end_grade": "Hic almayanlar veya CC ve alti"
+                }
+              ]
             },
             {
               "section": "2",
-              "instr1": "STAFF",
+              "instr1": "KAÃAR IÅIL GÃNSELÄ°",
               "instr2": "STAFF",
               "meetings": [
                 {
@@ -79420,11 +80352,23 @@
                   "room": "EFB-19A"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "FLE",
+                  "start_char": "BE",
+                  "end_char": "ÃE",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "2",
+                  "max_year": "2",
+                  "start_grade": "Hic almayanlar veya CC ve alti",
+                  "end_grade": "Hic almayanlar veya CC ve alti"
+                }
+              ]
             },
             {
               "section": "3",
-              "instr1": "STAFF",
+              "instr1": "KAÃAR IÅIL GÃNSELÄ°",
               "instr2": "STAFF",
               "meetings": [
                 {
@@ -79434,7 +80378,19 @@
                   "room": "EFB-19A"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "FLE",
+                  "start_char": "DA",
+                  "end_char": "GÃ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "2",
+                  "max_year": "2",
+                  "start_grade": "Hic almayanlar veya CC ve alti",
+                  "end_grade": "Hic almayanlar veya CC ve alti"
+                }
+              ]
             }
           ]
         },
@@ -79554,8 +80510,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "AC",
+                  "end_char": "EK",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79580,8 +80536,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "ER",
+                  "end_char": "OÄ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79606,8 +80562,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "OK",
+                  "end_char": "YÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79639,8 +80595,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "AC",
+                  "end_char": "EK",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79665,8 +80621,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "ER",
+                  "end_char": "OÄ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79691,8 +80647,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "OK",
+                  "end_char": "YÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79724,8 +80680,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "AC",
+                  "end_char": "EK",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79750,8 +80706,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "ER",
+                  "end_char": "OÄ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79773,7 +80729,19 @@
                   "room": "EFB-18A"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "FLE",
+                  "start_char": "OK",
+                  "end_char": "YÃ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya CC ve alti",
+                  "end_grade": "Hic almayanlar veya CC ve alti"
+                }
+              ]
             }
           ]
         },
@@ -79797,8 +80765,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "AK",
+                  "end_char": "BO",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79823,8 +80791,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "ÃÃ",
-                  "end_char": "GÃ",
+                  "start_char": "BU",
+                  "end_char": "GÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79849,8 +80817,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "GÃ",
-                  "end_char": "ME",
+                  "start_char": "GÃ",
+                  "end_char": "KI",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79875,8 +80843,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "MI",
-                  "end_char": "TÃ",
+                  "start_char": "KO",
+                  "end_char": "SÄ°",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -79901,8 +80869,8 @@
               "rules": [
                 {
                   "given_dept": "FLE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
+                  "start_char": "SÃ",
+                  "end_char": "ZE",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
@@ -84438,20 +85406,6 @@
           ]
         },
         {
-          "internal_code": "9500562",
-          "code": "9500562",
-          "name": "MARINE COASTAL EUTROPHICATION (DENÄ°ZEL KIYI ÃTROFÄ°KASYONU)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "MANTIKCI ASIM MUSTAFA",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": []
-            }
-          ]
-        },
-        {
           "internal_code": "9500563",
           "code": "9500563",
           "name": "EXPERIMENTAL ECOLOGY (DENEYSEL EKOLOJÄ°)",
@@ -84671,7 +85625,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "TÃRKEÅ MURAT",
               "instr2": "STAFF",
               "meetings": [],
               "rules": []
@@ -84685,7 +85639,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "TÃRKEÅ MURAT",
               "instr2": "STAFF",
               "meetings": [],
               "rules": []
@@ -87724,7 +88678,14 @@
               "section": "30",
               "instr1": "STAFF",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "08:40",
+                  "end": "10:30",
+                  "room": "YP-D001"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "MINE",
@@ -87748,7 +88709,7 @@
                   "day": "Tuesday",
                   "start": "10:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "YP-A1"
                 }
               ],
               "rules": [
@@ -90571,6 +91532,39 @@
           ]
         },
         {
+          "internal_code": "1250319",
+          "code": "1250319",
+          "name": "VIRTUAL DESIGN STUDIO (SANAL TASARIM STUDYOSU)",
+          "sections": [
+            {
+              "section": "1",
+              "instr1": "KULAKSIZ MERT",
+              "instr2": "STAFF",
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "17:30",
+                  "room": ""
+                }
+              ],
+              "rules": [
+                {
+                  "given_dept": "ID",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "3",
+                  "max_year": "4",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "internal_code": "1250330",
           "code": "1250330",
           "name": "PRODUCT PACKAGING DESIGN AND PROTOTYPING (ÃRÃN AMBALAJI TASARIMI VE PROTOTÄ°PLEME)",
@@ -90884,7 +91878,7 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Wednesday",
+                  "day": "Friday",
                   "start": "13:40",
                   "end": "17:30",
                   "room": "ST27"
@@ -91798,12 +92792,6 @@
                   "room": "R28"
                 },
                 {
-                  "day": "Tuesday",
-                  "start": "08:40",
-                  "end": "12:30",
-                  "room": "R89"
-                },
-                {
                   "day": "Friday",
                   "start": "13:40",
                   "end": "17:30",
@@ -91822,12 +92810,6 @@
                   "start": "13:40",
                   "end": "17:30",
                   "room": "R90-B"
-                },
-                {
-                  "day": "Wednesday",
-                  "start": "13:40",
-                  "end": "17:30",
-                  "room": "R47"
                 }
               ],
               "rules": []
@@ -92464,7 +93446,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "ER",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "2",
@@ -92482,7 +93464,7 @@
               "rules": [
                 {
                   "given_dept": "IE",
-                  "start_char": "AA",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -92509,7 +93491,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "ER",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "2",
@@ -92527,7 +93509,7 @@
               "rules": [
                 {
                   "given_dept": "IE",
-                  "start_char": "AA",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -92554,7 +93536,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "ER",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "2",
@@ -92572,7 +93554,7 @@
               "rules": [
                 {
                   "given_dept": "IE",
-                  "start_char": "AA",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -92625,7 +93607,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "GÃ",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
@@ -92642,19 +93624,8 @@
               "meetings": [],
               "rules": [
                 {
-                  "given_dept": "CENG",
-                  "start_char": "KE",
-                  "end_char": "KE",
-                  "min_cgpa": "3.00",
-                  "max_cgpa": "3.50",
-                  "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                },
-                {
                   "given_dept": "IE",
-                  "start_char": "AA",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -92681,7 +93652,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "GÃ",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
@@ -92699,7 +93670,7 @@
               "rules": [
                 {
                   "given_dept": "IE",
-                  "start_char": "GP",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -92726,7 +93697,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "GÃ",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
@@ -92744,7 +93715,7 @@
               "rules": [
                 {
                   "given_dept": "IE",
-                  "start_char": "GP",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -92771,7 +93742,7 @@
                 {
                   "given_dept": "IE",
                   "start_char": "AA",
-                  "end_char": "GÃ",
+                  "end_char": "JZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
@@ -92789,7 +93760,7 @@
               "rules": [
                 {
                   "given_dept": "IE",
-                  "start_char": "GP",
+                  "start_char": "KA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -92864,7 +93835,19 @@
               "instr1": "AKYÃZ MEHMET HAKAN",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "CENG",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "95",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
             }
           ]
         },
@@ -92918,19 +93901,7 @@
               "instr1": "KARASAKAL ESRA",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "IE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "4",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                }
-              ]
+              "rules": []
             }
           ]
         },
@@ -92944,19 +93915,7 @@
               "instr1": "TURAL MUSTAFA KEMAL",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "IE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "4",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                }
-              ]
+              "rules": []
             }
           ]
         },
@@ -93186,10 +94145,22 @@
             },
             {
               "section": "35",
-              "instr1": "STAFF",
+              "instr1": "BAKAL Ä°SMAÄ°L SERDAR",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "IE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "95",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
             },
             {
               "section": "39",
@@ -115200,6 +116171,17 @@
                   "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "MMI",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
                 }
               ]
             }
@@ -117067,7 +118049,7 @@
                 {
                   "given_dept": "IR",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "GÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "1",
@@ -117092,7 +118074,7 @@
               "rules": [
                 {
                   "given_dept": "IR",
-                  "start_char": "AA",
+                  "start_char": "GÃ",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -117147,7 +118129,14 @@
               "section": "1",
               "instr1": "CEYDÄ°LEK ERDEM",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "13:40",
+                  "end": "16:30",
+                  "room": "G206"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "ADM",
@@ -117343,7 +118332,7 @@
                 {
                   "given_dept": "IR",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "GÃ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "2",
@@ -117368,7 +118357,7 @@
               "rules": [
                 {
                   "given_dept": "IR",
-                  "start_char": "AA",
+                  "start_char": "GÃ",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -117617,6 +118606,13 @@
                   "end_grade": "Herkes alabilir"
                 }
               ]
+            },
+            {
+              "section": "2",
+              "instr1": "BAYAR FIRAT",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": []
             }
           ]
         },
@@ -117683,6 +118679,25 @@
                   "end_grade": "Herkes alabilir"
                 }
               ]
+            },
+            {
+              "section": "2",
+              "instr1": "BAHÃECÄ°K ÅERÄ°F ONUR",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": [
+                {
+                  "given_dept": "ADM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "3",
+                  "max_year": "4",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -117707,7 +118722,7 @@
                 {
                   "given_dept": "IR",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "KA",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "3",
@@ -117725,7 +118740,7 @@
               "rules": [
                 {
                   "given_dept": "IR",
-                  "start_char": "AA",
+                  "start_char": "KE",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
@@ -117768,6 +118783,25 @@
                   "end_grade": "Herkes alabilir"
                 }
               ]
+            },
+            {
+              "section": "2",
+              "instr1": "TORUN ZERRÄ°N",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": [
+                {
+                  "given_dept": "ADM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "4",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -117797,6 +118831,36 @@
                   "max_cgpa": "4.00",
                   "min_year": "3",
                   "max_year": "3",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
+            },
+            {
+              "section": "2",
+              "instr1": "KAHRAMAN SEVÄ°LAY",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": [
+                {
+                  "given_dept": "ADM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "3",
+                  "max_year": "4",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "ECON",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "3",
+                  "max_year": "4",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -117882,8 +118946,8 @@
               "meetings": [
                 {
                   "day": "Thursday",
-                  "start": "09:40",
-                  "end": "12:30",
+                  "start": "10:40",
+                  "end": "13:30",
                   "room": "G202"
                 }
               ],
@@ -118091,6 +119155,25 @@
                   "end_grade": "Herkes alabilir"
                 }
               ]
+            },
+            {
+              "section": "2",
+              "instr1": "ALTUNIÅIK MELÄ°HA",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": [
+                {
+                  "given_dept": "ADM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "4",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -118146,7 +119229,73 @@
               ],
               "rules": [
                 {
+                  "given_dept": "ADM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "ARS",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "ASN",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "EUS",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "HIST",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
                   "given_dept": "IR",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "SOC",
                   "start_char": "AA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
@@ -118311,7 +119460,51 @@
               ],
               "rules": [
                 {
+                  "given_dept": "ADM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "EUS",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "HIST",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
                   "given_dept": "IR",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "SOC",
                   "start_char": "AA",
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
@@ -118436,6 +119629,28 @@
               ],
               "rules": [
                 {
+                  "given_dept": "ESS",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "IR",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "72",
+                  "max_year": "72",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
                   "given_dept": "IR",
                   "start_char": "AA",
                   "end_char": "ZZ",
@@ -118468,6 +119683,17 @@
                 }
               ],
               "rules": [
+                {
+                  "given_dept": "EUS",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "62",
+                  "max_year": "62",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
                 {
                   "given_dept": "IR",
                   "start_char": "AA",
@@ -118526,7 +119752,7 @@
                 },
                 {
                   "day": "Wednesday",
-                  "start": "08:40",
+                  "start": "13:40",
                   "end": "17:30",
                   "room": "G101"
                 },
@@ -118628,7 +119854,7 @@
               "meetings": [
                 {
                   "day": "Monday",
-                  "start": "08:40",
+                  "start": "13:40",
                   "end": "17:30",
                   "room": "G106"
                 },
@@ -118678,7 +119904,7 @@
                 },
                 {
                   "day": "Wednesday",
-                  "start": "08:40",
+                  "start": "16:40",
                   "end": "17:30",
                   "room": "G201"
                 },
@@ -118704,7 +119930,7 @@
               "meetings": [
                 {
                   "day": "Monday",
-                  "start": "08:40",
+                  "start": "13:40",
                   "end": "17:30",
                   "room": "G202"
                 },
@@ -118754,7 +119980,7 @@
                 },
                 {
                   "day": "Wednesday",
-                  "start": "12:40",
+                  "start": "16:40",
                   "end": "17:30",
                   "room": "G206"
                 },
@@ -119001,6 +120227,50 @@
               "instr2": "STAFF",
               "meetings": [],
               "rules": [
+                {
+                  "given_dept": "ADM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "72",
+                  "max_year": "72",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "ARS",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "72",
+                  "max_year": "72",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "EAS",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "72",
+                  "max_year": "72",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "HIST",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "72",
+                  "max_year": "72",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
                 {
                   "given_dept": "IR",
                   "start_char": "AA",
@@ -127172,7 +128442,7 @@
                   "day": "Monday",
                   "start": "08:40",
                   "end": "10:30",
-                  "room": "P2"
+                  "room": "YP-A3"
                 },
                 {
                   "day": "Wednesday",
@@ -128249,115 +129519,6 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                }
-              ]
-            },
-            {
-              "section": "8",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [
-                {
-                  "day": "Wednesday",
-                  "start": "15:40",
-                  "end": "17:30",
-                  "room": ""
-                },
-                {
-                  "day": "Friday",
-                  "start": "10:40",
-                  "end": "12:30",
-                  "room": ""
-                }
-              ],
-              "rules": [
-                {
-                  "given_dept": "CE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                },
-                {
-                  "given_dept": "CE",
-                  "start_char": "EM",
-                  "end_char": "ÃN",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                },
-                {
-                  "given_dept": "EE",
-                  "start_char": "KÃ",
-                  "end_char": "ÅA",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                },
-                {
-                  "given_dept": "ENVE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                },
-                {
-                  "given_dept": "ENVE",
-                  "start_char": "EM",
-                  "end_char": "ÃN",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                },
-                {
-                  "given_dept": "IE",
-                  "start_char": "EM",
-                  "end_char": "ÃN",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                },
-                {
-                  "given_dept": "MINE",
-                  "start_char": "EM",
-                  "end_char": "ÃN",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "95",
-                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
-                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
-                },
-                {
-                  "given_dept": "MINE",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "1",
                   "max_year": "95",
                   "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
                   "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
@@ -129641,8 +130802,8 @@
               "meetings": [
                 {
                   "day": "Monday",
-                  "start": "12:40",
-                  "end": "13:30",
+                  "start": "15:40",
+                  "end": "16:30",
                   "room": "M105"
                 },
                 {
@@ -130150,8 +131311,8 @@
               "meetings": [
                 {
                   "day": "Monday",
-                  "start": "15:40",
-                  "end": "16:30",
+                  "start": "12:40",
+                  "end": "13:30",
                   "room": "M105"
                 },
                 {
@@ -133443,8 +134604,8 @@
               "meetings": [
                 {
                   "day": "Monday",
-                  "start": "10:40",
-                  "end": "11:30",
+                  "start": "08:40",
+                  "end": "09:30",
                   "room": "MEG201"
                 },
                 {
@@ -133470,7 +134631,7 @@
             },
             {
               "section": "2",
-              "instr1": "STAFF",
+              "instr1": "ERTÃRK HAKAN",
               "instr2": "STAFF",
               "meetings": [
                 {
@@ -133578,14 +134739,14 @@
               "meetings": [
                 {
                   "day": "Tuesday",
-                  "start": "11:40",
-                  "end": "13:30",
+                  "start": "08:40",
+                  "end": "09:30",
                   "room": "MEG202"
                 },
                 {
                   "day": "Thursday",
                   "start": "13:40",
-                  "end": "14:30",
+                  "end": "15:30",
                   "room": "MEG202"
                 }
               ],
@@ -133717,7 +134878,14 @@
               "section": "1",
               "instr1": "TURGUT ALÄ° EMRE",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Wednesday",
+                  "start": "15:40",
+                  "end": "17:30",
+                  "room": "MEG102"
+                }
+              ],
               "rules": []
             }
           ]
@@ -133792,8 +134960,8 @@
               "meetings": [
                 {
                   "day": "Tuesday",
-                  "start": "11:40",
-                  "end": "13:30",
+                  "start": "10:40",
+                  "end": "12:30",
                   "room": "MEB103"
                 },
                 {
@@ -133824,14 +134992,14 @@
               "meetings": [
                 {
                   "day": "Tuesday",
-                  "start": "10:40",
+                  "start": "09:40",
                   "end": "11:30",
                   "room": "MEG202"
                 },
                 {
                   "day": "Thursday",
-                  "start": "11:40",
-                  "end": "13:30",
+                  "start": "15:40",
+                  "end": "16:30",
                   "room": "MEG202"
                 }
               ],
@@ -133980,7 +135148,7 @@
                   "day": "Thursday",
                   "start": "14:40",
                   "end": "16:30",
-                  "room": "MEG201"
+                  "room": "MEG203"
                 }
               ],
               "rules": [
@@ -134694,8 +135862,8 @@
               "meetings": [
                 {
                   "day": "Monday",
-                  "start": "13:40",
-                  "end": "15:30",
+                  "start": "09:40",
+                  "end": "11:30",
                   "room": "MEG101"
                 },
                 {
@@ -134720,19 +135888,31 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Monday",
+                  "day": "Tuesday",
                   "start": "08:40",
                   "end": "10:30",
                   "room": "MEG201"
                 },
                 {
-                  "day": "Wednesday",
-                  "start": "10:40",
-                  "end": "11:30",
+                  "day": "Thursday",
+                  "start": "08:40",
+                  "end": "09:30",
                   "room": "MEG201"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "ME",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "4",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -134820,8 +136000,27 @@
               "section": "1",
               "instr1": "ÃZER MEHMET BÃLENT",
               "instr2": "STAFF",
-              "meetings": [],
-              "rules": []
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "14:40",
+                  "end": "17:30",
+                  "room": "MEB101"
+                }
+              ],
+              "rules": [
+                {
+                  "given_dept": "ME",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "4",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -135086,9 +136285,9 @@
                 },
                 {
                   "day": "Thursday",
-                  "start": "16:40",
-                  "end": "17:30",
-                  "room": "MEG201"
+                  "start": "13:40",
+                  "end": "14:30",
+                  "room": "MEG203"
                 }
               ],
               "rules": []
@@ -135139,7 +136338,19 @@
                   "room": "MEG102"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "ME",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "4",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -135957,7 +137168,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "ERTÃRK HAKAN",
               "instr2": "STAFF",
               "meetings": [
                 {
@@ -140349,8 +141560,14 @@
                 {
                   "day": "Wednesday",
                   "start": "08:40",
+                  "end": "10:30",
+                  "room": "M102"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "10:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "M104"
                 }
               ],
               "rules": []
@@ -140406,7 +141623,7 @@
                   "day": "Tuesday",
                   "start": "08:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "M103"
                 }
               ],
               "rules": []
@@ -140497,7 +141714,7 @@
                   "day": "Thursday",
                   "start": "08:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "M106"
                 }
               ],
               "rules": []
@@ -141427,16 +142644,28 @@
                   "day": "Monday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "MEG201"
                 },
                 {
                   "day": "Wednesday",
                   "start": "12:40",
                   "end": "13:30",
-                  "room": ""
+                  "room": "MEG201"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "ME",
+                  "start_char": "AA",
+                  "end_char": "CÃ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "2",
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
             },
             {
               "section": "5",
@@ -141447,16 +142676,28 @@
                   "day": "Monday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "MEG102"
                 },
                 {
                   "day": "Wednesday",
                   "start": "12:40",
                   "end": "13:30",
-                  "room": ""
+                  "room": "MEG101"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "ME",
+                  "start_char": "CV",
+                  "end_char": "GÃ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "2",
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
             },
             {
               "section": "6",
@@ -141476,7 +142717,19 @@
                   "room": "MTE308"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "ME",
+                  "start_char": "GP",
+                  "end_char": "KI",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "2",
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
             }
           ]
         },
@@ -141643,7 +142896,7 @@
                 {
                   "given_dept": "METE",
                   "start_char": "AA",
-                  "end_char": "ZZ",
+                  "end_char": "Ä°Z",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "1",
@@ -142346,9 +143599,9 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
-                  "max_year": "95",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
                 }
               ]
             }
@@ -143578,11 +144831,100 @@
                 {
                   "day": "Tuesday",
                   "start": "10:40",
-                  "end": "13:30",
+                  "end": "12:30",
                   "room": ""
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "BTEC",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "CHE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "CHEM",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "EE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "ME",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "METE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "MNT",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                },
+                {
+                  "given_dept": "PST",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -143595,7 +144937,14 @@
               "section": "1",
               "instr1": "AKATA KURÃ BURCU",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Tuesday",
+                  "start": "12:40",
+                  "end": "13:30",
+                  "room": ""
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "MNT",
@@ -150318,6 +151667,12 @@
               "instr2": "STAFF",
               "meetings": [
                 {
+                  "day": "Tuesday",
+                  "start": "08:40",
+                  "end": "17:30",
+                  "room": "P6"
+                },
+                {
                   "day": "Friday",
                   "start": "08:40",
                   "end": "17:30",
@@ -150998,6 +152353,12 @@
                   "start": "08:40",
                   "end": "10:30",
                   "room": "EA306"
+                },
+                {
+                  "day": "Tuesday",
+                  "start": "08:40",
+                  "end": "10:30",
+                  "room": "EA306"
                 }
               ],
               "rules": []
@@ -151082,7 +152443,38 @@
               "section": "32",
               "instr1": "STAFF",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Monday",
+                  "start": "08:40",
+                  "end": "17:30",
+                  "room": "AE024"
+                },
+                {
+                  "day": "Tuesday",
+                  "start": "08:40",
+                  "end": "17:30",
+                  "room": "AE024"
+                },
+                {
+                  "day": "Wednesday",
+                  "start": "08:40",
+                  "end": "17:30",
+                  "room": "AE024"
+                },
+                {
+                  "day": "Thursday",
+                  "start": "12:40",
+                  "end": "17:30",
+                  "room": "AE024"
+                },
+                {
+                  "day": "Friday",
+                  "start": "12:40",
+                  "end": "17:30",
+                  "room": "AE024"
+                }
+              ],
               "rules": []
             },
             {
@@ -154783,8 +156175,8 @@
                   "max_cgpa": "4.00",
                   "min_year": "0",
                   "max_year": "95",
-                  "start_grade": "Hic almayanlar veya DD ve alti",
-                  "end_grade": "Hic almayanlar veya DD ve alti"
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
                 },
                 {
                   "given_dept": "GENE",
@@ -154907,7 +156299,19 @@
                   "room": "BIOLB107"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "GENE",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "3",
+                  "max_year": "95",
+                  "start_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)",
+                  "end_grade": "Hic almayanlar veya Basarisizlar (FD ve alti)"
+                }
+              ]
             },
             {
               "section": "2",
@@ -155055,8 +156459,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "3",
-                  "max_year": "95",
+                  "min_year": "4",
+                  "max_year": "4",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 },
@@ -155066,8 +156470,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "3",
-                  "max_year": "95",
+                  "min_year": "4",
+                  "max_year": "4",
                   "start_grade": "Hic almayanlar veya CC ve alti",
                   "end_grade": "Hic almayanlar veya CC ve alti"
                 }
@@ -155166,8 +156570,8 @@
                   "max_cgpa": "4.00",
                   "min_year": "4",
                   "max_year": "4",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
+                  "start_grade": "Hic almayanlar veya DD ve alti",
+                  "end_grade": "Hic almayanlar veya DD ve alti"
                 }
               ]
             },
@@ -155191,9 +156595,9 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "4",
-                  "max_year": "95",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
+                  "max_year": "4",
+                  "start_grade": "Hic almayanlar veya DD ve alti",
+                  "end_grade": "Hic almayanlar veya DD ve alti"
                 }
               ]
             }
@@ -155809,7 +157213,19 @@
               "instr1": "EROÄLU SEÃKÄ°N",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "ALL",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "4",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             },
             {
               "section": "2",
@@ -156359,7 +157775,7 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Friday",
+                  "day": "Monday",
                   "start": "13:40",
                   "end": "16:30",
                   "room": "BIO 213"
@@ -160827,7 +162243,7 @@
         {
           "internal_code": "5660489",
           "code": "5660489",
-          "name": "SPECIAL TOPICS: CARBON DIOXIDE CAPTURE, UTILIZATION, AND STORAGE (ÃZEL KONULAR: KARBON YAKALAMA, KULLANMA VE DEPOLAMA)",
+          "name": "SPECIAL TOPICS PETROLEUM AND GAS ENGINEERING: CARBON DIOXIDE CAPTURE, UTILIZATION, AND STORAGE (PETROL VE DOÄAL GAZ MÃHENDÄ°SLÄ°ÄÄ°NDE ÃZEL KONULAR: KARBON YAKALAMA, KULLANMA VE DEPOLAMA)",
           "sections": [
             {
               "section": "1",
@@ -162715,7 +164131,19 @@
                   "room": "B103"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "ALL",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -163617,69 +165045,6 @@
           ]
         },
         {
-          "internal_code": "4530531",
-          "code": "4530531",
-          "name": "PEDAGOGICAL ASPECT OF SPORTS COACHING (ANTRENÃRLÃÄÃN PEDAGOJÄ°K BOYUTU)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                },
-                {
-                  "given_dept": "PSY",
-                  "start_char": "DU",
-                  "end_char": "AN",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "4",
-                  "max_year": "4",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "internal_code": "4530534",
-          "code": "4530534",
-          "name": "ADV. TOPICS IN PHYSIOLOGY OF EXERCISE (EGZERSÄ°Z FÄ°ZYOLOJÄ°SÄ°NDE Ä°LERÄ° KONULAR)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
-            }
-          ]
-        },
-        {
           "internal_code": "4530543",
           "code": "4530543",
           "name": "GROWTH AND MOTOR DEVELOPMENT (BÃYÃME VE MOTOR GELÄ°ÅÄ°M)",
@@ -163719,79 +165084,38 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "KÄ°RAZCI SADETTÄ°N",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "2",
-              "instr1": "STAFF",
+              "instr1": "Ä°NCE MUSTAFA LEVENT",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "3",
-              "instr1": "STAFF",
+              "instr1": "HÃRMERÄ°Ã ALTUNSÃZ IRMAK",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "4",
-              "instr1": "STAFF",
+              "instr1": "SÃÄÃT MUSTAFA",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
+            },
+            {
+              "section": "5",
+              "instr1": "NA DONGKYU",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": []
             }
           ]
         },
@@ -163838,76 +165162,35 @@
               "instr1": "KÄ°RAZCI SADETTÄ°N",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "2",
               "instr1": "Ä°NCE MUSTAFA LEVENT",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "3",
               "instr1": "HÃRMERÄ°Ã ALTUNSÃZ IRMAK",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "4",
               "instr1": "SÃÄÃT MUSTAFA",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "60",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
+            },
+            {
+              "section": "5",
+              "instr1": "NA DONGKYU",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": []
             }
           ]
         },
@@ -163918,79 +165201,38 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "KÄ°RAZCI SADETTÄ°N",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "70",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "2",
-              "instr1": "STAFF",
+              "instr1": "Ä°NCE MUSTAFA LEVENT",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "70",
-                  "max_year": "93",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "3",
-              "instr1": "STAFF",
+              "instr1": "HÃRMERÄ°Ã ALTUNSÃZ IRMAK",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "70",
-                  "max_year": "90",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
             },
             {
               "section": "4",
-              "instr1": "STAFF",
+              "instr1": "SÃÄÃT MUSTAFA",
               "instr2": "STAFF",
               "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "PES",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "70",
-                  "max_year": "90",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
+              "rules": []
+            },
+            {
+              "section": "5",
+              "instr1": "NA DONGKYU",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": []
             }
           ]
         },
@@ -164074,6 +165316,13 @@
                   "end_grade": "Herkes alabilir"
                 }
               ]
+            },
+            {
+              "section": "5",
+              "instr1": "NA DONGKYU",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": []
             }
           ]
         },
@@ -164102,7 +165351,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "1",
-                  "max_year": "4",
+                  "max_year": "1",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164135,7 +165384,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "1",
-                  "max_year": "4",
+                  "max_year": "1",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164167,8 +165416,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
+                  "min_year": "2",
+                  "max_year": "2",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164200,34 +165449,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "internal_code": "4532270",
-          "code": "4532270",
-          "name": "VOLUNTEERING (GÃNÃLLÃLÃK)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "ALL",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
+                  "min_year": "2",
+                  "max_year": "2",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164259,34 +165482,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "internal_code": "4532906",
-          "code": "4532906",
-          "name": "POOL AND BILLARDS (BÄ°LARDO)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "ALL",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
+                  "min_year": "2",
+                  "max_year": "2",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164319,7 +165516,7 @@
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "1",
-                  "max_year": "4",
+                  "max_year": "1",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164351,8 +165548,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
+                  "min_year": "2",
+                  "max_year": "2",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164384,8 +165581,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
+                  "min_year": "3",
+                  "max_year": "3",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164417,8 +165614,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
+                  "min_year": "3",
+                  "max_year": "3",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164450,78 +165647,12 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "internal_code": "4533584",
-          "code": "4533584",
-          "name": "PHYSICAL ACTIVITY AND PUBLIC HEALTH (FÄ°ZÄ°KSEL AKTÄ°VÄ°TE VE HALK SAÄLIÄI)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "ALL",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
                   "min_year": "3",
-                  "max_year": "4",
+                  "max_year": "3",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
               ]
-            }
-          ]
-        },
-        {
-          "internal_code": "4533630",
-          "code": "4533630",
-          "name": "HISTORY OF PHYSICAL EDUCATÄ±ON AND SPORT (BEDEN EÄÄ°TÄ°MÄ° VE SPOR TARÄ°HÄ°)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": [
-                {
-                  "given_dept": "ALL",
-                  "start_char": "AA",
-                  "end_char": "ZZ",
-                  "min_cgpa": "0.00",
-                  "max_cgpa": "4.00",
-                  "min_year": "0",
-                  "max_year": "5",
-                  "start_grade": "Herkes alabilir",
-                  "end_grade": "Herkes alabilir"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "internal_code": "4533640",
-          "code": "4533640",
-          "name": "PHILOSOPHY OF PHYSICAL EDUCATION AND SPORT (BEDEN EÄÄ°TÄ°MÄ° VE SPOR FELSEFESÄ°)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": []
             }
           ]
         },
@@ -164559,20 +165690,6 @@
           ]
         },
         {
-          "internal_code": "4533740",
-          "code": "4533740",
-          "name": "EDUCATIONAL GAMES (EÄÄ°TSEL OYUNLAR)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [],
-              "rules": []
-            }
-          ]
-        },
-        {
           "internal_code": "4533781",
           "code": "4533781",
           "name": "RHYTHM EDUCATION AND DANCE (RÄ°TÄ°M EÄÄ°TÄ°MÄ° VE DANS)",
@@ -164596,8 +165713,8 @@
                   "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "1",
-                  "max_year": "4",
+                  "min_year": "3",
+                  "max_year": "3",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -164753,7 +165870,7 @@
             },
             {
               "section": "3",
-              "instr1": "STAFF",
+              "instr1": "CAN CÃNEYT",
               "instr2": "STAFF",
               "meetings": [
                 {
@@ -164805,7 +165922,7 @@
                 {
                   "given_dept": "ME",
                   "start_char": "AA",
-                  "end_char": "DZ",
+                  "end_char": "Ä°Z",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
@@ -164836,8 +165953,8 @@
               "rules": [
                 {
                   "given_dept": "ME",
-                  "start_char": "EA",
-                  "end_char": "NZ",
+                  "start_char": "JA",
+                  "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
@@ -164933,7 +166050,7 @@
                 {
                   "given_dept": "CE",
                   "start_char": "AA",
-                  "end_char": "DZ",
+                  "end_char": "Ä°Z",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
@@ -164964,8 +166081,8 @@
               "rules": [
                 {
                   "given_dept": "CE",
-                  "start_char": "EA",
-                  "end_char": "NZ",
+                  "start_char": "JA",
+                  "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
                   "min_year": "0",
@@ -166079,7 +167196,7 @@
           "sections": [
             {
               "section": "1",
-              "instr1": "STAFF",
+              "instr1": "ELPE ALTUÄ",
               "instr2": "STAFF",
               "meetings": [
                 {
@@ -166099,11 +167216,11 @@
                 {
                   "given_dept": "EE",
                   "start_char": "AA",
-                  "end_char": "Ä°Z",
+                  "end_char": "ZZ",
                   "min_cgpa": "0.00",
                   "max_cgpa": "4.00",
-                  "min_year": "2",
-                  "max_year": "2",
+                  "min_year": "0",
+                  "max_year": "95",
                   "start_grade": "Herkes alabilir",
                   "end_grade": "Herkes alabilir"
                 }
@@ -166242,33 +167359,6 @@
                   "start": "15:40",
                   "end": "17:30",
                   "room": "U2"
-                }
-              ],
-              "rules": []
-            }
-          ]
-        },
-        {
-          "internal_code": "2300305",
-          "code": "2300305",
-          "name": "ANALOG ELECTRONICS (ANALOG ELEKTRONÄ°K)",
-          "sections": [
-            {
-              "section": "1",
-              "instr1": "STAFF",
-              "instr2": "STAFF",
-              "meetings": [
-                {
-                  "day": "Monday",
-                  "start": "13:40",
-                  "end": "15:30",
-                  "room": "P-436"
-                },
-                {
-                  "day": "Thursday",
-                  "start": "13:40",
-                  "end": "15:30",
-                  "room": "P350"
                 }
               ],
               "rules": []
@@ -167010,13 +168100,13 @@
                   "day": "Monday",
                   "start": "08:40",
                   "end": "10:30",
-                  "room": "P-421"
+                  "room": "AKÄ±LLÄ± S."
                 },
                 {
-                  "day": "Thursday",
-                  "start": "09:40",
-                  "end": "10:30",
-                  "room": "P-422"
+                  "day": "Tuesday",
+                  "start": "11:40",
+                  "end": "13:30",
+                  "room": "AKÄ±LLÄ± S."
                 }
               ],
               "rules": []
@@ -167107,14 +168197,7 @@
               "section": "4",
               "instr1": "STAFF",
               "instr2": "STAFF",
-              "meetings": [
-                {
-                  "day": "Tuesday",
-                  "start": "10:40",
-                  "end": "12:30",
-                  "room": "YP-A1"
-                }
-              ],
+              "meetings": [],
               "rules": []
             },
             {
@@ -167136,12 +168219,6 @@
               "instr1": "STAFF",
               "instr2": "STAFF",
               "meetings": [
-                {
-                  "day": "Monday",
-                  "start": "08:40",
-                  "end": "10:30",
-                  "room": "YP-A3"
-                },
                 {
                   "day": "Monday",
                   "start": "14:40",
@@ -167672,12 +168749,6 @@
                   "start": "08:40",
                   "end": "10:30",
                   "room": "P4"
-                },
-                {
-                  "day": "Friday",
-                  "start": "12:40",
-                  "end": "14:30",
-                  "room": "P4"
                 }
               ],
               "rules": []
@@ -168059,12 +169130,6 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Tuesday",
-                  "start": "12:40",
-                  "end": "17:30",
-                  "room": "P4"
-                },
-                {
                   "day": "Friday",
                   "start": "08:40",
                   "end": "17:30",
@@ -168224,20 +169289,7 @@
               "section": "70",
               "instr1": "STAFF",
               "instr2": "STAFF",
-              "meetings": [
-                {
-                  "day": "Monday",
-                  "start": "08:40",
-                  "end": "10:30",
-                  "room": "P6"
-                },
-                {
-                  "day": "Tuesday",
-                  "start": "08:40",
-                  "end": "17:30",
-                  "room": "P6"
-                }
-              ],
+              "meetings": [],
               "rules": []
             },
             {
@@ -168525,9 +169577,9 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Thursday",
-                  "start": "13:40",
-                  "end": "16:30",
+                  "day": "Wednesday",
+                  "start": "09:40",
+                  "end": "12:30",
                   "room": "P-421"
                 }
               ],
@@ -168636,6 +169688,20 @@
                   "room": "P-421"
                 }
               ],
+              "rules": []
+            }
+          ]
+        },
+        {
+          "internal_code": "2300726",
+          "code": "2300726",
+          "name": "OPT.PROPER.OF SEMIN.HETEROJ.AND NANOC. (YARI Ä°LETKEN HEREROJONKSÄ°YON VE NANOKÃMELERÄ°N OPTÄ°K ÃZELLÄ°KLERÄ°)",
+          "sections": [
+            {
+              "section": "1",
+              "instr1": "TURAN RAÅÄ°T",
+              "instr2": "STAFF",
+              "meetings": [],
               "rules": []
             }
           ]
@@ -169832,7 +170898,7 @@
                   "day": "Wednesday",
                   "start": "09:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "G201"
                 }
               ],
               "rules": [
@@ -169862,14 +170928,14 @@
             },
             {
               "section": "4",
-              "instr1": "DERÄ°N OZAN EKÄ°N",
+              "instr1": "BÄ°RLER REÅÄ°DE ÃMÃR",
               "instr2": "STAFF",
               "meetings": [
                 {
                   "day": "Wednesday",
                   "start": "09:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "F17"
                 }
               ],
               "rules": [
@@ -169899,14 +170965,14 @@
             },
             {
               "section": "5",
-              "instr1": "BÄ°RLER REÅÄ°DE ÃMÃR",
+              "instr1": "DERÄ°N OZAN EKÄ°N",
               "instr2": "STAFF",
               "meetings": [
                 {
                   "day": "Wednesday",
                   "start": "09:40",
                   "end": "12:30",
-                  "room": "F17"
+                  "room": "G101"
                 }
               ],
               "rules": [
@@ -170179,7 +171245,7 @@
                   "day": "Monday",
                   "start": "13:40",
                   "end": "16:30",
-                  "room": ""
+                  "room": "F.AUD"
                 }
               ],
               "rules": [
@@ -170231,7 +171297,7 @@
                   "day": "Tuesday",
                   "start": "09:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "FZ16"
                 }
               ],
               "rules": [
@@ -170349,7 +171415,7 @@
                   "day": "Monday",
                   "start": "09:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "G106"
                 }
               ],
               "rules": [
@@ -170434,7 +171500,7 @@
                   "day": "Thursday",
                   "start": "13:40",
                   "end": "16:30",
-                  "room": ""
+                  "room": "FZ14"
                 }
               ],
               "rules": [
@@ -171467,7 +172533,7 @@
                   "day": "Monday",
                   "start": "09:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "G202"
                 }
               ],
               "rules": [
@@ -173495,7 +174561,19 @@
                   "room": "B14"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "PSY",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "8",
+                  "start_grade": "Herkes alabilir",
+                  "end_grade": "Herkes alabilir"
+                }
+              ]
             }
           ]
         },
@@ -174724,10 +175802,10 @@
               "instr2": "STAFF",
               "meetings": [
                 {
-                  "day": "Friday",
-                  "start": "13:40",
-                  "end": "16:30",
-                  "room": "YP-D107"
+                  "day": "Thursday",
+                  "start": "12:40",
+                  "end": "13:30",
+                  "room": "B205-B"
                 }
               ],
               "rules": [
@@ -174849,7 +175927,14 @@
               "section": "6",
               "instr1": "BOZO ÃZLEM",
               "instr2": "STAFF",
-              "meetings": [],
+              "meetings": [
+                {
+                  "day": "Friday",
+                  "start": "09:40",
+                  "end": "12:30",
+                  "room": "B205-A"
+                }
+              ],
               "rules": [
                 {
                   "given_dept": "PSCL",
@@ -182944,6 +184029,20 @@
           ]
         },
         {
+          "internal_code": "3890489",
+          "code": "3890489",
+          "name": "SPECIAL TOPICS IN SOFTWARE ENGINEERING: EVOLUTIONARY COMPUTING (YAZILIM MÃHENDÄ°SLÄ°ÄÄ°NDE ÃZEL KONULAR: EVRÄ°MSEL HESAPLAMA)",
+          "sections": [
+            {
+              "section": "1",
+              "instr1": "STAFF",
+              "instr2": "STAFF",
+              "meetings": [],
+              "rules": []
+            }
+          ]
+        },
+        {
           "internal_code": "3890491",
           "code": "3890491",
           "name": "SOFTWARE ENGINEERING SENIOR PROJECT I (YAZILIM MÃHENDÄ°SLÄ°ÄÄ° BÄ°TÄ°RME PROJESÄ° I)",
@@ -183223,7 +184322,7 @@
             },
             {
               "section": "2",
-              "instr1": "STAFF",
+              "instr1": "GÃKALP YAVUZ FULYA",
               "instr2": "STAFF",
               "meetings": [
                 {
@@ -183233,7 +184332,19 @@
                   "room": "YP-B201"
                 }
               ],
-              "rules": []
+              "rules": [
+                {
+                  "given_dept": "STAT",
+                  "start_char": "AA",
+                  "end_char": "ZZ",
+                  "min_cgpa": "0.00",
+                  "max_cgpa": "4.00",
+                  "min_year": "0",
+                  "max_year": "95",
+                  "start_grade": "Hic almayanlar veya DD ve alti",
+                  "end_grade": "Hic almayanlar veya DD ve alti"
+                }
+              ]
             }
           ]
         },
@@ -185529,7 +186640,7 @@
                   "day": "Thursday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "MTB309"
                 }
               ],
               "rules": [
@@ -185763,7 +186874,7 @@
                   "day": "Friday",
                   "start": "10:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "TH3"
                 }
               ],
               "rules": [
@@ -186030,7 +187141,7 @@
                   "day": "Monday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "EFA-10"
                 }
               ],
               "rules": [
@@ -186089,7 +187200,7 @@
                   "day": "Wednesday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "EFA-32"
                 }
               ],
               "rules": [
@@ -186148,7 +187259,7 @@
                   "day": "Tuesday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "EFA-32"
                 }
               ],
               "rules": [
@@ -186207,7 +187318,7 @@
                   "day": "Wednesday",
                   "start": "10:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "EFA-32"
                 }
               ],
               "rules": [
@@ -186266,7 +187377,7 @@
                   "day": "Tuesday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "EFA-27"
                 }
               ],
               "rules": [
@@ -186325,7 +187436,7 @@
                   "day": "Wednesday",
                   "start": "10:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "EFA-27"
                 }
               ],
               "rules": [
@@ -186492,7 +187603,7 @@
                   "day": "Tuesday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "M106"
                 }
               ],
               "rules": []
@@ -186673,7 +187784,7 @@
                   "day": "Tuesday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "M103"
                 }
               ],
               "rules": [
@@ -186751,7 +187862,7 @@
                   "day": "Thursday",
                   "start": "10:40",
                   "end": "12:30",
-                  "room": "M106"
+                  "room": "M103"
                 }
               ],
               "rules": [
@@ -187167,7 +188278,7 @@
                   "day": "Thursday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": "MTB309"
+                  "room": "M106"
                 }
               ],
               "rules": [
@@ -187661,7 +188772,7 @@
                   "day": "Wednesday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "M102"
                 }
               ],
               "rules": [
@@ -187817,7 +188928,7 @@
                   "day": "Tuesday",
                   "start": "10:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "M104"
                 }
               ],
               "rules": [
@@ -187999,7 +189110,7 @@
                   "day": "Friday",
                   "start": "10:40",
                   "end": "12:30",
-                  "room": ""
+                  "room": "TH6"
                 }
               ],
               "rules": [
@@ -188339,7 +189450,7 @@
                   "day": "Monday",
                   "start": "15:40",
                   "end": "17:30",
-                  "room": ""
+                  "room": "EFA-10"
                 }
               ],
               "rules": [
@@ -188420,7 +189531,7 @@
                   "day": "Wednesday",
                   "start": "08:40",
                   "end": "10:30",
-                  "room": ""
+                  "room": "EFA-32"
                 }
               ],
               "rules": [
@@ -188501,7 +189612,7 @@
                   "day": "Wednesday",
                   "start": "13:40",
                   "end": "15:30",
-                  "room": ""
+                  "room": "EFA-30"
                 }
               ],
               "rules": [
@@ -188582,7 +189693,7 @@
                   "day": "Monday",
                   "start": "15:40",
                   "end": "17:30",
-                  "room": ""
+                  "room": "EFA-25"
                 }
               ],
               "rules": [
@@ -188670,7 +189781,7 @@
                   "day": "Thursday",
                   "start": "10:40",
                   "end": "13:30",
-                  "room": ""
+                  "room": "M105"
                 }
               ],
               "rules": []
@@ -188735,7 +189846,7 @@
                   "day": "Friday",
                   "start": "13:40",
                   "end": "16:30",
-                  "room": ""
+                  "room": "TH3"
                 }
               ],
               "rules": []

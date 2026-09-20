@@ -3778,6 +3778,11 @@
           "internal_code": "3920101",
           "code": "3920101",
           "name": "CYBERSECURITY ENGINEERING ORIENTATION (SI?BER GÃVENLI?K MÃHENDI?SLI?ÄI? ORYANTASYONU)"
+        },
+        {
+          "internal_code": "3920461",
+          "code": "3920461",
+          "name": "INFORMATION SECURITY MANAGEMENT (IS) (BI?LGI? GÃVENLI?ÄI? YÃNETI?MI? (BG))"
         }
       ]
     },
@@ -4180,6 +4185,11 @@
           "internal_code": "3110314",
           "code": "3110314",
           "name": "ECON.OF GROWTH AND DEVELOPMENT (BÃYÃME VE KALKINMA EKONOMÄ°SÄ°)"
+        },
+        {
+          "internal_code": "3110351",
+          "code": "3110351",
+          "name": "GLOBAL ECONOMY AND ARTIFICIAL INTELLIGENCE (KÃRESEL EKONOMÄ° VE YAPAY ZEKA)"
         },
         {
           "internal_code": "3110361",
@@ -6501,11 +6511,6 @@
           "name": "MODELING IN MARINE ENVIRONMENT II (DENÄ°ZEL ORTAM MODELLEMESÄ°- II)"
         },
         {
-          "internal_code": "9500562",
-          "code": "9500562",
-          "name": "MARINE COASTAL EUTROPHICATION (DENÄ°ZEL KIYI ÃTROFÄ°KASYONU)"
-        },
-        {
           "internal_code": "9500563",
           "code": "9500563",
           "name": "EXPERIMENTAL ECOLOGY (DENEYSEL EKOLOJÄ°)"
@@ -7055,6 +7060,11 @@
           "internal_code": "1250317",
           "code": "1250317",
           "name": "INTRODUCTION TO VISUAL MEDIA (GORSEL MEDYAYA GIRIS)"
+        },
+        {
+          "internal_code": "1250319",
+          "code": "1250319",
+          "name": "VIRTUAL DESIGN STUDIO (SANAL TASARIM STUDYOSU)"
         },
         {
           "internal_code": "1250330",
@@ -10844,7 +10854,7 @@
         {
           "internal_code": "5660489",
           "code": "5660489",
-          "name": "SPECIAL TOPICS: CARBON DIOXIDE CAPTURE, UTILIZATION, AND STORAGE (ÃZEL KONULAR: KARBON YAKALAMA, KULLANMA VE DEPOLAMA)"
+          "name": "SPECIAL TOPICS PETROLEUM AND GAS ENGINEERING: CARBON DIOXIDE CAPTURE, UTILIZATION, AND STORAGE (PETROL VE DOÄAL GAZ MÃHENDÄ°SLÄ°ÄÄ°NDE ÃZEL KONULAR: KARBON YAKALAMA, KULLANMA VE DEPOLAMA)"
         },
         {
           "internal_code": "5660490",
@@ -11211,16 +11221,6 @@
           "name": "SCIENTIFIC WRITING AND PUBLISHING IN SPORT SCIENCE (SPOR BÄ°LÄ°MLERÄ°NDE MAKALE YAZMA VE YAYIMLAMA)"
         },
         {
-          "internal_code": "4530531",
-          "code": "4530531",
-          "name": "PEDAGOGICAL ASPECT OF SPORTS COACHING (ANTRENÃRLÃÄÃN PEDAGOJÄ°K BOYUTU)"
-        },
-        {
-          "internal_code": "4530534",
-          "code": "4530534",
-          "name": "ADV. TOPICS IN PHYSIOLOGY OF EXERCISE (EGZERSÄ°Z FÄ°ZYOLOJÄ°SÄ°NDE Ä°LERÄ° KONULAR)"
-        },
-        {
           "internal_code": "4530543",
           "code": "4530543",
           "name": "GROWTH AND MOTOR DEVELOPMENT (BÃYÃME VE MOTOR GELÄ°ÅÄ°M)"
@@ -11271,19 +11271,9 @@
           "name": "EXERCISE PHYSIOLOGY (EGZERSÄ°Z FÄ°ZYOLOJÄ°SÄ°)"
         },
         {
-          "internal_code": "4532270",
-          "code": "4532270",
-          "name": "VOLUNTEERING (GÃNÃLLÃLÃK)"
-        },
-        {
           "internal_code": "4532300",
           "code": "4532300",
           "name": "INSTRUCTIONAL PRINCIPLES AND METHODS (ÃÄRETÄ°M Ä°LKE VE YÃNTEMLERÄ°)"
-        },
-        {
-          "internal_code": "4532906",
-          "code": "4532906",
-          "name": "POOL AND BILLARDS (BÄ°LARDO)"
         },
         {
           "internal_code": "4532923",
@@ -11311,29 +11301,9 @@
           "name": "MEASUREMENT AND EVALUATION (ÃLÃME VE DEÄERLENDÄ°RME)"
         },
         {
-          "internal_code": "4533584",
-          "code": "4533584",
-          "name": "PHYSICAL ACTIVITY AND PUBLIC HEALTH (FÄ°ZÄ°KSEL AKTÄ°VÄ°TE VE HALK SAÄLIÄI)"
-        },
-        {
-          "internal_code": "4533630",
-          "code": "4533630",
-          "name": "HISTORY OF PHYSICAL EDUCATÄ±ON AND SPORT (BEDEN EÄÄ°TÄ°MÄ° VE SPOR TARÄ°HÄ°)"
-        },
-        {
-          "internal_code": "4533640",
-          "code": "4533640",
-          "name": "PHILOSOPHY OF PHYSICAL EDUCATION AND SPORT (BEDEN EÄÄ°TÄ°MÄ° VE SPOR FELSEFESÄ°)"
-        },
-        {
           "internal_code": "4533660",
           "code": "4533660",
           "name": "SPORTS, NATION, AND POLITICS IN KOREA (KORE'DE SPOR, TOPLUM VE POLÄ°TÄ°KA)"
-        },
-        {
-          "internal_code": "4533740",
-          "code": "4533740",
-          "name": "EDUCATIONAL GAMES (EÄÄ°TSEL OYUNLAR)"
         },
         {
           "internal_code": "4533781",
@@ -11435,11 +11405,6 @@
           "internal_code": "2300300",
           "code": "2300300",
           "name": "QUANTUM PHYSICS (KUANTUM FÄ°ZÄ°ÄÄ°)"
-        },
-        {
-          "internal_code": "2300305",
-          "code": "2300305",
-          "name": "ANALOG ELECTRONICS (ANALOG ELEKTRONÄ°K)"
         },
         {
           "internal_code": "2300307",
@@ -11660,6 +11625,11 @@
           "internal_code": "2300710",
           "code": "2300710",
           "name": "QUANTUM COMPUTATION (KUANTUM HESAPLAMA)"
+        },
+        {
+          "internal_code": "2300726",
+          "code": "2300726",
+          "name": "OPT.PROPER.OF SEMIN.HETEROJ.AND NANOC. (YARI Ä°LETKEN HEREROJONKSÄ°YON VE NANOKÃMELERÄ°N OPTÄ°K ÃZELLÄ°KLERÄ°)"
         },
         {
           "internal_code": "2300738",
@@ -13123,6 +13093,11 @@
           "internal_code": "3890480",
           "code": "3890480",
           "name": "FORMAL METHODS IN SPECIFICATION AND DESIGN (SPESÄ°FÄ°KASYON VE TASARIMDA FORMEL METODLAR)"
+        },
+        {
+          "internal_code": "3890489",
+          "code": "3890489",
+          "name": "SPECIAL TOPICS IN SOFTWARE ENGINEERING: EVOLUTIONARY COMPUTING (YAZILIM MÃHENDÄ°SLÄ°ÄÄ°NDE ÃZEL KONULAR: EVRÄ°MSEL HESAPLAMA)"
         },
         {
           "internal_code": "3890491",
