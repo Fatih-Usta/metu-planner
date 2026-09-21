@@ -2116,6 +2116,67 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         sharedStateFromUrl = null;
     }
 
+    // Shortest share links: <site>/w/#z<payload>, payload in base64url digits:
+    //   term (3) + curriculum semester (1) + per course: code7 (4) + section (1; 0 = none, 63 = two more digits follow)
+    var LINK_ALPHABET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_";
+    function linkEncodeNum(n, width) {
+        var s = "";
+        for (var i = 0; i < width; i++) {
+            s = LINK_ALPHABET.charAt(n % 64) + s;
+            n = Math.floor(n / 64);
+        }
+        return s;
+    }
+    function linkDecodeNum(s) {
+        var n = 0;
+        for (var i = 0; i < s.length; i++) {
+            var d = LINK_ALPHABET.indexOf(s.charAt(i));
+            if (d < 0) return NaN;
+            n = n * 64 + d;
+        }
+        return n;
+    }
+    // null when the schedule can't be packed (then the #w= form is used)
+    function buildShortShareLink(schedule) {
+        var term = parseInt(weeklyOibsTerm, 10);
+        var sem = parseInt(weeklySemester, 10);
+        if (!(term >= 0 && term < 262144) || !(sem >= 0 && sem < 64)) return null;
+        var out = linkEncodeNum(term, 3) + linkEncodeNum(sem, 1);
+        for (var i = 0; i < schedule.length; i++) {
+            var code7 = String(schedule[i].code7 || "");
+            var secStr = schedule[i].sectionNum != null ? String(schedule[i].sectionNum).trim() : "";
+            if (!/^\d{7}$/.test(code7) || (secStr && !/^\d+$/.test(secStr))) return null;
+            var sec = secStr ? parseInt(secStr, 10) : 0;
+            if (sec >= 4096) return null;
+            out += linkEncodeNum(parseInt(code7, 10), 4);
+            out += sec < 63 ? linkEncodeNum(sec, 1) : linkEncodeNum(63, 1) + linkEncodeNum(sec, 2);
+        }
+        return window.location.origin + window.location.pathname.replace(/[^\/]*$/, "") + "w/#z" + out;
+    }
+    function decodeShortShareLink(p) {
+        if (!p || p.length < 4) return null;
+        var term = linkDecodeNum(p.slice(0, 3));
+        var semester = linkDecodeNum(p.charAt(3));
+        var items = [];
+        var i = 4;
+        while (i + 5 <= p.length) {
+            var code7 = linkDecodeNum(p.slice(i, i + 4));
+            var sec = linkDecodeNum(p.charAt(i + 4));
+            i += 5;
+            if (sec === 63) {
+                if (i + 2 > p.length) return null;
+                sec = linkDecodeNum(p.slice(i, i + 2));
+                i += 2;
+            }
+            if (!isFinite(code7) || !isFinite(sec)) return null;
+            var c7 = String(code7);
+            while (c7.length < 7) c7 = "0" + c7;
+            items.push(c7 + (sec ? "-" + sec : ""));
+        }
+        if (i !== p.length || !items.length) return null;
+        return { term: isFinite(term) ? String(term) : "", semester: semester, items: items };
+    }
+
     // Short share links: #w=<OIBS term>.<curriculum semester>.<code7>[-<section>]_<code7>[-<section>]...
     // Meeting times come from the loaded OIBS data, so the link only carries which sections were picked.
     var sharedCompactLink = null;
@@ -2127,6 +2188,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 semester: parseInt(compactMatch[2], 10),
                 items: compactMatch[3].split("_").filter(Boolean)
             };
+            history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+        var zMatch = /^#z([0-9A-Za-z_\-]+)$/.exec(window.location.hash || "");
+        if (!sharedCompactLink && zMatch) {
+            sharedCompactLink = decodeShortShareLink(zMatch[1]);
             history.replaceState(null, "", window.location.pathname + window.location.search);
         }
     } catch (e) {
@@ -5981,7 +6047,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     return id + (sec ? "-" + sec : "");
                 }).filter(Boolean);
                 var baseUrl = window.location.origin + window.location.pathname;
-                var shareUrl = baseUrl + "#w=" + (weeklyOibsTerm || "") + "." + (weeklySemester || "") + "." + items.join("_");
+                var shareUrl = buildShortShareLink(schedule)
+                    || (baseUrl + "#w=" + (weeklyOibsTerm || "") + "." + (weeklySemester || "") + "." + items.join("_"));
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(shareUrl).then(function () {
                         showToast(wt("shareLinkCopied"), "success");
