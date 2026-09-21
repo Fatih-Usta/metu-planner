@@ -97115,6 +97115,3900 @@
       "programs": [
         "390"
       ]
+    },
+    {
+      "code": "CRP215",
+      "course_code_7digit": "1210215",
+      "name": "INTRODUCTION TO STATISTICS FOR PLANNERS",
+      "credits": 3,
+      "department": "City And Regional Planning",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CRP442",
+      "course_code_7digit": "1210442",
+      "name": "ENVIRONMENTAL GOVERNANCE, MANAGEMENT AND POLICY TOOLS",
+      "credits": 3,
+      "department": "City And Regional Planning",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ID330",
+      "course_code_7digit": "1250330",
+      "name": "PRODUCT PACKAGING DESIGN AND PROTOTYPING",
+      "credits": 3,
+      "department": "Industrial Design",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "GENE827",
+      "course_code_7digit": "2190827",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Molecular Biology And Genetics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "GENE828",
+      "course_code_7digit": "2190828",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Molecular Biology And Genetics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "GENE927",
+      "course_code_7digit": "2190927",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Molecular Biology And Genetics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "GENE928",
+      "course_code_7digit": "2190928",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Molecular Biology And Genetics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SOC574",
+      "course_code_7digit": "2320574",
+      "name": "SOCIOLOGY FOR THE ANTHROPOCENE",
+      "credits": 3,
+      "department": "Sociology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SOC575",
+      "course_code_7digit": "2320575",
+      "name": "INTRODUCTION TO COMPUTATIONAL SOCIAL SCIENCES",
+      "credits": 3,
+      "department": "Sociology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSY5305",
+      "course_code_7digit": "2335305",
+      "name": "DEVELOPMENTAL NEUROSCIENCE",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSY5518",
+      "course_code_7digit": "2335518",
+      "name": "ACCEPTANCE AND COMMITMENT THERAPY I",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSY5519",
+      "course_code_7digit": "2335519",
+      "name": "NEUROPSYCHOLOGICAL ASSESSMENT I",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSY5520",
+      "course_code_7digit": "2335520",
+      "name": "SCHEMA THERAPY",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSY5704",
+      "course_code_7digit": "2335704",
+      "name": "HUMAN FACTORS AND PERFORMANCE",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSY6404",
+      "course_code_7digit": "2336404",
+      "name": "SOCIAL REPRESENTATIONS",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Once in several years.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSY6407",
+      "course_code_7digit": "2336407",
+      "name": "PSYCHOLOGY OF THE SELF",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CHEM447",
+      "course_code_7digit": "2340447",
+      "name": "SURFACE CHEMISTRY",
+      "credits": 3,
+      "department": "Chemistry",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CHEM452",
+      "course_code_7digit": "2340452",
+      "name": "NUCLEAR ANALYTICAL TECHNIQUES",
+      "credits": 3,
+      "department": "Chemistry",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CHEM549",
+      "course_code_7digit": "2340549",
+      "name": "TOTAL SYN.OF NAT.COMPOUNDS",
+      "credits": 3,
+      "department": "Chemistry",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BIOL481",
+      "course_code_7digit": "2380481",
+      "name": "MOLECULAR MICROBIOLOGY",
+      "credits": 3,
+      "department": "Biology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2380303"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "BIOL510",
+      "course_code_7digit": "2380510",
+      "name": "STRUC. &FUNCTION OF BIOLOGICAL MEMBRAN",
+      "credits": 3,
+      "department": "Biology",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BIOL517",
+      "course_code_7digit": "2380517",
+      "name": "NUMERICAL TAXONOMY",
+      "credits": 3,
+      "department": "Biology",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BIOL537",
+      "course_code_7digit": "2380537",
+      "name": "GENETIC ENGINEERING",
+      "credits": 3,
+      "department": "Biology",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BIOL747",
+      "course_code_7digit": "2380747",
+      "name": "LABORATORY TECHNIQUES IN FRESHWATER ECOLOGY",
+      "credits": 3,
+      "department": "Biology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "HIST411",
+      "course_code_7digit": "2400411",
+      "name": "SONG OF RESISTANCE: MUSIC AND SOCIAL MOVEMENTS IN HISTORY",
+      "credits": 3,
+      "department": "History",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "HIST544",
+      "course_code_7digit": "2400544",
+      "name": "NON-MUSLIMS IN THE OTTOMAN EMPIRE (1453?1860)",
+      "credits": 3,
+      "department": "History",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PHIL440",
+      "course_code_7digit": "2410440",
+      "name": "PHILOSOPHICAL STUDIES OF KITCHEN",
+      "credits": 3,
+      "department": "Philosophy",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ADM8041",
+      "course_code_7digit": "3108041",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Political Science And Public Adm.",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ADM9041",
+      "course_code_7digit": "3109041",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Political Science And Public Adm.",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ECON351",
+      "course_code_7digit": "3110351",
+      "name": "GLOBAL ECONOMY AND ARTIFICIAL INTELLIGENCE",
+      "credits": 3,
+      "department": "Economics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3110201",
+            "3110202"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ECON383",
+      "course_code_7digit": "3110383",
+      "name": "MACHINE LEARNING IN ECONOMICS AND FINANCE",
+      "credits": 3,
+      "department": "Economics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3110301",
+            "3110302"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ECON431",
+      "course_code_7digit": "3110431",
+      "name": "THE ECONOMICS OF GENDER",
+      "credits": 3,
+      "department": "Economics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA4518",
+      "course_code_7digit": "3124518",
+      "name": "DECISION ANALYSIS: BEHAVIORAL AND PSYCHOLOGICAL PERSPECTIVE",
+      "credits": 3,
+      "department": "Business Administration",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA4720",
+      "course_code_7digit": "3124720",
+      "name": "PROFESSIONAL SELLING",
+      "credits": 3,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3160371"
+          ],
+          [
+            "3122701"
+          ],
+          [
+            "3125702"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "BA5844",
+      "course_code_7digit": "3125844",
+      "name": "ARTIFICIAL INTELLIGENCE STRATEGIES IN FINANCE",
+      "credits": 3,
+      "department": "Business Administration",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA9001",
+      "course_code_7digit": "3129001",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA9002",
+      "course_code_7digit": "3129002",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA9003",
+      "course_code_7digit": "3129003",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA9007",
+      "course_code_7digit": "3129007",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA9010",
+      "course_code_7digit": "3129010",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA9014",
+      "course_code_7digit": "3129014",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA9016",
+      "course_code_7digit": "3129016",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA9018",
+      "course_code_7digit": "3129018",
+      "name": "SPECIAL TOPICS",
+      "credits": 0,
+      "department": "Business Administration",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IR227",
+      "course_code_7digit": "3140227",
+      "name": "NATIONALISM AND INTERNATIONAL POLITICS",
+      "credits": 3,
+      "department": "International Relations",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CNG801",
+      "course_code_7digit": "3550801",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Computer Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CNG805",
+      "course_code_7digit": "3550805",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Computer Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CNG806",
+      "course_code_7digit": "3550806",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Computer Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CNG807",
+      "course_code_7digit": "3550807",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Computer Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MAT100",
+      "course_code_7digit": "3570100",
+      "name": "PRECALCULUS",
+      "credits": 2,
+      "department": "Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MAT101",
+      "course_code_7digit": "3570101",
+      "name": "MATHEMATICS FOR SOCIAL SCIENCES",
+      "credits": 5,
+      "department": "Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MAT119",
+      "course_code_7digit": "3570119",
+      "name": "CALCULUS WITH ANALYTIC GEOMETRY",
+      "credits": 5,
+      "department": "Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MAT120",
+      "course_code_7digit": "3570120",
+      "name": "CALCULUS FOR FUNCTIONS OF SEVERAL VARIABLES",
+      "credits": 5,
+      "department": "Mathematics",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3570119"
+          ],
+          [
+            "2360119"
+          ],
+          [
+            "2360117"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "MAT210",
+      "course_code_7digit": "3570210",
+      "name": "APPLIED MATHEMATICS FOR ENGINEERS",
+      "credits": 4,
+      "department": "Mathematics",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3570120"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "MAT219",
+      "course_code_7digit": "3570219",
+      "name": "INTRODUCTION TO DIFFERENTIAL EQUATIONS",
+      "credits": 4,
+      "department": "Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3570120"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "MAT260",
+      "course_code_7digit": "3570260",
+      "name": "BASIC LINEAR ALGEBRA",
+      "credits": 3,
+      "department": "Mathematics",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PHY105",
+      "course_code_7digit": "3580105",
+      "name": "GENERAL PHYSICS I",
+      "credits": 4,
+      "department": "Physics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PHY106",
+      "course_code_7digit": "3580106",
+      "name": "GENERAL PHYSICS II",
+      "credits": 4,
+      "department": "Physics",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CHM107",
+      "course_code_7digit": "3600107",
+      "name": "GENERAL CHEMISTRY",
+      "credits": 4,
+      "department": "Chemistry",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CHM111",
+      "course_code_7digit": "3600111",
+      "name": "GENERAL CHEMISTRY I",
+      "credits": 4,
+      "department": "Chemistry",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CHM112",
+      "course_code_7digit": "3600112",
+      "name": "GENERAL CHEMISTRY  II",
+      "credits": 4,
+      "department": "Chemistry",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3600111"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CHM230",
+      "course_code_7digit": "3600230",
+      "name": "ANALYTIC CHEMISTRY FOR ENGINEERS",
+      "credits": 4,
+      "department": "Chemistry",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3600112"
+          ],
+          [
+            "2340112"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CHM237",
+      "course_code_7digit": "3600237",
+      "name": "ORGANIC CHEMISTRY I",
+      "credits": 4,
+      "department": "Chemistry",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3600112"
+          ],
+          [
+            "2340112"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CHM238",
+      "course_code_7digit": "3600238",
+      "name": "ORGANIC CHEMISTRY II",
+      "credits": 3,
+      "department": "Chemistry",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3600237"
+          ],
+          [
+            "2340231"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CHM351",
+      "course_code_7digit": "3600351",
+      "name": "PHYSICAL  CHEMISTRY",
+      "credits": 4,
+      "department": "Chemistry",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3600112"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TUR101",
+      "course_code_7digit": "3610101",
+      "name": "TURKISH I",
+      "credits": 0,
+      "department": "Turkish Language",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TUR102",
+      "course_code_7digit": "3610102",
+      "name": "TURKISH II",
+      "credits": 0,
+      "department": "Turkish Language",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3610101"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TUR103",
+      "course_code_7digit": "3610103",
+      "name": "TURKISH I: WRITTEN COMMUNICATION",
+      "credits": 2,
+      "department": "Turkish Language",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TUR104",
+      "course_code_7digit": "3610104",
+      "name": "TURKISH II - ORAL COMMUNICATION",
+      "credits": 2,
+      "department": "Turkish Language",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3610103"
+          ],
+          [
+            "3610109"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TUR201",
+      "course_code_7digit": "3610201",
+      "name": "ELEMENTARY TURKISH",
+      "credits": 0,
+      "department": "Turkish Language",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TUR202",
+      "course_code_7digit": "3610202",
+      "name": "INTERMEDIATE TURKISH",
+      "credits": 0,
+      "department": "Turkish Language",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3610201"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TUR311",
+      "course_code_7digit": "3610311",
+      "name": "EFFECTIVE AND CORRECT USE AND PRONUNCIATION OF THE TURKISH LANGUAGE",
+      "credits": 3,
+      "department": "Turkish Language",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "HST201",
+      "course_code_7digit": "3620201",
+      "name": "",
+      "credits": 0,
+      "department": "History",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "HST202",
+      "course_code_7digit": "3620202",
+      "name": "",
+      "credits": 0,
+      "department": "History",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2402201"
+          ],
+          [
+            "3620201"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "HST205",
+      "course_code_7digit": "3620205",
+      "name": "HISTORY OF THE TURKISH REVOLUTION I",
+      "credits": 0,
+      "department": "History",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "HST206",
+      "course_code_7digit": "3620206",
+      "name": "HISTORY OF THE TURKISH REVOLUTION II",
+      "credits": 0,
+      "department": "History",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3620205"
+          ],
+          [
+            "2402205"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "STAS221",
+      "course_code_7digit": "3630221",
+      "name": "STATISTICS FOR ENGINEERS I",
+      "credits": 3,
+      "department": "Statistics",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3570120"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CVE466",
+      "course_code_7digit": "3640466",
+      "name": "DAM BEHAVIOR AND SAFETY",
+      "credits": 3,
+      "department": "Civil Engineering",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CVE520",
+      "course_code_7digit": "3640520",
+      "name": "GRADUATE SEMINAR",
+      "credits": 0,
+      "department": "Civil Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CVE562",
+      "course_code_7digit": "3640562",
+      "name": "APPLICATIONS OF GEOSYNTHETICS",
+      "credits": 3,
+      "department": "Civil Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MECH801",
+      "course_code_7digit": "3650801",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Mechanical Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MECH802",
+      "course_code_7digit": "3650802",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Mechanical Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MECH804",
+      "course_code_7digit": "3650804",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Mechanical Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS200",
+      "course_code_7digit": "3680200",
+      "name": "INTRODUCTION TO EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS216",
+      "course_code_7digit": "3680216",
+      "name": "LEARNING IN NON-SCHOOL CONTEXTS",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS220",
+      "course_code_7digit": "3680220",
+      "name": "EDUCATIONAL PSYCHOLOGY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS230",
+      "course_code_7digit": "3680230",
+      "name": "INTRODUCTION TO CURRICULUM AND INSTRUCTION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS304",
+      "course_code_7digit": "3680304",
+      "name": "CLASSROOM MANAGEMENT",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS318",
+      "course_code_7digit": "3680318",
+      "name": "TOPICS IN EDUCATIONAL PSYCHOLOGY",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS358",
+      "course_code_7digit": "3680358",
+      "name": "ARTIFICIAL INTELLIGENCE: APPLICATIONS IN EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS416",
+      "course_code_7digit": "3680416",
+      "name": "TURKISH EDUCATION SYSTEM AND SCHOOL MANAGEMENT",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS424",
+      "course_code_7digit": "3680424",
+      "name": "GUIDANCE",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "GRM201",
+      "course_code_7digit": "3690201",
+      "name": "BASIC GERMAN I",
+      "credits": 4,
+      "department": "Modern Languages (german)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3590101",
+            "3590102"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "GRM202",
+      "course_code_7digit": "3690202",
+      "name": "BASIC GERMAN II",
+      "credits": 4,
+      "department": "Modern Languages (german)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3660271"
+          ],
+          [
+            "3690201"
+          ],
+          [
+            "6040201"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "GRM203",
+      "course_code_7digit": "3690203",
+      "name": "INTERMEDIATE GERMAN I",
+      "credits": 4,
+      "department": "Modern Languages (german)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3660272"
+          ],
+          [
+            "6040202"
+          ],
+          [
+            "3690202"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "PSYC385",
+      "course_code_7digit": "3710385",
+      "name": "INTRODUCTION TO COGNITIVE SCIENCE",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSYC2102",
+      "course_code_7digit": "3712102",
+      "name": "STATISTICS FOR PSYCHOLOGY",
+      "credits": 3,
+      "department": "Psychology",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SOCL100",
+      "course_code_7digit": "3720100",
+      "name": "PRINCIPLES OF SOCIOLOGY",
+      "credits": 3,
+      "department": "Sociology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SOCL109",
+      "course_code_7digit": "3720109",
+      "name": "INTRODUCTION TO SOCIOLOGY",
+      "credits": 3,
+      "department": "Sociology",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SOCL134",
+      "course_code_7digit": "3720134",
+      "name": "SOCIAL ANTHROPOLOGY",
+      "credits": 3,
+      "department": "Sociology",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BIO106",
+      "course_code_7digit": "3730106",
+      "name": "GENERAL BIOLOGY",
+      "credits": 3,
+      "department": "Biology",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ART111",
+      "course_code_7digit": "3750111",
+      "name": "PAINTING",
+      "credits": 3,
+      "department": "Art",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ART113",
+      "course_code_7digit": "3750113",
+      "name": "INTRODUCTION TO ARTISTIC DRAWING",
+      "credits": 3,
+      "department": "Art",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PHL101",
+      "course_code_7digit": "3770101",
+      "name": "INTRODUCTION TO PHILOSOPHY I",
+      "credits": 3,
+      "department": "Philosophy",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PHL291",
+      "course_code_7digit": "3770291",
+      "name": "HISTORY OF SCIENCE I",
+      "credits": 3,
+      "department": "Philosophy",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ARC436",
+      "course_code_7digit": "3790436",
+      "name": "STUDIES IN ROMAN ARCHITECTURE",
+      "credits": 3,
+      "department": "Architecture",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CHIN201",
+      "course_code_7digit": "3800201",
+      "name": "CHINESE I",
+      "credits": 4,
+      "department": "Modern Languages (chinese)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3590101",
+            "3590102"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ESC280",
+      "course_code_7digit": "3830280",
+      "name": "ENGINEERING ECONOMY",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ESC410",
+      "course_code_7digit": "3830410",
+      "name": "APPLIED ENGINEERING SYSTEMS I",
+      "credits": 4,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3570120",
+            "3580105",
+            "3580106"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ESC412",
+      "course_code_7digit": "3830412",
+      "name": "SPECIAL TOPICS: NANOSCIENCE AND NANOTECHNOLOGY",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ESC491",
+      "course_code_7digit": "3830491",
+      "name": "MULTIDISCIPLINARY ENGINEERING SYSTEM DESIGN",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ESC492",
+      "course_code_7digit": "3830492",
+      "name": "MULTIDISCIPLINARY ENGINEERING SYSTEM IMPLEMENTATION",
+      "credits": 3,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3830491"
+          ],
+          [
+            "3650458"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ASE430",
+      "course_code_7digit": "3840430",
+      "name": "SPECIAL TOPICS: HUMAN FACTORS ENGINEERING",
+      "credits": 3,
+      "department": "Aerospace Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "OCHS101",
+      "course_code_7digit": "3870101",
+      "name": "OCCUPATIONAL HEALTH AND SAFETY-I",
+      "credits": 0,
+      "department": "Occupational Health And Safety",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "OCHS301",
+      "course_code_7digit": "3870301",
+      "name": "OCCUPATIONAL HEALTH AND SAFETY - II",
+      "credits": 0,
+      "department": "Occupational Health And Safety",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INE425",
+      "course_code_7digit": "3880425",
+      "name": "PLANT LOCATION AND LAYOUT",
+      "credits": 3,
+      "department": "Industrial Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INE454",
+      "course_code_7digit": "3880454",
+      "name": "NETWORK FLOWS AND PROJECT MANAGEMENT",
+      "credits": 3,
+      "department": "Industrial Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SNG489",
+      "course_code_7digit": "3890489",
+      "name": "SPECIAL TOPICS IN SOFTWARE ENGINEERING: EVOLUTIONARY COMPUTING",
+      "credits": 3,
+      "department": "Software Engineering",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES829",
+      "course_code_7digit": "3900829",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES830",
+      "course_code_7digit": "3900830",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES831",
+      "course_code_7digit": "3900831",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES832",
+      "course_code_7digit": "3900832",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES833",
+      "course_code_7digit": "3900833",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES834",
+      "course_code_7digit": "3900834",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES835",
+      "course_code_7digit": "3900835",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES836",
+      "course_code_7digit": "3900836",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES837",
+      "course_code_7digit": "3900837",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SEES838",
+      "course_code_7digit": "3900838",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Sustainable Environment And Energy Systems",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ENLT806",
+      "course_code_7digit": "3910806",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "English Language Teaching",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "CYG461",
+      "course_code_7digit": "3920461",
+      "name": "INFORMATION SECURITY MANAGEMENT (IS)",
+      "credits": 3,
+      "department": "Cybersecurity Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIN591",
+      "course_code_7digit": "3930591",
+      "name": "GRADUATE SEMINAR",
+      "credits": 0,
+      "department": "Artificial Intelligence engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSYL3504",
+      "course_code_7digit": "3943504",
+      "name": "CLINICAL INTERVIEW SKILLS",
+      "credits": 3,
+      "department": "Clinical Psychology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSYL5101",
+      "course_code_7digit": "3945101",
+      "name": "STATISTICS, METHODS, AND ETHICS PSYCHOLOGICAL RESEARCH",
+      "credits": 3,
+      "department": "Clinical Psychology",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSYL6302",
+      "course_code_7digit": "3946302",
+      "name": "DEVELOPMENTAL INTERVENTIONS WITH CHILDREN AND PARENTS",
+      "credits": 3,
+      "department": "Clinical Psychology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ECE405",
+      "course_code_7digit": "4110405",
+      "name": "GAMIFICATION AND DIGITAL TECHNOLOGIES IN EARLY CHILDHOOD EDUCATION",
+      "credits": 3,
+      "department": "Early Childhood Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SSME555",
+      "course_code_7digit": "4200555",
+      "name": "RESEARCH PROJECTS IN SCIENCE/MATHEMATICS EDUCATION",
+      "credits": 3,
+      "department": "Secondary Science And Mathematics Educ.",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PES2952",
+      "course_code_7digit": "4532952",
+      "name": "TENNIS",
+      "credits": 3,
+      "department": "Physical Education And Sports",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PES3310",
+      "course_code_7digit": "4533310",
+      "name": "CURRICULUM",
+      "credits": 3,
+      "department": "Physical Education And Sports",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PES3400",
+      "course_code_7digit": "4533400",
+      "name": "MEASUREMENT AND EVALUATION",
+      "credits": 3,
+      "department": "Physical Education And Sports",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PES3660",
+      "course_code_7digit": "4533660",
+      "name": "SPORTS, NATION, AND POLITICS IN KOREA",
+      "credits": 3,
+      "department": "Physical Education And Sports",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PES3781",
+      "course_code_7digit": "4533781",
+      "name": "RHYTHM EDUCATION AND DANCE",
+      "credits": 3,
+      "department": "Physical Education And Sports",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PES3850",
+      "course_code_7digit": "4533850",
+      "name": "ARTIFICIAL INTELLIGENCE APPLICATIONS IN SPORT",
+      "credits": 3,
+      "department": "Physical Education And Sports",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ENVE815",
+      "course_code_7digit": "5600815",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Environmental Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ES820",
+      "course_code_7digit": "5610820",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ES920",
+      "course_code_7digit": "5610920",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Engineering Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PETE489",
+      "course_code_7digit": "5660489",
+      "name": "SPECIAL TOPICS PETROLEUM AND GAS ENGINEERING: CARBON DIOXIDE CAPTURE, UTILIZATION, AND STORAGE",
+      "credits": 3,
+      "department": "Petroleum And Natural Gas Engineering",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5660343"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "EE451",
+      "course_code_7digit": "5670451",
+      "name": "VECTOR SPACE METHODS IN SIGNAL PROCESSING",
+      "credits": 3,
+      "department": "Electrical And Electronics Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360260",
+            "5670230",
+            "5670301"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "EE577",
+      "course_code_7digit": "5670577",
+      "name": "ADVANCED POWER SYSTEM PROTECTION",
+      "credits": 3,
+      "department": "Electrical And Electronics Engineering",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ME98",
+      "course_code_7digit": "5690098",
+      "name": "DOCTORAL QUALIFYING EXAMINATION",
+      "credits": 0,
+      "department": "Mechanical Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ME99",
+      "course_code_7digit": "5690099",
+      "name": "THESIS PROPOSAL DEFENSE",
+      "credits": 0,
+      "department": "Mechanical Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AEE202",
+      "course_code_7digit": "5720202",
+      "name": "MATHEMATICS FOR AEROSPACE ENGINEERS",
+      "credits": 4,
+      "department": "Aerospace Engineering",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2360120"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "AEE4904",
+      "course_code_7digit": "5724904",
+      "name": "SPECIAL TOPICS IN AEROSPACE ENGINEERING: INTRODUCTION TO ARTIFICAL INTELLIGENCE AND MACHINE LEARNING FOR AEROSPACE ENGINEERING",
+      "credits": 3,
+      "department": "Aerospace Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5610202",
+            "5710240"
+          ],
+          [
+            "5710240",
+            "5720202"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CNGB315",
+      "course_code_7digit": "5750315",
+      "name": "ALGORITHMS",
+      "credits": 3,
+      "department": "Computer Engineering (türkiye-azerbaijan University Tau)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5750213"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CNGB331",
+      "course_code_7digit": "5750331",
+      "name": "COMPUTER ORGANIZATION",
+      "credits": 3,
+      "department": "Computer Engineering (türkiye-azerbaijan University Tau)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5750232"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CNGB351",
+      "course_code_7digit": "5750351",
+      "name": "DATA MANAGEMENT AND FILE STRUCTURES",
+      "credits": 3,
+      "department": "Computer Engineering (türkiye-azerbaijan University Tau)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "5750213"
+          ],
+          [
+            "5750310"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ARAB201",
+      "course_code_7digit": "6020201",
+      "name": "ARABIC 201  A1.1",
+      "credits": 4,
+      "department": "Modern Languages (arabic)",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "6390101",
+            "6390102"
+          ],
+          [
+            "3590101",
+            "3590102"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ARAB202",
+      "course_code_7digit": "6020202",
+      "name": "ARABIC 202  A1.2",
+      "credits": 4,
+      "department": "Modern Languages (arabic)",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "6390101",
+            "6390102"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ARAB203",
+      "course_code_7digit": "6020203",
+      "name": "ARABIC 203  A2.1",
+      "credits": 4,
+      "department": "Modern Languages (arabic)",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "6390101",
+            "6390102"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TFL271",
+      "course_code_7digit": "6290271",
+      "name": "BEGINNING TURKISH I",
+      "credits": 4,
+      "department": "Modern Languages (turkish As A Foreign Languages)",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SLTP111",
+      "course_code_7digit": "6440111",
+      "name": "TOPICS IN ART",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "SLTP112",
+      "course_code_7digit": "6440112",
+      "name": "TOPICS IN ART",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST101",
+      "course_code_7digit": "6820101",
+      "name": "PIANO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST102",
+      "course_code_7digit": "6820102",
+      "name": "PIANO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST111",
+      "course_code_7digit": "6820111",
+      "name": "FLUTE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST112",
+      "course_code_7digit": "6820112",
+      "name": "FLUTE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST121",
+      "course_code_7digit": "6820121",
+      "name": "VIOLIN",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST122",
+      "course_code_7digit": "6820122",
+      "name": "VIOLIN",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST141",
+      "course_code_7digit": "6820141",
+      "name": "VIOLONCELLO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST142",
+      "course_code_7digit": "6820142",
+      "name": "VIOLONCELLO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST151",
+      "course_code_7digit": "6820151",
+      "name": "CLASSICAL GUITAR",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST152",
+      "course_code_7digit": "6820152",
+      "name": "CLASSICAL GUITAR",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST161",
+      "course_code_7digit": "6820161",
+      "name": "SAXOPHONE-CLARNET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST162",
+      "course_code_7digit": "6820162",
+      "name": "SAXOPHONE-CLARNET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST171",
+      "course_code_7digit": "6820171",
+      "name": "TRUMPET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST172",
+      "course_code_7digit": "6820172",
+      "name": "TRUMPET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST181",
+      "course_code_7digit": "6820181",
+      "name": "TROMBONE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST182",
+      "course_code_7digit": "6820182",
+      "name": "TROMBONE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST201",
+      "course_code_7digit": "6820201",
+      "name": "PIANO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST202",
+      "course_code_7digit": "6820202",
+      "name": "PIANO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST211",
+      "course_code_7digit": "6820211",
+      "name": "FLUTE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST212",
+      "course_code_7digit": "6820212",
+      "name": "FLUTE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST221",
+      "course_code_7digit": "6820221",
+      "name": "VIOLIN",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST222",
+      "course_code_7digit": "6820222",
+      "name": "VIOLIN",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST241",
+      "course_code_7digit": "6820241",
+      "name": "VIOLONCELLO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST242",
+      "course_code_7digit": "6820242",
+      "name": "VIOLONCELLO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST251",
+      "course_code_7digit": "6820251",
+      "name": "CLASSICAL GUITAR",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST252",
+      "course_code_7digit": "6820252",
+      "name": "CLASSICAL GUITAR",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST261",
+      "course_code_7digit": "6820261",
+      "name": "SAXOPHONE-CLARNET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST262",
+      "course_code_7digit": "6820262",
+      "name": "SAXOPHONE-CLARNET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST271",
+      "course_code_7digit": "6820271",
+      "name": "TRUMPET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST272",
+      "course_code_7digit": "6820272",
+      "name": "TRUMPET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST281",
+      "course_code_7digit": "6820281",
+      "name": "TROMBONE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST282",
+      "course_code_7digit": "6820282",
+      "name": "TROMBONE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST301",
+      "course_code_7digit": "6820301",
+      "name": "PIANO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST302",
+      "course_code_7digit": "6820302",
+      "name": "PIANO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST311",
+      "course_code_7digit": "6820311",
+      "name": "FLUTE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST312",
+      "course_code_7digit": "6820312",
+      "name": "FLUTE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST321",
+      "course_code_7digit": "6820321",
+      "name": "VIOLIN",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST322",
+      "course_code_7digit": "6820322",
+      "name": "VIOLIN",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST341",
+      "course_code_7digit": "6820341",
+      "name": "VIOLONCELLO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST342",
+      "course_code_7digit": "6820342",
+      "name": "VIOLONCELLO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST351",
+      "course_code_7digit": "6820351",
+      "name": "CLASSICAL GUITAR",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST352",
+      "course_code_7digit": "6820352",
+      "name": "CLASSICAL GUITAR",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST361",
+      "course_code_7digit": "6820361",
+      "name": "SAXOPHONE-CLARNET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST362",
+      "course_code_7digit": "6820362",
+      "name": "SAXOPHONE-CLARNET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST371",
+      "course_code_7digit": "6820371",
+      "name": "TRUMPET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST372",
+      "course_code_7digit": "6820372",
+      "name": "TRUMPET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST381",
+      "course_code_7digit": "6820381",
+      "name": "TROMBONE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST382",
+      "course_code_7digit": "6820382",
+      "name": "TROMBONE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST401",
+      "course_code_7digit": "6820401",
+      "name": "PIANO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST402",
+      "course_code_7digit": "6820402",
+      "name": "PIANO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST411",
+      "course_code_7digit": "6820411",
+      "name": "FLUTE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST412",
+      "course_code_7digit": "6820412",
+      "name": "FLUTE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST421",
+      "course_code_7digit": "6820421",
+      "name": "VIOLIN",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST422",
+      "course_code_7digit": "6820422",
+      "name": "VIOLIN",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST441",
+      "course_code_7digit": "6820441",
+      "name": "VIOLONCELLO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST442",
+      "course_code_7digit": "6820442",
+      "name": "VIOLONCELLO",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST451",
+      "course_code_7digit": "6820451",
+      "name": "CLASSICAL GUITAR",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST452",
+      "course_code_7digit": "6820452",
+      "name": "CLASSICAL GUITAR",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST461",
+      "course_code_7digit": "6820461",
+      "name": "SAXOPHONE-CLARNET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST462",
+      "course_code_7digit": "6820462",
+      "name": "SAXOPHONE-CLARNET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST471",
+      "course_code_7digit": "6820471",
+      "name": "TRUMPET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST472",
+      "course_code_7digit": "6820472",
+      "name": "TRUMPET",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST481",
+      "course_code_7digit": "6820481",
+      "name": "TROMBONE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INST482",
+      "course_code_7digit": "6820482",
+      "name": "TROMBONE",
+      "credits": 3,
+      "department": "Music And Fine Arts",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR111",
+      "course_code_7digit": "7950111",
+      "name": "",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR112",
+      "course_code_7digit": "7950112",
+      "name": "",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "7950111"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TKPR115",
+      "course_code_7digit": "7950115",
+      "name": "",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR116",
+      "course_code_7digit": "7950116",
+      "name": "",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "7950111",
+            "7950117",
+            "7950119"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TKPR117",
+      "course_code_7digit": "7950117",
+      "name": "",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR118",
+      "course_code_7digit": "7950118",
+      "name": "",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "7950119"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TKPR201",
+      "course_code_7digit": "7950201",
+      "name": "",
+      "credits": 2,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "7950114"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TKPR202",
+      "course_code_7digit": "7950202",
+      "name": "",
+      "credits": 2,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR204",
+      "course_code_7digit": "7950204",
+      "name": "",
+      "credits": 2,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR215",
+      "course_code_7digit": "7950215",
+      "name": "",
+      "credits": 2,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR219",
+      "course_code_7digit": "7950219",
+      "name": "FOOD&HEALTH",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR220",
+      "course_code_7digit": "7950220",
+      "name": "FOOD SAFETY",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR222",
+      "course_code_7digit": "7950222",
+      "name": "FUNCTIONAL FOODS",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR223",
+      "course_code_7digit": "7950223",
+      "name": "MTH223-FUNDAMENTALS OF ENTREPRENEURSHIP AND INNOVATION",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR224",
+      "course_code_7digit": "7950224",
+      "name": "CULINARY & FOOD",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR225",
+      "course_code_7digit": "7950225",
+      "name": "SUPPLEMENTS",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR226",
+      "course_code_7digit": "7950226",
+      "name": "HISTORY OF TECHNOLOGY",
+      "credits": 3,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR227",
+      "course_code_7digit": "7950227",
+      "name": "MTH227- APPLIED NATURAL LANGUAGE PROCESSING",
+      "credits": 3,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR228",
+      "course_code_7digit": "7950228",
+      "name": "SCIENTIFIC REVOLUTIONS",
+      "credits": 3,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ENEL104",
+      "course_code_7digit": "7980104",
+      "name": "ENSTRUMANTASYON",
+      "credits": 2,
+      "department": "Elektronik Teknolojisi",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "7950115",
+            "7950117"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "AH542",
+      "course_code_7digit": "8010542",
+      "name": "ARCHITECTURAL HISTORIES OF SPATIAL (IN)JUSTICE",
+      "credits": 3,
+      "department": "History Of Architecture",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "FPSY892",
+      "course_code_7digit": "8170892",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Family Psychology",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ELT533",
+      "course_code_7digit": "8200533",
+      "name": "SECOND LANGUAGE PROCESSING AND LEARNING",
+      "credits": 3,
+      "department": "English Language Teaching",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ELT535",
+      "course_code_7digit": "8200535",
+      "name": "LEADERSHIP AND MANAGEMENT FOR LANGUAGE PROFESSIONALS",
+      "credits": 3,
+      "department": "English Language Teaching",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ELT653",
+      "course_code_7digit": "8200653",
+      "name": "FORMATIVE ASSESSMENT IN FOREIGN LANGUAGE EDUCATION",
+      "credits": 3,
+      "department": "English Language Teaching",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ELIT624",
+      "course_code_7digit": "8210624",
+      "name": "CONTEMPORARY ANGLOPHONE FICTION AND ETHICS",
+      "credits": 3,
+      "department": "English Literature",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "HRDE892",
+      "course_code_7digit": "8340892",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Human Resources Development In Education",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EI589",
+      "course_code_7digit": "8380589",
+      "name": "GRADUATION PROJECT",
+      "credits": 0,
+      "department": "European Integration",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EI892",
+      "course_code_7digit": "8380892",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "European Integration",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ASN543",
+      "course_code_7digit": "8420543",
+      "name": "POLITICAL ECONOMY OF GLOBAL SOUTH",
+      "credits": 3,
+      "department": "Asian Studies",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ASTR200",
+      "course_code_7digit": "8640200",
+      "name": "INTRODUCTORY ASTRONOMY",
+      "credits": 3,
+      "department": "Astrophysics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ASTR300",
+      "course_code_7digit": "8640300",
+      "name": "INTRODUCTION TO ASTROPHYSICS",
+      "credits": 3,
+      "department": "Astrophysics",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2300105",
+            "2300106"
+          ],
+          [
+            "2300109",
+            "2300110"
+          ],
+          [
+            "2300111",
+            "2300112"
+          ],
+          [
+            "2300181",
+            "2300182"
+          ],
+          [
+            "8640200"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ASTR310",
+      "course_code_7digit": "8640310",
+      "name": "CELESTIAL MECHANICS",
+      "credits": 3,
+      "department": "Astrophysics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2300200"
+          ],
+          [
+            "5710230"
+          ],
+          [
+            "5710240"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ASTR404",
+      "course_code_7digit": "8640404",
+      "name": "INTRODUCTION TO COSMOLOGY",
+      "credits": 3,
+      "department": "Astrophysics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "2300202"
+          ],
+          [
+            "8640300"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ASTR515",
+      "course_code_7digit": "8640515",
+      "name": "GALACTIC AND INTERGALACTIC ASTRONOMY",
+      "credits": 3,
+      "department": "Astrophysics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ASTR516",
+      "course_code_7digit": "8640516",
+      "name": "HIGH-ENERGY ASTROPHYSICS",
+      "credits": 3,
+      "department": "Astrophysics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ASTR517",
+      "course_code_7digit": "8640517",
+      "name": "ASTRON. INSTRUMENTS AND TECHNIQUES",
+      "credits": 3,
+      "department": "Astrophysics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EQS821",
+      "course_code_7digit": "8730821",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Earthquake Studies",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EQS822",
+      "course_code_7digit": "8730822",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Earthquake Studies",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ESS944",
+      "course_code_7digit": "8740944",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Earth System Science",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ESS945",
+      "course_code_7digit": "8740945",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Earth System Science",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ESS946",
+      "course_code_7digit": "8740946",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Earth System Science",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "OR839",
+      "course_code_7digit": "8800839",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Operational Research",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "OR846",
+      "course_code_7digit": "8800846",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Operational Research",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "OR847",
+      "course_code_7digit": "8800847",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Operational Research",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "OR939",
+      "course_code_7digit": "8800939",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Operational Research",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS801",
+      "course_code_7digit": "8860801",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS802",
+      "course_code_7digit": "8860802",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS803",
+      "course_code_7digit": "8860803",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS804",
+      "course_code_7digit": "8860804",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS805",
+      "course_code_7digit": "8860805",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS806",
+      "course_code_7digit": "8860806",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS807",
+      "course_code_7digit": "8860807",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS808",
+      "course_code_7digit": "8860808",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX801",
+      "course_code_7digit": "8870801",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX802",
+      "course_code_7digit": "8870802",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX803",
+      "course_code_7digit": "8870803",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX804",
+      "course_code_7digit": "8870804",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX805",
+      "course_code_7digit": "8870805",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX806",
+      "course_code_7digit": "8870806",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX807",
+      "course_code_7digit": "8870807",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IS773",
+      "course_code_7digit": "9010773",
+      "name": "AGENTIC AI",
+      "credits": 3,
+      "department": "",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "COGS812",
+      "course_code_7digit": "9020812",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Cognitive Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "COGS813",
+      "course_code_7digit": "9020813",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Cognitive Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "COGS814",
+      "course_code_7digit": "9020814",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Cognitive Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "COGS913",
+      "course_code_7digit": "9020913",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Cognitive Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "COGS914",
+      "course_code_7digit": "9020914",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Cognitive Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "COGS915",
+      "course_code_7digit": "9020915",
+      "name": "ADVANCED STUDIES",
+      "credits": 0,
+      "department": "Cognitive Sciences",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ION892",
+      "course_code_7digit": "9040892",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Informatics Online",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MMI804",
+      "course_code_7digit": "9090804",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Multimedia Informatics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "HPC501",
+      "course_code_7digit": "9120501",
+      "name": "INTRODUCTION TO HIGH-PERFORMANCE COMPUTING, PARALLEL AND DISTRIBUTED SYSTEMS",
+      "credits": 3,
+      "department": "Information Systems And High Performance Computing  (international Joint Program)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "HPC601",
+      "course_code_7digit": "9120601",
+      "name": "INNOVATION AND ENTREPRENEURSHIP BASICS",
+      "credits": 3,
+      "department": "Information Systems And High Performance Computing  (international Joint Program)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MASC98",
+      "course_code_7digit": "9500098",
+      "name": "DOCTORAL QUALIFYING EXAMINATION",
+      "credits": 0,
+      "department": "Graduate School Of Marine Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MASC99",
+      "course_code_7digit": "9500099",
+      "name": "THESIS PROPOSAL DEFENSE",
+      "credits": 0,
+      "department": "Graduate School Of Marine Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MBIO98",
+      "course_code_7digit": "9540098",
+      "name": "DOCTORAL QUALIFYING EXAMINATION",
+      "credits": 0,
+      "department": "Marine Biology And Fisheries",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "MBIO99",
+      "course_code_7digit": "9540099",
+      "name": "THESIS PROPOSAL DEFENSE",
+      "credits": 0,
+      "department": "Marine Biology And Fisheries",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "OCEA98",
+      "course_code_7digit": "9560098",
+      "name": "DOCTORAL QUALIFYING EXAMINATION",
+      "credits": 0,
+      "department": "Oceanography",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "OCEA699",
+      "course_code_7digit": "9560699",
+      "name": "THESIS PROPOSAL DEFENSE",
+      "credits": 0,
+      "department": "Oceanography",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM500",
+      "course_code_7digit": "9700500",
+      "name": "M.S. THESIS",
+      "credits": 0,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM501",
+      "course_code_7digit": "9700501",
+      "name": "INTRODUCTION TO CRYPTOGRAPHY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM502",
+      "course_code_7digit": "9700502",
+      "name": "STREAM CIPHERS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM503",
+      "course_code_7digit": "9700503",
+      "name": "APPLICATION OF FINITE FIELDS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM504",
+      "course_code_7digit": "9700504",
+      "name": "PUBLIC KEY CRYPTOGRAPHY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "9700503"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "IAM510",
+      "course_code_7digit": "9700510",
+      "name": "QUANTUM CRYPTOGRAPHY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM511",
+      "course_code_7digit": "9700511",
+      "name": "ALGORITHMS AND COMPLEXITY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM512",
+      "course_code_7digit": "9700512",
+      "name": "BLOCK CIPHERS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM520",
+      "course_code_7digit": "9700520",
+      "name": "FINANCIAL DERIVATIVES",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM521",
+      "course_code_7digit": "9700521",
+      "name": "FINANCIAL MANAGEMENT",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM522",
+      "course_code_7digit": "9700522",
+      "name": "STOCHASTIC CALCULUS FOR FINANCE",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM524",
+      "course_code_7digit": "9700524",
+      "name": "FINANCIAL ECONOMICS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM527",
+      "course_code_7digit": "9700527",
+      "name": "ADVANCED CALCULUS AND INTEGRATION",
+      "credits": 5,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM530",
+      "course_code_7digit": "9700530",
+      "name": "ELEMENTS OF PROBABILITY AND STATISTICS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM541",
+      "course_code_7digit": "9700541",
+      "name": "PROBABILITY THEORY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM546",
+      "course_code_7digit": "9700546",
+      "name": "ACTUARIAL RISK THEORY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM548",
+      "course_code_7digit": "9700548",
+      "name": "STOCHASTIC PROCESSES FOR INSURANCE AND FINANCE",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM557",
+      "course_code_7digit": "9700557",
+      "name": "STATISTICAL LEARNING AND SIMULATION",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM561",
+      "course_code_7digit": "9700561",
+      "name": "INTRODUCTION TO SCIENTIFIC COMPUTING I",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM562",
+      "course_code_7digit": "9700562",
+      "name": "INTRODUCTION TO SCIENTIFIC COMPUTING II",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM566",
+      "course_code_7digit": "9700566",
+      "name": "NUMERICAL OPTIMIZATION",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM572",
+      "course_code_7digit": "9700572",
+      "name": "FINITE ELEMENT METHODS FOR PARTIAL DIFFERENTIAL EQUATIONS: THEORY AND APPLICATIONS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM574",
+      "course_code_7digit": "9700574",
+      "name": "MATHEMATICAL FOUNDATIONS FOR DATA ANALYSIS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM582",
+      "course_code_7digit": "9700582",
+      "name": "LIFE INSURANCE MATHEMATICS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM583",
+      "course_code_7digit": "9700583",
+      "name": "PENSION FUND MATHEMATICS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM589",
+      "course_code_7digit": "9700589",
+      "name": "TERM PROJECT",
+      "credits": 0,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM590",
+      "course_code_7digit": "9700590",
+      "name": "GRADUATE SEMINAR",
+      "credits": 0,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM591",
+      "course_code_7digit": "9700591",
+      "name": "POGRAMMING TECHNIQUES IN APPLIED MATHEMATICS I",
+      "credits": 2,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM592",
+      "course_code_7digit": "9700592",
+      "name": "POGRAMMING TECHNIQUES IN APPLIED MATHEMATICS II",
+      "credits": 2,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM600",
+      "course_code_7digit": "9700600",
+      "name": "PH.D. THESIS",
+      "credits": 0,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM602",
+      "course_code_7digit": "9700602",
+      "name": "ALGEBRAIC GEOMETRIC CODES",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM615",
+      "course_code_7digit": "9700615",
+      "name": "ADVANCED STOCHASTIC CALCULUS FOR FINANCE",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM690",
+      "course_code_7digit": "9700690",
+      "name": "GRADUATE SEMINAR FOR PH.D. STUDENTS",
+      "credits": 0,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM698",
+      "course_code_7digit": "9700698",
+      "name": "RESEARCH METHODS AND ETHICS",
+      "credits": 0,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM703",
+      "course_code_7digit": "9700703",
+      "name": "SPECIAL TOPICS IN CRYPTOGRAPHY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM715",
+      "course_code_7digit": "9700715",
+      "name": "CRYPTOGRAPHY AND CODING THEORY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM718",
+      "course_code_7digit": "9700718",
+      "name": "SPECIAL TOPICS:BLOCK CIPHER CRYPTANALYSIS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM723",
+      "course_code_7digit": "9700723",
+      "name": "INFORMATION THEORY IN CRYPTOGRAPHY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM736",
+      "course_code_7digit": "9700736",
+      "name": "SPECAIL TOPICS: INTRODUCTION TO CRYPTOGRAPHIC ENGINEERING",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM751",
+      "course_code_7digit": "9700751",
+      "name": "SPECIAL TOPICS: FINANCIAL MATHEMATICS OF MARKET LIQUIDITY",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM758",
+      "course_code_7digit": "9700758",
+      "name": "FINANCIAL ECONOMETRICS, DATA SCIENCE AND MACHINE LEARNING",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM761",
+      "course_code_7digit": "9700761",
+      "name": "SPECIAL TOPICS:NETWORKS AND GRAPHS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM763",
+      "course_code_7digit": "9700763",
+      "name": "SPECIAL TOPICS: NUMERICAL SIMULATION IN FLUID DYNAMICS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM767",
+      "course_code_7digit": "9700767",
+      "name": "SPECAIL TOPICS: ITERATIVE METHODS FOR LARGE SCALE LINEAR AND NONLINEAR EQUATIONS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM772",
+      "course_code_7digit": "9700772",
+      "name": "FUNDAMENTALS OF MACHINE LEARNING ALGORITHMS",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "IAM774",
+      "course_code_7digit": "9700774",
+      "name": "SCIENTIFIC MACHINE LEARNING",
+      "credits": 3,
+      "department": "Institute Of Applied Mathematics",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "BA4844",
+      "course_code_7digit": "3124844",
+      "name": "ARTIFICIAL INTELLIGENCE STRATEGIES IN FINANCE",
+      "credits": 3,
+      "department": "Business Administration",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "3122802"
+          ],
+          [
+            "3122803"
+          ],
+          [
+            "3125802"
+          ],
+          [
+            "3160381"
+          ],
+          [
+            "3110311"
+          ],
+          [
+            "3110312"
+          ],
+          [
+            "9700521"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "CNGB300",
+      "course_code_7digit": "5750300",
+      "name": "SUMMER PRACTICE I",
+      "credits": 0,
+      "department": "Computer Engineering (türkiye-azerbaijan University Tau)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "8770101"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "EM533",
+      "course_code_7digit": "8660533",
+      "name": "QUALITY ENGINEERING",
+      "credits": 3,
+      "department": "Engineering Management",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
     }
   ]
 }

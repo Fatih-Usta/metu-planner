@@ -1270,7 +1270,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     <button type="button" id="weeklyGetNteBtn" class="weekly-btn" title="Show NTE courses that fit your current schedule (time, dept, surname rules)">Get NTE</button>
                     <button type="button" id="weeklySaveBtn" class="weekly-btn">Save</button>
                     <button type="button" id="weeklyLoadBtn" class="weekly-btn">Load</button>
-                    <button type="button" id="weeklySaveToPortalBtn" class="weekly-btn">Save to portal</button>
                     <button type="button" id="weeklyShareLinkBtn" class="weekly-btn" title="Copy shareable link for this schedule">Share link</button>
                     <div class="weekly-export-dropdown">
                         <button type="button" id="weeklyExportToggle" class="weekly-btn">Export ▾</button>
@@ -1900,8 +1899,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = (langCode === "tr" ? "Kaydet" : "Save");
         el = document.getElementById("weeklyLoadBtn");
         if (el) el.textContent = (langCode === "tr" ? "Yükle" : "Load");
-        el = document.getElementById("weeklySaveToPortalBtn");
-        if (el) el.textContent = (langCode === "tr" ? "Portala kaydet" : "Save to portal");
         el = document.getElementById("weeklyShareLinkBtn");
         if (el) el.textContent = dict.shareLinkBtn || "Share link";
         el = document.getElementById("weeklyExportToggle");
@@ -1988,6 +1985,26 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var weeklyAccentPrefs = {}; // code -> accent "1"-"13" (user-selected colors)
     var weeklySectionsPrefsKey = "metu_weekly_prefs_v1";
     var weeklyPortalPreviewKey = "metu_portal_weekly_preview";
+
+    // The weekly state is saved for the portal automatically: whenever a schedule is drawn and when the page is left.
+    // Nothing is saved while there is no schedule (e.g. courses prefilled from the planner) unless the user cleared
+    // the list, and a schedule opened from a share link never overwrites the viewer's own until they change something.
+    var weeklyAutoSaveBlocked = false;
+    var weeklyListClearedByUser = false;
+    var weeklyAutoSaveTimer = null;
+    function autoSaveWeeklyToPortal() {
+        if (weeklyAutoSaveBlocked) return;
+        var state = getWeeklyState();
+        if (!(state.schedules && state.schedules.length) && !weeklyListClearedByUser) return;
+        try {
+            saveWeeklyPrefs();
+            localStorage.setItem(weeklyPortalPreviewKey, JSON.stringify(state));
+        } catch (e) {}
+    }
+    function scheduleAutoSave() {
+        clearTimeout(weeklyAutoSaveTimer);
+        weeklyAutoSaveTimer = setTimeout(autoSaveWeeklyToPortal, 300);
+    }
     var weeklyHasPlannerPrefill = false;
     try {
         var __plannerPrefillRaw = localStorage.getItem("metu_weekly_prefill_codes");
@@ -2099,7 +2116,72 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         sharedStateFromUrl = null;
     }
 
-    if (sharedStateFromUrl) {
+    // Short share links: #w=<OIBS term>.<curriculum semester>.<code7>[-<section>]_<code7>[-<section>]...
+    // Meeting times come from the loaded OIBS data, so the link only carries which sections were picked.
+    var sharedCompactLink = null;
+    try {
+        var compactMatch = /^#w=(\d*)\.(\d*)\.([A-Za-z0-9_\-]+)$/.exec(window.location.hash || "");
+        if (compactMatch) {
+            sharedCompactLink = {
+                term: compactMatch[1],
+                semester: parseInt(compactMatch[2], 10),
+                items: compactMatch[3].split("_").filter(Boolean)
+            };
+            history.replaceState(null, "", window.location.pathname + window.location.search);
+        }
+    } catch (e) {
+        sharedCompactLink = null;
+    }
+
+    function buildStateFromCompactLink(link) {
+        var codeBy7 = {};
+        Object.keys(weeklyCoursesByCode || {}).forEach(function (code) {
+            var c = weeklyCoursesByCode[code];
+            if (c && c.course_code_7digit) codeBy7[String(c.course_code_7digit)] = code;
+        });
+        var schedule = [];
+        link.items.forEach(function (item) {
+            var m = /^([A-Za-z0-9]+)(?:-(\w+))?$/.exec(item);
+            if (!m) return;
+            var isCode7 = /^\d{7}$/.test(m[1]);
+            var code7 = isCode7 ? m[1] : String(((weeklyCoursesByCode || {})[m[1]] || {}).course_code_7digit || "");
+            var code = isCode7 ? (codeBy7[m[1]] || m[1]) : m[1];
+            var sec = m[2] != null ? m[2] : null;
+            var meetings = [];
+            if (sec != null && code7 && weeklySectionsBy7 && weeklySectionsBy7[code7]) {
+                var found = weeklySectionsBy7[code7].filter(function (s) { return String(s.section) === sec; })[0];
+                if (found && Array.isArray(found.meetings)) meetings = found.meetings.slice();
+            }
+            schedule.push({ code: code, code7: code7 || null, sectionNum: sec, meetings: meetings, section: { section: sec, meetings: meetings } });
+        });
+        if (!schedule.length) return null;
+        var codes = schedule.map(function (x) { return x.code; });
+        var sectionPrefs = {};
+        schedule.forEach(function (x) { if (x.sectionNum != null) sectionPrefs[x.code] = String(x.sectionNum); });
+        return {
+            version: 2,
+            codes: codes,
+            schedules: [schedule],
+            selectedIndex: 0,
+            semester: isFinite(link.semester) ? link.semester : weeklySemester,
+            failed: [],
+            busySlots: {},
+            rules: { checkDept: true, checkSurname: true, checkCollision: true },
+            plannedCodes: codes.slice(),
+            surname: "",
+            sectionPrefs: sectionPrefs,
+            courseRuleOverrides: {}
+        };
+    }
+
+    if (sharedCompactLink) {
+        weeklyAutoSaveBlocked = true;
+        ensureDataLoaded().then(function () {
+            var compactState = buildStateFromCompactLink(sharedCompactLink);
+            if (compactState) applyWeeklyState(compactState);
+        });
+    } else if (sharedStateFromUrl) {
+        weeklyAutoSaveBlocked = true;
         applyWeeklyState(sharedStateFromUrl);
     } else if (!weeklyHasPlannerPrefill) {
         try {
@@ -3889,6 +3971,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     function renderScheduleInGrid(schedule) {
         var tbody = document.querySelector(".week-table tbody");
         if (!tbody) return;
+        scheduleAutoSave();
 
         // cells[row][col] -> array of blocks in that 1‑hour slot
         var cells = [];
@@ -4891,6 +4974,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         var scheduleBtn = document.getElementById("weeklyScheduleBtn");
         if (scheduleBtn) {
             scheduleBtn.addEventListener("click", function () {
+                weeklyAutoSaveBlocked = false;
+                weeklyListClearedByUser = false;
                 // Starting a new schedule run: clear the persistent week messages log
                 var log = document.getElementById("weeklyErrorsList");
                 if (log) log.innerHTML = "";
@@ -5570,12 +5655,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var suggestBox = document.getElementById("weeklyAddCourseSuggestions");
     if (addCourseBtn && addCourseInput) {
         addCourseBtn.addEventListener("click", function () {
-            addCourseCardByCode(addCourseInput.value);
+            weeklyAutoSaveBlocked = false; addCourseCardByCode(addCourseInput.value);
         });
         addCourseInput.addEventListener("keydown", function (e) {
             if (e.key === "Enter") {
                 e.preventDefault();
-                addCourseCardByCode(addCourseInput.value);
+                weeklyAutoSaveBlocked = false; addCourseCardByCode(addCourseInput.value);
             }
         });
         addCourseInput.addEventListener("input", function () {
@@ -5807,6 +5892,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
             // If we have saved schedules, restore the week view as well
             if (!isV1 && currentSchedulesList && currentSchedulesList.length) {
+                // Schedules rebuilt from a short share link carry no colors; use the ones the cards just got.
+                currentSchedulesList.forEach(function (sched) {
+                    (sched || []).forEach(function (it) {
+                        if (it && !it.accent && weeklyAccentByCode[it.code]) it.accent = weeklyAccentByCode[it.code];
+                    });
+                });
                 var idx = currentScheduleIndex;
                 if (idx < 0 || idx >= currentSchedulesList.length) idx = 0;
                 currentScheduleIndex = idx;
@@ -5867,23 +5958,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         });
     }
 
-    var weeklySaveToPortalBtn = document.getElementById("weeklySaveToPortalBtn");
-    if (weeklySaveToPortalBtn) {
-        weeklySaveToPortalBtn.addEventListener("click", function () {
-            var state = getWeeklyState();
-            try {
-                saveWeeklyPrefs();
-                localStorage.setItem("metu_portal_weekly_preview", JSON.stringify(state));
-                var msg = "Weekly schedule saved for portal preview.";
-                setScheduleSummary("<span class=\"weekly-messages--info\">" + msg + "</span>");
-                showToast(msg, "success");
-            } catch (e) {
-                var errMsg = "Could not save weekly schedule for portal.";
-                setScheduleSummary("<span class=\"weekly-messages--error\">" + errMsg + "</span>");
-                showToast(errMsg, "error");
-            }
-        });
-    }
+    // Portal copy is saved automatically (see autoSaveWeeklyToPortal); also catch changes made since the last draw.
+    window.addEventListener("beforeunload", autoSaveWeeklyToPortal);
+    document.addEventListener("visibilitychange", function () {
+        if (document.visibilityState === "hidden") autoSaveWeeklyToPortal();
+    });
 
     var weeklyShareLinkBtn = document.getElementById("weeklyShareLinkBtn");
     if (weeklyShareLinkBtn) {
@@ -5894,10 +5973,15 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 return;
             }
             try {
-                var payload = { schedule: schedule, semester: weeklySemester };
-                var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(payload))));
+                // Only which sections were picked; the opener reads meeting times from the site's OIBS data.
+                var items = schedule.map(function (x) {
+                    var id = String(x.code7 || x.code || "").replace(/[^A-Za-z0-9]/g, "");
+                    if (!id) return "";
+                    var sec = x.sectionNum != null ? String(x.sectionNum).replace(/[^A-Za-z0-9]/g, "") : "";
+                    return id + (sec ? "-" + sec : "");
+                }).filter(Boolean);
                 var baseUrl = window.location.origin + window.location.pathname;
-                var shareUrl = baseUrl + "#s=" + encoded;
+                var shareUrl = baseUrl + "#w=" + (weeklyOibsTerm || "") + "." + (weeklySemester || "") + "." + items.join("_");
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     navigator.clipboard.writeText(shareUrl).then(function () {
                         showToast(wt("shareLinkCopied"), "success");
@@ -5968,6 +6052,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             clearWeekGrid();
             setScheduleSummary("");
             setMessage(wt("msgClearedList"), false);
+            weeklyAutoSaveBlocked = false;
+            weeklyListClearedByUser = true;
+            scheduleAutoSave();
         });
     }
 

@@ -227,6 +227,11 @@
           "name": "STATICS (STATÄ°K)"
         },
         {
+          "internal_code": "3840262",
+          "code": "3840262",
+          "name": "DYNAMICS (DÄ°NAMÄ°K)"
+        },
+        {
           "internal_code": "3840300",
           "code": "3840300",
           "name": "SUMMER PRACTICE II (YAZ STAJI II)"
@@ -285,6 +290,11 @@
           "internal_code": "3840476",
           "code": "3840476",
           "name": "SPACE VEHICLE DESIGN (UZAY ARAÃLARI TASARIMI)"
+        },
+        {
+          "internal_code": "3840483",
+          "code": "3840483",
+          "name": "AUTOMATIC CONTROL SYSTEMS II (OTOMATÄ°K KONTROL SÄ°STEMLERÄ° II)"
         }
       ]
     },
@@ -648,6 +658,11 @@
       "value": "393",
       "text": "Artificial IntelligenceÂ Engineering/Yapay Zeka MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)",
       "courses": [
+        {
+          "internal_code": "3930500",
+          "code": "3930500",
+          "name": "M.SC.THESIS (YÃKSEK LÄ°SANS TEZÄ°)"
+        },
         {
           "internal_code": "3930591",
           "code": "3930591",
@@ -1345,14 +1360,14 @@
           "name": "INTERDISCIPLINARY PROBLEM SOLVING (DisiplinlerarasÄ± Problem ÃÃ¶zme)"
         },
         {
-          "internal_code": "3124151",
-          "code": "3124151",
-          "name": "ESSENTIAL LEADERSHIP SKILLS (TEMEL LÄ°DERLÄ°K YETENEKLERÄ°)"
-        },
-        {
           "internal_code": "3124153",
           "code": "3124153",
           "name": "INTERNATIONAL TRADE AND TRADE POLICY (ULUSLARARASI TÄ°CARET VE TÄ°CARET POLÄ°TÄ°KASI)"
+        },
+        {
+          "internal_code": "3124156",
+          "code": "3124156",
+          "name": "SUSTAINABLE TRANSITIONS MANAGEMENT AND ENERGY GOVERNANCE (SÃRDÃRÃLEBÄ°LÄ°RLÄ°K GEÃÄ°ÅLERÄ° YÃNETÄ°MÄ° VE ENERJÄ° YÃNETÄ°ÅÄ°MÄ°)"
         },
         {
           "internal_code": "3124222",
@@ -1460,6 +1475,11 @@
           "name": "SUSTAINABLE FINANCE (SÃRDÃRÃLEBÄ°LÄ°R FÄ°NANS)"
         },
         {
+          "internal_code": "3124844",
+          "code": "3124844",
+          "name": "ARTIFICIAL INTELLIGENCE STRATEGIES IN FINANCE (FÄ°NANSTA YAPAY ZEKA STRATEJÄ°LERÄ°)"
+        },
+        {
           "internal_code": "3124845",
           "code": "3124845",
           "name": "MACHINE LEARNING FOR FINANCE (FÄ°NANS Ä°ÃÄ°N MAKÄ°NE ÃÄRENMESÄ°)"
@@ -1485,14 +1505,14 @@
           "name": "MANAGING TECHNOLOGY AND INNOVATION (Teknoloji ve Yenilik YÃ¶netimi)"
         },
         {
-          "internal_code": "3125151",
-          "code": "3125151",
-          "name": "ESSENTIAL LEADERSHIP SKILLS (TEMEL LÄ°DERLÄ°K YETENKLERÄ°)"
-        },
-        {
           "internal_code": "3125153",
           "code": "3125153",
           "name": "INTERNATIONAL TRADE AND TRADE POLICY (ULUSLARARASI TÄ°CARET VE TÄ°CARET POLÄ°TÄ°KASI)"
+        },
+        {
+          "internal_code": "3125156",
+          "code": "3125156",
+          "name": "SUSTAINABLE TRANSITIONS MANAGEMENT AND ENERGY GOVERNANCE (SÃRDÃRÃLEBÄ°LÄ°RLÄ°K GEÃÄ°ÅLERÄ° YÃNETÄ°MÄ° VE ENERJÄ° YÃNETÄ°ÅÄ°MÄ°)"
         },
         {
           "internal_code": "3125201",
@@ -1528,6 +1548,11 @@
           "internal_code": "3125517",
           "code": "3125517",
           "name": "DECISION ANALYSIS: TOOLS AND METHODS (Karar Analizi: AraÃ§lar ve YÃ¶ntemler)"
+        },
+        {
+          "internal_code": "3125518",
+          "code": "3125518",
+          "name": "DECISION ANALYSIS: BEHAVIORAL AND PSYCHOLOGICAL PERSPECTIVE (Karar Analizi: DavranÄ±Åsal ve Psikolojik BakÄ±Å AÃ§Ä±sÄ±)"
         },
         {
           "internal_code": "3125602",
@@ -1749,6 +1774,11 @@
           "internal_code": "3534146",
           "code": "3534146",
           "name": "APPLIED INNOVATION BASED ENTREPRENEURSHIP (UygulamalÄ± Yenilik Temelli GiriÅimcilik)"
+        },
+        {
+          "internal_code": "3534154",
+          "code": "3534154",
+          "name": "NEUROSCIENCE APPLICATIONS FOR BUSINESS (Ä°ÅLETME Ä°ÃÄ°N SÄ°NÄ°RBÄ°LÄ°M UYGULAMALARI)"
         }
       ]
     },
@@ -1934,6 +1964,11 @@
           "name": "THERMODYNAMICS II (TERMODÄ°NAMÄ°K II)"
         },
         {
+          "internal_code": "3670312",
+          "code": "3670312",
+          "name": "CHEMICAL REACTION ENGINEERING (KÄ°MYASAL REAKSÄ°YON MÃHENDÄ°SLÄ°ÄÄ°)"
+        },
+        {
           "internal_code": "3670323",
           "code": "3670323",
           "name": "FLUID MECHANICS (AKIÅKANLAR MEKANÄ°ÄÄ°)"
@@ -1942,6 +1977,11 @@
           "internal_code": "3670325",
           "code": "3670325",
           "name": "HEAT TRANSFER (ISI TRANSFERÄ°)"
+        },
+        {
+          "internal_code": "3670326",
+          "code": "3670326",
+          "name": "MASS TRANSFER AND SEPARATION PROCESSES (KÃTLE TRANSFERÄ° VE AYIRMA PROSESLERÄ°)"
         },
         {
           "internal_code": "3670332",
@@ -1969,9 +2009,19 @@
           "name": "CHEMICAL ENGINEERING DESIGN I (KÄ°MYA MÃHENDÄ°SLÄ°ÄÄ° TASARIMI I)"
         },
         {
+          "internal_code": "3670418",
+          "code": "3670418",
+          "name": "CHEMICAL ENGINEERING DESIGN II (KÄ°MYA MÃHENDÄ°SLÄ°ÄÄ° TASARIMI II)"
+        },
+        {
           "internal_code": "3670471",
           "code": "3670471",
           "name": "WATER TREATMENT TECHNOLOGY (SU ARITMA TEKNOLOJÄ°LERÄ°)"
+        },
+        {
+          "internal_code": "3670490",
+          "code": "3670490",
+          "name": "FUNDAMENTALS OF BIOCHEMICAL ENG. (BÄ°YOKÄ°MYA MÃHENDÄ°SLÄ°ÄÄ°NÄ°N TEMELLERÄ°)"
         }
       ]
     },
@@ -3139,11 +3189,6 @@
           "name": "MEASUREMENT AND EVALUATION (ÃLÃME VE DEÄERLENDÄ°RME)"
         },
         {
-          "internal_code": "4300358",
-          "code": "4300358",
-          "name": "ARTIFICIAL INTELLIGENCE: APPLICATIONS IN EDUCATION (YAPAY ZEKA: EÄÄ°TÄ°MDE UYGULAMALAR)"
-        },
-        {
           "internal_code": "4300360",
           "code": "4300360",
           "name": "INTRODUC. TO VISUAL DESIGN/BASIC ELEMENTS OF VIS. DES. (GÃRSEL TASARIMA GÄ°RÄ°Å / GÃRSEL TASARIMIN TEMEL UNSURLARI)"
@@ -3276,6 +3321,11 @@
           "name": "DISCRETE COMPUTATIONAL STRUCTURES (KESÄ°KLÄ° HESAPLAMA YAPILARI)"
         },
         {
+          "internal_code": "5750300",
+          "code": "5750300",
+          "name": "SUMMER PRACTICE I (YAZ STAJI I)"
+        },
+        {
           "internal_code": "5750315",
           "code": "5750315",
           "name": "ALGORITHMS (ALGORÄ°TMALAR)"
@@ -3395,11 +3445,6 @@
           "internal_code": "5710460",
           "code": "5710460",
           "name": "SPECIAL TOPICS IN COMPUTER ENGINEERING: INTRODUCTION TO ROBOTICS FOR COMPUTER ENGINEERING (BÄ°LG. MÃH. ÃZEL KONULAR: BÄ°LGÄ°SAYAR MÃHENDÄ°SLÄ°ÄÄ° Ä°ÃÄ°N ROBOTÄ°ÄE GÄ°RÄ°Å)"
-        },
-        {
-          "internal_code": "5710462",
-          "code": "5710462",
-          "name": "ARTIFICIAL INTELLIGENCE (YAPAY ZEKA)"
         },
         {
           "internal_code": "5710463",
@@ -3638,6 +3683,11 @@
           "name": "SOFTWARE DEVELOPMENT WITH SCRIPTING LANGUAGES (BETÄ°K DÄ°LLER Ä°LE YAZILIM GELÄ°ÅTÄ°RME)"
         },
         {
+          "internal_code": "3550462",
+          "code": "3550462",
+          "name": "ARTIFICIAL INTELLIGENCE (YAPAY ZEKA)"
+        },
+        {
           "internal_code": "3550463",
           "code": "3550463",
           "name": "INTRODUCTION TO NATURAL LANGUAGE PROCESSING (DOÄAL DÄ°L Ä°ÅLEMEYE GÄ°RÄ°Å)"
@@ -3703,9 +3753,19 @@
           "name": "SPECIAL STUDIES (YÃKSEK LÄ°SANS TEZ ÃALIÅMALARI)"
         },
         {
+          "internal_code": "3550807",
+          "code": "3550807",
+          "name": "SPECIAL STUDIES (YÃKSEK LÄ°SANS TEZ ÃALIÅMALARI)"
+        },
+        {
           "internal_code": "3551530",
           "code": "3551530",
           "name": "MEDICAL IMAGE ANALYSIS (TIBBÄ° GÃRÃNTÃLEME ANALÄ°ZÄ°)"
+        },
+        {
+          "internal_code": "3552546",
+          "code": "3552546",
+          "name": "SOFTWARE ARCHITECTURE (YAZILIM MÄ°MARÄ°SÄ°)"
         }
       ]
     },
@@ -4252,9 +4312,34 @@
           "name": "GAME THEORY AND ITS APPLICATIONS (OYUN TEORÄ°SÄ° VE UYGULAMALARI)"
         },
         {
+          "internal_code": "3110444",
+          "code": "3110444",
+          "name": "ECONOMICS OF INNOVATION (Ä°NOVASYON Ä°KTÄ°SADI)"
+        },
+        {
           "internal_code": "3110460",
           "code": "3110460",
           "name": "STRUCTURE OF THE TURKISH ECONOMY (TÃRKÄ°YE EKONOMÄ°SÄ°NÄ°N YAPISI)"
+        },
+        {
+          "internal_code": "3110465",
+          "code": "3110465",
+          "name": "DEVELOPMENT ECONOMICS (KALKINMA Ä°KTÄ°SADI)"
+        },
+        {
+          "internal_code": "3110482",
+          "code": "3110482",
+          "name": "REVIEW TOPICS IN ECONOMICS (Ä°KTÄ°SATTA ÃZEL KONULAR)"
+        },
+        {
+          "internal_code": "3110487",
+          "code": "3110487",
+          "name": "EXPERIMENTAL ECONOMICS (DENEYSEL Ä°KTÄ°SAT)"
+        },
+        {
+          "internal_code": "3110498",
+          "code": "3110498",
+          "name": "ISSUES IN LABOUR ECONOMICS (ÃALIÅMA EKONOMÄ°SÄ°NDE ÃZEL KONULAR)"
         },
         {
           "internal_code": "3110500",
@@ -4378,6 +4463,11 @@
           "name": "PRINCIPLES OF ECONOMETRICS I ()"
         },
         {
+          "internal_code": "3520312",
+          "code": "3520312",
+          "name": "PRINCIPLES OF ECONOMETRICS II ()"
+        },
+        {
           "internal_code": "3520315",
           "code": "3520315",
           "name": "ECON.OF NETWORK AND THE INTERNET (AÄ VE Ä°NTERNET EKONOMÄ°SÄ°)"
@@ -4401,6 +4491,11 @@
           "internal_code": "3520480",
           "code": "3520480",
           "name": "WORLD ECONOMY (DÃNYA EKONOMÄ°SÄ°)"
+        },
+        {
+          "internal_code": "3520498",
+          "code": "3520498",
+          "name": "LABOR MARKET ECONOMICS (Ä°ÅGÃCÃ PÄ°YASASI Ä°KTÄ°SADI)"
         }
       ]
     },
@@ -5112,7 +5207,33 @@
     {
       "value": "866",
       "text": "Engineering Management/MÃ¼hendislik YÃ¶netimi",
-      "courses": []
+      "courses": [
+        {
+          "internal_code": "8660505",
+          "code": "8660505",
+          "name": "DECISION MODELS (KARAR MODELLERÄ°)"
+        },
+        {
+          "internal_code": "8660521",
+          "code": "8660521",
+          "name": "APPLIED STATISTICS (UYGULAMALI Ä°STATÄ°STÄ°K)"
+        },
+        {
+          "internal_code": "8660522",
+          "code": "8660522",
+          "name": "DATA MINING FOR BUSINESS INTELLIGENCE (Ä°Å ZEKASI Ä°ÃÄ°N VERÄ° MADENCÄ°LÄ°ÄÄ°)"
+        },
+        {
+          "internal_code": "8660533",
+          "code": "8660533",
+          "name": "QUALITY ENGINEERING (KALÄ°TE MÃHENDÄ°SLÄ°ÄÄ°)"
+        },
+        {
+          "internal_code": "8660727",
+          "code": "8660727",
+          "name": "INTRODUCTION TO ENGINEERING MANAGEMENT (MÃHENDÄ°SLÄ°K YÃNETÄ°MÄ°NE GÄ°RÄ°Å)"
+        }
+      ]
     },
     {
       "value": "561",
@@ -5210,6 +5331,11 @@
           "name": "ENGINEERING ECONOMY (MÃHENDÄ°SLÄ°K EKONOMÄ°SÄ°)"
         },
         {
+          "internal_code": "3830410",
+          "code": "3830410",
+          "name": "Applied Engineering Systems I (UygulamalÄ± MÃ¼hendislik Sistemleri I)"
+        },
+        {
           "internal_code": "3830412",
           "code": "3830412",
           "name": "SPECIAL TOPICS: NANOSCIENCE AND NANOTECHNOLOGY (ÃZEL KONULAR: NANO BÄ°LÄ°M VE NANOTEKNOLOJÄ°)"
@@ -5225,6 +5351,11 @@
       "value": "451",
       "text": "English Language Teaching (International Joint Program)/Ä°ngilizce ÃÄretmenliÄi (UluslararasÄ± Ortak Program)",
       "courses": [
+        {
+          "internal_code": "4510101",
+          "code": "4510101",
+          "name": "TEFL 101 SEMINAR IN TEACHING ENGLISH AS A FOREIGN LANGUAGE I (SEMÄ°NER (YABANCI DÄ°L OLARAK Ä°NGÄ°LÄ°ZCE ÃÄRETÄ°MÄ° I))"
+        },
         {
           "internal_code": "4510171",
           "code": "4510171",
@@ -5388,6 +5519,11 @@
       "text": "English Language Teaching/Ä°ngiliz Dili ÃÄretimi(Kuzey Kıbrıs Kampüsü)",
       "courses": [
         {
+          "internal_code": "3910506",
+          "code": "3910506",
+          "name": "SECOND LANGUAGE ACQUISITION (Ä°KÄ°NCÄ° DÄ°L EDÄ°NÄ°MÄ°)"
+        },
+        {
           "internal_code": "3910508",
           "code": "3910508",
           "name": "CONTEMPORARY ISSUES IN ELT (Ä°NGÄ°LÄ°Z DÄ°LÄ° ÃÄRETÄ°MÄ°NDE GÃNCEL KONULAR)"
@@ -5396,6 +5532,11 @@
           "internal_code": "3910525",
           "code": "3910525",
           "name": "RESEARCH METHODS FOR ELT (Ä°NGÄ°LÄ°Z DÄ°LÄ° ÃÄRETÄ°MÄ° Ä°ÃÄ°N ARAÅTIRMA YÃNTEMLERÄ°)"
+        },
+        {
+          "internal_code": "3910526",
+          "code": "3910526",
+          "name": "APPROACHES, METHODS AND TECHNIQUES IN ELT (Ä°NGÄ°LÄ°Z DÄ°LÄ° ÃÄRETÄ°MÄ°NDE YAKLAÅIMLAR, YÃNTEMLER VE TEKNÄ°KLER)"
         },
         {
           "internal_code": "3910590",
@@ -5807,11 +5948,6 @@
           "internal_code": "5730313",
           "code": "5730313",
           "name": "FOOD CHEMISTRY (GIDA KÄ°MYASI)"
-        },
-        {
-          "internal_code": "5730316",
-          "code": "5730316",
-          "name": "NUMERICAL METHODS AND MODELING FOR FOOD ENGINEERING (GIDA MÃHENDÄ°SLÄ°ÄÄ° Ä°ÃÄ°N NÃMERÄ°K METOTLAR VE MODELLEME)"
         },
         {
           "internal_code": "5730318",
@@ -7474,6 +7610,11 @@
           "name": "PLANT LOCATION AND LAYOUT ()"
         },
         {
+          "internal_code": "3880426",
+          "code": "3880426",
+          "name": "TOPICS IN PRODUCTION MANAGEMENT ()"
+        },
+        {
           "internal_code": "3880429",
           "code": "3880429",
           "name": "TOPICS IN PRODUCTION PLANNING ()"
@@ -8513,11 +8654,6 @@
           "name": "APPLIED MATHEMATICS I (UYGULAMALI MATEMATÄ°K I)"
         },
         {
-          "internal_code": "2360496",
-          "code": "2360496",
-          "name": "SUPERVISED INDEPENDENT STUDY &RESEARCH (DANIÅMAN DENETÄ°MÄ°NDE BAÄIMSIZ ÃALIÅMA VE ARAÅTIRMA)"
-        },
-        {
           "internal_code": "2360500",
           "code": "2360500",
           "name": "M.S. THESIS (MASTIR TEZÄ°)"
@@ -9001,6 +9137,11 @@
           "name": "STATICS (STATÄ°K)"
         },
         {
+          "internal_code": "3650208",
+          "code": "3650208",
+          "name": "DYNAMICS (DÄ°NAMÄ°K)"
+        },
+        {
           "internal_code": "3650227",
           "code": "3650227",
           "name": "ENGINEERING MATERIALS (MÃHENDÄ°SLÄ°K MALZEMELERÄ°)"
@@ -9076,6 +9217,16 @@
           "name": "M.SC.THESIS (YÃKSEK LÄ°SANS TEZÄ°)"
         },
         {
+          "internal_code": "3650501",
+          "code": "3650501",
+          "name": "NUMERICAL METHODS IN ME I ()"
+        },
+        {
+          "internal_code": "3650514",
+          "code": "3650514",
+          "name": "ADVANCED SOLAR ENERGY UTILIZATION (GELÄ°ÅMÄ°Å GÃNEÅ ENERJÄ°SÄ° KULLANIMI)"
+        },
+        {
           "internal_code": "3650517",
           "code": "3650517",
           "name": "ADVANCED FLUID MECHANICS (Ä°LERÄ° AKIÅKANLAR MEKANÄ°ÄÄ°)"
@@ -9084,6 +9235,11 @@
           "internal_code": "3650521",
           "code": "3650521",
           "name": "ANALYTICAL METHODS IN ENGINEERING I (MÃHENDÄ°SLÄ°KTE ANALÄ°TÄ°K YÃNTEMLER I)"
+        },
+        {
+          "internal_code": "3650522",
+          "code": "3650522",
+          "name": "PRINCIPLES OF ROBOTICS (TEMEL ROBOTÄ°K)"
         },
         {
           "internal_code": "3650801",
@@ -10971,6 +11127,16 @@
           "internal_code": "3740488",
           "code": "3740488",
           "name": "SPECIAL TOPICS IN PETROLEUM ENGINEERING: UNCONVENTIONAL OIL AND GAS RESOURCES (PETROL MÃHENDÄ°SLÄ°ÄÄ°NDE ÃZEL KONULAR: KONVANSÄ°YONEL OLMAYAN PETROL VE GAZ KAYNAKLARI)"
+        },
+        {
+          "internal_code": "3740490",
+          "code": "3740490",
+          "name": "PETROLEUM ENGINEERING RESEARCH (PETROL MÃHENDÄ°SLÄ°ÄÄ° ARAÅTIRMALARI)"
+        },
+        {
+          "internal_code": "3740494",
+          "code": "3740494",
+          "name": "SPECIAL TOPICS IN PETROLEUM ENGINEERING: APPLIED RESERVOIR SIMULATION ()"
         }
       ]
     },
@@ -11651,6 +11817,11 @@
           "internal_code": "3580105",
           "code": "3580105",
           "name": "GENERAL PHYSICS I (GENEL FÄ°ZÄ°K I)"
+        },
+        {
+          "internal_code": "3580106",
+          "code": "3580106",
+          "name": "GENERAL PHYSICS II (GENEL FÄ°ZÄ°K II)"
         }
       ]
     },
@@ -11704,29 +11875,19 @@
           "name": "INTERNATIONAL POLITICAL ECONOMY (ULUSLARARASI SÄ°YASÄ° Ä°KTÄ°SAT)"
         },
         {
-          "internal_code": "3540308",
-          "code": "3540308",
-          "name": "GENDER AND POLITICS (TOPLUMSAL CÄ°NSÄ°YET VE SÄ°YASET)"
-        },
-        {
           "internal_code": "3540353",
           "code": "3540353",
           "name": "INDIAN POLITICS (Hindistan PolitikasÄ±)"
         },
         {
-          "internal_code": "3540354",
-          "code": "3540354",
-          "name": "POLITICS OF DIASPORA (DÄ°YASPORA SÄ°YASETÄ°)"
+          "internal_code": "3540420",
+          "code": "3540420",
+          "name": "POLITICS AND SOCIETY IN TURKEY (TÃRKÄ°YE'NÄ°N SÄ°YASETÄ° VE TOPLUMU)"
         },
         {
           "internal_code": "3540429",
           "code": "3540429",
           "name": "INTERNATIONAL POLITICS OF OIL (PETROLÃN ULUSLARARASI POLÄ°TÄ°KASI)"
-        },
-        {
-          "internal_code": "3544185",
-          "code": "3544185",
-          "name": "EUROPEAN IDENTITY AND TURKISH WESTERNIZATION (AVRUPA KÄ°MLÄ°ÄÄ° VE TÃRK BATILILAÅMASI)"
         }
       ]
     },
@@ -13241,11 +13402,6 @@
           "name": "MULTIVARIATE TIME SERIES (ÃOK DEÄÄ°ÅKENLÄ° ZAMAN SERÄ°LERÄ°)"
         },
         {
-          "internal_code": "2460564",
-          "code": "2460564",
-          "name": "ADVANCED STATISTICAL DATA ANALYSIS (Ä°LERÄ° Ä°STATÄ°STÄ°KSEL VERÄ° ANALÄ°ZÄ°)"
-        },
-        {
           "internal_code": "2460565",
           "code": "2460565",
           "name": "DECISION THEORY AND BAYESIAN ANALYSIS (KARAR TEORÄ°SÄ° VE BAYESÃÄ° ANALÄ°Z)"
@@ -13331,6 +13487,16 @@
           "internal_code": "3900504",
           "code": "3900504",
           "name": "SUSTAINABLE DEVELOPMENT (SÃRDÃRÃLEBÄ°LÄ°R KALKINMA)"
+        },
+        {
+          "internal_code": "3900510",
+          "code": "3900510",
+          "name": "RENEWABLE ENERGY AND CLIMATE CHANGE (YENÄ°LENEBÄ°LÄ°R ENERJÄ° VE Ä°KLÄ°M DEÄÄ°ÅÄ°KLÄ°ÄÄ°)"
+        },
+        {
+          "internal_code": "3900511",
+          "code": "3900511",
+          "name": "Applied Energy and Environmental Systems (UygulamalÄ± Enerji ve Ãevre Sistemleri)"
         },
         {
           "internal_code": "3900572",
@@ -13444,11 +13610,6 @@
           "name": "MORAL ASPECTS IN CHILD LITERATURE I (ÃOCUK EDEBÄ°YATINDA ETÄ°K KONULAR)"
         },
         {
-          "internal_code": "3660279",
-          "code": "3660279",
-          "name": "SOCIOLINGUISTICS AND INTERCULTURAL COMMUNICATION (TOPLUMDÄ°LBÄ°LÄ°M VE KÃLTÃRLERARASI Ä°LETÄ°ÅÄ°M)"
-        },
-        {
           "internal_code": "3660311",
           "code": "3660311",
           "name": "ADVANCED WRITING & RESEARCH SKILLS (Ä°LERÄ° YAZMA VE ARAÅTIRMA BECERÄ°LERÄ°)"
@@ -13503,6 +13664,11 @@
           "internal_code": "6420101",
           "code": "6420101",
           "name": "TURKISH I (TÃRK DÄ°LÄ° I)"
+        },
+        {
+          "internal_code": "6420102",
+          "code": "6420102",
+          "name": "TURKISH II (TÃRK DÄ°LÄ° II)"
         },
         {
           "internal_code": "6420103",
@@ -13561,11 +13727,6 @@
           "name": "TURKISH I (TÃRK DÄ°LÄ° I)"
         },
         {
-          "internal_code": "3610102",
-          "code": "3610102",
-          "name": "TURKISH II (TÃRK DÄ°LÄ° II)"
-        },
-        {
           "internal_code": "3610103",
           "code": "3610103",
           "name": "TURKISH I: WRITTEN COMMUNICATION (TÃRK DÄ°LÄ° I: YAZILI ANLATIM)"
@@ -13613,11 +13774,6 @@
           "name": "THEORY PRACTICE IN PUBLIC ADMINISTRATION (KAMU YÃNETÄ°MÄ°NDE KURAM VE KILGI)"
         },
         {
-          "internal_code": "8110504",
-          "code": "8110504",
-          "name": "PROTHESIS SEMINAR (TEZ SEMÄ°NERÄ°)"
-        },
-        {
           "internal_code": "8110515",
           "code": "8110515",
           "name": "TURKISH URBAN PLANNING LEGISLATION AND PRACTICE (TÃRKÄ°YEÂDE KENT PLANLAMA MEVZUATI VE UYGULAMALARI)"
@@ -13628,29 +13784,9 @@
           "name": "URBAN POL. PLAN.AND GOVERMENTS STUDIO I (KENTSEL POLÄ°TÄ°KA PLANLAMASI STÃDYOSU I)"
         },
         {
-          "internal_code": "8110533",
-          "code": "8110533",
-          "name": "RESEARCH METHODS AND ETHICS IN SOCIAL SCIENCE (SOSYAL BÄ°LÄ°MLERDE ARAÅTIRMA YÃNTEMLERÄ° VE ETÄ°K)"
-        },
-        {
           "internal_code": "8110599",
           "code": "8110599",
           "name": "MASTER`S THESIS (KENTSEL POLÄ°TÄ°KA PLANLAMASI VE YEREL YÃNETÄ°MLER YÃKSEK LÄ°SANS TEZÄ°)"
-        },
-        {
-          "internal_code": "8110602",
-          "code": "8110602",
-          "name": "PLANNING, POLITICS AND PUBLIC POLICY (PLANLAMA, SÄ°YASET VE KAMU POLÄ°TÄ°KASI)"
-        },
-        {
-          "internal_code": "8110604",
-          "code": "8110604",
-          "name": "ETHICS IN RESEARCH AND QUANTITATIVE RESEARCH METHODS (NÄ°CEL ARAÅTIRMA YÃNTEMLERÄ° VE ARAÅTIRMADA ETÄ°K)"
-        },
-        {
-          "internal_code": "8110610",
-          "code": "8110610",
-          "name": "PROTHESIS SEMINAR (TEZ SEMÄ°NERÄ°)"
         },
         {
           "internal_code": "8110699",
