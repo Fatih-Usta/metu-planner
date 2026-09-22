@@ -1277,6 +1277,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             <button type="button" id="weeklyExportPng" class="weekly-export-item">PNG</button>
                             <button type="button" id="weeklyExportPdf" class="weekly-export-item">PDF</button>
                             <button type="button" id="weeklyExportIcs" class="weekly-export-item">Calendar (.ics)</button>
+                            <button type="button" id="weeklyExportTxt" class="weekly-export-item">Registration (.txt)</button>
                         </div>
                     </div>
                 </div>
@@ -1610,6 +1611,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             contactBtn: "Contact",
             contactModalTitle: "Contact information",
             exportBtn: "Export ▾",
+            exportTxt: "Registration (.txt)",
+            exportTxtDone: "Registration list (.txt) exported.",
             weekMessagesTitle: "Week messages",
             sectionToggleShow: "Sections",
             sectionToggleHide: "Hide sections",
@@ -1732,6 +1735,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             contactBtn: "İletişim",
             contactModalTitle: "İletişim bilgileri",
             exportBtn: "Dışa aktar ▾",
+            exportTxt: "Kayıt listesi (.txt)",
+            exportTxtDone: "Kayıt listesi (.txt) indirildi.",
             weekMessagesTitle: "Hafta mesajları",
             sectionToggleShow: "Şubeler",
             sectionToggleHide: "Şubeleri gizle",
@@ -1903,6 +1908,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = dict.shareLinkBtn || "Share link";
         el = document.getElementById("weeklyExportToggle");
         if (el) el.textContent = dict.exportBtn || "Export ▾";
+        el = document.getElementById("weeklyExportTxt");
+        if (el) el.textContent = dict.exportTxt || "Registration (.txt)";
         el = document.getElementById("weeklyAddCourseLabel");
         if (el) el.textContent = dict.addCourseLabel;
         el = document.getElementById("weeklyAddCourseBtn");
@@ -2810,6 +2817,28 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         } catch (e) {
             showToast("Could not export calendar.", "error");
         }
+    }
+
+    // One line per course for registration: short code, 7-digit code, section (e.g. "CENG213 5710213 1").
+    function exportWeekAsTxt() {
+        var schedule = currentSchedulesList && currentSchedulesList[currentScheduleIndex || 0] || currentSchedulesList[0] || [];
+        if (!schedule || !schedule.length) {
+            showToast(wt("shareLinkNoSchedule"), "error");
+            return;
+        }
+        var lines = schedule.map(function (x) {
+            var code = String(x.code || "").replace(/\s+/g, "").toUpperCase();
+            var code7 = String(x.code7 || ((weeklyCoursesByCode || {})[x.code] || {}).course_code_7digit || "");
+            var sec = x.sectionNum != null ? String(x.sectionNum).trim() : "";
+            return [code, code7, sec].filter(Boolean).join(" ");
+        });
+        var blob = new Blob([lines.join("\r\n") + "\r\n"], { type: "text/plain;charset=utf-8" });
+        var a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "metu-registration" + (weeklyOibsTerm ? "-" + weeklyOibsTerm : "") + ".txt";
+        a.click();
+        URL.revokeObjectURL(a.href);
+        showToast(wt("exportTxtDone"), "success");
     }
 
     // OIBS department value (e.g. "567") -> code its students have in section rules (e.g. "EE"). Section rules use
@@ -6094,6 +6123,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 weeklyExportMenu.classList.remove("is-open");
                 weeklyExportMenu.setAttribute("aria-hidden", "true");
                 exportWeekAsIcs();
+            });
+        }
+        var exportTxtItem = document.getElementById("weeklyExportTxt");
+        if (exportTxtItem) {
+            exportTxtItem.addEventListener("click", function () {
+                weeklyExportMenu.classList.remove("is-open");
+                weeklyExportMenu.setAttribute("aria-hidden", "true");
+                exportWeekAsTxt();
             });
         }
         document.addEventListener("click", function (e) {
