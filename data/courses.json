@@ -101009,6 +101009,58 @@
       "offered_semester": "Fall or Spring Semesters.",
       "prerequisites": null,
       "programs": []
+    },
+    {
+      "code": "SOC208",
+      "course_code_7digit": "2320208",
+      "name": "ECONOMICS AND SOCIETY",
+      "credits": 3,
+      "department": "Sociology",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INE223",
+      "course_code_7digit": "3880223",
+      "name": "DISCRETE COMPUTATIONAL STRUCTURES",
+      "credits": 3,
+      "department": "Industrial Engineering",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ENG301",
+      "course_code_7digit": "6390301",
+      "name": "PHILOSOPHY, INDIVIDUALISM, AND MODERN MYTH IN PROGRESSIVE ROCK THROUGH THE LYRICS OF RUSH",
+      "credits": 3,
+      "department": "Modern Languages (english)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "6390211"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "ENG302",
+      "course_code_7digit": "6390302",
+      "name": "THE ENNEAGRAM FOR CAREER READINESS",
+      "credits": 3,
+      "department": "Modern Languages (english)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "6390211"
+          ]
+        ]
+      },
+      "programs": []
     }
   ]
 }

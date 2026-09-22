@@ -318,6 +318,11 @@
           "name": "GENERAL ARCHAEOMETRY (GENEL ARKEOMETRÄ°)"
         },
         {
+          "internal_code": "8630531",
+          "code": "8630531",
+          "name": "GENERAL ARCHAEOLOGY (GENEL ARKEOLOJÄ°)"
+        },
+        {
           "internal_code": "8630541",
           "code": "8630541",
           "name": "ARCHAEOLOG. MATERIALS&THEIR PROPERTIES (ARKEOLOJÄ°K MALZEMELER VE ÃZELLÄ°KLERÄ°)"
@@ -1237,6 +1242,11 @@
           "internal_code": "3160142",
           "code": "3160142",
           "name": "FINANCIAL ACCOUNTING (Finansal Muhasebe)"
+        },
+        {
+          "internal_code": "3160312",
+          "code": "3160312",
+          "name": "MANAGERIAL SKILLS LAB. (YÃ¶netim Becerileri LaboratuvarÄ±)"
         },
         {
           "internal_code": "3160321",
@@ -2774,11 +2784,6 @@
           "name": "ADVANCED MECHANICS OF FLUIDS I (Ä°LERI AKIÅKANLAR MEKANIÄI 1)"
         },
         {
-          "internal_code": "5620545",
-          "code": "5620545",
-          "name": "CEMENT AND CONCRETE QUALITY (ÃIMENTO VE BETONUN KALITESI)"
-        },
-        {
           "internal_code": "5620555",
           "code": "5620555",
           "name": "TRAFFIC ENGINEERING I (TRAFIK MÃHENDISLIÄI 1)"
@@ -3249,6 +3254,11 @@
           "name": "M.S. THESIS (YUKSEK LÄ°SANS TEZÄ°)"
         },
         {
+          "internal_code": "4300502",
+          "code": "4300502",
+          "name": "THE BUSINESS CASE FOR E-LEARNING (Ä°Å ORTAMINDA E-ÃÄRENME)"
+        },
+        {
           "internal_code": "4300503",
           "code": "4300503",
           "name": "EDUCATIONAL STATISTICS (EÄÄ°TÄ°M Ä°STATÄ°STÄ°ÄÄ°)"
@@ -3603,11 +3613,6 @@
           "name": "DISCRETE COMPUTATIONAL STRUCTURES (KESÄ°KLÄ° HESAPLAMA YAPILARI)"
         },
         {
-          "internal_code": "3550230",
-          "code": "3550230",
-          "name": "INTRODUCTION TO C PROGRAMMING (C PROGRAMLAMAYA GÄ°RÄ°Å)"
-        },
-        {
           "internal_code": "3550232",
           "code": "3550232",
           "name": "LOGIC DESIGN (SAYISAL DEVRE TASARIMI)"
@@ -3713,19 +3718,9 @@
           "name": "COMPUTER ENGINEERING DESIGN I (BÄ°TÄ°RME PROJESÄ° VE SEMÄ°NERÄ°: TASARIM)"
         },
         {
-          "internal_code": "3550495",
-          "code": "3550495",
-          "name": "CLOUD COMPUTING (BULUT HESAPLAMA)"
-        },
-        {
           "internal_code": "3550500",
           "code": "3550500",
           "name": "M.SC.THESIS (YÃKSEK LÄ°SANS TEZÄ°)"
-        },
-        {
-          "internal_code": "3550501",
-          "code": "3550501",
-          "name": "DEEP LEARNING (DERÄ°N ÃÄRENME)"
         },
         {
           "internal_code": "3550583",
@@ -3736,6 +3731,11 @@
           "internal_code": "3550591",
           "code": "3550591",
           "name": "GRADUATE SEMINAR (LÄ°SANSÃSTÃ SEMÄ°NER)"
+        },
+        {
+          "internal_code": "3550798",
+          "code": "3550798",
+          "name": "SPECIAL TOPICS IN COMPUTER ENGINEERING: QUANTUM COMPUTING (BÄ°LG. MÃH. ÃZEL KONULAR: KUANTUM HESAPLAMA)"
         },
         {
           "internal_code": "3550801",
@@ -3756,11 +3756,6 @@
           "internal_code": "3550807",
           "code": "3550807",
           "name": "SPECIAL STUDIES (YÃKSEK LÄ°SANS TEZ ÃALIÅMALARI)"
-        },
-        {
-          "internal_code": "3551530",
-          "code": "3551530",
-          "name": "MEDICAL IMAGE ANALYSIS (TIBBÄ° GÃRÃNTÃLEME ANALÄ°ZÄ°)"
         },
         {
           "internal_code": "3552546",
@@ -4428,11 +4423,6 @@
           "name": "MACROECONOMICS (MAKROÄ°KTÄ°SAT)"
         },
         {
-          "internal_code": "3520201",
-          "code": "3520201",
-          "name": "INTERMEDIATE MICROECONOMICS (ORTA SEVÄ°YEDE MÄ°KROÄ°KTÄ°SAT)"
-        },
-        {
           "internal_code": "3520205",
           "code": "3520205",
           "name": "STATISTICS FOR ECONOMISTS (Ä°KTÄ°SATÃILAR Ä°ÃÄ°N Ä°STATÄ°STÄ°K)"
@@ -4448,19 +4438,9 @@
           "name": "ECONOMIC HISTORY (Ä°KTÄ°SAT TARÄ°HÄ°)"
         },
         {
-          "internal_code": "3520275",
-          "code": "3520275",
-          "name": "MATHEMATICS FOR ECONOMISTS (Ä°KTÄ°SATÃILAR Ä°ÃÄ°N MATEMATÄ°K)"
-        },
-        {
           "internal_code": "3520303",
           "code": "3520303",
           "name": "INTERNATIONAL TRADE THEORY AND POLICY (ULUSLARARASI TÄ°CARET TEORÄ°SÄ° VE POLÄ°TÄ°KALARI)"
-        },
-        {
-          "internal_code": "3520311",
-          "code": "3520311",
-          "name": "PRINCIPLES OF ECONOMETRICS I ()"
         },
         {
           "internal_code": "3520312",
@@ -4468,24 +4448,9 @@
           "name": "PRINCIPLES OF ECONOMETRICS II ()"
         },
         {
-          "internal_code": "3520315",
-          "code": "3520315",
-          "name": "ECON.OF NETWORK AND THE INTERNET (AÄ VE Ä°NTERNET EKONOMÄ°SÄ°)"
-        },
-        {
           "internal_code": "3520400",
           "code": "3520400",
           "name": "GRADUATION PROJECT (MEZUNÄ°YET PROJESÄ°)"
-        },
-        {
-          "internal_code": "3520446",
-          "code": "3520446",
-          "name": "TOPICS IN ECONOMETRICS (EKONOMETRÄ° KONULARI)"
-        },
-        {
-          "internal_code": "3520455",
-          "code": "3520455",
-          "name": "TURKISH ECONOMIC HISTORY (TÃRKÄ°YE Ä°KTÄ°SADÄ° TARÄ°HÄ°)"
         },
         {
           "internal_code": "3520480",
@@ -5087,11 +5052,6 @@
           "name": "ELECTROMECHANICAL ENERGY CONVERSION (ELEKTROMEKANÄ°K ENERJÄ° DÃNÃÅÃMÃ)"
         },
         {
-          "internal_code": "3560381",
-          "code": "3560381",
-          "name": "SYSTEMS AND CONTROL (SÄ°STEMLER VE KONTROL)"
-        },
-        {
           "internal_code": "3560400",
           "code": "3560400",
           "name": "SUMMER PRACTICE II (YAZ STAJI II)"
@@ -5229,6 +5189,11 @@
           "name": "QUALITY ENGINEERING (KALÄ°TE MÃHENDÄ°SLÄ°ÄÄ°)"
         },
         {
+          "internal_code": "8660599",
+          "code": "8660599",
+          "name": "TERM PROJECT (DÃNEM PROJESÄ°)"
+        },
+        {
           "internal_code": "8660727",
           "code": "8660727",
           "name": "INTRODUCTION TO ENGINEERING MANAGEMENT (MÃHENDÄ°SLÄ°K YÃNETÄ°MÄ°NE GÄ°RÄ°Å)"
@@ -5334,11 +5299,6 @@
           "internal_code": "3830410",
           "code": "3830410",
           "name": "Applied Engineering Systems I (UygulamalÄ± MÃ¼hendislik Sistemleri I)"
-        },
-        {
-          "internal_code": "3830412",
-          "code": "3830412",
-          "name": "SPECIAL TOPICS: NANOSCIENCE AND NANOTECHNOLOGY (ÃZEL KONULAR: NANO BÄ°LÄ°M VE NANOTEKNOLOJÄ°)"
         },
         {
           "internal_code": "3830491",
@@ -5463,16 +5423,6 @@
           "name": "MASTER'S THESIS (YÃKSEK LÄ°SANS TEZÄ°)"
         },
         {
-          "internal_code": "8200603",
-          "code": "8200603",
-          "name": "ENG.LANGUAGE TEACHING CURRICULUM (Ä°NGÄ°LÄ°Z DÄ°LÄ° ÃÄRETÄ°MÄ° MÃFREDATI)"
-        },
-        {
-          "internal_code": "8200605",
-          "code": "8200605",
-          "name": "SOCIOLINGUISTICS (SOSYODÄ°LBÄ°LÄ°M)"
-        },
-        {
           "internal_code": "8200613",
           "code": "8200613",
           "name": "FUNDAMENTAL CONCEPTS IN LANGUAGE EDUCATION STUDIES (DÄ°L EÄÄ°TÄ°MÄ° ÃALIÅMALARINDA TEMEL KAVRAMLAR)"
@@ -5563,11 +5513,6 @@
           "internal_code": "8210516",
           "code": "8210516",
           "name": "LITERATURE IN THE MIDDLE AGES (ORTA ÃAÄ EDEBÄ°YATI)"
-        },
-        {
-          "internal_code": "8210525",
-          "code": "8210525",
-          "name": "RESEARCH METHODS AND ETHICAL CONSIDERATIONS IN LITERARY STUDIES (ARAÅTIRMA METOTLARI VE EDEBÄ° ÃALIÅMALARDA ETÄ°K HUSUSLAR)"
         },
         {
           "internal_code": "8210530",
@@ -6404,6 +6349,11 @@
           "name": "M.S. THESIS (YL TEZÄ°)"
         },
         {
+          "internal_code": "5640508",
+          "code": "5640508",
+          "name": "GEOCHEMISTRY OF MINERAL DEPOSITS (MADEN YATAKLARININ JEOKÄ°MYASI)"
+        },
+        {
           "internal_code": "5640523",
           "code": "5640523",
           "name": "METAMORPHIC PETROGENESIS (METAMORFÄ°K PETROJENEZ)"
@@ -6515,24 +6465,24 @@
           "name": "SOCIETY AND CULTURE (TOPLUM VE KÃLTÃR)"
         },
         {
-          "internal_code": "3150303",
-          "code": "3150303",
-          "name": "TURKISH POLITICS AND POLITICAL STRUCTURE (TÃRK SÄ°YASETÄ° VE SÄ°YASÄ° YAPI)"
+          "internal_code": "3150301",
+          "code": "3150301",
+          "name": "MODERN GOVERNANCE (MODERN YÃNETÄ°M)"
         },
         {
-          "internal_code": "3150317",
-          "code": "3150317",
-          "name": "POLITICS IN THE BALKANS (BALKANLARDA SÄ°YASET)"
+          "internal_code": "3150313",
+          "code": "3150313",
+          "name": "MODERN INTERNATIONAL SYSTEM (MODERN ULUSLARARASI SÄ°STEM)"
+        },
+        {
+          "internal_code": "3150322",
+          "code": "3150322",
+          "name": "THE POLITICS OF NEW MEDIA (YENÄ° MEDYA POLÄ°TÄ°KALARI)"
         },
         {
           "internal_code": "3150323",
           "code": "3150323",
           "name": "CRITICAL SECURITY STUDIES (ELEÅTÄ°REL GÃVENLÄ°K ÃALIÅMALARI)"
-        },
-        {
-          "internal_code": "3150324",
-          "code": "3150324",
-          "name": "FORMS OF MODERNITY (MODERNÄ°TE FORMLARI)"
         }
       ]
     },
@@ -6684,11 +6634,6 @@
         {
           "internal_code": "9500596",
           "code": "9500596",
-          "name": "SPECIAL TOPICS IN MARINE SCIENCES (DENÄ°Z BÄ°LÄ°MLERÄ°NDE ÃZEL TEMALAR)"
-        },
-        {
-          "internal_code": "9500597",
-          "code": "9500597",
           "name": "SPECIAL TOPICS IN MARINE SCIENCES (DENÄ°Z BÄ°LÄ°MLERÄ°NDE ÃZEL TEMALAR)"
         },
         {
@@ -7213,6 +7158,11 @@
           "name": "ANALYSIS OF HUMAN-MADE OBJECTS (INSAN YAPIMI NESNELERIN ANALIZI)"
         },
         {
+          "internal_code": "1250361",
+          "code": "1250361",
+          "name": "SENSE OF FORM (BICIM ANLAYISI)"
+        },
+        {
           "internal_code": "1250390",
           "code": "1250390",
           "name": "SUMMER PRACTICE IN A PRODUCTION ESTABLISHMENT (URETIM BIRIMINDE YAZ STAJI)"
@@ -7281,11 +7231,6 @@
           "internal_code": "1250437",
           "code": "1250437",
           "name": "THE NEW OFFICE (YENI OFIS)"
-        },
-        {
-          "internal_code": "1250438",
-          "code": "1250438",
-          "name": "DESIGN FOR SUSTAINABLE BEHAVIOR CHANGE (SÃRDÃRÃLEBÄ°LÄ°R DAVRANIÅ DEÄÄ°ÅÄ°KLÄ°ÄÄ° Ä°ÃÄ°N TASARIM)"
         },
         {
           "internal_code": "1250442",
@@ -7545,6 +7490,11 @@
       "text": "Industrial Engineering/EndÃ¼stri MÃ¼hendisliÄi(Kuzey Kıbrıs Kampüsü)",
       "courses": [
         {
+          "internal_code": "3880223",
+          "code": "3880223",
+          "name": "DISCRETE COMPUTATIONAL STRUCTURES (KESÄ°KLÄ° HESAPLAMA YAPILARI)"
+        },
+        {
           "internal_code": "3880241",
           "code": "3880241",
           "name": "FINANCIAL AND MANAGERIAL ACCOUNTING FOR ENGINEERS ()"
@@ -7593,11 +7543,6 @@
           "internal_code": "3880404",
           "code": "3880404",
           "name": "MANAGEMENT FOR ENGINEERS (MÃHENDÄ°SLER Ä°ÃÄ°N Ä°ÅLETME YÃNETÄ°MÄ°)"
-        },
-        {
-          "internal_code": "3880422",
-          "code": "3880422",
-          "name": "SEMINAR IN INDUSTRIAL ENGINEERING (ENDÃSTRÄ° MÃHENDÄ°SLÄ°ÄÄ° UYGULAMALARI SEMÄ°NERÄ°)"
         },
         {
           "internal_code": "3880424",
@@ -8163,11 +8108,6 @@
           "internal_code": "3140667",
           "code": "3140667",
           "name": "TOPICS IN EUROPEAN INTEGRATION (AVRUPA ENTEGRASYONUNDA KONULAR)"
-        },
-        {
-          "internal_code": "3140676",
-          "code": "3140676",
-          "name": "GLOBALISATION,NEOLIBERALISM&SOCIAL TRANSFORMATIONS (KÃRESELLEÅME, NEOLÄ°BERALÄ°ZM VE SOSYAL DÃNÃÅÃMLER)"
         },
         {
           "internal_code": "3140680",
@@ -8765,11 +8705,6 @@
       "text": "Mathematics/Matematik(Kuzey Kıbrıs Kampüsü)",
       "courses": [
         {
-          "internal_code": "3570100",
-          "code": "3570100",
-          "name": "PRECALCULUS (KALKÃLÃS ÃNCESÄ°)"
-        },
-        {
           "internal_code": "3570101",
           "code": "3570101",
           "name": "MATHEMATICS FOR SOCIAL SCIENCES (SOSYAL BÄ°LÄ°MLER Ä°ÃÄ°N MATEMATÄ°K)"
@@ -9200,11 +9135,6 @@
           "internal_code": "3650429",
           "code": "3650429",
           "name": "MECHANICAL VIBRATIONS (MEKANÄ°K TÄ°TREÅÄ°MLER)"
-        },
-        {
-          "internal_code": "3650442",
-          "code": "3650442",
-          "name": "DESIGN OF CONTROL SYSTEMS (KONTROL SÄ°STEMÄ° TASARIMI)"
         },
         {
           "internal_code": "3650458",
@@ -9891,6 +9821,21 @@
           "internal_code": "6390216",
           "code": "6390216",
           "name": "POETRY AND MUSIC (ÅÄ°Ä°R VE MÃZÄ°K)"
+        },
+        {
+          "internal_code": "6390219",
+          "code": "6390219",
+          "name": "ENGLISH THROUGH SEMINARS ON FILMS (FÄ°LM SEMÄ°NERLERÄ°YLE Ä°NGÄ°LÄ°ZCE)"
+        },
+        {
+          "internal_code": "6390301",
+          "code": "6390301",
+          "name": "PHILOSOPHY, INDIVIDUALISM, AND MODERN MYTH IN PROGRESSIVE ROCK THROUGH THE LYRICS OF RUSH (RUSH ÅARKI SÃZLERÄ° ÃZERÄ°NDEN PROGRESÄ°F ROCK'TA FELSEFE, BÄ°REYCÄ°LÄ°K VE MODERN MÄ°T)"
+        },
+        {
+          "internal_code": "6390302",
+          "code": "6390302",
+          "name": "THE ENNEAGRAM FOR CAREER READINESS (ENNEAGRAM Ä°LE KARÄ°YER HAZIRLIÄI)"
         },
         {
           "internal_code": "6390310",
@@ -11573,6 +11518,11 @@
           "name": "QUANTUM PHYSICS (KUANTUM FÄ°ZÄ°ÄÄ°)"
         },
         {
+          "internal_code": "2300305",
+          "code": "2300305",
+          "name": "ANALOG ELECTRONICS (ANALOG ELEKTRONÄ°K)"
+        },
+        {
           "internal_code": "2300307",
           "code": "2300307",
           "name": "APPLIED MODERN PHYSICS (UYGULAMALI MODERN FÄ°ZÄ°K)"
@@ -12207,11 +12157,6 @@
           "name": "M.S. THESIS (YÃKSEK LÄ°SANS TEZÄ°)"
         },
         {
-          "internal_code": "8620501",
-          "code": "8620501",
-          "name": "POLYMER CHEMISTRY (POLÄ°MER KÄ°MYASI)"
-        },
-        {
           "internal_code": "8620506",
           "code": "8620506",
           "name": "POLYMER PROCESSING (POLÄ°MER PROSESLERÄ°)"
@@ -12531,11 +12476,6 @@
           "internal_code": "2335700",
           "code": "2335700",
           "name": "PROTHESIS SEMINAR IN TRAFFIC AND TRANSPORTATION PSYCHOLOGY ()"
-        },
-        {
-          "internal_code": "2335702",
-          "code": "2335702",
-          "name": "INTRODUCTION TO TRAFFIC AND TRANSPORTATION PSYCHOLOGY ()"
         },
         {
           "internal_code": "2335704",
@@ -12859,39 +12799,29 @@
           "name": "THEORY IN ARCHAEOLOGY (ARKEOLOJÄ° KURAMI)"
         },
         {
-          "internal_code": "8140502",
-          "code": "8140502",
-          "name": "ARTEFACT ANALYSIS AND QUANTIFICATION (ARKEOLOJÄ°K BULUNTULARIN Ä°NCELEMESÄ° VE Ä°STATÄ°STÄ°KSEL ANALÄ°ZÄ°)"
-        },
-        {
           "internal_code": "8140503",
           "code": "8140503",
           "name": "ANATOLIAN ARCHAEOLOGY (ANADOLU ARKEOLOJÄ°SÄ°)"
         },
         {
-          "internal_code": "8140506",
-          "code": "8140506",
-          "name": "WORKSHOP IN SETTLEMENT ARCHAEOLOGY (YERLEÅÄ°M ARKEOLOJÄ°SÄ° ATÃLYESÄ°)"
+          "internal_code": "8140560",
+          "code": "8140560",
+          "name": "LANDSCAPE ARCHAEOLOGY (KÃLTÃREL PEYZAJ ARKEOLOJÄ°SÄ°)"
         },
         {
-          "internal_code": "8140509",
-          "code": "8140509",
-          "name": "HUMAN BIO.&CULT. EVOL.:ARCHAEOLOGICAL APPRO.,THEORY&INTER (BÄ°YOLOJÄ°K VE KÃLTÃREL Ä°NSAN EVRÄ°MÄ°: ARKEOLOJÄ°K YAKLAÅIMLAR, TEORÄ° VE YORUMLAR)"
+          "internal_code": "8140561",
+          "code": "8140561",
+          "name": "ISSUES IN ARCHAEOLOGICAL HERITAGE MANAGEMENT (ARKEOLOJÄ°K MÄ°RAS YÃNETÄ°MÄ°)"
         },
         {
-          "internal_code": "8140598",
-          "code": "8140598",
-          "name": "FIELD METHODS IN ARCHAEOLOGY I (ARKEOLOJÄ°K ARAZÄ° ÃALIÅMALARI)"
+          "internal_code": "8140565",
+          "code": "8140565",
+          "name": "DOMESTIC ARCHAELOGY (HANE ARKEOLOJÄ°SÄ°)"
         },
         {
           "internal_code": "8140599",
           "code": "8140599",
           "name": "MASTER THESIS (YÃKSEK LÄ°SANS TEZÄ°)"
-        },
-        {
-          "internal_code": "8140600",
-          "code": "8140600",
-          "name": "DOCTORAL SEMINAR (Ä°LERÄ° SEVÄ°YE YERLEÅÄ°M ARKEOLOJÄ°SÄ° SEMÄ°NERÄ°)"
         },
         {
           "internal_code": "8140699",
@@ -12983,11 +12913,6 @@
           "name": "INTRODUCTION TO SOCIOLOGY I (SOSYOLOJÄ°YE GÄ°RÄ°Å I)"
         },
         {
-          "internal_code": "2320102",
-          "code": "2320102",
-          "name": "INTRODUCTION TO SOCIOLOGY (SOSYOLOJÄ°YE GÄ°RÄ°Å II)"
-        },
-        {
           "internal_code": "2320104",
           "code": "2320104",
           "name": "INTRODUCTION TO SOCIOLOGY (SOSYOLOJÄ°YE GÄ°RÄ°Å)"
@@ -13011,6 +12936,11 @@
           "internal_code": "2320203",
           "code": "2320203",
           "name": "URBAN SOCIOLOGY (KENT SOSYOLOJÄ°SÄ°)"
+        },
+        {
+          "internal_code": "2320208",
+          "code": "2320208",
+          "name": "ECONOMICS AND SOCIETY (Ä°KTÄ°SAT VE TOPLUM)"
         },
         {
           "internal_code": "2320241",
@@ -13173,11 +13103,6 @@
       "value": "372",
       "text": "Sociology/Sosyoloji(Kuzey Kıbrıs Kampüsü)",
       "courses": [
-        {
-          "internal_code": "3720100",
-          "code": "3720100",
-          "name": "PRINCIPLES OF SOCIOLOGY (SOSYOLOJÄ°NÄ°N Ä°LKELERÄ°)"
-        },
         {
           "internal_code": "3720109",
           "code": "3720109",
@@ -13345,11 +13270,6 @@
           "internal_code": "2460467",
           "code": "2460467",
           "name": "MULTIVARIATE ANALYSIS (ÃOK DEÄÄ°ÅKENLÄ° ANALÄ°Z)"
-        },
-        {
-          "internal_code": "2460471",
-          "code": "2460471",
-          "name": "INTRODUCTION TO FINANCIAL ENGINEERING (FÄ°NANS MÃHENDÄ°SLÄ°ÄÄ°NE GÄ°RÄ°Å)"
         },
         {
           "internal_code": "2460482",
