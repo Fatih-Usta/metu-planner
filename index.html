@@ -1170,7 +1170,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       return;
     }
     var theme = (document.documentElement.getAttribute('data-theme') || 'dark') === 'light' ? 'light' : 'dark';
-    var bgColor = theme === 'dark' ? '#0f1114' : '#f8f9fa';
+    var bgColor = (getComputedStyle(document.documentElement).getPropertyValue('--bg') || '').trim()
+      || (theme === 'dark' ? '#13161a' : '#f8f9fa');
     html2canvas(container, { backgroundColor: bgColor, scale: 1.25 }).then(function(canvas) {
       var link = document.createElement('a');
       link.href = canvas.toDataURL('image/png');
@@ -1213,7 +1214,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
       return;
     }
     var theme = (document.documentElement.getAttribute('data-theme') || 'dark') === 'light' ? 'light' : 'dark';
-    var bgColor = theme === 'dark' ? '#0f1114' : '#f8f9fa';
+    var bgColor = (getComputedStyle(document.documentElement).getPropertyValue('--bg') || '').trim()
+      || (theme === 'dark' ? '#13161a' : '#f8f9fa');
     html2canvas(container, { backgroundColor: bgColor, scale: 1.25 }).then(function(canvas) {
       var imgData = canvas.toDataURL('image/jpeg', 0.88);
       var pdf = new window.jspdf.jsPDF('l', 'pt', 'a4');
@@ -1615,6 +1617,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   rel="noopener"
   aria-label="Open update history"
   style="position: fixed; right: 16px; bottom: 12px; top: auto; left: auto; font-size: 12px; color: rgba(154, 160, 166, 0.95); z-index: 9999; text-decoration: none; cursor: pointer;"
->01.02.09</a>
+>01.02.10</a>
 </body>
 </html>

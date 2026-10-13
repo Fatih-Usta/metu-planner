@@ -18,26 +18,38 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
       grid-template-columns: 1fr;
       gap: 16px;
     }
+    /* The cards live inside .panel (a block), so they need their own grid to get columns and gaps. */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
     .tools-card {
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-md);
       background: var(--bg-elevated);
-      padding: 16px;
+      padding: 18px;
       box-shadow: var(--shadow);
-      width: min(100%, 380px);
-      min-height: 0;
+      min-width: 0;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
     }
     .tools-card h3 {
-      margin: 0 0 8px 0;
+      margin: 0;
       font-size: 1rem;
     }
     .tools-card p {
-      margin: 0 0 14px 0;
+      margin: 0;
       color: var(--text-muted);
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+    /* Buttons line up along the bottom even when the descriptions differ in length. */
+    .tools-card .tools-open-btn {
+      margin-top: auto;
     }
     .tools-open-btn {
       display: inline-flex;
@@ -200,13 +212,17 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
             <div class="panel-title" id="toolsPanelTitle">Tools</div>
           </div>
         </div>
-        <div class="tools-card">
-          <h3 id="courseDetailsCardTitle">Course details</h3>
-          <a href="course-details.html" id="openCourseDetailsBtn" class="tools-open-btn">Open course details</a>
-        </div>
-        <div class="tools-card">
-          <h3 id="nteHelperCardTitle">NTE helper</h3>
-          <a href="nte-helper.html" id="openNteHelperBtn" class="tools-open-btn">Open NTE helper</a>
+        <div class="tools-grid">
+          <div class="tools-card">
+            <h3 id="courseDetailsCardTitle">Program course details</h3>
+            <p id="courseDetailsCardDesc">Credits, prerequisites and the sections offered each term for every course in a program.</p>
+            <a href="course-details.html" id="openCourseDetailsBtn" class="tools-open-btn">Open course details</a>
+          </div>
+          <div class="tools-card">
+            <h3 id="nteHelperCardTitle">NTE helper</h3>
+            <p id="nteHelperCardDesc">Non-technical electives your department and surname can take, with the hours that fit your schedule.</p>
+            <a href="nte-helper.html" id="openNteHelperBtn" class="tools-open-btn">Open NTE helper</a>
+          </div>
         </div>
       </section>
     </main>
@@ -236,8 +252,10 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
         navTools: "Tools",
         toolsPanelTitle: "Tools",
         courseDetailsCardTitle: "Program course details",
-        openCourseDetailsBtn: "See program course details",
+        courseDetailsCardDesc: "Credits, prerequisites and the sections offered each term for every course in a program.",
+        openCourseDetailsBtn: "Open course details",
         nteHelperCardTitle: "NTE helper",
+        nteHelperCardDesc: "Non-technical electives your department and surname can take, with the hours that fit your schedule.",
         openNteHelperBtn: "Open NTE helper",
         themeLight: "Light theme",
         themeDark: "Dark theme",
@@ -252,10 +270,12 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
         navWeekly: "Haftalık program",
         navTools: "Araçlar",
         toolsPanelTitle: "Araçlar",
-        courseDetailsCardTitle: "Program Ders Detaylarını Görüntüle",
-        openCourseDetailsBtn: "Program Ders Detaylarını Görüntüle",
-        nteHelperCardTitle: "NTE yardımcı",
-        openNteHelperBtn: "NTE yardımcıyı aç",
+        courseDetailsCardTitle: "Program ders detayları",
+        courseDetailsCardDesc: "Bir programdaki her dersin kredisi, ön koşulları ve dönem dönem açılan şubeleri.",
+        openCourseDetailsBtn: "Ders detaylarını aç",
+        nteHelperCardTitle: "NTE yardımcısı",
+        nteHelperCardDesc: "Bölümünüzün ve soyadınızın alabileceği teknik olmayan seçmeliler, programınıza uyan saatlerle.",
+        openNteHelperBtn: "NTE yardımcısını aç",
         themeLight: "Açık tema",
         themeDark: "Koyu tema",
         contactBtn: "İletişim",
@@ -283,8 +303,10 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
       setText("mobileNavTools", s.navTools);
       setText("toolsPanelTitle", s.toolsPanelTitle);
       setText("courseDetailsCardTitle", s.courseDetailsCardTitle);
+      setText("courseDetailsCardDesc", s.courseDetailsCardDesc);
       setText("openCourseDetailsBtn", s.openCourseDetailsBtn);
       setText("nteHelperCardTitle", s.nteHelperCardTitle);
+      setText("nteHelperCardDesc", s.nteHelperCardDesc);
       setText("openNteHelperBtn", s.openNteHelperBtn);
       setText("mobileContactBtn", s.contactBtn);
       setText("envelopeModalTitle", s.contactModalTitle);

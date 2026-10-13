@@ -2750,13 +2750,25 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         }, 4200);
     }
 
+    // The table cells are mostly transparent, so an export without a background shows the page
+    // behind it: in dark mode light text on the viewer's white canvas. Fill it with the theme's --bg.
+    function exportBgColor() {
+        var fallback = (document.documentElement.getAttribute("data-theme") || "dark") === "light" ? "#f8f9fa" : "#13161a";
+        try {
+            var v = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+            return v || fallback;
+        } catch (e) {
+            return fallback;
+        }
+    }
+
     function exportWeekAsPng() {
         var shell = document.querySelector(".week-shell");
         if (!shell || typeof html2canvas !== "function") {
             showToast("Export not available in this browser.", "error");
             return;
         }
-        html2canvas(shell, { backgroundColor: null, scale: 1.25 }).then(function(canvas) {
+        html2canvas(shell, { backgroundColor: exportBgColor(), scale: 1.25 }).then(function(canvas) {
             var link = document.createElement("a");
             link.href = canvas.toDataURL("image/png");
             link.download = "weekly-schedule.png";
@@ -2773,8 +2785,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             return;
         }
         // Match PDF background to current theme
-        var theme = (document.documentElement.getAttribute("data-theme") || "dark") === "light" ? "light" : "dark";
-        var bgColor = theme === "dark" ? "#0f1114" : "#f8f9fa";
+        var bgColor = exportBgColor();
 
         html2canvas(shell, { backgroundColor: bgColor, scale: 1.25 }).then(function(canvas) {
             var imgData = canvas.toDataURL("image/jpeg", 0.88);
