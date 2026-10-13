@@ -240,6 +240,7 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
     </div>
   </dialog>
 
+  <script src="site-chrome.js"></script>
   <script>
   (function() {
     var root = document.documentElement;
@@ -324,120 +325,8 @@ document.documentElement.setAttribute('data-theme', localStorage.getItem('theme'
       localStorage.setItem("lang", lang);
     }
 
-    function initLangCombo() {
-      var sel = document.getElementById("langSelect");
-      var btn = document.getElementById("langButton");
-      var list = document.getElementById("langList");
-      if (!sel || !btn || !list) return;
-      list.innerHTML = "";
-      for (var i = 0; i < sel.options.length; i++) {
-        var opt = sel.options[i];
-        var item = document.createElement("button");
-        item.type = "button";
-        item.className = "course-search-item";
-        item.setAttribute("role", "option");
-        item.textContent = opt.textContent;
-        (function(v) {
-          item.addEventListener("click", function() {
-            sel.value = v;
-            applyLanguage(v);
-            list.classList.remove("is-open");
-            btn.setAttribute("aria-expanded", "false");
-          });
-        })(opt.value);
-        list.appendChild(item);
-      }
-      btn.addEventListener("click", function() {
-        var isOpen = list.classList.contains("is-open");
-        list.classList.toggle("is-open", !isOpen);
-        btn.setAttribute("aria-expanded", !isOpen ? "true" : "false");
-      });
-      document.addEventListener("click", function(ev) {
-        if (!list.classList.contains("is-open")) return;
-        if (!btn.contains(ev.target) && !list.contains(ev.target)) {
-          list.classList.remove("is-open");
-          btn.setAttribute("aria-expanded", "false");
-        }
-      });
-      sel.addEventListener("change", function() {
-        applyLanguage(sel.value === "tr" ? "tr" : "en");
-      });
-    }
-
-    function toggleTheme() {
-      var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
-      var next = current === "light" ? "dark" : "light";
-      root.setAttribute("data-theme", next);
-      localStorage.setItem("theme", next);
-      applyLanguage(getLang());
-    }
-
-    function initDrawer() {
-      var mobileMenuBtn = document.getElementById("mobileMenuBtn");
-      var mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
-      var mobileDrawerClose = document.getElementById("mobileDrawerClose");
-      var mobileThemeBtn = document.getElementById("mobileThemeBtn");
-      var mobileContactBtn = document.getElementById("mobileContactBtn");
-      var mobileLangTr = document.getElementById("mobileLangTr");
-      var mobileLangEn = document.getElementById("mobileLangEn");
-      var envelopeDialog = document.getElementById("envelopeDialog");
-
-      function setDrawerOpen(open) {
-        if (!mobileDrawerOverlay || !mobileMenuBtn) return;
-        mobileDrawerOverlay.classList.toggle("is-open", !!open);
-        mobileDrawerOverlay.setAttribute("aria-hidden", open ? "false" : "true");
-        mobileMenuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-        document.documentElement.style.overflow = open ? "hidden" : "";
-      }
-
-      if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", function() { setDrawerOpen(true); });
-      if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", function() { setDrawerOpen(false); });
-      if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener("click", function(e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
-      document.addEventListener("keydown", function(e) { if (e.key === "Escape") setDrawerOpen(false); });
-
-      if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", function() {
-        toggleTheme();
-        setDrawerOpen(false);
-      });
-      if (mobileContactBtn) mobileContactBtn.addEventListener("click", function() {
-        setDrawerOpen(false);
-        if (envelopeDialog) envelopeDialog.showModal();
-      });
-      if (mobileLangTr) mobileLangTr.addEventListener("click", function() {
-        applyLanguage("tr");
-        if (mobileLangTr) mobileLangTr.classList.add("is-active");
-        if (mobileLangEn) mobileLangEn.classList.remove("is-active");
-        setDrawerOpen(false);
-      });
-      if (mobileLangEn) mobileLangEn.addEventListener("click", function() {
-        applyLanguage("en");
-        if (mobileLangTr) mobileLangTr.classList.remove("is-active");
-        if (mobileLangEn) mobileLangEn.classList.add("is-active");
-        setDrawerOpen(false);
-      });
-
-      var lang = getLang();
-      if (mobileLangTr) mobileLangTr.classList.toggle("is-active", lang === "tr");
-      if (mobileLangEn) mobileLangEn.classList.toggle("is-active", lang !== "tr");
-    }
-
-    var savedTheme = localStorage.getItem("theme");
-    var initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "light";
-    root.setAttribute("data-theme", initialTheme);
-
-    var envelopeBtn = document.getElementById("envelopeBtn");
-    var envelopeDialog = document.getElementById("envelopeDialog");
-    var envelopeModalClose = document.getElementById("envelopeModalClose");
-    if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function() { envelopeDialog.showModal(); });
-    if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function() { envelopeDialog.close(); });
-    if (envelopeDialog) envelopeDialog.addEventListener("click", function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
-
-    var themeToggle = document.getElementById("themeToggle");
-    if (themeToggle) themeToggle.addEventListener("click", toggleTheme);
-
-    initLangCombo();
-    initDrawer();
-    applyLanguage(getLang());
+    // Theme toggle, language picker, mobile drawer and the contact dialog live in site-chrome.js.
+    METU_CHROME.init({ applyLanguage: applyLanguage });
   })();
   </script>
 </body>

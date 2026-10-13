@@ -1649,6 +1649,7 @@ select:focus {
     background: var(--border-subtle);
 }
 </style>
+<script src="site-chrome.js"></script>
 </head>
 <body>
 <script>
@@ -2364,9 +2365,12 @@ function applyLanguage() {
   const pageTitle = document.getElementById("pageTitle");
   if (pageTitle) pageTitle.textContent = t("title");
   const themeLabel = document.getElementById("themeLabel");
-  if (themeLabel) {
+  const mobileThemeLabel = document.getElementById("mobileThemeLabel");
+  if (themeLabel || mobileThemeLabel) {
     const theme = document.documentElement.getAttribute("data-theme") || "dark";
-    themeLabel.textContent = theme === "dark" ? t("themeLight") : t("themeDark");
+    const themeText = theme === "dark" ? t("themeLight") : t("themeDark");
+    if (themeLabel) themeLabel.textContent = themeText;
+    if (mobileThemeLabel) mobileThemeLabel.textContent = themeText;
   }
   ["aboutParagraph1", "aboutParagraph2", "aboutParagraph3", "aboutParagraph4"].forEach(function(id, i) {
     var el = document.getElementById(id);
@@ -4380,8 +4384,9 @@ function updateProgramErrors() {
             var code = el.dataset.courseCode;
             if (!code) continue;
             var info = courses[code];
-            if (semNum % 1 !== 0) continue;
-            if (info && info.semesterType) {
+            // Summer semesters are halves (2.5, 4.5…). Their courses still need prerequisite checks;
+            // only the odd/even "offered in" check does not apply to them.
+            if (info && info.semesterType && semNum % 1 === 0) {
                 var wrongOffered = (info.semesterType === "odd" && semNum % 2 === 0) || (info.semesterType === "even" && semNum % 2 === 1);
                 if (wrongOffered) {
                     var key = code + ":" + semNum + ":wrongSem";
@@ -4612,18 +4617,6 @@ function updateGraduationStatus() {
 
 recalculateGpas();
 
-function toggleTheme() {
-    const html = document.documentElement;
-    const current = html.getAttribute('data-theme') || 'light';
-    const next = current === 'dark' ? 'light' : 'dark';
-    html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    const label = document.getElementById('themeLabel');
-    if (label) label.textContent = next === 'dark' ? t('themeLight') : t('themeDark');
-    const mobileLabel = document.getElementById('mobileThemeLabel');
-    if (mobileLabel) mobileLabel.textContent = next === 'dark' ? t('themeLight') : t('themeDark');
-}
-
 function openAbout() {
   var overlay = document.getElementById("aboutOverlay");
   if (overlay) {
@@ -4654,12 +4647,8 @@ function setDismissedError(key, dismissed) {
     document.addEventListener("visibilitychange", function() {
         if (document.visibilityState === "hidden") persistPlannerState();
     });
-    var langSelectEl = document.getElementById('langSelect');
-    if (langSelectEl) {
-        langSelectEl.value = currentLang;
-        langSelectEl.addEventListener("change", function() { setLanguage(langSelectEl.value); });
-    }
-    applyLanguage();
+    // Theme toggle, language picker, mobile drawer and the contact dialog live in site-chrome.js.
+    METU_CHROME.init({ applyLanguage: function (lang) { setLanguage(lang); } });
     var manualAddToggle = document.getElementById('manualAddToggle');
     var manualAddSection = document.getElementById('manualAddSection');
     if (manualAddToggle && manualAddSection) {
@@ -4668,17 +4657,7 @@ function setDismissedError(key, dismissed) {
             manualAddToggle.setAttribute('aria-expanded', expanded);
         });
     }
-    const theme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const themeLabel = document.getElementById('themeLabel');
-    if (themeLabel) themeLabel.textContent = theme === 'dark' ? t('themeLight') : t('themeDark');
     // Build initial combobox UIs
-    initPlannerCombobox({
-        selectId: "langSelect",
-        buttonId: "langButton",
-        labelId: "langButtonLabel",
-        listId: "langList",
-        placeholder: "Language"
-    });
     initPlannerCombobox({
         selectId: "planSlotSelect",
         buttonId: "planSlotButton",
@@ -4694,50 +4673,6 @@ function setDismissedError(key, dismissed) {
         placeholder: ""
     });
     setupCourseSearch();
-    var themeToggleEl = document.getElementById("themeToggle");
-    if (themeToggleEl) themeToggleEl.addEventListener("click", toggleTheme);
-    var envelopeBtn = document.getElementById("envelopeBtn");
-    var envelopeDialog = document.getElementById("envelopeDialog");
-    var envelopeModalClose = document.getElementById("envelopeModalClose");
-    if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function() { envelopeDialog.showModal(); });
-    if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function() { envelopeDialog.close(); });
-    if (envelopeDialog) envelopeDialog.addEventListener("click", function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
-
-    var mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    var mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
-    var mobileDrawerClose = document.getElementById("mobileDrawerClose");
-    var mobileThemeBtn = document.getElementById("mobileThemeBtn");
-    var mobileContactBtn = document.getElementById("mobileContactBtn");
-    var mobileLangTr = document.getElementById("mobileLangTr");
-    var mobileLangEn = document.getElementById("mobileLangEn");
-
-    function setDrawerOpen(open) {
-        if (!mobileDrawerOverlay || !mobileMenuBtn) return;
-        mobileDrawerOverlay.classList.toggle("is-open", !!open);
-        mobileDrawerOverlay.setAttribute("aria-hidden", open ? "false" : "true");
-        mobileMenuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-        if (open) document.documentElement.style.overflow = "hidden";
-        else document.documentElement.style.overflow = "";
-    }
-
-    if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", function() { setDrawerOpen(true); });
-    if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", function() { setDrawerOpen(false); });
-    if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener("click", function(e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
-    document.addEventListener("keydown", function(e) { if (e.key === "Escape") setDrawerOpen(false); });
-
-    if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", function() { toggleTheme(); });
-    if (mobileContactBtn) mobileContactBtn.addEventListener("click", function() {
-        setDrawerOpen(false);
-        if (envelopeDialog) envelopeDialog.showModal();
-    });
-    if (mobileLangTr) mobileLangTr.addEventListener("click", function() { setLanguage("tr"); setDrawerOpen(false); });
-    if (mobileLangEn) mobileLangEn.addEventListener("click", function() { setLanguage("en"); setDrawerOpen(false); });
-
-    var mobileThemeLabel = document.getElementById("mobileThemeLabel");
-    if (mobileThemeLabel) mobileThemeLabel.textContent = (document.documentElement.getAttribute("data-theme") || "light") === "dark" ? t("themeLight") : t("themeDark");
-    if (mobileLangTr) mobileLangTr.classList.toggle("is-active", currentLang === "tr");
-    if (mobileLangEn) mobileLangEn.classList.toggle("is-active", currentLang !== "tr");
-
     var aboutBtn = document.getElementById("aboutBtn");
     if (aboutBtn) aboutBtn.addEventListener("click", openAbout);
     var aboutClose = document.getElementById("aboutClose");

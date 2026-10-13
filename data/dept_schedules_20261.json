@@ -1,25 +1,12 @@
 {
   "term": "20261",
-  "generated_at": "2026-09-22 18:42:06",
+  "generated_at": "2026-10-13 20:11:47",
   "sources": [
     {
       "dept": "CENG",
       "url": "https://ceng.metu.edu.tr/en/course-schedule",
-      "meetings": 1
+      "meetings": 0
     }
   ],
-  "sections": {
-    "5710501|1": {
-      "source": "CENG",
-      "url": "https://ceng.metu.edu.tr/en/course-schedule",
-      "meetings": [
-        {
-          "day": "Tuesday",
-          "start": "12:40",
-          "end": "15:30",
-          "room": "BMB 5"
-        }
-      ]
-    }
-  }
+  "sections": {}
 }

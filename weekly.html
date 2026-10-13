@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="main-ui.css?v=2">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="site-chrome.js"></script>
 <script src="ics-export.js"></script>
 <script src="terms.js"></script>
 <style>
@@ -1455,91 +1456,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 <script>
 (function () {
     var root = document.documentElement;
-    var saved = window.localStorage.getItem("theme");
-    var initial = saved === "light" || saved === "dark" ? saved : (root.getAttribute("data-theme") || "light");
-    root.setAttribute("data-theme", initial);
-
-    var btn = document.getElementById("themeToggle");
-    if (btn) {
-        btn.addEventListener("click", function () {
-            var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
-            var next = current === "light" ? "dark" : "light";
-            root.setAttribute("data-theme", next);
-            window.localStorage.setItem("theme", next);
-            // Update theme label according to current language
-            var lang = localStorage.getItem("lang") === "tr" ? "tr" : "en";
-            applyWeeklyLanguage(lang);
-        });
-    }
-
-    var envelopeBtn = document.getElementById("envelopeBtn");
-    var envelopeDialog = document.getElementById("envelopeDialog");
-    var envelopeModalClose = document.getElementById("envelopeModalClose");
-    if (envelopeBtn && envelopeDialog) envelopeBtn.addEventListener("click", function () { envelopeDialog.showModal(); });
-    if (envelopeModalClose && envelopeDialog) envelopeModalClose.addEventListener("click", function () { envelopeDialog.close(); });
-    if (envelopeDialog) envelopeDialog.addEventListener("click", function (e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
-
-    var mobileMenuBtn = document.getElementById("mobileMenuBtn");
-    var mobileDrawerOverlay = document.getElementById("mobileDrawerOverlay");
-    var mobileDrawerClose = document.getElementById("mobileDrawerClose");
-    var mobileThemeBtn = document.getElementById("mobileThemeBtn");
-    var mobileContactBtn = document.getElementById("mobileContactBtn");
-    var mobileLangTr = document.getElementById("mobileLangTr");
-    var mobileLangEn = document.getElementById("mobileLangEn");
-
-    function setDrawerOpen(open) {
-        if (!mobileDrawerOverlay || !mobileMenuBtn) return;
-        mobileDrawerOverlay.classList.toggle("is-open", !!open);
-        mobileDrawerOverlay.setAttribute("aria-hidden", open ? "false" : "true");
-        mobileMenuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-        if (open) document.documentElement.style.overflow = "hidden";
-        else document.documentElement.style.overflow = "";
-    }
-
-    if (mobileMenuBtn) mobileMenuBtn.addEventListener("click", function () { setDrawerOpen(true); });
-    if (mobileDrawerClose) mobileDrawerClose.addEventListener("click", function () { setDrawerOpen(false); });
-    if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener("click", function (e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") setDrawerOpen(false); });
-
-    if (mobileThemeBtn) mobileThemeBtn.addEventListener("click", function () {
-        var current = root.getAttribute("data-theme") === "light" ? "light" : "dark";
-        var next = current === "light" ? "dark" : "light";
-        root.setAttribute("data-theme", next);
-        window.localStorage.setItem("theme", next);
-        var lang = localStorage.getItem("lang") === "tr" ? "tr" : "en";
-        applyWeeklyLanguage(lang);
-    });
-    if (mobileContactBtn) mobileContactBtn.addEventListener("click", function () {
-        setDrawerOpen(false);
-        if (envelopeDialog) envelopeDialog.showModal();
-    });
-    if (mobileLangTr) mobileLangTr.addEventListener("click", function () {
-        localStorage.setItem("lang", "tr");
-        document.documentElement.lang = "tr";
-        var sel = document.getElementById("langSelect");
-        if (sel) sel.value = "tr";
-        applyWeeklyLanguage("tr");
-        if (mobileLangTr) mobileLangTr.classList.add("is-active");
-        if (mobileLangEn) mobileLangEn.classList.remove("is-active");
-        setDrawerOpen(false);
-    });
-    if (mobileLangEn) mobileLangEn.addEventListener("click", function () {
-        localStorage.setItem("lang", "en");
-        document.documentElement.lang = "en";
-        var sel = document.getElementById("langSelect");
-        if (sel) sel.value = "en";
-        applyWeeklyLanguage("en");
-        if (mobileLangTr) mobileLangTr.classList.remove("is-active");
-        if (mobileLangEn) mobileLangEn.classList.add("is-active");
-        setDrawerOpen(false);
-    });
-
-    (function setMobileLangPills() {
-        var lang = localStorage.getItem("lang") === "tr" ? "tr" : "en";
-        if (mobileLangTr) mobileLangTr.classList.toggle("is-active", lang === "tr");
-        if (mobileLangEn) mobileLangEn.classList.toggle("is-active", lang !== "tr");
-    })();
-
     // Shared department selector (same storage key as planner)
     var METU_LAST_PROGRAM_CODE = "metu_last_program_code";
     var deptSelect = document.getElementById("weeklyDeptSelect");
@@ -1574,6 +1490,8 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     var weeklySectionPrefs = {};
     var weeklyAccentPool = ["1","2","3","4","5","6","7","8","9","10","11","12","13"];
     var weeklyAccentIndex = 0;
+    // Per-rule section logging: off unless the URL carries ?debugRules or #debugRules.
+    var weeklyDebugRules = /(^|[?&#])debugRules([=&#]|$)/.test(window.location.search + window.location.hash);
 
     // Simple i18n for Weekly page (TR / EN)
     var weeklyTranslations = {
@@ -1645,6 +1563,25 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             msgNoCoursesInList: "No courses in the list. Use 'Add must courses' first.",
             msgNothingToSave: "Nothing to save: no courses in the weekly list.",
             msgClearedList: "Cleared all courses from the list.",
+            msgExportUnavailable: "Export not available in this browser.",
+            msgExportPngFailed: "Could not export PNG.",
+            msgExportPdfFailed: "Could not export PDF.",
+            msgIcsUnavailable: "Calendar export not available.",
+            msgIcsNoSchedule: "No schedule to export. Run Schedule first.",
+            msgIcsDone: "Calendar (.ics) exported.",
+            msgIcsFailed: "Could not export calendar.",
+            msgSelected: "Selected: {label}",
+            msgSelectDeptFirst: "Please select a department first.",
+            msgEnterSurname: "Please enter your surname for rules.",
+            msgFindingSchedules: "Finding all non-conflicting schedules…",
+            msgWorkerFailed: "Schedule worker failed.",
+            msgLoadDataFailed: "Could not load data to build schedule.",
+            msgLoadDataHint: " Make sure data/oibs_sections_all_{term}_full.json exists and run bat/update_oibs.bat if needed.",
+            msgRunScheduleFirst: "Run Schedule first to build your timetable.",
+            msgNteLoadFailed: "Could not load data for NTE lookup.",
+            msgFileLoaded: "Weekly schedule loaded from file.",
+            msgFileLoadFailed: "Could not load weekly schedule file.",
+            msgShareLinkFailed: "Could not create share link.",
             shareLinkBtn: "Share link",
             shareLinkCopied: "Link copied to clipboard.",
             shareLinkNoSchedule: "No schedule to share. Run Schedule first.",
@@ -1769,6 +1706,25 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             msgNoCoursesInList: "Listede ders yok. Önce 'Zorunlu dersleri ekle' kullanın.",
             msgNothingToSave: "Kaydedilecek bir şey yok: haftalık listede ders bulunmuyor.",
             msgClearedList: "Listedeki tüm dersler temizlendi.",
+            msgExportUnavailable: "Bu tarayıcıda dışa aktarma kullanılamıyor.",
+            msgExportPngFailed: "PNG oluşturulamadı.",
+            msgExportPdfFailed: "PDF oluşturulamadı.",
+            msgIcsUnavailable: "Takvim dışa aktarma kullanılamıyor.",
+            msgIcsNoSchedule: "Dışa aktarılacak program yok. Önce Programla çalıştırın.",
+            msgIcsDone: "Takvim (.ics) indirildi.",
+            msgIcsFailed: "Takvim oluşturulamadı.",
+            msgSelected: "Seçili: {label}",
+            msgSelectDeptFirst: "Lütfen önce bir bölüm seçin.",
+            msgEnterSurname: "Kurallar için lütfen soyadınızı girin.",
+            msgFindingSchedules: "Çakışmayan tüm programlar bulunuyor…",
+            msgWorkerFailed: "Program oluşturucu çalışamadı.",
+            msgLoadDataFailed: "Program oluşturmak için veriler yüklenemedi.",
+            msgLoadDataHint: " data/oibs_sections_all_{term}_full.json dosyasının var olduğundan emin olun, gerekirse bat/update_oibs.bat çalıştırın.",
+            msgRunScheduleFirst: "Programınızı görmek için önce Programla çalıştırın.",
+            msgNteLoadFailed: "NTE araması için veriler yüklenemedi.",
+            msgFileLoaded: "Haftalık program dosyadan yüklendi.",
+            msgFileLoadFailed: "Haftalık program dosyası yüklenemedi.",
+            msgShareLinkFailed: "Paylaşım linki oluşturulamadı.",
             shareLinkBtn: "Linki paylaş",
             shareLinkCopied: "Link panoya kopyalandı.",
             shareLinkNoSchedule: "Paylaşılacak program yok. Önce Programla çalıştırın.",
@@ -1959,26 +1915,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         if (el) el.textContent = dict.closeBtn || "Close";
     }
 
-    // Sync language selector with planner (shared "lang" key)
-    (function initWeeklyLanguage() {
-        var stored = localStorage.getItem("lang") || "en";
-        var normalized = stored === "tr" ? "tr" : "en";
-        localStorage.setItem("lang", normalized);
-        document.documentElement.lang = normalized;
-        applyWeeklyLanguage(normalized);
-        var sel = document.getElementById("langSelect");
-        if (sel) {
-            sel.value = normalized;
-            sel.addEventListener("change", function () {
-                var v = sel.value === "tr" ? "tr" : "en";
-                localStorage.setItem("lang", v);
-                document.documentElement.lang = v;
-                applyWeeklyLanguage(v);
-            });
-            // Build the custom themed language dropdown UI on top of the native select
-            initWeeklyLangCombobox();
-        }
-    })();
+    // Theme toggle, language picker, mobile drawer and the contact dialog live in site-chrome.js.
+    // The "lang" key is shared with the planner.
+    METU_CHROME.init({ applyLanguage: applyWeeklyLanguage, itemClass: "weekly-suggest-item" });
 
     // User‑defined busy slots in the week grid: day key -> array of row indexes (0–8)
     // These are treated as "already occupied" when searching for non‑colliding schedules.
@@ -2561,62 +2500,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         });
     }
 
-    // Custom themed combobox UI for language selection in header
-    function initWeeklyLangCombobox() {
-        var selectEl = document.getElementById("langSelect");
-        var button = document.getElementById("langButton");
-        var labelEl = document.getElementById("langButtonLabel");
-        var listEl = document.getElementById("langList");
-        if (!selectEl || !button || !labelEl || !listEl) return;
-
-        function syncLabelFromSelect() {
-            var opt = selectEl.options[selectEl.selectedIndex] || null;
-            labelEl.textContent = opt && opt.textContent ? opt.textContent : "Language";
-        }
-
-        listEl.innerHTML = "";
-        for (var i = 0; i < selectEl.options.length; i++) {
-            var opt = selectEl.options[i];
-            var item = document.createElement("button");
-            item.type = "button";
-            item.className = "weekly-suggest-item";
-            item.setAttribute("role", "option");
-            item.textContent = opt.textContent || opt.value;
-            (function (value) {
-                item.addEventListener("click", function () {
-                    selectEl.value = value;
-                    var evt;
-                    try {
-                        evt = new Event("change", { bubbles: true });
-                    } catch (e) {
-                        evt = document.createEvent("Event");
-                        evt.initEvent("change", true, true);
-                    }
-                    selectEl.dispatchEvent(evt);
-                    syncLabelFromSelect();
-                    listEl.classList.remove("is-open");
-                    button.setAttribute("aria-expanded", "false");
-                });
-            })(opt.value);
-            listEl.appendChild(item);
-        }
-
-        syncLabelFromSelect();
-
-        button.addEventListener("click", function () {
-            var isOpen = listEl.classList.contains("is-open");
-            listEl.classList.toggle("is-open", !isOpen);
-            button.setAttribute("aria-expanded", !isOpen ? "true" : "false");
-        });
-
-        document.addEventListener("click", function (ev) {
-            if (!listEl.classList.contains("is-open")) return;
-            if (!button.contains(ev.target) && !listEl.contains(ev.target)) {
-                listEl.classList.remove("is-open");
-                button.setAttribute("aria-expanded", "false");
-            }
-        });
-    }
 
     // Custom themed combobox UI for semester selection, backed by the hidden native <select>
     function initWeeklySemesterCombobox() {
@@ -2765,7 +2648,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     function exportWeekAsPng() {
         var shell = document.querySelector(".week-shell");
         if (!shell || typeof html2canvas !== "function") {
-            showToast("Export not available in this browser.", "error");
+            showToast(wt("msgExportUnavailable"), "error");
             return;
         }
         html2canvas(shell, { backgroundColor: exportBgColor(), scale: 1.25 }).then(function(canvas) {
@@ -2774,14 +2657,14 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             link.download = "weekly-schedule.png";
             link.click();
         }).catch(function() {
-            showToast("Could not export PNG.", "error");
+            showToast(wt("msgExportPngFailed"), "error");
         });
     }
 
     function exportWeekAsPdf() {
         var shell = document.querySelector(".week-shell");
         if (!shell || typeof html2canvas !== "function" || !(window.jspdf && window.jspdf.jsPDF)) {
-            showToast("Export not available in this browser.", "error");
+            showToast(wt("msgExportUnavailable"), "error");
             return;
         }
         // Match PDF background to current theme
@@ -2808,25 +2691,25 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             pdf.addImage(imgData, "JPEG", x, y, imgWidth, imgHeight);
             pdf.save("weekly-schedule.pdf");
         }).catch(function() {
-            showToast("Could not export PDF.", "error");
+            showToast(wt("msgExportPdfFailed"), "error");
         });
     }
 
     function exportWeekAsIcs() {
         if (typeof window.METU_ICS_exportSchedule !== "function") {
-            showToast("Calendar export not available.", "error");
+            showToast(wt("msgIcsUnavailable"), "error");
             return;
         }
         var schedule = currentSchedulesList && currentSchedulesList[currentScheduleIndex || 0] || currentSchedulesList[0] || [];
         if (!schedule || !schedule.length) {
-            showToast("No schedule to export. Run Schedule first.", "error");
+            showToast(wt("msgIcsNoSchedule"), "error");
             return;
         }
         try {
             window.METU_ICS_exportSchedule(schedule, weeklyOibsTerm, "metu-weekly-schedule.ics");
-            showToast("Calendar (.ics) exported.", "success");
+            showToast(wt("msgIcsDone"), "success");
         } catch (e) {
-            showToast("Could not export calendar.", "error");
+            showToast(wt("msgIcsFailed"), "error");
         }
     }
 
@@ -4183,7 +4066,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                             block.addEventListener("click", (function (fullLabel) {
                                 return function (ev) {
                                     ev.stopPropagation();
-                                    setScheduleSummary("<span class=\"weekly-messages--info\">Selected: " + escapeHtml(fullLabel) + "</span>");
+                                    setScheduleSummary("<span class=\"weekly-messages--info\">" + wtf("msgSelected", { label: escapeHtml(fullLabel) }) + "</span>");
                                 };
                             })(entry.label));
                         }
@@ -5089,12 +4972,12 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 var surnameInputEl = document.getElementById("weeklySurname");
                 var surname = (surnameInputEl && surnameInputEl.value || "").trim();
                 if (!programCode) {
-                    setScheduleSummary("<span class=\"weekly-messages--error\">Please select a department first.</span>");
+                    setScheduleSummary("<span class=\"weekly-messages--error\">" + wt("msgSelectDeptFirst") + "</span>");
                     clearWeekGrid();
                     return;
                 }
                 if (!surname) {
-                    setScheduleSummary("<span class=\"weekly-messages--error\">Please enter your surname for rules.</span>");
+                    setScheduleSummary("<span class=\"weekly-messages--error\">" + wt("msgEnterSurname") + "</span>");
                     clearWeekGrid();
                     return;
                 }
@@ -5163,8 +5046,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     // Why a section is filtered out by the rules: null = allowed, "prefs" = not one of the user's picked
                     // sections, "dept" = no rule open to the student's department, "surname" = a rule is open to the
                     // department but the surname is outside its range. silent skips the console logging.
+                    // The per-rule logs are thousands of lines per run, so they need ?debugRules (or #debugRules).
                     function sectionRuleRejection(section, courseCode, silent) {
-                        var log = !silent && console && console.log;
+                        var log = !silent && weeklyDebugRules && console && console.log;
                         // Respect user‑selected section preferences per course (if any)
                         if (section && courseCode && weeklySectionPrefs) {
                             var prefs = weeklySectionPrefs[courseCode];
@@ -5351,7 +5235,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                                 if (!sectionAllowedForSurname(s, pc.code)) continue;
                                 ruleOkCount++;
                                 if (!canPlaceMeetings(s.meetings, placed, pc.code)) {
-                                    if (console && console.log) console.log("[Schedule] " + pc.code + " section " + (s.section != null ? s.section : "?") + ": TIME CONFLICT with already placed");
+                                    if (weeklyDebugRules && console && console.log) console.log("[Schedule] " + pc.code + " section " + (s.section != null ? s.section : "?") + ": TIME CONFLICT with already placed");
                                     continue;
                                 }
                                 placeMeetings(placed, pc.code, s.meetings);
@@ -5395,7 +5279,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     });
 
                     noteDeptHours();
-                    setScheduleSummary("<span class=\"weekly-messages--info\">Finding all non-conflicting schedules…</span>");
+                    setScheduleSummary("<span class=\"weekly-messages--info\">" + wt("msgFindingSchedules") + "</span>");
                     clearWeekGrid();
                     document.getElementById("weeklyScheduleNav").style.display = "none";
 
@@ -5493,7 +5377,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
 
                     worker.onerror = function (err) {
                         worker.terminate();
-                        var msg = "Schedule worker failed.";
+                        var msg = wt("msgWorkerFailed");
                         if (err && err.message) msg += " " + err.message;
                         setScheduleSummary("<span class=\"weekly-messages--error\">" + msg + "</span>");
                         document.getElementById("weeklyScheduleNav").style.display = "none";
@@ -5501,9 +5385,9 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     };
                 })
                 .catch(function (err) {
-                    var msg = "Could not load data to build schedule.";
+                    var msg = wt("msgLoadDataFailed");
                     if (err && err.message) msg += " " + err.message;
-                    else msg += " Make sure data/oibs_sections_all_" + weeklyOibsTerm + "_full.json exists and run bat/update_oibs.bat if needed.";
+                    else msg += wtf("msgLoadDataHint", { term: weeklyOibsTerm });
                     setScheduleSummary("<span class=\"weekly-messages--error\">" + msg + "</span>");
                     document.getElementById("weeklyScheduleNav").style.display = "none";
                     clearWeekGrid();
@@ -5526,7 +5410,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 return;
             }
             if (!currentSchedulesList || !currentSchedulesList.length) {
-                showToast("Run Schedule first to build your timetable.", "error");
+                showToast(wt("msgRunScheduleFirst"), "error");
                 return;
             }
             ensureDataLoaded().then(function () {
@@ -5742,7 +5626,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                 }
                 nteResultsOverlay.style.display = "flex";
             }).catch(function () {
-                showToast("Could not load data for NTE lookup.", "error");
+                showToast(wt("msgNteLoadFailed"), "error");
             });
         });
         if (nteResultsClose && nteResultsOverlay) {
@@ -6049,11 +5933,11 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     try {
                         var data = JSON.parse(reader.result);
                         applyWeeklyState(data);
-                                var msg = "Weekly schedule loaded from file.";
+                                var msg = wt("msgFileLoaded");
                                 setScheduleSummary("<span class=\"weekly-messages--info\">" + msg + "</span>");
                                 showToast(msg, "success");
                     } catch (err) {
-                                var errMsg = "Could not load weekly schedule file.";
+                                var errMsg = wt("msgFileLoadFailed");
                                 setScheduleSummary("<span class=\"weekly-messages--error\">" + errMsg + "</span>");
                                 showToast(errMsg, "error");
                     }
@@ -6099,7 +5983,7 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
                     window.prompt(wt("shareLinkCopied") + " Copy manually:", shareUrl);
                 }
             } catch (e) {
-                showToast("Could not create share link.", "error");
+                showToast(wt("msgShareLinkFailed"), "error");
             }
         });
     }

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="main-ui.css?v=2">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="site-chrome.js"></script>
 <script src="ics-export.js"></script>
 <script src="terms.js"></script>
 <style>
@@ -1494,121 +1495,13 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
     });
   }
 
-  function setLanguage(lang) {
-    if (!lang || (lang !== 'tr' && lang !== 'en')) return;
-    localStorage.setItem('lang', lang);
-    document.documentElement.lang = lang === 'tr' ? 'tr' : 'en';
-    var label = document.getElementById('langButtonLabel');
-    if (label) label.textContent = lang === 'tr' ? 'Türkçe' : 'English';
-    var sel = document.getElementById('langSelect');
-    if (sel) sel.value = lang;
-    var list = document.getElementById('langList');
-    if (list) list.classList.remove('is-open');
-    var btn = document.getElementById('langButton');
-    if (btn) btn.setAttribute('aria-expanded', 'false');
-    applyPortalTranslations(lang);
-    renderCoursesSection();
-  }
-
-  function toggleTheme() {
-    var root = document.documentElement;
-    var current = root.getAttribute('data-theme') || 'dark';
-    var next = current === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    var themeLabel = document.getElementById('themeLabel');
-    if (themeLabel) themeLabel.textContent = next === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
-    var mobileThemeLabel = document.getElementById('mobileThemeLabel');
-    if (mobileThemeLabel) mobileThemeLabel.textContent = next === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
-  }
-
-  var theme = document.documentElement.getAttribute('data-theme') || 'dark';
-  var themeLabel = document.getElementById('themeLabel');
-  if (themeLabel) themeLabel.textContent = theme === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
-  var mobileThemeLabel = document.getElementById('mobileThemeLabel');
-  if (mobileThemeLabel) mobileThemeLabel.textContent = theme === 'dark' ? getPortalStrings().lightTheme : getPortalStrings().darkTheme;
-  var themeToggle = document.getElementById('themeToggle');
-  if (themeToggle) themeToggle.onclick = toggleTheme;
-
-  var envelopeBtn = document.getElementById('envelopeBtn');
-  var envelopeDialog = document.getElementById('envelopeDialog');
-  var envelopeModalClose = document.getElementById('envelopeModalClose');
-  if (envelopeBtn && envelopeDialog) envelopeBtn.onclick = function() { envelopeDialog.showModal(); };
-  if (envelopeModalClose && envelopeDialog) envelopeModalClose.onclick = function() { envelopeDialog.close(); };
-  if (envelopeDialog) envelopeDialog.addEventListener('click', function(e) { if (e.target === envelopeDialog) envelopeDialog.close(); });
-
-  // Mobile drawer (pages + settings)
-  var mobileMenuBtn = document.getElementById('mobileMenuBtn');
-  var mobileDrawerOverlay = document.getElementById('mobileDrawerOverlay');
-  var mobileDrawerClose = document.getElementById('mobileDrawerClose');
-  var mobileThemeBtn = document.getElementById('mobileThemeBtn');
-  var mobileContactBtn = document.getElementById('mobileContactBtn');
-  var mobileLangTr = document.getElementById('mobileLangTr');
-  var mobileLangEn = document.getElementById('mobileLangEn');
-
-  function setMobileLangActive(langCode) {
-    if (mobileLangTr) mobileLangTr.classList.toggle('is-active', langCode === 'tr');
-    if (mobileLangEn) mobileLangEn.classList.toggle('is-active', langCode !== 'tr');
-  }
-
-  function setDrawerOpen(open) {
-    if (!mobileDrawerOverlay || !mobileMenuBtn) return;
-    mobileDrawerOverlay.classList.toggle('is-open', !!open);
-    mobileDrawerOverlay.setAttribute('aria-hidden', open ? 'false' : 'true');
-    mobileMenuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    if (open) {
-      document.documentElement.style.overflow = 'hidden';
-    } else {
-      document.documentElement.style.overflow = '';
+  // Theme toggle, language picker, mobile drawer and the contact dialog live in site-chrome.js.
+  METU_CHROME.init({
+    applyLanguage: function (lang) {
+      applyPortalTranslations(lang);
+      renderCoursesSection();
     }
-  }
-
-  if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', function() { setDrawerOpen(true); });
-  if (mobileDrawerClose) mobileDrawerClose.addEventListener('click', function() { setDrawerOpen(false); });
-  if (mobileDrawerOverlay) mobileDrawerOverlay.addEventListener('click', function(e) { if (e.target === mobileDrawerOverlay) setDrawerOpen(false); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') setDrawerOpen(false); });
-
-  if (mobileThemeBtn) mobileThemeBtn.addEventListener('click', function() { toggleTheme(); });
-  if (mobileContactBtn) mobileContactBtn.addEventListener('click', function() {
-    setDrawerOpen(false);
-    if (envelopeDialog) envelopeDialog.showModal();
   });
-  if (mobileLangTr) mobileLangTr.addEventListener('click', function() { setLanguage('tr'); setDrawerOpen(false); });
-  if (mobileLangEn) mobileLangEn.addEventListener('click', function() { setLanguage('en'); setDrawerOpen(false); });
-
-  var lang = getPortalLang();
-  var langButtonLabel = document.getElementById('langButtonLabel');
-  if (langButtonLabel) langButtonLabel.textContent = lang === 'tr' ? 'Türkçe' : 'English';
-  var langSelect = document.getElementById('langSelect');
-  if (langSelect) {
-    langSelect.value = lang;
-    langSelect.onchange = function() { setLanguage(langSelect.value); };
-  }
-  var langList = document.getElementById('langList');
-  var langButton = document.getElementById('langButton');
-  var langCombo = document.getElementById('langCombo');
-  if (langList && langButton) {
-    ['tr', 'en'].forEach(function(l) {
-      var opt = document.createElement('button');
-      opt.type = 'button';
-      opt.className = 'course-search-item';
-      opt.setAttribute('role', 'option');
-      opt.textContent = l === 'tr' ? 'Türkçe' : 'English';
-      opt.onclick = function() { setLanguage(l); };
-      langList.appendChild(opt);
-    });
-    langButton.onclick = function() {
-      var open = langList.classList.toggle('is-open');
-      langButton.setAttribute('aria-expanded', open);
-    };
-    if (langCombo) {
-      document.addEventListener('click', function(e) {
-        if (!langCombo.contains(e.target)) langList.classList.remove('is-open');
-      });
-    }
-  }
-  setMobileLangActive(lang);
-  applyPortalTranslations(lang);
 })();
 </script>
 <a
@@ -1617,6 +1510,6 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
   rel="noopener"
   aria-label="Open update history"
   style="position: fixed; right: 16px; bottom: 12px; top: auto; left: auto; font-size: 12px; color: rgba(154, 160, 166, 0.95); z-index: 9999; text-decoration: none; cursor: pointer;"
->01.02.10</a>
+>01.02.11</a>
 </body>
 </html>

@@ -101061,6 +101061,163 @@
         ]
       },
       "programs": []
+    },
+    {
+      "code": "BIOL576",
+      "course_code_7digit": "2380576",
+      "name": "ADVANCED PLANT SYSTEMATICS",
+      "credits": 3,
+      "department": "Biology",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "PSIR3204",
+      "course_code_7digit": "3543204",
+      "name": "PUBLIC POLICY",
+      "credits": 3,
+      "department": "Political Science And International Relations",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EFL361",
+      "course_code_7digit": "3660361",
+      "name": "INTRODUCTION TO COMPUTER ASSISTED LANGUAGE LEARNING TOOLS",
+      "credits": 3,
+      "department": "Teaching English As A Foreign Language",
+      "offered_semester": "Fall Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS213",
+      "course_code_7digit": "3680213",
+      "name": "HISTORY OF TURKISH EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "EDUS312",
+      "course_code_7digit": "3680312",
+      "name": "INCLUSIVE EDUCATION",
+      "credits": 3,
+      "department": "Educational Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "INE456",
+      "course_code_7digit": "3880456",
+      "name": "NETWORK ROUTING",
+      "credits": 3,
+      "department": "Industrial Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "ENG207",
+      "course_code_7digit": "6390207",
+      "name": "CRITICAL STUDIES IN SCIENCE FICTION",
+      "credits": 3,
+      "department": "Modern Languages (english)",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": {
+        "one_of": [
+          [
+            "6390101",
+            "6390102"
+          ]
+        ]
+      },
+      "programs": []
+    },
+    {
+      "code": "TKPR229",
+      "course_code_7digit": "7950229",
+      "name": "MTH229-ASTROPOLITICS: COMPARATIVE SPACE POLICIES",
+      "credits": 4,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR231",
+      "course_code_7digit": "7950231",
+      "name": "MTH231-INTRODUCTION TO UAS FLIGHT TESTING",
+      "credits": 2,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR233",
+      "course_code_7digit": "7950233",
+      "name": "MTH233-MANAGEMENT INFORMATION SYSTEMS: MISSION-CRITICAL INFORMATION SYSTEMS IN THE DEFENSE INDUSTRY",
+      "credits": 3,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "TKPR235",
+      "course_code_7digit": "7950235",
+      "name": "MTH235-INTRODUCTION TO OPTOMECHANICAL DESIGN",
+      "credits": 3,
+      "department": "Meslek Yüksekokulu",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS809",
+      "course_code_7digit": "8860809",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "DDS810",
+      "course_code_7digit": "8860810",
+      "name": "SPECIAL STUDIES",
+      "credits": 0,
+      "department": "Data And Decision Sciences",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX591",
+      "course_code_7digit": "8870591",
+      "name": "GRADUATE SEMINAR",
+      "credits": 0,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall and Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
+    },
+    {
+      "code": "AIX7863",
+      "course_code_7digit": "8877863",
+      "name": "PROGRAMMING GPU KERNELS FOR DEEP LEARNING",
+      "credits": 3,
+      "department": "Artificial Intelligence Engineering",
+      "offered_semester": "Fall or Spring Semesters.",
+      "prerequisites": null,
+      "programs": []
     }
   ]
 }
