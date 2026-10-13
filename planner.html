@@ -1649,6 +1649,7 @@ select:focus {
     background: var(--border-subtle);
 }
 </style>
+<script src="platform.js"></script>
 <script src="site-chrome.js"></script>
 </head>
 <body>
@@ -2227,10 +2228,17 @@ function initPlannerDeptCombobox() {
     });
   }
 
-  function syncInputFromSelect() {
+  function selectedLabel() {
     var opt = selectEl.options[selectEl.selectedIndex] || null;
-    inputEl.value = opt && opt.textContent ? opt.textContent.trim() : "";
-    inputEl.placeholder = opt && opt.value ? "" : (t("deptPlaceholder") || t("deptSearchPlaceholder"));
+    // The placeholder option carries no value; its text must not land in the input, or it becomes
+    // the search query and nothing matches.
+    return opt && opt.value && opt.textContent ? opt.textContent.trim() : "";
+  }
+
+  function syncInputFromSelect() {
+    var label = selectedLabel();
+    inputEl.value = label;
+    inputEl.placeholder = label ? "" : (t("deptPlaceholder") || t("deptSearchPlaceholder"));
   }
 
   function renderDeptList(items) {
@@ -2270,7 +2278,15 @@ function initPlannerDeptCombobox() {
   syncInputFromSelect();
 
   inputEl.addEventListener("input", openAndFilter);
-  inputEl.addEventListener("focus", openAndFilter);
+  // Focusing shows the whole list; typing filters it.
+  inputEl.addEventListener("focus", function () {
+    if (inputEl.value && inputEl.value !== selectedLabel()) {
+      openAndFilter();
+      return;
+    }
+    inputEl.select();
+    renderDeptList(getDeptOptions());
+  });
   inputEl.addEventListener("keydown", function (e) {
     if (e.key === "Escape") {
       listEl.classList.remove("is-open");

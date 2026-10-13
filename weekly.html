@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="main-ui.css?v=2">
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+<script src="platform.js"></script>
 <script src="site-chrome.js"></script>
 <script src="ics-export.js"></script>
 <script src="terms.js"></script>
@@ -2438,10 +2439,17 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
             });
         }
 
-        function syncInputFromSelect() {
+        function selectedLabel() {
             var opt = selectEl.options[selectEl.selectedIndex] || null;
-            inputEl.value = opt && opt.textContent ? opt.textContent.trim() : "";
-            inputEl.placeholder = opt && opt.value ? "" : (wt("deptSearchPlaceholder") || wt("selectDepartment"));
+            // The first option is the "Select department" placeholder and carries no value; its
+            // text must not land in the input, or it becomes the search query and nothing matches.
+            return opt && opt.value && opt.textContent ? opt.textContent.trim() : "";
+        }
+
+        function syncInputFromSelect() {
+            var label = selectedLabel();
+            inputEl.value = label;
+            inputEl.placeholder = label ? "" : (wt("deptSearchPlaceholder") || wt("selectDepartment"));
         }
 
         function renderDeptList(items) {
@@ -2481,7 +2489,16 @@ document.documentElement.lang = (localStorage.getItem('lang') || 'en') === 'tr' 
         syncInputFromSelect();
 
         inputEl.addEventListener("input", openAndFilter);
-        inputEl.addEventListener("focus", openAndFilter);
+        // Focusing shows the whole list; typing filters it. Without this, the department already
+        // chosen would be used as the query and the list would come up with one entry.
+        inputEl.addEventListener("focus", function () {
+            if (inputEl.value && inputEl.value !== selectedLabel()) {
+                openAndFilter();
+                return;
+            }
+            inputEl.select();
+            renderDeptList(getDeptOptions());
+        });
         inputEl.addEventListener("keydown", function (e) {
             if (e.key === "Escape") {
                 listEl.classList.remove("is-open");
